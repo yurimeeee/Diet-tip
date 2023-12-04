@@ -1,0 +1,136 @@
+//common
+@import 'common';
+
+//title
+h5{
+  font-size: $font-20;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+h6{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+//profile
+
+//profile-card
+.profile-card{
+  display: inline-block;
+  padding: 34px;
+  background-color: $white;
+  box-sizing: border-box;
+  .profile-img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  .about-user{
+    width: 100%;
+    ul{
+      padding-top: $unit-s-3;
+      li{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      li+li{
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid $gray-2;
+      }
+    }
+  }
+  .user-info{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+}
+
+//today
+//today-cards
+.today-cards{
+  display: flex;
+  gap: 20px;
+  p{
+    font-weight: bold;
+  }
+}
+.today-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  background-color: $white;
+  padding:30px;
+  width: 130px;
+  height: 160px;
+  box-sizing: border-box;
+  .sticker{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+}
+
+//goal-card
+.goal-card{
+  background-color: $white;
+  p{
+    font-weight: bold;
+  }
+}
+
+
+
+
+//area-top
+.area-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //button
+  .buttons{
+    display: flex;
+    gap: 20px;
+
+    .button{
+      border: 1px solid $point-1;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      background-color: transparent;
+      transition: 0.3s ease-in background-color;
+      &:hover{
+        background-color: $point-1;
+      }
+      .icon{
+        color:$point-1;
+        font-size: 24px;
+        transition: 0.3s ease-in color;
+      }
+      &:hover .icon{
+        color:$white;
+      }
+    }
+  }
+}
+
+//area-middle
+.area-middle{
+  display: flex;
+  justify-content: space-between;
+}
+
+//area-right
+.area-right{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
