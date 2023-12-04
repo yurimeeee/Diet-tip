@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
 
 const Header = () => {
@@ -21,25 +22,7 @@ const Header = () => {
 
   const provider = new GoogleAuthProvider();
 
-  //구글 계정으로 로그인
-  let signIn = () => {
-    signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      setisLogin(true);
-      alert('로그인 성공');
-    }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
-  }
-
   //구글 계정 로그아웃
-  
   let logOut = () => {
     setisLogin(false);
     setUser(null);
@@ -49,6 +32,12 @@ const Header = () => {
     }).catch((error) => {
       // An error happened.
     });
+  }
+
+  //로그인 페이지로 이동
+  // const navigate = useNavigate();
+  const moveLogin = () => {
+    window.location.replace('/login');
   }
   
 
@@ -62,7 +51,7 @@ const Header = () => {
           </a>
         </h1>
         <aside>
-          <button type="button" className="loginout w-green-btn" onClick={isLogin ? logOut : signIn}>
+          <button type="button" className="loginout w-green-btn" onClick={isLogin ? logOut : moveLogin}>
             {isLogin ? '로그아웃' : '로그인'}
           </button>
           {isLogin

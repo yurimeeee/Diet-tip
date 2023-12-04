@@ -20,7 +20,7 @@ const Mypage = () => {
     }else{
       console.log('유저 정보 불러오기 실패');
     }
-  });
+  }, [user]);
 
   
 
