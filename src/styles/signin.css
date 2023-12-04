@@ -588,165 +588,71 @@ body {
   background-color: #f2f3f5;
 }
 
-section + section {
-  margin-top: 120px;
-}
-
-h5 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-h6 {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.area-middle-top {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-.area-middle-top h5 {
-  margin: 0;
-}
-.area-middle-top .buttons {
-  display: flex;
-  gap: 20px;
-}
-.area-middle-top .buttons .button {
-  border: 1px solid #32a061;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  background-color: transparent;
-  transition: 0.3s ease-in background-color;
-}
-.area-middle-top .buttons .button:hover {
-  background-color: #32a061;
-}
-.area-middle-top .buttons .button .icon {
+a.login-btn {
   color: #32a061;
-  font-size: 24px;
-  transition: 0.3s ease-in color;
+  transition: 0.3s;
 }
-.area-middle-top .buttons .button:hover .icon {
+a.login-btn:hover {
   color: #fff;
 }
 
-.area-middle {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+.Signin, .Login {
+  margin: 72px 0 192px;
 }
 
-.area-middle-middle {
-  display: flex;
-  gap: 100px;
-}
-
-.area-right {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.profile-card {
-  display: inline-block;
-  padding: 34px;
-  background-color: #fff;
-  box-sizing: border-box;
-}
-.profile-card .profile-img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  margin-bottom: 20px;
-}
-.profile-card .about-user {
-  width: 100%;
-}
-.profile-card .about-user ul {
-  padding-top: 15px;
-}
-.profile-card .about-user ul li {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-.profile-card .about-user ul li + li {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid #9da1a6;
-}
-.profile-card .user-info {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.today-cards {
-  display: flex;
-  gap: 20px;
-}
-.today-cards p {
-  font-weight: bold;
-}
-
-.today-card {
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
   justify-content: center;
-  background-color: #fff;
-  padding: 30px;
-  width: 130px;
-  height: 160px;
+}
+form label {
+  display: none;
+}
+form input {
+  display: block;
+  border: 1px solid #32a061;
+  width: 400px;
+  height: 48px;
+  padding: 15px 30px;
   box-sizing: border-box;
+  background-color: transparent;
+  border-radius: 24px;
+  margin-bottom: 10px;
 }
-.today-card .sticker {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
+form input::placeholder {
+  color: #32a061;
+  opacity: 0.5;
 }
-
-.goal-card {
-  background-color: #fff;
-  display: flex;
-  gap: 20px;
-  padding: 20px 140px;
+form input:focus {
+  outline: none;
+  border-color: #32a061;
+  box-shadow: 0 0 5px #32a061;
 }
-.goal-card + .goal-card {
+form button {
   margin-top: 20px;
 }
-.goal-card p {
-  font-weight: 700;
-  display: flex;
-  gap: 10px;
-}
 
-.recommand {
+.already, .google {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-.recommand h5 {
-  margin: 0;
-}
-.recommand .recommand-btns {
-  display: flex;
-  align-items: center;
+  justify-content: center;
+  color: #32a061;
   gap: 20px;
 }
 
-/*# sourceMappingURL=mypage.css.map */
+.Signin .already {
+  margin-top: 40px;
+}
+.Signin .google {
+  margin-top: 10px;
+}
+
+.Login .already {
+  margin-top: 10px;
+}
+.Login .google {
+  margin-top: 40px;
+}
+
+/*# sourceMappingURL=signin.css.map */

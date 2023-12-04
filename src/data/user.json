@@ -1,0 +1,22 @@
+{
+  "user1": [
+    {"profile": [
+      {"level": 1},
+      {"imgURL": "https://res.cloudinary.com/dxevg72i5/image/upload/v1701671014/profile-img_cziscx.png"},
+      {"strength": "낮은편"},
+      {"frequency": "낮은편"},
+      {"nutrition": "낮은편"},
+      {"record": "낮은편"}
+    ]},
+    {"today": [
+      {"meal": "bad"},
+      {"exercise": "good"}
+    ]},
+    {"goal": [
+      {"goalKG": 44},
+      {"until": "12월 31일"},
+      {"nowKG": 52}
+    ]}
+    
+  ]
+}
