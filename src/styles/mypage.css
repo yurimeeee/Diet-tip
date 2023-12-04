@@ -588,6 +588,10 @@ body {
   background-color: #f2f3f5;
 }
 
+section + section {
+  margin-top: 120px;
+}
+
 h5 {
   font-size: 20px;
   font-weight: bold;
@@ -597,6 +601,62 @@ h5 {
 h6 {
   font-size: 18px;
   font-weight: bold;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.area-middle-top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.area-middle-top h5 {
+  margin: 0;
+}
+.area-middle-top .buttons {
+  display: flex;
+  gap: 20px;
+}
+.area-middle-top .buttons .button {
+  border: 1px solid #32a061;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  transition: 0.3s ease-in background-color;
+}
+.area-middle-top .buttons .button:hover {
+  background-color: #32a061;
+}
+.area-middle-top .buttons .button .icon {
+  color: #32a061;
+  font-size: 24px;
+  transition: 0.3s ease-in color;
+}
+.area-middle-top .buttons .button:hover .icon {
+  color: #fff;
+}
+
+.area-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.area-middle-middle {
+  display: flex;
+  gap: 100px;
+}
+
+.area-right {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .profile-card {
@@ -662,49 +722,31 @@ h6 {
 
 .goal-card {
   background-color: #fff;
+  display: flex;
+  gap: 20px;
+  padding: 20px 140px;
+}
+.goal-card + .goal-card {
+  margin-top: 20px;
 }
 .goal-card p {
-  font-weight: bold;
+  font-weight: 700;
+  display: flex;
+  gap: 10px;
 }
 
-.area-top {
+.recommand {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.area-top .buttons {
+.recommand h5 {
+  margin: 0;
+}
+.recommand .recommand-btns {
   display: flex;
+  align-items: center;
   gap: 20px;
-}
-.area-top .buttons .button {
-  border: 1px solid #32a061;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  background-color: transparent;
-  transition: 0.3s ease-in background-color;
-}
-.area-top .buttons .button:hover {
-  background-color: #32a061;
-}
-.area-top .buttons .button .icon {
-  color: #32a061;
-  font-size: 24px;
-  transition: 0.3s ease-in color;
-}
-.area-top .buttons .button:hover .icon {
-  color: #fff;
-}
-
-.area-middle {
-  display: flex;
-  justify-content: space-between;
-}
-
-.area-right {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
 }
 
 /*# sourceMappingURL=mypage.css.map */

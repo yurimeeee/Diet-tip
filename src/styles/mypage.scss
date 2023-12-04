@@ -1,6 +1,11 @@
 //common
 @import 'common';
 
+//layout
+section+section{
+  margin-top: $unit-5;
+}
+
 //title
 h5{
   font-size: $font-20;
@@ -13,6 +18,68 @@ h6{
 }
 
 //profile
+.profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+//area-top
+.area-middle-top{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  h5{
+    margin: 0;
+  }
+  //button
+  .buttons{
+    display: flex;
+    gap: 20px;
+
+    .button{
+      border: 1px solid $point-1;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      background-color: transparent;
+      transition: 0.3s ease-in background-color;
+      &:hover{
+        background-color: $point-1;
+      }
+      .icon{
+        color:$point-1;
+        font-size: 24px;
+        transition: 0.3s ease-in color;
+      }
+      &:hover .icon{
+        color:$white;
+      }
+    }
+  }
+}
+
+//area-middle
+.area-middle{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+//area-middle-middle
+.area-middle-middle{
+  display: flex;
+  gap:100px;
+}
+
+//area-right
+.area-right{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
 
 //profile-card
 .profile-card{
@@ -81,56 +148,36 @@ h6{
 //goal-card
 .goal-card{
   background-color: $white;
+  display: flex;
+  gap: 20px;
+  padding: 20px 140px;
+  &+.goal-card{
+    margin-top: 20px;
+  }
   p{
-    font-weight: bold;
+    font-weight: 700;
+    display: flex;
+    gap:10px;
   }
 }
 
-
-
-
-//area-top
-.area-top{
+//recommand
+.recommand{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  //button
-  .buttons{
+  h5{
+    margin: 0;
+  }
+  .recommand-btns{
     display: flex;
+    align-items: center;
     gap: 20px;
-
-    .button{
-      border: 1px solid $point-1;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      background-color: transparent;
-      transition: 0.3s ease-in background-color;
-      &:hover{
-        background-color: $point-1;
-      }
-      .icon{
-        color:$point-1;
-        font-size: 24px;
-        transition: 0.3s ease-in color;
-      }
-      &:hover .icon{
-        color:$white;
-      }
-    }
   }
 }
 
-//area-middle
-.area-middle{
-  display: flex;
-  justify-content: space-between;
-}
 
-//area-right
-.area-right{
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
+
+
+
 
