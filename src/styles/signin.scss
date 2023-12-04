@@ -1,32 +1,31 @@
 //common
-@import 'common';
+@import "common";
 
 //a
-a.login-btn{
+a.login-btn {
   color: $point-1;
   transition: 0.3s;
-  &:hover{
+  &:hover {
     color: $white;
   }
 }
 
-
 //layout
-.Signin, .Login{
+.Signin,
+.Login {
   margin: $unit-3 0 $unit-8;
 }
 
-
 //form
-form{
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  label{
+  label {
     display: none;
   }
-  input{
+  input {
     display: block;
     border: 1px solid $point-1;
     width: 400px;
@@ -36,23 +35,24 @@ form{
     background-color: transparent;
     border-radius: 24px;
     margin-bottom: 10px;
-    &::placeholder{
+    &::placeholder {
       color: $point-1;
       opacity: 0.5;
     }
-    &:focus{
-      outline: none; 
+    &:focus {
+      outline: none;
       border-color: $point-1;
       box-shadow: 0 0 5px $point-1;
     }
   }
-  button{
+  button {
     margin-top: 20px;
   }
 }
 
 //login
-.already, .google{
+.already,
+.google {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,24 +60,20 @@ form{
   gap: 20px;
 }
 
-.Signin{
-  .already{
+.Signin {
+  .already {
     margin-top: 40px;
   }
-  .google{
+  .google {
     margin-top: 10px;
   }
 }
 
-.Login{
-  .already{
+.Login {
+  .already {
     margin-top: 10px;
   }
-  .google{
+  .google {
     margin-top: 40px;
   }
 }
-
-
-
-

@@ -870,8 +870,13 @@ td:nth-child(4) {
   object-fit: cover;
 }
 
+.today-meal {
+  flex-wrap: wrap;
+}
+
 .today-meal .meal-card {
   width: 246px;
+  margin-bottom: 20px;
 }
 .today-meal .meal-card .meal-img {
   width: 100%;

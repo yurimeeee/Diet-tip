@@ -291,8 +291,14 @@ td:nth-child(4) {
     object-fit: cover;
   }
 }
+
+.today-meal {
+  flex-wrap: wrap;
+}
+
 .today-meal .meal-card {
   width: 246px;
+  margin-bottom: 20px;
   .meal-img {
     width: 100%;
     height: 246px;

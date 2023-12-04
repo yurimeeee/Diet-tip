@@ -13,6 +13,11 @@ import profileImg from "../asset/user/avatar-yr.png";
 import levelImg from "../asset/user/level-1.png";
 import replyImg from "../asset/user/avatar-es.png.png";
 import firebase from "firebase/app";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faComment as solidComment } from "@fortawesome/free-solid-svg-icons";
+import { faComment as regularComment } from "@fortawesome/free-regular-svg-icons";
 
 const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const user = auth.currentUser;
@@ -87,7 +92,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     fetchData();
   }, []);
 
-  console.log("replys", replys);
+  console.log("replys", replys.length);
 
   const replyInputHandler = (e) => {
     setNewReplys(e.target.value);
@@ -112,7 +117,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
       //초기화
       setNewReplys("");
       //부모 컴포넌트로 댓글 수 전달
-      onReplyCount(replys.length);
+      onReplyCount(replys);
     } catch (e) {
       console.log(e);
     } finally {
@@ -169,40 +174,16 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
             </div>
             <div className="like-reply-wrap">
               <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="20"
-                  viewBox="0 0 24 20"
-                  fill="none"
-                >
-                  <path
-                    d="M10.424 19.4557L10.3086 19.3505L2.22053 11.909C0.803267 10.6055 0 8.77603 0 6.85963V6.70869C0 3.48878 2.30824 0.726235 5.50284 0.1225C7.32173 -0.225104 9.18217 0.191106 10.6641 1.22477C11.0795 1.51749 11.4673 1.85595 11.8182 2.24472C12.0121 2.02518 12.2198 1.82393 12.4414 1.63641C12.6122 1.49005 12.7876 1.35284 12.9723 1.22477C14.4542 0.191106 16.3146 -0.225104 18.1335 0.117926C21.3281 0.721661 23.6364 3.48878 23.6364 6.70869V6.85963C23.6364 8.77603 22.8331 10.6055 21.4158 11.909L13.3278 19.3505L13.2124 19.4557C12.8338 19.8033 12.3352 20 11.8182 20C11.3011 20 10.8026 19.8079 10.424 19.4557ZM11.038 4.67338C11.0195 4.65966 11.0057 4.64136 10.9918 4.62307L10.1701 3.70832L10.1655 3.70374C9.09908 2.51914 7.48793 1.97944 5.91832 2.27673C3.76705 2.6838 2.21591 4.54074 2.21591 6.70869V6.85963C2.21591 8.16315 2.76527 9.41178 3.73011 10.2991L11.8182 17.7406L19.9062 10.2991C20.8711 9.41178 21.4205 8.16315 21.4205 6.85963V6.70869C21.4205 4.54531 19.8693 2.6838 17.7227 2.27673C16.1531 1.97944 14.5373 2.52372 13.4755 3.70374C13.4755 3.70374 13.4755 3.70374 13.4709 3.70832C13.4663 3.71289 13.4709 3.70832 13.4663 3.71289L12.6445 4.62764C12.6307 4.64593 12.6122 4.65966 12.5984 4.67795C12.3906 4.88377 12.109 4.99811 11.8182 4.99811C11.5273 4.99811 11.2457 4.88377 11.038 4.67795V4.67338Z"
-                    fill="#495057"
-                  />
-                </svg>
+                <FontAwesomeIcon icon={regularHeart} />
+                {/* <FontAwesomeIcon icon={solidHeart} /> */}
                 <span>6</span>
               </div>
               <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <g clip-path="url(#clip0_538_940)">
-                    <path
-                      d="M20 9.375C20 13.8633 15.5234 17.5 10 17.5C8.55078 17.5 7.17578 17.25 5.93359 16.8008C5.46875 17.1406 4.71094 17.6055 3.8125 17.9961C2.875 18.4023 1.74609 18.75 0.624999 18.75C0.371092 18.75 0.14453 18.5977 0.0468737 18.3633C-0.0507825 18.1289 0.00390498 17.8633 0.179686 17.6836L0.191405 17.6719C0.203124 17.6602 0.218749 17.6445 0.242186 17.6172C0.285155 17.5703 0.351561 17.4961 0.433592 17.3945C0.593749 17.1992 0.808592 16.9102 1.02734 16.5508C1.41797 15.9023 1.78906 15.0508 1.86328 14.0938C0.691405 12.7656 -1.26555e-06 11.1367 -1.26555e-06 9.375C-1.26555e-06 4.88672 4.47656 1.25 10 1.25C15.5234 1.25 20 4.88672 20 9.375Z"
-                      fill="#495057"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_538_940">
-                      <rect width="20" height="20" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
+                {replys.length === 0 ? (
+                  <FontAwesomeIcon icon={regularComment} />
+                ) : (
+                  <FontAwesomeIcon icon={solidComment} />
+                )}{" "}
                 <span>{replys.length}</span>
               </div>
             </div>

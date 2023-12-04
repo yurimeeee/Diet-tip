@@ -83,9 +83,6 @@ const MealCreate = ({ onModeChange }) => {
     }
   };
 
-  console.log("post", post);
-  console.log("textarea", textarea);
-
   const openModal = () => {
     setIsModalOpen(true);
   };

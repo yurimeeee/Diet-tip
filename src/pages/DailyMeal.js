@@ -58,7 +58,7 @@ const DailyMeal = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     let unsubscribe = null;
-    const fetchTweets = async () => {
+    const fetchPosts = async () => {
       //쿼리생성
       const tweetsQuery = query(
         collection(db, "meal"), //컬렉션 지정
@@ -84,7 +84,7 @@ const DailyMeal = () => {
       });
     };
 
-    fetchTweets();
+    fetchPosts();
     return () => {
       unsubscribe && unsubscribe();
       // 사용자가 타임라인을 보고 있을때만 작동
@@ -127,8 +127,9 @@ const DailyMeal = () => {
     }
   };
   const onReplyCount = (val) => {
-    setReplyCount(val);
-    console.log(replyCount, "onReplyCount");
+    console.log("val", val);
+    setReplyCount(val.length);
+    console.log(replyCount, "onReplyCount replyCount");
   };
 
   return (
@@ -152,17 +153,16 @@ const DailyMeal = () => {
         />
       ) : null}
       <div className="meal-post-wrap">
-        {posts.map((post, index) => (
-          <div style={{ width: "312px" }}>
+        {posts.slice(0, 4).map((post, index) => (
+          <div style={{ width: "312px" }} key={index}>
             <MealPost
               key={index}
               {...post}
               handleClick={handleClick}
-              // onClick={openView}
               onClick={() => {
                 setIsViewOpen(true);
               }}
-              onReplyCount={onReplyCount}
+              onReplyCount={replyCount}
             />
           </div>
         ))}

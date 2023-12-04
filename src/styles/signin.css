@@ -5,7 +5,10 @@ a {
 }
 
 @font-face {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
@@ -596,7 +599,8 @@ a.login-btn:hover {
   color: #fff;
 }
 
-.Signin, .Login {
+.Signin,
+.Login {
   margin: 72px 0 192px;
 }
 
@@ -606,9 +610,9 @@ form {
   align-items: center;
   justify-content: center;
 }
-form label {
+/* form label {
   display: none;
-}
+} */
 form input {
   display: block;
   border: 1px solid #32a061;
@@ -633,7 +637,8 @@ form button {
   margin-top: 20px;
 }
 
-.already, .google {
+.already,
+.google {
   display: flex;
   align-items: center;
   justify-content: center;
