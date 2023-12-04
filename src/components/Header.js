@@ -62,15 +62,15 @@ const Header = () => {
           </a>
         </h1>
         <aside>
-          <button type="button" className="point-1 loginout" onClick={isLogin ? logOut : signIn}>
+          <button type="button" className="loginout w-green-btn" onClick={isLogin ? logOut : signIn}>
             {isLogin ? '로그아웃' : '로그인'}
           </button>
-          <button type="button" className="mypage">
-            mypage
-          </button>
-          <button type="button" className="alam">
-            alam
-          </button>
+          {isLogin
+            ? 
+              <button type="button" className="mypage"> mypage </button> 
+            : 
+              ``
+          }
         </aside>
       </div>
       <nav className="main-menu">
