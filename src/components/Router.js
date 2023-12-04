@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Calories from "../pages/Calories";
 import Main from "../pages/Main";
 import DailyMeal from "../pages/DailyMeal";
+import Health from "../pages/Health";
 
 const AppRouter = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const AppRouter = createBrowserRouter([
   {
     path: "/calories",
     element: <Calories />,
+  },
+  {
+    path: "/health",
+    element: <Health />,
   },
 ]);
 export default AppRouter;
