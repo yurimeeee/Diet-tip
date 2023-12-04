@@ -589,11 +589,50 @@ body {
 }
 
 .bannerWrap {
+  background-color: #fff;
+  border-radius: 20px;
   display: flex;
+  justify-content: space-between;
+  padding: 60px 96px;
 }
 
-.bannerTitle ul li {
+.bannerTitle ul {
+  display: flex;
+  gap: 5px;
+}
+.bannerTitle li {
+  border-radius: 50px;
+  border: 1px solid #f46b2a;
+  padding: 0 10px;
+}
+.bannerTitle span {
+  color: #f46b2a;
+  font-size: 11px;
+}
+.bannerTitle .youtubeBtn {
+  margin-top: 50px;
+  padding: 11px;
+}
+
+.bannerMainTitle {
+  padding: 20px 0;
+}
+.bannerMainTitle h1 {
+  font-size: 40px;
+  color: #32a061;
+}
+.bannerMainTitle p {
+  font-weight: bold;
+  display: inline;
+}
+
+.bannerSubTitle {
+  width: 70%;
+}
+.bannerSubTitle h3 {
   font-weight: bold;
 }
-
-/*# sourceMappingURL=health.css.map */
+.bannerSubTitle p {
+  padding-top: 20px;
+  color: #9da1a6;
+}/*# sourceMappingURL=health.css.map */

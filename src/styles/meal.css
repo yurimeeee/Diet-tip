@@ -1,17 +1,18 @@
 @charset "UTF-8";
 @import url("reset.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 a {
   text-decoration: none;
 }
 
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
 /* Variables end.*/
 body {
-  font: 100% "Pretendard-Regular";
+  font: 100% "Pretendard Variable";
 }
 
 .point-1 {
@@ -437,15 +438,6 @@ header div aside .mypage {
   text-indent: -9999rem;
   margin-right: 10px;
 }
-header div aside .alam {
-  background-image: url(../asset/alam-icon.png);
-  width: 30px;
-  height: 30px;
-  display: block;
-  text-indent: -9999rem;
-  margin-right: 10px;
-  margin-right: 10px;
-}
 header nav {
   margin: 63px auto 0;
   width: 648px;
@@ -867,7 +859,8 @@ td:nth-child(4) {
 .meal-card .meal-img {
   width: 100%;
   height: 312px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .today-meal .meal-card {
@@ -876,7 +869,8 @@ td:nth-child(4) {
 .today-meal .meal-card .meal-img {
   width: 100%;
   height: 246px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .meal-info {
@@ -1048,7 +1042,8 @@ hr {
 .meal-view > div .meal-img {
   width: 440px;
   height: 440px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .meal-view > div .meal-info {
   margin-bottom: 10px;
@@ -1122,6 +1117,4 @@ hr {
 .add-reply > div {
   display: flex;
   gap: 8px;
-}
-
-/*# sourceMappingURL=meal.css.map */
+}/*# sourceMappingURL=meal.css.map */
