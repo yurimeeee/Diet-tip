@@ -24,8 +24,6 @@ yarn-error.log*
 
 # Ignore node_modules directory
 node_modules/
-package-lock.json
-package.json
 node_modules/.package-lock.json
 node_modules/.cache/.eslintcache
 node_modules/.cache/default-development/0.pack
