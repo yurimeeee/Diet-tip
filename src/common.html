@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>common css</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../src/styles/common.css" />
+  </head>
+  <body>
+    <div>
+        <h2>Colors</h2>
+      <!-- font-color -->
+      <p class="point-1">This is point-1 color.</p>
+      <p class="point-2">This is point-2 color.</p>
+      <p class="green-1">This is green-1 color.</p>
+      <p class="green-2">This is green-2 color.</p>
+      <p class="green-3">This is green-3 color.</p>
+      <p class="green-4">This is green-4 color.</p>
+      <p class="green-5">This is green-5 color.</p>
+      <p class="yellow-1">This is yellow-1 color.</p>
+      <p class="yellow-2">This is yellow-2 color.</p>
+      <p class="gray-1">This is gray-1 color.</p>
+      <p class="gray-2">This is gray-2 color.</p>
+      <p class="gray-3">This is gray-3 color.</p>
+      <p class="gray-4">This is gray-4 color.</p>
+      <p class="white">This is white color.</p>
+      <p class="black">This is black color.</p>
+      <!-- background-color -->
+      <p class="bg-point-1">This has bg-point-1 background color.</p>
+      <p class="bg-point-2">This has bg-point-2 background color.</p>
+      <p class="bg-green-1">This has bg-green-1 background color.</p>
+      <p class="bg-green-2">This has bg-green-2 background color.</p>
+      <p class="bg-green-3">This has bg-green-3 background color.</p>
+      <p class="bg-green-4">This has bg-green-4 background color.</p>
+      <p class="bg-green-5">This has bg-green-5 background color.</p>
+      <p class="bg-yellow-1">This has bg-yellow-1 background color.</p>
+      <p class="bg-yellow-2">This has bg-yellow-2 background color.</p>
+      <p class="bg-gray-1">This has bg-gray-1 background color.</p>
+      <p class="bg-gray-2">This has bg-gray-2 background color.</p>
+      <p class="bg-gray-3">This has bg-gray-3 background color.</p>
+      <p class="bg-gray-4">This has bg-gray-4 background color.</p>
+      <p class="bg-white">This has bg-white background color.</p>
+      <p class="bg-black">This has bg-black background color.</p>
+
+      <h2>Typography</h2>
+      <h1>다이어팁 diet-tip</h1>
+      <h2>다이어팁 diet-tip</h2>
+      <h3>다이어팁 diet-tip</h3>
+      <h4>다이어팁 diet-tip</h4>
+      <h5>다이어팁 diet-tip</h5>
+      <h6>다이어팁 diet-tip</h6>
+
+      <h2>Shadow</h2>
+      <div class="box sm-shadow">Small shadow</div>
+      <div class="box mb-shadow">Mobile shadow</div>
+      <div class="box web-shadow">Web shadow</div>
+
+      <h2>Radius</h2>
+      <div class="box bg-gray-2 sm-radius">Radius 5px</div>
+      <div class="box bg-gray-2 md-radius">Radius 10px</div>
+      <div class="box bg-gray-2 lg-radius">Radius 20px</div>
+
+      <h2>Button</h2>
+      <button class="w-green-btn">확인</button>
+      <button class="w-red-btn">확인</button>
+      <button class="w-gray-btn">확인</button>
+      <button class="m-green-btn">확인</button>
+      <button class="m-red-btn">확인</button>
+      <button class="m-gray-btn">확인</button>
+
+      <h2>Badge</h2>
+      <span class="w-badge"># 단백질 쉐이크</span>
+      <span class="m-badge"># 단백질 쉐이크</span>
+
+      <h2>Pagination</h2>
+      <nav class="pagination">
+        <ul class="pagination">
+          <li class="page-item first-page">맨앞</li>
+          <li class="page-item">1</li>
+          <li class="page-item">2</li>
+          <li class="page-item active">3</li>
+          <li class="page-item">4</li>
+          <li class="page-item">5</li>
+          <li class="page-item last-page">맨뒤</li>
+        </ul>
+      </nav>
+      <nav class="mb-pagination">
+        <ul class="pagination">
+          <li class="page-item first-page">맨앞</li>
+          <li class="page-item">1</li>
+          <li class="page-item">2</li>
+          <li class="page-item active">3</li>
+          <li class="page-item">4</li>
+          <li class="page-item">5</li>
+          <li class="page-item last-page">맨뒤</li>
+        </ul>
+      </nav>
+
+      <hr>
+
+      <header class="container">
+        <div>
+          <h1><a href=""><span>다이어팁</span></a></h1>
+          <aside>
+            <button type="button" class="point-1 loginout">로그아웃</button>
+            <button type="button" class="mypage">mypage</button>
+            <button type="button" class="alam">alam</button>
+          </aside>
+        </div>
+        <nav class="main-menu">
+          <ul>
+            <li>
+              <a href="" class="big-menu"><span class="icon meal"></span><span>식단&식품</span></a>
+              <ul>
+                <li><a href="">식단 공유</a></li>
+                <li><a href="">칼로리 사전</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="" class="big-menu"><span class="icon health"></span>운동</a>
+              <ul>
+                <li><a href="">운동 추천</a></li>
+                <li><a href="">운동 인증</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="" class="big-menu"><span class="icon community"></span>커뮤니티</a>
+              <ul>
+                <li><a href="">자유게시판</a></li>
+                <li><a href="">Q&A</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <hr>
+
+      <footer>
+        <div class="container">
+          <h2><a href=""><span>다이어팁</span></a></h2>
+          <ul>
+            <li><a href="">전체 서비스</a></li>
+            <li><a href="">이용 약관</a></li>
+            <li><a href="">개인정보 처리방침</a></li>
+            <li><a href="">고객 센터</a></li>
+          </ul>
+          <p>Portfolio By Goodjob</p>
+        </div>
+      </footer>
+      
+    </div>
+    <script>
+      let nav = document.querySelector('.main-menu');
+      let mainMenu = document.querySelectorAll('.main-menu ul');
+      let subMenu = document.querySelectorAll('.main-menu ul ul');
+
+      mainMenu.forEach(item=>{
+        item.addEventListener('mouseover',()=>{
+          subMenu.forEach(menu=>{
+            menu.style.display='flex';
+          })
+        });
+        item.addEventListener('mouseout',()=>{
+          subMenu.forEach(menu=>{
+            menu.style.display='none';
+          })
+        })
+      })
+
+      
+    </script>
+  </body>
+</html>
