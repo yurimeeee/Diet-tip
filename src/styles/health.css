@@ -592,4 +592,8 @@ body {
   display: flex;
 }
 
+.bannerTitle ul li {
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=health.css.map */

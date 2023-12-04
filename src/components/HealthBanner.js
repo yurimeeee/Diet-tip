@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../styles/health.css";
 import testImg from "../asset/health/testImg.png";
 
 

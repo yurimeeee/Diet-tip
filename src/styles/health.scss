@@ -1,6 +1,9 @@
 @import "common";
 
-
 .bannerWrap{
-    display:flex;   
-  }
+display:flex;   
+}
+
+.bannerTitle ul li{
+    font-weight: bold;
+}
