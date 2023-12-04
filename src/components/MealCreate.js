@@ -150,10 +150,9 @@ const MealCreate = ({ onModeChange }) => {
 
   return (
     <>
-      <div className="meal-create web-shadow lg-radius">
+      <div className="meal-create web-shadow md-radius">
         <div className="df aic">
           <img src={profileImg} alt="유저 프로필" />
-          {/* <p className="meal-user">yurimeeee</p> */}
           <p className="meal-user">{auth.currentUser.displayName}</p>
         </div>
         <form onSubmit={onSubmit}>

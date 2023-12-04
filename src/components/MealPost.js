@@ -10,7 +10,9 @@ const MealPost = ({
   id,
   hashTags,
   handleClick,
+  onReplyCount,
 }) => {
+  console.log("onReplyCount", onReplyCount);
   return (
     <div className="meal-card" onClick={() => handleClick(id)}>
       <img
@@ -59,7 +61,7 @@ const MealPost = ({
                 </clipPath>
               </defs>
             </svg>
-            <span>12</span>
+            <span>{onReplyCount}</span>
           </div>
         </div>
       </div>

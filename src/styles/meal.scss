@@ -251,7 +251,14 @@ td:nth-child(4) {
 }
 
 .Calendar {
-  margin: 72px 0 30px;
+  margin: 60px 0 30px;
+  position: relative;
+
+  .sec-tt {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0px;
+  }
 }
 
 .calendarChange {
@@ -267,11 +274,13 @@ td:nth-child(4) {
   color: $gray-3;
   font-size: 20px;
   font-weight: 500;
+  margin-bottom: 30px;
 }
 
 .meal-post-wrap {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 72px;
 }
 
 .meal-card {
@@ -305,7 +314,7 @@ td:nth-child(4) {
 
   .meal-user {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .like-reply-wrap {
@@ -336,7 +345,7 @@ td:nth-child(4) {
 .meal-create {
   padding: 20px 75px;
   background: $white;
-  margin-top: 48px;
+  margin-top: 30px;
 
   img {
     width: 40px;

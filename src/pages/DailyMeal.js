@@ -40,7 +40,9 @@ const DailyMeal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWritingMode, setIsWritingMode] = useState(false);
   const [isViewOpen, setIsViewOpen] = useState(false);
+  const [replyCount, setReplyCount] = useState("");
 
+  console.log("replyCount", replyCount);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -124,6 +126,10 @@ const DailyMeal = () => {
       console.log("문서가 존재하지 않습니다.");
     }
   };
+  const onReplyCount = (val) => {
+    setReplyCount(val);
+    console.log(replyCount, "onReplyCount");
+  };
 
   return (
     <div className="container">
@@ -139,7 +145,11 @@ const DailyMeal = () => {
       )}
       <Weekly />
       {isViewOpen ? (
-        <MealView clickedData={clickedData} setIsViewOpen={setIsViewOpen} />
+        <MealView
+          clickedData={clickedData}
+          setIsViewOpen={setIsViewOpen}
+          onReplyCount={onReplyCount}
+        />
       ) : null}
       <div className="meal-post-wrap">
         {posts.map((post, index) => (
@@ -152,6 +162,7 @@ const DailyMeal = () => {
               onClick={() => {
                 setIsViewOpen(true);
               }}
+              onReplyCount={onReplyCount}
             />
           </div>
         ))}
