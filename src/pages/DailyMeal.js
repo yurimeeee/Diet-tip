@@ -19,26 +19,27 @@ import { db, auth } from "../firebase";
 import TitleBanner from "../components/TitleBanner";
 import MealView from "../components/MealView";
 
-const Modal = ({ isOpen, closeModal, children }) => {
-  return (
-    <>
-      {isOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <button onClick={closeModal} className="close-button">
-              닫기
-            </button>
-            {children}
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
+// const Modal = ({ isOpen, closeModal, children }) => {
+//   return (
+//     <>
+//       {isOpen && (
+//         <div className="modal-overlay">
+//           <div className="modal">
+//             {/* <button onClick={closeModal} className="close-button">
+//               닫기
+//             </button> */}
+//             {children}
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// };
 
 const DailyMeal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWritingMode, setIsWritingMode] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -118,6 +119,7 @@ const DailyMeal = () => {
       };
       setClickedData(clickedData);
       console.log("클릭한 요소에 해당하는 문서:", clickedData.text);
+      setIsViewOpen(true);
     } else {
       console.log("문서가 존재하지 않습니다.");
     }
@@ -136,11 +138,21 @@ const DailyMeal = () => {
         />
       )}
       <Weekly />
-      <MealView clickedData={clickedData} />
+      {isViewOpen ? (
+        <MealView clickedData={clickedData} setIsViewOpen={setIsViewOpen} />
+      ) : null}
       <div className="meal-post-wrap">
         {posts.map((post, index) => (
           <div style={{ width: "312px" }}>
-            <MealPost key={index} {...post} handleClick={handleClick} />
+            <MealPost
+              key={index}
+              {...post}
+              handleClick={handleClick}
+              // onClick={openView}
+              onClick={() => {
+                setIsViewOpen(true);
+              }}
+            />
           </div>
         ))}
       </div>

@@ -12,9 +12,9 @@ const Modal = ({ isOpen, closeModal, children }) => {
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal">
-            <button onClick={closeModal} className="close-button">
+            {/* <button onClick={closeModal} className="close-button">
               닫기
-            </button>
+            </button> */}
             {children}
           </div>
         </div>
