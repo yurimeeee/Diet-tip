@@ -1,11 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-// import {
-//   IconChevronLeft,
-//   IconChevronRight,
-//   IconCalendarEvent,
-// } from "@tabler/icons-react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -60,7 +53,7 @@ const Weekly = ({ todoDate }) => {
     setNow(newNow);
   };
   return (
-    <div className="Calendar df jcsb container">
+    <div className="Calendar df jcsb ">
       <div className="Year-MonthList">
         <p>
           <span className="Year">{now.getFullYear()}</span>
@@ -95,10 +88,10 @@ const Weekly = ({ todoDate }) => {
           ))}
           <div className="week-btns">
             <button onClick={showPreviousWeek} className="prev">
-              <FontAwesomeIcon icon={faChevronLeft} />
+              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
             </button>
             <button onClick={showNextWeek} className="next">
-              <FontAwesomeIcon icon={faChevronRight} />
+              <FontAwesomeIcon icon={faChevronRight} size="lg" />
             </button>
           </div>
         </div>

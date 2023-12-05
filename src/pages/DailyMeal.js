@@ -19,27 +19,30 @@ import { db, auth } from "../firebase";
 import TitleBanner from "../components/TitleBanner";
 import MealView from "../components/MealView";
 
-const Modal = ({ isOpen, closeModal, children }) => {
-  return (
-    <>
-      {isOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <button onClick={closeModal} className="close-button">
-              닫기
-            </button>
-            {children}
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
+// const Modal = ({ isOpen, closeModal, children }) => {
+//   return (
+//     <>
+//       {isOpen && (
+//         <div className="modal-overlay">
+//           <div className="modal">
+//             {/* <button onClick={closeModal} className="close-button">
+//               닫기
+//             </button> */}
+//             {children}
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// };
 
 const DailyMeal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWritingMode, setIsWritingMode] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [replyCount, setReplyCount] = useState("");
 
+  console.log("replyCount", replyCount);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -55,7 +58,7 @@ const DailyMeal = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     let unsubscribe = null;
-    const fetchTweets = async () => {
+    const fetchPosts = async () => {
       //쿼리생성
       const tweetsQuery = query(
         collection(db, "meal"), //컬렉션 지정
@@ -81,7 +84,7 @@ const DailyMeal = () => {
       });
     };
 
-    fetchTweets();
+    fetchPosts();
     return () => {
       unsubscribe && unsubscribe();
       // 사용자가 타임라인을 보고 있을때만 작동
@@ -118,9 +121,15 @@ const DailyMeal = () => {
       };
       setClickedData(clickedData);
       console.log("클릭한 요소에 해당하는 문서:", clickedData.text);
+      setIsViewOpen(true);
     } else {
       console.log("문서가 존재하지 않습니다.");
     }
+  };
+  const onReplyCount = (val) => {
+    console.log("val", val);
+    setReplyCount(val.length);
+    console.log(replyCount, "onReplyCount replyCount");
   };
 
   return (
@@ -136,18 +145,39 @@ const DailyMeal = () => {
         />
       )}
       <Weekly />
-      <MealView clickedData={clickedData} />
+      {isViewOpen ? (
+        <MealView
+          clickedData={clickedData}
+          setIsViewOpen={setIsViewOpen}
+          onReplyCount={onReplyCount}
+        />
+      ) : null}
       <div className="meal-post-wrap">
-        {posts.map((post, index) => (
-          <div style={{ width: "312px" }}>
-            <MealPost key={index} {...post} handleClick={handleClick} />
+        {posts.slice(0, 4).map((post, index) => (
+          <div style={{ width: "312px" }} key={index}>
+            <MealPost
+              key={index}
+              {...post}
+              handleClick={handleClick}
+              onClick={() => {
+                setIsViewOpen(true);
+              }}
+              onReplyCount={replyCount}
+            />
           </div>
         ))}
       </div>
       <h2 className="sec-tt">Today’s pick! </h2>
       <div className="meal-post-wrap today-meal">
         {posts.map((post, index) => (
-          <MealPost key={index} {...post} />
+          <MealPost
+            key={index}
+            {...post}
+            handleClick={handleClick}
+            onClick={() => {
+              setIsViewOpen(true);
+            }}
+          />
         ))}
       </div>
       {/* <div>
