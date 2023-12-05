@@ -17,36 +17,38 @@ a.login-btn {
 }
 
 //form
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  label {
-    display: none;
-  }
-  input {
-    display: block;
-    border: 1px solid $point-1;
-    width: 400px;
-    height: 48px;
-    padding: 15px 30px;
-    box-sizing: border-box;
-    background-color: transparent;
-    border-radius: 24px;
-    margin-bottom: 10px;
-    &::placeholder {
-      color: $point-1;
-      opacity: 0.5;
+.Signin {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    label {
+      display: none;
     }
-    &:focus {
-      outline: none;
-      border-color: $point-1;
-      box-shadow: 0 0 5px $point-1;
+    input {
+      display: block;
+      border: 1px solid $point-1;
+      width: 400px;
+      height: 48px;
+      padding: 15px 30px;
+      box-sizing: border-box;
+      background-color: transparent;
+      border-radius: 24px;
+      margin-bottom: 10px;
+      &::placeholder {
+        color: $point-1;
+        opacity: 0.5;
+      }
+      &:focus {
+        outline: none;
+        border-color: $point-1;
+        box-shadow: 0 0 5px $point-1;
+      }
     }
-  }
-  button {
-    margin-top: 20px;
+    button {
+      margin-top: 20px;
+    }
   }
 }
 
