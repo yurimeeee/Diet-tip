@@ -9,11 +9,11 @@ import {app} from '../src/firebase';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <RouterProvider router={AppRouter} />
-      <Footer />
-    </div>
+      <div className="App">
+        <Header />
+        <RouterProvider router={AppRouter} />
+        <Footer />
+      </div>
   );
 }
 
