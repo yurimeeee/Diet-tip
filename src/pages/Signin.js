@@ -17,8 +17,6 @@ const Signin = () => {
   }
 
   const signin = () => {
-    console.log(email);
-    console.log(password);
     createUserWithEmailAndPassword(auth,email,password)
     .then((userCredential) => {
       const user = userCredential.user;
