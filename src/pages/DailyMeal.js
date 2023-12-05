@@ -170,7 +170,14 @@ const DailyMeal = () => {
       <h2 className="sec-tt">Today’s pick! </h2>
       <div className="meal-post-wrap today-meal">
         {posts.map((post, index) => (
-          <MealPost key={index} {...post} />
+          <MealPost
+            key={index}
+            {...post}
+            handleClick={handleClick}
+            onClick={() => {
+              setIsViewOpen(true);
+            }}
+          />
         ))}
       </div>
       {/* <div>

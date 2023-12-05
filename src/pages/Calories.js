@@ -126,7 +126,8 @@ const Calories = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((item, index) => (
+          {/* {currentItems.map((item, index) => ( */}
+          {rowdata.map((item, index) => (
             <tr key={index}>
               <th scope="row">{index}</th>
               <td>{item.DESC_KOR}</td>
