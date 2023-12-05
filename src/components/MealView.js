@@ -18,12 +18,18 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faComment as solidComment } from "@fortawesome/free-solid-svg-icons";
 import { faComment as regularComment } from "@fortawesome/free-regular-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const user = auth.currentUser;
   const [toggleMore, SetToggleMore] = useState(false);
+  const [replys, setReplys] = useState([]);
+  const [newReplys, setNewReplys] = useState("");
+  const [nestedReplys, setNestedReplys] = useState([]);
+  const [replyTo, setReplyTo] = useState("");
+  const [isReplyToMode, setIsReplyToMode] = useState(false);
+  const [replyIdx, setReplyIdx] = useState("");
 
-  console.log(clickedData, "clickedData");
   const closeModal = () => {
     setIsViewOpen(false);
   };
@@ -32,6 +38,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     SetToggleMore(!toggleMore);
   };
 
+  //식단 삭제
   const onDelete = async () => {
     // // const ok = confirm("식단을 삭제하시나요?");
     // if (!ok) return;
@@ -46,34 +53,6 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
       setIsViewOpen(false);
     }
   };
-
-  const [replys, setReplys] = useState([]);
-  const [newReplys, setNewReplys] = useState("");
-
-  // const addReply = async () => {
-  //   // 새로운 댓글 추가
-  //   const newReplyRef = await firebase.firestore().collection("comments").add({
-  //     content: newComment,
-  //     userId: "현재 사용자의 UID", // 사용자 로그인 구현 후에 동적으로 설정
-  //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  //     replies: [], // 답글은 빈 배열로 시작
-  //   });
-
-  //   // 댓글 목록 갱신
-  //   // fetchComments();
-
-  //   // 입력 필드 초기화
-  //   setNewReplys("");
-  // };
-
-  // useEffect(() => {
-  //   // 컴포넌트 마운트 시에 댓글 목록 불러오기
-  //   fetchComments();
-  // }, []);
-
-  // const [meal, setMeal] = useState(null);
-  // const [replies, setReplies] = useState([]);
-  console.log("clickedData", clickedData);
 
   //댓글 불러오기
   useEffect(() => {
@@ -92,8 +71,6 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     fetchData();
   }, []);
 
-  console.log("replys", replys.length);
-
   const replyInputHandler = (e) => {
     setNewReplys(e.target.value);
   };
@@ -102,18 +79,81 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     setNewReplys("");
   };
 
+  //대댓글
+  const handleItemIdx = (e) => {
+    const listItem = e.target.closest("li");
+
+    if (listItem) {
+      const dataIdx = listItem.getAttribute("data-idx");
+      console.log("data-idx 값:", dataIdx);
+      setReplyIdx(dataIdx);
+      // useEffect(() => {
+      //   // Firestore에서 데이터 가져오기
+      const fetchListData = async () => {
+        const querySnapshot = await getDocs(
+          collection(db, `meal/${clickedData.id}/reply/${dataIdx}/nestedReply`)
+        );
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setNestedReplys(data);
+
+        const querySnapshot2 = await getDocs(
+          collection(db, `meal/${clickedData.id}/reply`)
+        );
+        const replyIdx = querySnapshot2.docs.map((doc) => ({
+          id: doc.id,
+          username: doc.data().username,
+          // ...doc.data(),
+        }));
+
+        // data-idx 값과 일치하는 문서
+        const clickedDocument = replyIdx.find((doc) => doc.id === dataIdx);
+
+        if (clickedDocument) {
+          const replyToUsername = clickedDocument.username;
+          setReplyTo(replyToUsername);
+          console.log(replyToUsername, "replyTo");
+        }
+      };
+
+      fetchListData();
+      // }, []);
+      //대댓글 모드 전환
+      setIsReplyToMode(true);
+    }
+  };
+
+  const replyToModeHandler = () => {
+    setIsReplyToMode(false);
+  };
+
+  //대댓글 모드에서
+  if (isReplyToMode) {
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const user = auth.currentUser;
     //유저 없거나, 게시글 빈값이거나 글자수 초과시 리턴
     if (!user || newReplys === "" || newReplys.length > 1000) return;
     try {
-      const doc = await addDoc(collection(db, `meal/${clickedData.id}/reply`), {
+      let docRef;
+
+      // 대댓글 모드에 따라 경로 설정
+      const replyPath = isReplyToMode
+        ? `meal/${clickedData.id}/reply/${replyIdx}/nestedReply`
+        : `meal/${clickedData.id}/reply`;
+
+      // 데이터 추가
+      const doc = await addDoc(collection(db, replyPath), {
         content: newReplys,
         createdAt: Date.now(),
         username: user.displayName,
         userId: user.uid,
       });
+
       //초기화
       setNewReplys("");
       //부모 컴포넌트로 댓글 수 전달
@@ -124,46 +164,8 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     }
   };
 
-  // const fetchMealDetails = async () => {
-  //   try {
-  //     // Meal 데이터 가져오기
-  //     const mealDoc = await firebase
-  //       .firestore()
-  //       .collection("meal")
-  //       .doc(clickedData)
-  //       .get();
-  //     if (mealDoc.exists) {
-  //       setMeal({ id: mealDoc.id, ...mealDoc.data() });
-
-  //       // Meal에 속한 Replies 가져오기
-  //       const repliesCollection = await firebase
-  //         .firestore()
-  //         .collection(`meal/${clickedData}/reply`)
-  //         .get();
-  //       const repliesData = repliesCollection.docs.map((doc) => ({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       }));
-  //       setReplies(repliesData);
-  //     } else {
-  //       console.log("문서를 찾을 수 없습니다.");
-  //     }
-  //   } catch (error) {
-  //     console.error("데이터 가져오기 실패:", error);
-  //   }
-  // };
-
-  // console.log(replies, "replies");
-  // useEffect(() => {
-  //   // 컴포넌트 마운트 시에 Meal 및 Replies 데이터 가져오기
-  //   fetchMealDetails();
-  // }, [clickedData]);
-
-  console.log("clickedData.userId", clickedData.userId);
-  console.log("auth", auth.currentUser.uid);
-
   return (
-    <>
+    <div className="meal-view-bg">
       <div className="meal-view df">
         <div className="meal-view-col">
           <img src={clickedData.photo} alt="식단이미지" className="meal-img" />
@@ -238,7 +240,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
             <div>
               <ul>
                 {replys.map((reply, index) => (
-                  <li key={index}>
+                  <li key={index} data-idx={reply.id}>
                     <div className="reply">
                       <div>
                         <img
@@ -249,25 +251,48 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                         <p className="reply-user">{reply.username}</p>
                         <p className="reply-text ">{reply.content} </p>
                       </div>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="19"
-                        height="16"
-                        viewBox="0 0 19 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M8.3793 15.5646L8.28652 15.4804L1.78496 9.52724C0.645703 8.48442 0 7.02082 0 5.4877V5.36695C0 2.79102 1.85547 0.580988 4.42344 0.0980001C5.88555 -0.180084 7.38105 0.152885 8.57227 0.979818C8.90625 1.21399 9.21797 1.48476 9.5 1.79577C9.65586 1.62014 9.82285 1.45915 10.001 1.30913C10.1383 1.19204 10.2793 1.08227 10.4277 0.979818C11.6189 0.152885 13.1145 -0.180084 14.5766 0.0943412C17.1445 0.577329 19 2.79102 19 5.36695V5.4877C19 7.02082 18.3543 8.48442 17.215 9.52724L10.7135 15.4804L10.6207 15.5646C10.3164 15.8427 9.91562 16 9.5 16C9.08438 16 8.68359 15.8463 8.3793 15.5646ZM8.87285 3.7387C8.85801 3.72772 8.84688 3.71309 8.83574 3.69845L8.1752 2.96665L8.17148 2.96299C7.31426 2.01531 6.01914 1.58355 4.75742 1.82139C3.02813 2.14704 1.78125 3.63259 1.78125 5.36695V5.4877C1.78125 6.53052 2.22285 7.52942 2.99844 8.23927L9.5 14.1925L16.0016 8.23927C16.7771 7.52942 17.2188 6.53052 17.2188 5.4877V5.36695C17.2188 3.63625 15.9719 2.14704 14.2463 1.82139C12.9846 1.58355 11.6857 2.01897 10.8322 2.96299C10.8322 2.96299 10.8322 2.96299 10.8285 2.96665C10.8248 2.97031 10.8285 2.96665 10.8248 2.97031L10.1643 3.70211C10.1531 3.71675 10.1383 3.72773 10.1271 3.74236C9.96016 3.90702 9.73379 3.99849 9.5 3.99849C9.26621 3.99849 9.03984 3.90702 8.87285 3.74236V3.7387Z"
-                          fill="#495057"
-                        />
-                      </svg>
+                      <FontAwesomeIcon icon={regularHeart} />
                     </div>
+                    <p className="add-nested-reply" onClick={handleItemIdx}>
+                      답글달기...
+                    </p>
+                    {nestedReplys !== null ? (
+                      <ul className="nested-replys">
+                        {nestedReplys.map((neReply, index) => (
+                          <li key={index} data-idx={neReply.id}>
+                            <div className="reply">
+                              <div>
+                                <img
+                                  src={replyImg}
+                                  alt="유저 프로필"
+                                  className="reply-img"
+                                />
+                                <p className="reply-user">{neReply.username}</p>
+                                <p className="reply-text ">
+                                  {neReply.content}{" "}
+                                </p>
+                              </div>
+                              <FontAwesomeIcon icon={regularHeart} />
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </li>
                 ))}
               </ul>
             </div>
 
             <form className="add-reply" onSubmit={onSubmit}>
+              {isReplyToMode && (
+                <div className="reply-to">
+                  <p>{replyTo} 님에게 답글 남기는 중</p>
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    onClick={replyToModeHandler}
+                  />
+                </div>
+              )}
               <input
                 name="reply"
                 placeholder="댓글 달기..."
@@ -285,7 +310,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
         </div>
       </div>
       <div className="modal-overlay" onClick={closeModal}></div>
-    </>
+    </div>
   );
 };
 

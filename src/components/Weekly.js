@@ -88,10 +88,10 @@ const Weekly = ({ todoDate }) => {
           ))}
           <div className="week-btns">
             <button onClick={showPreviousWeek} className="prev">
-              <FontAwesomeIcon icon={faChevronLeft} />
+              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
             </button>
             <button onClick={showNextWeek} className="next">
-              <FontAwesomeIcon icon={faChevronRight} />
+              <FontAwesomeIcon icon={faChevronRight} size="lg" />
             </button>
           </div>
         </div>
