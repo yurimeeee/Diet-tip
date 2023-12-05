@@ -88,7 +88,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
       console.log("data-idx 값:", dataIdx);
       setReplyIdx(dataIdx);
       // useEffect(() => {
-      //   // Firestore에서 데이터 가져오기
+      // 대댓글 불러오기
       const fetchListData = async () => {
         const querySnapshot = await getDocs(
           collection(db, `meal/${clickedData.id}/reply/${dataIdx}/nestedReply`)
@@ -99,17 +99,17 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
         }));
         setNestedReplys(data);
 
-        const querySnapshot2 = await getDocs(
-          collection(db, `meal/${clickedData.id}/reply`)
-        );
-        const replyIdx = querySnapshot2.docs.map((doc) => ({
-          id: doc.id,
-          username: doc.data().username,
-          // ...doc.data(),
-        }));
+        // const querySnapshot2 = await getDocs(
+        //   collection(db, `meal/${clickedData.id}/reply`)
+        // );
+        // const replyIdx = querySnapshot2.docs.map((doc) => ({
+        //   id: doc.id,
+        //   username: doc.data().username,
+        //   // ...doc.data(),
+        // }));
 
         // data-idx 값과 일치하는 문서
-        const clickedDocument = replyIdx.find((doc) => doc.id === dataIdx);
+        const clickedDocument = replys.find((doc) => doc.id === dataIdx);
 
         if (clickedDocument) {
           const replyToUsername = clickedDocument.username;
@@ -128,7 +128,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const replyToModeHandler = () => {
     setIsReplyToMode(false);
   };
-
+  console.log(nestedReplys, "nestedReplys");
   //대댓글 모드에서
   if (isReplyToMode) {
   }
@@ -158,6 +158,14 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
       setNewReplys("");
       //부모 컴포넌트로 댓글 수 전달
       onReplyCount(replys);
+
+      //추가된 댓글 다시 불러오기
+      const querySnapshot = await getDocs(collection(db, replyPath));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setReplys(data);
     } catch (e) {
       console.log(e);
     } finally {
