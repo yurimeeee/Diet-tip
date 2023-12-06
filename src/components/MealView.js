@@ -37,16 +37,27 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const toggleSet = () => {
     SetToggleMore(!toggleMore);
   };
-
+  // /meal/5CmhHuAthxC3TOocCeTm
+  // /meal/Gc4gTa3hjjMtuSvs9lLAw5UBDxH3/5CmhHuAthxC3TOocCeTm
   //식단 삭제
   const onDelete = async () => {
     // // const ok = confirm("식단을 삭제하시나요?");
     // if (!ok) return;
     try {
       await deleteDoc(doc(db, "meal", clickedData.id));
+      // await deleteDoc(doc(db, "meal", `${clickedData.id}/reply`));
+
+      // meal 컬렉션 내의 reply 문서 모두 삭제
+      const replyQuerySnapshot = await getDocs(
+        collection(db, `meal/${clickedData.id}/reply`)
+      );
+      const replyDocs = replyQuerySnapshot.docs;
+      await Promise.all(replyDocs.map(async (doc) => await deleteDoc(doc.ref)));
+
       // if (photo) {
-      const photoRef = ref(storage, `tweets/${user.uid}/${clickedData.id}`);
+      const photoRef = ref(storage, `meal/${user.uid}/${clickedData.id}`);
       await deleteObject(photoRef);
+      console.log(photoRef);
     } catch (e) {
       console.log(e);
     } finally {

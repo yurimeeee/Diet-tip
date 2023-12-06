@@ -37,43 +37,9 @@ const MealPost = ({
     fetchData();
   }, [id]);
 
-  //더블 클릭
-  // const handleDoubleClick = () => {
-  //   setTimeout(setHeartActive(true), 1500);
-  //   setHeartActive(false);
-  // };
-
-  const handleHover = () => {
-    setHeartActive(true);
-  };
-
-  const handleLeave = () => {
-    setHeartActive(false);
-  };
-
-  // // 이미지에 대한 호버 이벤트만 한 번만 실행되도록 useEffect 사용
-  // useEffect(() => {
-  //   const imgElement = document.querySelector(".meal-img");
-
-  //   if (imgElement) {
-  //     imgElement.addEventListener("mouseenter", handleHover);
-  //     imgElement.addEventListener("mouseleave", handleLeave);
-
-  //     return () => {
-  //       imgElement.removeEventListener("mouseenter", handleHover);
-  //       imgElement.removeEventListener("mouseleave", handleLeave);
-  //     };
-  //   }
-  // }, []);
   return (
     <div className="meal-card" onClick={() => handleClick(id)}>
-      <img
-        src={photo || mealImg}
-        alt="식단이미지"
-        className="meal-img"
-        // onMouseEnter={handleHover}
-        // onMouseLeave={handleLeave}
-      />
+      <img src={photo || mealImg} alt="식단이미지" className="meal-img" />
       {/* {heartActive && ( */}
       <div className="heart-active">
         <FontAwesomeIcon icon={solidHeart} size="4x" />
