@@ -13,7 +13,6 @@ function App() {
     <div className="App">
       <Header />
       <RouterProvider router={AppRouter} />
-      <Health/>
       <Footer />
     </div>
   );

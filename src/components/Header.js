@@ -84,7 +84,7 @@ const Header = () => {
             </a>
             <ul>
               <li>
-                <a href="">운동 추천</a>
+                <a href="/health">운동 추천</a>
               </li>
               <li>
                 <a href="">운동 인증</a>

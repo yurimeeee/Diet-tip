@@ -749,36 +749,4 @@ h6 {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-.area-top .buttons .button {
-  border: 1px solid #32a061;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  background-color: transparent;
-  transition: 0.3s ease-in background-color;
-}
-.area-top .buttons .button:hover {
-  background-color: #32a061;
-}
-.area-top .buttons .button .icon {
-  color: #32a061;
-  font-size: 24px;
-  transition: 0.3s ease-in color;
-}
-.area-top .buttons .button:hover .icon {
-  color: #fff;
-}
-
-.area-middle {
-  display: flex;
-  justify-content: space-between;
-}
-
-.area-right {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
 }/*# sourceMappingURL=mypage.css.map */
-
-/*# sourceMappingURL=mypage.css.map */

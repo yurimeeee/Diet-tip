@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import testImg from "../asset/health/testImg.png";
 
-
 const HealthBanner = () => {
 	return(
 		<div className="container">
@@ -24,7 +23,7 @@ const HealthBanner = () => {
 				<div className="bannerImg">
 					<img src={testImg} alt="내 이미지" className="banner-img md-radius" />
 				</div>
-			</div>
+			</div>		
 		</div>
 	)
 }
