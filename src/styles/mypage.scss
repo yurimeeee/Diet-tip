@@ -127,9 +127,26 @@ h6{
 //today
 .today_content{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: start;
+  gap: 100px;
+  //today-weekly
+  .Calendar{
+    margin: 0;
+    .Year-MonthList p{
+      font-weight: bold;
+      margin-bottom: 10px;
+      // text-align: center;
+    }
+  }
 }
+
 //today-cards
+.today{
+  h5{
+    text-align: center;
+  }
+}
 .today-cards{
   display: flex;
   gap: 20px;
@@ -155,6 +172,8 @@ h6{
   .weather{
     display: flex;
     gap: 30px;
+    align-items: center;
+    justify-content: center;
     .weather-text{
       display: flex;
       flex-direction: column;

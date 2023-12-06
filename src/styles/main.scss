@@ -10,6 +10,7 @@
     border-radius: 10px;
     padding: 40px 190px;
     box-sizing: border-box;
+    margin-bottom: $unit-3;
     .banner-text{
       display: flex;
       flex-direction: column;
@@ -38,9 +39,9 @@
       }
     }
   }
-  .hot-board{
-    
 
+  .hot-board{
+    margin-top: $unit-1;
     .hot-board-buttons{
       display: flex;
       gap: 15px;

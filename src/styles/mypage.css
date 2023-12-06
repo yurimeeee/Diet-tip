@@ -784,7 +784,20 @@ h6 {
 
 .today_content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: start;
+  gap: 100px;
+}
+.today_content .Calendar {
+  margin: 0;
+}
+.today_content .Calendar .Year-MonthList p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.today h5 {
+  text-align: center;
 }
 
 .today-cards {
@@ -814,6 +827,8 @@ h6 {
 .today-card-big .weather {
   display: flex;
   gap: 30px;
+  align-items: center;
+  justify-content: center;
 }
 .today-card-big .weather .weather-text {
   display: flex;
