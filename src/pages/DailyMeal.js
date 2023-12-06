@@ -180,12 +180,6 @@ const DailyMeal = () => {
           />
         ))}
       </div>
-      {/* <div>
-        <button onClick={openModal}>모달 열기</button>
-        <Modal isOpen={isModalOpen} closeModal={closeModal}>
-          <h2>모달 내용</h2>
-        </Modal>
-      </div> */}
     </div>
   );
 };
