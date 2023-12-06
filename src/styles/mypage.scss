@@ -125,6 +125,10 @@ h6{
 }
 
 //today
+.today_content{
+  display: flex;
+  justify-content: space-between;
+}
 //today-cards
 .today-cards{
   display: flex;

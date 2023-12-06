@@ -625,5 +625,48 @@ body {
   width: 100px;
   height: 100px;
 }
+.Main .hot-board .hot-board-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+.Main .hot-board .hot-board-main {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 50px;
+  box-sizing: border-box;
+}
+.Main .hot-board .hot-board-main .img-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+}
+.Main .hot-board .hot-board-main .img-container::after {
+  content: "";
+  bottom: -100%;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.6);
+  background-image: url("../asset/like.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.Main .hot-board .hot-board-main .img-container:hover::after {
+  bottom: 0;
+}
+.Main .hot-board .hot-board-main .img-container .board-img {
+  display: inline-block;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  z-index: 1;
+}
 
 /*# sourceMappingURL=main.css.map */

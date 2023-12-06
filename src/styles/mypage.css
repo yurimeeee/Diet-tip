@@ -699,6 +699,11 @@ h6 {
   justify-content: space-between;
 }
 
+.today_content {
+  display: flex;
+  justify-content: space-between;
+}
+
 .today-cards {
   display: flex;
   gap: 20px;
