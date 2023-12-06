@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import "../styles/signin.css"
+import { Link } from "react-router-dom";
+import "../styles/signin.css";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import GoogleLogin from "../components/GoogleLogin";
 
@@ -11,23 +11,24 @@ const Signin = () => {
 
   const emailChange = (e) => {
     setEmail(e.currentTarget.value);
-  }
+  };
   const passwordChange = (e) => {
     setPassword(e.currentTarget.value);
-  }
+  };
 
   const signin = () => {
-    createUserWithEmailAndPassword(auth,email,password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      alert(`${user.email} 님 회원가입 성공! 자동 로그인 되었습니다`);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      alert(`오류 코드: ${errorCode}와 같은 이유로 회원가입에 실패하였습니다`);
-    });
-  }
-  
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        alert(`${user.email} 님 회원가입 성공! 자동 로그인 되었습니다`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        alert(
+          `오류 코드: ${errorCode}와 같은 이유로 회원가입에 실패하였습니다`
+        );
+      });
+  };
 
 
   return(

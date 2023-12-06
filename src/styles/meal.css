@@ -589,12 +589,90 @@ body {
   background-color: #f2f3f5;
 }
 
-.meal {
-  /* 테이블 스타일 설정 */
-  /* 각 열의 너비 설정 */
-  /* weekly */
+/* weekly */
+.weekly-wrap {
+  width: 350px;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
 }
-.meal .calories-table {
+
+.daylist {
+  margin: 0 2px;
+  width: 45px;
+  padding: 15px 0;
+  border-radius: 46px;
+  transition: 0.3s;
+  text-align: center;
+  box-sizing: border-box;
+}
+.daylist .weak {
+  color: #9da1a6;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.daylist .day {
+  font-weight: 500;
+}
+.daylist .Sat {
+  color: rgb(64, 82, 129);
+}
+.daylist .Sun {
+  color: #f46b2a;
+}
+.daylist:hover {
+  background: #5ac479;
+  color: #ebf4ff;
+}
+.daylist:hover .weak,
+.daylist:hover .day {
+  color: #fff;
+}
+.daylist:hover .Sat {
+  color: #ebf4ff;
+}
+.daylist:hover .Sun {
+  color: #ff6363;
+}
+
+.daylist.today {
+  box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+}
+
+.week-btns {
+  top: 50%;
+}
+
+.week-btns button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(34, 72, 97, 0.5176470588);
+}
+
+.prev {
+  left: -22px;
+}
+
+.next {
+  right: -22px;
+}
+
+.Calendar {
+  margin: 60px 0 30px;
+  position: relative;
+}
+.Calendar .sec-tt {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+}
+
+.calories-table {
   width: 100%;
   color: #545454;
   font-size: 16px;
@@ -643,8 +721,8 @@ body {
 }
 .meal .head-banner h3 {
   font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
 }
 .meal .banner-img {
   width: 485px;
@@ -750,97 +828,56 @@ body {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.446);
 }
-.meal .weekly-wrap {
-  display: inline-flex;
-  justify-content: center;
-  position: relative;
-}
-.meal .daylist {
-  margin: 0 2px;
-  width: 45px;
-  padding: 15px 0;
-  border-radius: 46px;
-  transition: 0.3s;
-  text-align: center;
-}
-.meal .daylist .weak {
-  color: #9da1a6;
-  margin-bottom: 20px;
-  font-size: 14px;
-}
-.meal .daylist .day {
-  font-weight: 600;
-}
-.meal .daylist .Sat {
-  color: rgb(64, 82, 129);
-}
-.meal .daylist .Sun {
-  color: #f46b2a;
-}
-.meal .daylist:hover {
-  background: #5ac479;
-  color: #ebf4ff;
-}
-.meal .daylist:hover .weak,
-.meal .daylist:hover .day {
-  color: #fff;
-}
-.meal .daylist:hover .Sat {
-  color: #ebf4ff;
-}
-.meal .daylist:hover .Sun {
-  color: #ff6363;
-}
-.meal .daylist.today {
-  border: 1.8px solid #32a061;
-}
-.meal .week-btns {
-  /* position: absolute; */
-  top: 50%;
-}
-.meal .week-btns button {
-  background: none;
-  border: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(34, 72, 97, 0.5176470588);
-}
-.meal .prev {
-  left: -22px;
-}
-.meal .next {
-  right: -22px;
-}
-.meal .Calendar {
-  margin: 72px 0 30px;
-}
-.meal .calendarChange {
-  font-size: 14px;
-  gap: 5px;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-}
-.meal .sec-tt {
+
+.sec-tt {
   color: #495057;
   font-size: 20px;
   font-weight: 500;
+  margin-bottom: 30px;
 }
 .meal .meal-post-wrap {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 72px;
 }
 .meal .meal-card {
   width: 312px;
+  position: relative;
+}
+.meal-card .heart-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 312px;
+  background: rgba(255, 255, 255, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  transition: 0.5s;
 }
 .meal .meal-card .meal-img {
   width: 100%;
   height: 312px;
   object-fit: cover;
 }
-.meal .today-meal .meal-card {
+.meal-card .meal-img:hover + .heart-active {
+  display: flex;
+}
+
+.today-meal {
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.today-meal .meal-card {
   width: 246px;
+  margin-right: 22.5px;
+  margin-bottom: 20px;
+}
+.today-meal .meal-card:nth-child(5n) {
+  margin-right: 0;
 }
 .meal .today-meal .meal-card .meal-img {
   width: 100%;
@@ -861,7 +898,7 @@ body {
 }
 .meal .meal-info .meal-user {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .meal .meal-info .like-reply-wrap {
   display: flex;
@@ -885,7 +922,7 @@ body {
 .meal .meal-create {
   padding: 20px 75px;
   background: #fff;
-  margin-top: 48px;
+  margin-top: 30px;
 }
 .meal .meal-create img {
   width: 40px;
@@ -927,10 +964,19 @@ body {
 .meal .form-tag-wrap div {
   position: relative;
 }
-.meal .form-tag-wrap div svg {
+.form-tag-wrap div .tag-del {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 50%;
   position: absolute;
   top: -5px;
-  right: -7px;
+  right: -6px;
+  color: #545454;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 5px 12.5px 0px rgba(0, 0, 0, 0.42);
 }
 .meal .hidden {
   display: none;
@@ -941,11 +987,17 @@ body {
   gap: 16px;
   font-size: 14px;
 }
-.meal .utility svg {
+.utility svg {
+  width: 18px;
+  height: 18px;
   margin-right: 5px;
   vertical-align: middle;
 }
-.meal hr {
+.utility span {
+  vertical-align: bottom;
+}
+
+hr {
   border: 1px solid #f2f3f5;
   margin-bottom: 15px;
 }
@@ -956,8 +1008,9 @@ body {
 .meal .cancel-confirm {
   position: absolute;
   top: 300px;
+  margin: 0 auto;
   left: 50%;
-  transform: -50%;
+  transform: translateX(-50%);
   background: #fff;
   width: 240px;
   height: 160px;
@@ -980,10 +1033,22 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(94, 94, 94, 0.25);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(94, 94, 94, 0.45);
   display: flex;
+  z-index: 1000;
+}
+
+.meal-view-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(94, 94, 94, 0.45);
+  display: flex;
+  z-index: 1000;
 }
 .meal .meal-view {
   background: #fff;
@@ -992,6 +1057,13 @@ body {
   height: 787px;
   box-sizing: border-box;
   padding: 20px 0;
+  z-index: 1100;
+  position: absolute;
+  margin: auto auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25);
 }
 .meal .meal-view > div:first-child {
   border-right: 1px solid #dadada;
@@ -1025,6 +1097,7 @@ body {
 .meal .meal-view .reply-wrap .meal-info {
   border-bottom: 1px solid #dadada;
   padding: 0 20px 10px 10px;
+  margin-bottom: 0;
 }
 .meal .meal-view .reply-wrap .meal-info P {
   margin-right: 8px;
@@ -1048,25 +1121,59 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+}
+.meal-view .reply-wrap .reply-box > div > ul {
+  height: 560px;
+  overflow-y: scroll;
+}
+.meal-view .reply-wrap .reply-box > div > ul::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 562px;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  bottom: 0;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 95%, rgb(255, 255, 255) 100%);
+  pointer-events: none;
 }
 .meal .meal-view .reply-wrap .reply {
   color: #495057;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px 10px 10px;
+  padding: 10px 20px 10px 10px;
 }
 .meal .meal-view .reply-wrap .reply > div {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.meal .add-reply {
+.meal-view .reply-wrap .add-nested-reply {
+  font-size: 13px;
+  color: #9da1a6;
+  margin-left: 65px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.meal-view .reply-wrap .nested-replys {
+  margin-left: 40px;
+}
+.meal-view .hashtag {
+  position: absolute;
+  bottom: 40px;
+}
+
+.add-reply {
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #dadada;
   padding-top: 20px;
   padding: 20px 20px 0 10px;
+  position: relative;
 }
 .meal .add-reply input {
   border: none;
@@ -1074,7 +1181,24 @@ body {
 .meal .add-reply input:focus {
   outline: none;
 }
-.meal .add-reply > div {
+.add-reply .reply-to {
+  box-sizing: border-box;
+  padding: 0 20px;
+  width: 100%;
+  line-height: 40px;
+  font-size: 14px;
+  background: #dadada;
+  color: #495057;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-wraps {
   display: flex;
   gap: 8px;
 }
