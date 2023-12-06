@@ -31,20 +31,22 @@ const Signin = () => {
 
 
   return(
-    <main className="Signin">
-      <form>
-        <label htmlFor="user-email">email</label>
-        <input type="email" placeholder="email(xxx@xxx.com)" id="user-email" required onChange={emailChange}></input>
-        <label htmlFor="user-pw">password</label>
-        <input type="password" placeholder="password" id="user-pw" required onChange={passwordChange}></input>
-        <button type="button" className="w-green-btn" onClick={signin}>회원가입</button>
-      </form>
-      <div className="already">
-        <p>이미 다이어팁 계정이 있다면?</p>
-        <button className="w-green-btn" type="button"><Link to="/login" className="login-btn">로그인 하기</Link></button>
-      </div>
-      {<GoogleLogin/>}
-    </main>
+    <div className="container">
+      <main className="Signin">
+        <form>
+          <label htmlFor="user-email">email</label>
+          <input type="email" placeholder="email(xxx@xxx.com)" id="user-email" required onChange={emailChange}></input>
+          <label htmlFor="user-pw">password</label>
+          <input type="password" placeholder="password" id="user-pw" required onChange={passwordChange}></input>
+          <button type="button" className="w-green-btn" onClick={signin}>회원가입</button>
+        </form>
+        <div className="already">
+          <p>이미 다이어팁 계정이 있다면?</p>
+          <button className="w-green-btn" type="button"><Link to="/login" className="login-btn">로그인 하기</Link></button>
+        </div>
+        {<GoogleLogin/>}
+      </main>
+    </div>
   )
 };
 

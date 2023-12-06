@@ -609,6 +609,11 @@ h6 {
   align-items: center;
 }
 
+.level-badge {
+  width: 48px;
+  height: 48px;
+}
+
 .area-middle-top {
   display: flex;
   width: 100%;
@@ -698,21 +703,49 @@ h6 {
   display: flex;
   gap: 20px;
 }
-.today-cards p {
-  font-weight: bold;
+
+.today-card, .today-card-big {
+  display: flex;
+  background-color: #fff;
+  padding: 30px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 160px;
+  transition: 0.3s;
+}
+.today-card:hover, .today-card-big:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+.today-card-big {
+  width: 310px;
+}
+.today-card-big .weather {
+  display: flex;
+  gap: 30px;
+}
+.today-card-big .weather .weather-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.today-card-big .weather .weather-text p {
+  width: 74px;
+  display: flex;
+  justify-content: space-between;
+}
+.today-card-big .weather .weather-icon {
+  object-fit: cover;
+  width: 60px;
 }
 
 .today-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 20px;
-  justify-content: center;
-  background-color: #fff;
-  padding: 30px;
   width: 130px;
   height: 160px;
-  box-sizing: border-box;
 }
 .today-card .sticker {
   width: 50px;

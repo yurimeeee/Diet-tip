@@ -13,6 +13,10 @@ const Mypage = () => {
   const [userName, setUserName] = useState(null);
   const [usetImg, setUsetImg] = useState(null);
 
+  const moveAlam = () => {
+    window.location.replace('/alam');
+  }
+
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -25,6 +29,8 @@ const Mypage = () => {
         setUsetImg(user.photoURL);
       } else {
         console.log('유저 정보 불러오기 실패');
+        alert('먼저 로그인해주세요');
+        window.location.replace('/login');
       }
     });
   });
@@ -38,7 +44,7 @@ const Mypage = () => {
           <div className='area-middle-top'>
           <h5>{userName}님, 어서오세요.</h5>
             <div className='buttons'>
-              <button type="button" className="button">
+              <button type="button" className="button" onClick={moveAlam}>
                 <FontAwesomeIcon icon={faBell} className='icon'/>
               </button>
               <button type="button" className="button">
