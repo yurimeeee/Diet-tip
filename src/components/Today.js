@@ -39,7 +39,7 @@ const Today = () => {
 
 
   return(
-    <div className="Today">
+    <section className="Today">
       <div className='today'>
         <h5>오늘의</h5>
         <div className="today_content">
@@ -70,7 +70,7 @@ const Today = () => {
         </div>
         
       </div>
-    </div>
+    </section>
   )
 };
 

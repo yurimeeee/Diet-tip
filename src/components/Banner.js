@@ -6,7 +6,7 @@ import level3Img from "../asset/level-3-badge.png";
 
 const Banner = () => {
   return(
-    <div className="banner">
+    <section className="banner">
       <div className="banner-text">
         <p>다이어팁에 처음 왔다면</p>
         <p>내 <span>관리레벨 테스트하고</span> 예쁜 <span>레벨 뱃지</span> 받자!</p>
@@ -17,7 +17,7 @@ const Banner = () => {
         <img src={level2Img} className="level-badge" alt="level badge"></img>
         <img src={level3Img} className="level-badge" alt="level badge"></img>
       </div>
-    </div>
+    </section>
   )
 }
 
