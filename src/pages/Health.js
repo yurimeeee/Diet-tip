@@ -8,6 +8,7 @@ import HealthSlide from "../components/HealthSlide";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { Pagination } from 'swiper/modules';
+import MyComponent from "../components/map"
 
 function Health(){
   return (
@@ -25,40 +26,30 @@ function Health(){
         <h2 className="sectionTitle tt4 jcc">아직도 운동을 시작하지 못했다면?</h2>
         <p>다이어팁이 추천하는 운동 유튜버와 함께 운동 루틴을 만들어보세요!</p>
         <div className="healthSlides">
-        <Swiper
-          slidesPerView={5}
-          spaceBetween={10}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper"
-          >
-          <SwiperSlide>
-            <HealthSlide/>
-          </SwiperSlide>   
-          <SwiperSlide>
-            <HealthSlide/>
-          </SwiperSlide>   
-          <SwiperSlide>
-            <HealthSlide/>
-          </SwiperSlide>   
-          <SwiperSlide>
-            <HealthSlide/>
-          </SwiperSlide>   
-          <SwiperSlide>
-            <HealthSlide/>
-          </SwiperSlide>   
-          <SwiperSlide>
-            <HealthSlide/>
-          </SwiperSlide>   
-        </Swiper>
+          <Swiper
+            slidesPerView={5}
+            spaceBetween={10}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+            >
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
+          </Swiper>
         </div>
+      </div>
+        <h2 className="sectionTitle tt4 jcc">우리동네 운동맛집</h2>
+        <p>내 주변 가까운 운동시설을 확인해보고 오늘부터 운동을 시작해보세요!</p>
+        <div>
+          <MyComponent/>
+        </div>        
+      <div>
       </div>
     </>
   );
   };
 
 export default Health;
-
-
