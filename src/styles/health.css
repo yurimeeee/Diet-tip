@@ -5,10 +5,7 @@ a {
 }
 
 @font-face {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
-    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
@@ -591,75 +588,135 @@ body {
   background-color: #f2f3f5;
 }
 
-a.login-btn {
-  color: #32a061;
-  transition: 0.3s;
-}
-a.login-btn:hover {
-  color: #fff;
-}
-
-.Signin,
-.Login {
-  margin: 72px 0 192px;
-}
-
-form {
+.bannerWrap {
+  background-color: #fff;
+  border-radius: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  padding: 60px 96px;
+}
+
+.bannerTitle ul {
+  display: flex;
+  gap: 5px;
+}
+.bannerTitle li {
+  border-radius: 50px;
+  border: 1px solid #f46b2a;
+  padding: 0 10px;
+}
+.bannerTitle span {
+  color: #f46b2a;
+  font-size: 11px;
+}
+.bannerTitle .youtubeBtn {
+  margin-top: 50px;
+  padding: 11px;
+}
+
+.bannerMainTitle {
+  padding: 20px 0;
+}
+.bannerMainTitle h1 {
+  font-size: 40px;
+  color: #32a061;
+}
+.bannerMainTitle p {
+  font-weight: bold;
+  display: inline;
+}
+
+.bannerSubTitle {
+  width: 70%;
+}
+.bannerSubTitle h3 {
+  font-weight: bold;
+}
+.bannerSubTitle p {
+  padding-top: 20px;
+  color: #9da1a6;
+}
+
+.levels {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.level {
+  width: 30%;
+}
+.level img {
+  width: 25%;
+}
+
+.sectionTitle {
+  color: #32a061;
+  font-weight: bold;
+}
+
+#app {
+  height: 100%;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
   justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }
-/* form label {
-  display: none;
-} */
-form input {
+
+.swiper-slide img {
   display: block;
-  border: 1px solid #32a061;
-  width: 400px;
-  height: 48px;
-  padding: 15px 30px;
-  box-sizing: border-box;
-  background-color: transparent;
-  border-radius: 24px;
-  margin-bottom: 10px;
+  width: 40%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 0 auto;
 }
-form input::-moz-placeholder {
-  color: #32a061;
-  opacity: 0.5;
+
+.swiper {
+  width: 100%;
+  height: 412px;
+  margin: 0px auto;
 }
-form input::placeholder {
-  color: #32a061;
-  opacity: 0.5;
-}
-form input:focus {
-  outline: none;
-  border-color: #32a061;
-  box-shadow: 0 0 5px #32a061;
-}
-form button {
+
+.append-buttons {
+  text-align: center;
   margin-top: 20px;
 }
 
-.already,
-.google {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #32a061;
-  gap: 20px;
-}
-
-.Signin .already {
-  margin-top: 40px;
-}
-.Signin .google {
-  margin-top: 10px;
-}
-
-.Login .already {
-  margin-top: 10px;
-}
-.Login .google {
-  margin-top: 40px;
-}/*# sourceMappingURL=signin.css.map */
+.append-buttons button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #007aff;
+  color: #007aff;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 10px;
+  font-size: 13px;
+}/*# sourceMappingURL=health.css.map */
