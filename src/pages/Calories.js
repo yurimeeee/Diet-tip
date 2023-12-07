@@ -59,8 +59,8 @@ const Calories = () => {
             `서버 응답이 올바르지 않습니다. 상태 코드: ${response.status}`
           );
         }
-
         const data = await response.json();
+        console.log("data", data.I2790.row);
         // console.log("API 데이터:", data.I2790.row);
         // setRowData(data.I2790.row);
         // const descKorArray = data.I2790.row.map((item) => item.DESC_KOR);

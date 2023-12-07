@@ -8,6 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { yesLogin, noLogin } from "../store/loginSlice";
 import { Link } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
 const Header = () => {
   const auth = getAuth();
@@ -84,10 +85,10 @@ const Header = () => {
             </a>
             <ul>
               <li>
-                <a href="">식단 공유</a>
+                <a href="/meal">식단 공유</a>
               </li>
               <li>
-                <a href="">칼로리 사전</a>
+                <a href="/calories">칼로리 사전</a>
               </li>
             </ul>
           </li>

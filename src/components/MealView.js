@@ -29,6 +29,8 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [replyTo, setReplyTo] = useState("");
   const [isReplyToMode, setIsReplyToMode] = useState(false);
   const [replyIdx, setReplyIdx] = useState("");
+  const [nereplyIdx, setNeReplyIdx] = useState("");
+  const [isnestedReplysView, setIsNestedReplysView] = useState(false);
 
   const closeModal = () => {
     setIsViewOpen(false);
@@ -80,6 +82,9 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     };
 
     fetchData();
+    if (nestedReplys.length > 0) {
+      setIsNestedReplysView(true);
+    }
   }, []);
 
   const replyInputHandler = (e) => {
@@ -96,8 +101,9 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
 
     if (listItem) {
       const dataIdx = listItem.getAttribute("data-idx");
-      console.log("data-idx 값:", dataIdx);
+      // console.log("data-idx 값:", dataIdx);
       setReplyIdx(dataIdx);
+
       // useEffect(() => {
       // 대댓글 불러오기
       const fetchListData = async () => {
@@ -124,8 +130,9 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
 
         if (clickedDocument) {
           const replyToUsername = clickedDocument.username;
+          // console.log(clickedDocument.id, "replyTo");
           setReplyTo(replyToUsername);
-          console.log(replyToUsername, "replyTo");
+          // console.log(replyToUsername, "replyTo");
         }
       };
 
@@ -136,13 +143,23 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     }
   };
 
+  //대댓글 보기
+  const handleNestedItemIdx = (e) => {
+    // 클릭한 요소의 데이터 인덱스
+    const clickedDataIdx = e.currentTarget
+      .closest("li")
+      .getAttribute("data-idx");
+
+    // 클릭한 요소의 대댓글만 보이도록
+    setIsNestedReplysView((prev) =>
+      prev !== clickedDataIdx ? clickedDataIdx : null
+    );
+  };
+
   const replyToModeHandler = () => {
     setIsReplyToMode(false);
   };
-  console.log(nestedReplys, "nestedReplys");
-  //대댓글 모드에서
-  if (isReplyToMode) {
-  }
+  // console.log(nestedReplys, "nestedReplys");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -163,6 +180,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
         createdAt: Date.now(),
         username: user.displayName,
         userId: user.uid,
+        replyIdx: replyIdx, // 이 부분을 추가
       });
 
       //초기화
@@ -275,28 +293,40 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                     <p className="add-nested-reply" onClick={handleItemIdx}>
                       답글달기...
                     </p>
-                    {nestedReplys !== null ? (
+                    {nestedReplys.length > 0 && (
+                      <p
+                        className="add-nested-reply"
+                        onClick={handleNestedItemIdx}
+                      >
+                        {isnestedReplysView ? "대댓글 접기" : "대댓글 보기"}
+                      </p>
+                    )}
+                    {isnestedReplysView === reply.id && (
                       <ul className="nested-replys">
-                        {nestedReplys.map((neReply, index) => (
-                          <li key={index} data-idx={neReply.id}>
-                            <div className="reply">
-                              <div>
-                                <img
-                                  src={replyImg}
-                                  alt="유저 프로필"
-                                  className="reply-img"
-                                />
-                                <p className="reply-user">{neReply.username}</p>
-                                <p className="reply-text ">
-                                  {neReply.content}{" "}
-                                </p>
+                        {nestedReplys
+                          .filter((neReply) => neReply.replyIdx === reply.id)
+                          .map((neReply, index) => (
+                            <li key={index} data-idx={neReply.id}>
+                              <div className="reply">
+                                <div>
+                                  <img
+                                    src={replyImg}
+                                    alt="유저 프로필"
+                                    className="reply-img"
+                                  />
+                                  <p className="reply-user">
+                                    {neReply.username}
+                                  </p>
+                                  <p className="reply-text ">
+                                    {neReply.content}{" "}
+                                  </p>
+                                </div>
+                                <FontAwesomeIcon icon={regularHeart} />
                               </div>
-                              <FontAwesomeIcon icon={regularHeart} />
-                            </div>
-                          </li>
-                        ))}
+                            </li>
+                          ))}
                       </ul>
-                    ) : null}
+                    )}
                   </li>
                 ))}
               </ul>
