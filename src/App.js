@@ -10,11 +10,11 @@ import Health from "./pages/Health";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <RouterProvider router={AppRouter} />
-      <Footer />
-    </div>
+      <div className="App">
+        <Header />
+        <RouterProvider router={AppRouter} />
+        <Footer />
+      </div>
   );
 }
 

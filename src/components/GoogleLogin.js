@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "../styles/signin.css"
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { useSelector ,useDispatch} from 'react-redux';
+import { loginSlice, yesLogin, noLogin } from "../store/loginSlice";
 
 const GoogleLogin = () => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [isLogin,setisLogin] = useState(false);
+  const isLoginYN = useSelector(state => state.isLogin.value);
+  const dispatch = useDispatch();
 
   //구글 계정으로 로그인
   let signIn = () => {
     signInWithPopup(auth, provider)
     .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      setisLogin(true);
+      dispatch(yesLogin());
       alert('로그인 성공');
+      window.location.replace('/');
     }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      dispatch(noLogin());
+      alert('로그인 실패');
     });
   }
 

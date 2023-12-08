@@ -29,6 +29,8 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [replyTo, setReplyTo] = useState("");
   const [isReplyToMode, setIsReplyToMode] = useState(false);
   const [replyIdx, setReplyIdx] = useState("");
+  const [nereplyIdx, setNeReplyIdx] = useState("");
+  const [isnestedReplysView, setIsNestedReplysView] = useState(false);
 
   const closeModal = () => {
     setIsViewOpen(false);
@@ -37,16 +39,27 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const toggleSet = () => {
     SetToggleMore(!toggleMore);
   };
-
+  // /meal/5CmhHuAthxC3TOocCeTm
+  // /meal/Gc4gTa3hjjMtuSvs9lLAw5UBDxH3/5CmhHuAthxC3TOocCeTm
   //식단 삭제
   const onDelete = async () => {
     // // const ok = confirm("식단을 삭제하시나요?");
     // if (!ok) return;
     try {
       await deleteDoc(doc(db, "meal", clickedData.id));
+      // await deleteDoc(doc(db, "meal", `${clickedData.id}/reply`));
+
+      // meal 컬렉션 내의 reply 문서 모두 삭제
+      const replyQuerySnapshot = await getDocs(
+        collection(db, `meal/${clickedData.id}/reply`)
+      );
+      const replyDocs = replyQuerySnapshot.docs;
+      await Promise.all(replyDocs.map(async (doc) => await deleteDoc(doc.ref)));
+
       // if (photo) {
-      const photoRef = ref(storage, `tweets/${user.uid}/${clickedData.id}`);
+      const photoRef = ref(storage, `meal/${user.uid}/${clickedData.id}`);
       await deleteObject(photoRef);
+      console.log(photoRef);
     } catch (e) {
       console.log(e);
     } finally {
@@ -69,6 +82,9 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     };
 
     fetchData();
+    if (nestedReplys.length > 0) {
+      setIsNestedReplysView(true);
+    }
   }, []);
 
   const replyInputHandler = (e) => {
@@ -85,10 +101,11 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
 
     if (listItem) {
       const dataIdx = listItem.getAttribute("data-idx");
-      console.log("data-idx 값:", dataIdx);
+      // console.log("data-idx 값:", dataIdx);
       setReplyIdx(dataIdx);
+
       // useEffect(() => {
-      //   // Firestore에서 데이터 가져오기
+      // 대댓글 불러오기
       const fetchListData = async () => {
         const querySnapshot = await getDocs(
           collection(db, `meal/${clickedData.id}/reply/${dataIdx}/nestedReply`)
@@ -99,22 +116,23 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
         }));
         setNestedReplys(data);
 
-        const querySnapshot2 = await getDocs(
-          collection(db, `meal/${clickedData.id}/reply`)
-        );
-        const replyIdx = querySnapshot2.docs.map((doc) => ({
-          id: doc.id,
-          username: doc.data().username,
-          // ...doc.data(),
-        }));
+        // const querySnapshot2 = await getDocs(
+        //   collection(db, `meal/${clickedData.id}/reply`)
+        // );
+        // const replyIdx = querySnapshot2.docs.map((doc) => ({
+        //   id: doc.id,
+        //   username: doc.data().username,
+        //   // ...doc.data(),
+        // }));
 
         // data-idx 값과 일치하는 문서
-        const clickedDocument = replyIdx.find((doc) => doc.id === dataIdx);
+        const clickedDocument = replys.find((doc) => doc.id === dataIdx);
 
         if (clickedDocument) {
           const replyToUsername = clickedDocument.username;
+          // console.log(clickedDocument.id, "replyTo");
           setReplyTo(replyToUsername);
-          console.log(replyToUsername, "replyTo");
+          // console.log(replyToUsername, "replyTo");
         }
       };
 
@@ -125,13 +143,23 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     }
   };
 
+  //대댓글 보기
+  const handleNestedItemIdx = (e) => {
+    // 클릭한 요소의 데이터 인덱스
+    const clickedDataIdx = e.currentTarget
+      .closest("li")
+      .getAttribute("data-idx");
+
+    // 클릭한 요소의 대댓글만 보이도록
+    setIsNestedReplysView((prev) =>
+      prev !== clickedDataIdx ? clickedDataIdx : null
+    );
+  };
+
   const replyToModeHandler = () => {
     setIsReplyToMode(false);
   };
-
-  //대댓글 모드에서
-  if (isReplyToMode) {
-  }
+  // console.log(nestedReplys, "nestedReplys");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -152,12 +180,21 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
         createdAt: Date.now(),
         username: user.displayName,
         userId: user.uid,
+        replyIdx: replyIdx, // 이 부분을 추가
       });
 
       //초기화
       setNewReplys("");
       //부모 컴포넌트로 댓글 수 전달
       onReplyCount(replys);
+
+      //추가된 댓글 다시 불러오기
+      const querySnapshot = await getDocs(collection(db, replyPath));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setReplys(data);
     } catch (e) {
       console.log(e);
     } finally {
@@ -256,28 +293,40 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                     <p className="add-nested-reply" onClick={handleItemIdx}>
                       답글달기...
                     </p>
-                    {nestedReplys !== null ? (
+                    {nestedReplys.length > 0 && (
+                      <p
+                        className="add-nested-reply"
+                        onClick={handleNestedItemIdx}
+                      >
+                        {isnestedReplysView ? "대댓글 접기" : "대댓글 보기"}
+                      </p>
+                    )}
+                    {isnestedReplysView === reply.id && (
                       <ul className="nested-replys">
-                        {nestedReplys.map((neReply, index) => (
-                          <li key={index} data-idx={neReply.id}>
-                            <div className="reply">
-                              <div>
-                                <img
-                                  src={replyImg}
-                                  alt="유저 프로필"
-                                  className="reply-img"
-                                />
-                                <p className="reply-user">{neReply.username}</p>
-                                <p className="reply-text ">
-                                  {neReply.content}{" "}
-                                </p>
+                        {nestedReplys
+                          .filter((neReply) => neReply.replyIdx === reply.id)
+                          .map((neReply, index) => (
+                            <li key={index} data-idx={neReply.id}>
+                              <div className="reply">
+                                <div>
+                                  <img
+                                    src={replyImg}
+                                    alt="유저 프로필"
+                                    className="reply-img"
+                                  />
+                                  <p className="reply-user">
+                                    {neReply.username}
+                                  </p>
+                                  <p className="reply-text ">
+                                    {neReply.content}{" "}
+                                  </p>
+                                </div>
+                                <FontAwesomeIcon icon={regularHeart} />
                               </div>
-                              <FontAwesomeIcon icon={regularHeart} />
-                            </div>
-                          </li>
-                        ))}
+                            </li>
+                          ))}
                       </ul>
-                    ) : null}
+                    )}
                   </li>
                 ))}
               </ul>

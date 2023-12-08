@@ -19,6 +19,9 @@ import { db, auth } from "../firebase";
 import TitleBanner from "../components/TitleBanner";
 import MealView from "../components/MealView";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setPosts } from "../store/mealSlice";
+
 // const Modal = ({ isOpen, closeModal, children }) => {
 //   return (
 //     <>
@@ -37,6 +40,10 @@ import MealView from "../components/MealView";
 // };
 
 const DailyMeal = () => {
+  const dispatch = useDispatch();
+  const postsSelector = (state) => state.mealDB.posts;
+  const posts = useSelector(postsSelector);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWritingMode, setIsWritingMode] = useState(false);
   const [isViewOpen, setIsViewOpen] = useState(false);
@@ -55,18 +62,20 @@ const DailyMeal = () => {
     setIsWritingMode(val);
   };
 
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+
+  console.log("posts", posts);
   useEffect(() => {
     let unsubscribe = null;
     const fetchPosts = async () => {
       //쿼리생성
-      const tweetsQuery = query(
+      const mealQuery = query(
         collection(db, "meal"), //컬렉션 지정
         orderBy("createdAt", "desc"), //시간순으로 내림차순
         limit(25)
       );
 
-      unsubscribe = await onSnapshot(tweetsQuery, (snapshot) => {
+      unsubscribe = await onSnapshot(mealQuery, (snapshot) => {
         const posts = snapshot.docs.map((doc) => {
           const { text, createdAt, userId, username, photo, hashTags } =
             doc.data();
@@ -80,7 +89,9 @@ const DailyMeal = () => {
             hashTags,
           };
         });
-        setPosts(posts);
+        // 리덕스 액션을 통해 스토어에 데이터 저장
+        dispatch(setPosts(posts));
+        // setPosts(posts);
       });
     };
 
@@ -89,7 +100,8 @@ const DailyMeal = () => {
       unsubscribe && unsubscribe();
       // 사용자가 타임라인을 보고 있을때만 작동
     };
-  }, []);
+    // }, []);
+  }, [dispatch]);
 
   //상세보기
   const [myData, setMyData] = useState([]);
@@ -180,12 +192,6 @@ const DailyMeal = () => {
           />
         ))}
       </div>
-      {/* <div>
-        <button onClick={openModal}>모달 열기</button>
-        <Modal isOpen={isModalOpen} closeModal={closeModal}>
-          <h2>모달 내용</h2>
-        </Modal>
-      </div> */}
     </div>
   );
 };
