@@ -678,39 +678,30 @@ body {
   font-size: 16px;
   line-height: 48px;
 }
-
-.calories-table thead {
+.meal .calories-table thead {
   border-radius: 4px;
   background: rgba(208, 208, 208, 0.3);
 }
-
-.calories-table tr {
+.meal .calories-table tr {
   height: 48px;
 }
-
-/* 테이블 스타일 설정 */
-table {
+.meal table {
   width: 100%;
   border-collapse: collapse;
 }
-
-/* 각 열의 너비 설정 */
-td:nth-child(1) {
+.meal td:nth-child(1) {
   width: 10%;
   text-align: center;
 }
-
-td:nth-child(2) {
+.meal td:nth-child(2) {
   width: 60%;
 }
-
-td:nth-child(3),
-td:nth-child(4) {
+.meal td:nth-child(3),
+.meal td:nth-child(4) {
   width: 15%;
   text-align: center;
 }
-
-.head-banner {
+.meal .head-banner {
   background: #fff;
   height: 432px;
   display: flex;
@@ -719,37 +710,34 @@ td:nth-child(4) {
   border-radius: 20px;
   box-sizing: border-box;
 }
-.head-banner p {
+.meal .head-banner p {
   font-size: 20px;
   margin: 50px 0 16px;
 }
-.head-banner h2 {
+.meal .head-banner h2 {
   font-size: 52px;
   font-weight: 700;
   margin-bottom: 20px;
 }
-.head-banner h3 {
+.meal .head-banner h3 {
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 30px;
 }
-
-.banner-img {
+.meal .banner-img {
   width: 485px;
   height: 336px;
 }
-
-.container {
+.meal .container {
   width: 1320px;
   margin: 0 auto;
   box-sizing: border-box;
 }
-
-.search-bar {
+.meal .search-bar {
   display: flex;
   justify-content: end;
 }
-.search-bar form {
+.meal .search-bar form {
   width: 648px;
   height: 48px;
   border-radius: 100px;
@@ -759,53 +747,51 @@ td:nth-child(4) {
   box-sizing: border-box;
   margin: 72px 0 40px;
 }
-.search-bar input {
+.meal .search-bar input {
   flex: 1;
   line-height: 32px;
   font-size: 16px;
 }
-.search-bar input,
-.search-bar button {
+.meal .search-bar input,
+.meal .search-bar button {
   border: none;
   background: none;
 }
-.search-bar input:focus,
-.search-bar button:focus {
+.meal .search-bar input:focus,
+.meal .search-bar button:focus {
   outline: none;
 }
-
-.recom-list {
+.meal .recom-list {
   width: 100%;
   height: 336px;
   padding: 48px;
   box-sizing: border-box;
 }
-.recom-list h3 {
+.meal .recom-list h3 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 16px;
 }
-.recom-list p {
+.meal .recom-list p {
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 48px;
 }
-
-.recom-list .swiper {
+.meal .recom-list .swiper {
   width: 840px;
   height: 240px;
 }
-.recom-list .swiper span {
+.meal .recom-list .swiper span {
   display: inline-block;
   font-style: 14px;
   color: #495057;
   margin-top: 6px;
   position: relative;
 }
-.recom-list .swiper .recom-name {
+.meal .recom-list .swiper .recom-name {
   margin-right: 20px;
 }
-.recom-list .swiper .recom-name::after {
+.meal .recom-list .swiper .recom-name::after {
   content: "";
   width: 2px;
   height: 14px;
@@ -816,17 +802,17 @@ td:nth-child(4) {
   left: 100%;
   margin-left: 8px;
 }
-.recom-list .swiper .recom-wrap {
+.meal .recom-list .swiper .recom-wrap {
   position: relative;
 }
-.recom-list .swiper .recom-wrap:hover .recom-desc {
+.meal .recom-list .swiper .recom-wrap:hover .recom-desc {
   opacity: 1;
 }
-.recom-list .swiper .recom-wrap:hover img {
+.meal .recom-list .swiper .recom-wrap:hover img {
   filter: blur(7px);
   -webkit-filter: blur(7px);
 }
-.recom-list .swiper .recom-wrap .recom-desc {
+.meal .recom-list .swiper .recom-wrap .recom-desc {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -849,14 +835,12 @@ td:nth-child(4) {
   font-weight: 500;
   margin-bottom: 30px;
 }
-
-.meal-post-wrap {
+.meal .meal-post-wrap {
   display: flex;
   justify-content: space-between;
   margin-bottom: 72px;
 }
-
-.meal-card {
+.meal .meal-card {
   width: 312px;
   position: relative;
 }
@@ -873,7 +857,7 @@ td:nth-child(4) {
   color: rgba(255, 255, 255, 0.85);
   transition: 0.5s;
 }
-.meal-card .meal-img {
+.meal .meal-card .meal-img {
   width: 100%;
   height: 312px;
   -o-object-fit: cover;
@@ -896,79 +880,74 @@ td:nth-child(4) {
 .today-meal .meal-card:nth-child(5n) {
   margin-right: 0;
 }
-.today-meal .meal-card .meal-img {
+.meal .today-meal .meal-card .meal-img {
   width: 100%;
   height: 246px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-
-.meal-info {
+.meal .meal-info {
   color: #495057;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
 }
-.meal-info img {
+.meal .meal-info img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   margin-right: 10px;
 }
-.meal-info .meal-user {
+.meal .meal-info .meal-user {
   font-size: 16px;
   font-weight: 500;
 }
-.meal-info .like-reply-wrap {
+.meal .meal-info .like-reply-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.meal-info .like-reply-wrap svg {
+.meal .meal-info .like-reply-wrap svg {
   margin-right: 10px;
 }
-.meal-info .like-reply-wrap span {
+.meal .meal-info .like-reply-wrap span {
   line-height: 16px;
   font-size: 16px;
   font-weight: 700;
 }
-
-.hashtag {
+.meal .hashtag {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
 }
-
-.meal-create {
+.meal .meal-create {
   padding: 20px 75px;
   background: #fff;
   margin-top: 30px;
 }
-.meal-create img {
+.meal .meal-create img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
-.meal-create textarea {
+.meal .meal-create textarea {
   width: 100%;
   resize: none;
   border: none;
   margin-left: 50px;
 }
-.meal-create textarea:focus {
+.meal .meal-create textarea:focus {
   outline: none;
 }
-
-.tag-wrap {
+.meal .tag-wrap {
   display: flex;
   gap: 16px;
   margin-bottom: 16px;
   margin-left: 50px;
 }
-
-.tag-input {
+.meal .tag-input {
   width: 240px;
   height: 30px;
   border-radius: 4px;
@@ -977,15 +956,14 @@ td:nth-child(4) {
   background: rgba(228, 228, 228, 0.3);
   color: #495057;
 }
-.tag-input:focus {
+.meal .tag-input:focus {
   outline: none;
 }
-
-.form-tag-wrap {
+.meal .form-tag-wrap {
   display: flex;
   gap: 10px;
 }
-.form-tag-wrap div {
+.meal .form-tag-wrap div {
   position: relative;
 }
 .form-tag-wrap div .tag-del {
@@ -1002,12 +980,10 @@ td:nth-child(4) {
   align-items: center;
   box-shadow: 0px 5px 12.5px 0px rgba(0, 0, 0, 0.42);
 }
-
-.hidden {
+.meal .hidden {
   display: none;
 }
-
-.utility {
+.meal .utility {
   color: #32a061;
   display: flex;
   gap: 16px;
@@ -1027,13 +1003,11 @@ hr {
   border: 1px solid #f2f3f5;
   margin-bottom: 15px;
 }
-
-.form-btns {
+.meal .form-btns {
   display: flex;
   gap: 12px;
 }
-
-.cancel-confirm {
+.meal .cancel-confirm {
   position: absolute;
   top: 300px;
   margin: 0 auto;
@@ -1048,17 +1022,16 @@ hr {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 35px 0px;
   text-align: center;
 }
-.cancel-confirm h2 {
+.meal .cancel-confirm h2 {
   margin-bottom: 32px;
 }
-.cancel-confirm .modal-btn {
+.meal .cancel-confirm .modal-btn {
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
 }
-
-.modal-overlay {
+.meal .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1079,8 +1052,7 @@ hr {
   display: flex;
   z-index: 1000;
 }
-
-.meal-view {
+.meal .meal-view {
   background: #fff;
   border-radius: 12px;
   width: 960px;
@@ -1095,59 +1067,59 @@ hr {
   transform: translate(-50%, -50%);
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25);
 }
-.meal-view > div:first-child {
+.meal .meal-view > div:first-child {
   border-right: 1px solid #dadada;
   padding: 0 20px;
 }
-.meal-view > div {
+.meal .meal-view > div {
   width: 50%;
   box-sizing: border-box;
 }
-.meal-view > div .meal-img {
+.meal .meal-view > div .meal-img {
   width: 440px;
   height: 440px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.meal-view > div .meal-info {
+.meal .meal-view > div .meal-info {
   margin-bottom: 10px;
 }
-.meal-view > div .meal-info img {
+.meal .meal-view > div .meal-info img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 16px;
 }
-.meal-view > div .meal-info .meal-user {
+.meal .meal-view > div .meal-info .meal-user {
   font-size: 18px;
   font-weight: 500;
 }
-.meal-view .reply-wrap {
+.meal .meal-view .reply-wrap {
   height: calc(100% - 40px);
 }
-.meal-view .reply-wrap .meal-info {
+.meal .meal-view .reply-wrap .meal-info {
   border-bottom: 1px solid #dadada;
   padding: 0 20px 10px 10px;
   margin-bottom: 0;
 }
-.meal-view .reply-wrap .meal-info P {
+.meal .meal-view .reply-wrap .meal-info P {
   margin-right: 8px;
 }
-.meal-view .reply-wrap .meal-info > div {
+.meal .meal-view .reply-wrap .meal-info > div {
   display: flex;
   align-items: center;
 }
-.meal-view .reply-wrap .level-badge {
+.meal .meal-view .reply-wrap .level-badge {
   width: 24px;
   height: 24px;
   border-radius: 50%;
 }
-.meal-view .reply-wrap .reply-img {
+.meal .meal-view .reply-wrap .reply-img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
-.meal-view .reply-wrap .reply-box {
+.meal .meal-view .reply-wrap .reply-box {
   height: calc(100% - 24px);
   display: flex;
   flex-direction: column;
@@ -1171,14 +1143,14 @@ hr {
   background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 95%, rgb(255, 255, 255) 100%);
   pointer-events: none;
 }
-.meal-view .reply-wrap .reply {
+.meal .meal-view .reply-wrap .reply {
   color: #495057;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 10px 10px;
 }
-.meal-view .reply-wrap .reply > div {
+.meal .meal-view .reply-wrap .reply > div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1206,10 +1178,10 @@ hr {
   padding: 20px 20px 0 10px;
   position: relative;
 }
-.add-reply input {
+.meal .add-reply input {
   border: none;
 }
-.add-reply input:focus {
+.meal .add-reply input:focus {
   outline: none;
 }
 .add-reply .reply-to {
