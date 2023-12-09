@@ -684,8 +684,13 @@ body {
   background: rgba(208, 208, 208, 0.3);
 }
 
+.calories-table tbody {
+  background: rgba(255, 255, 255, 0.4);
+}
+
 .calories-table tr {
   height: 48px;
+  border-bottom: 1px solid #ccc;
 }
 
 /* 테이블 스타일 설정 */
@@ -708,6 +713,12 @@ td:nth-child(3),
 td:nth-child(4) {
   width: 15%;
   text-align: center;
+}
+
+nav.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 100px;
 }
 
 .head-banner {

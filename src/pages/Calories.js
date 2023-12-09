@@ -46,11 +46,6 @@ const Calories = () => {
   const itemsPerPage = 20;
   const [caloriesData, setCaloriesData] = useState([]);
 
-  // for (var i = 0; i < calories_DB.length; i++) {
-  //   var innerArray = calories_DB[i];
-  //   // console.log(innerArray);
-  // }
-
   useEffect(() => {
     const fetchData = async () => {
       const data = [];
@@ -66,23 +61,23 @@ const Calories = () => {
     };
 
     // fetchData();
-  }, []); // 컴포넌트가 처음 렌더링될 때만 실행
+  }, []);
 
-  // 전체 데이터에서 현재 페이지에 해당하는 데이터만 추출
+  //전체 데이터에서 현재 페이지에 해당하는 데이터만 추출
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = calories_DB.slice(indexOfFirstItem, indexOfLastItem);
 
-  // 페이지 변경
+  //페이지 변경
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // 전체 페이지 중에서 현재 페이지 주변의 페이지 번호만 가져오는 함수
+  //페이지네이션 10개씩 표시
   const getDisplayedPageNumbers = () => {
     const totalPageCount = Math.ceil(calories_DB.length / itemsPerPage);
     const pageNumbers = [];
-    const totalDisplayedPages = 10; // 보여질 페이지 숫자 조절 가능
+    const totalDisplayedPages = 5;
 
     let startPage = Math.max(
       1,
@@ -91,7 +86,6 @@ const Calories = () => {
     let endPage = Math.min(totalPageCount, startPage + totalDisplayedPages - 1);
 
     if (totalPageCount > totalDisplayedPages) {
-      // Adjust startPage and endPage if current page is near the edges
       if (currentPage <= Math.ceil(totalDisplayedPages / 2)) {
         endPage = totalDisplayedPages;
       } else if (
@@ -106,7 +100,7 @@ const Calories = () => {
       pageNumbers.push(i);
     }
 
-    // 이전 페이지 및 다음 페이지를 추가
+    //이전, 다음 페이지
     if (currentPage > 1) {
       pageNumbers.unshift("이전");
     }
@@ -117,12 +111,45 @@ const Calories = () => {
     return pageNumbers;
   };
 
+  const goFirstPage = () => {
+    setCurrentPage(1);
+  };
+
+  const goLastPage = () => {
+    setCurrentPage(Math.ceil(calories_DB.length / itemsPerPage));
+  };
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // 검색어 변경 핸들러
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // 검색 결과 필터링 함수
+  const filterSearchResults = (data) => {
+    return data.filter((item) => {
+      // item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
+      return item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
+      // 여기에서 검색 조건을 추가할 수 있습니다.
+      // 예를 들어, 음식명으로만 검색하도록 하려면 item.NAME.toLowerCase().includes(searchTerm.toLowerCase())와 같이 사용합니다.
+      // return Object.values(item).some((value) =>
+      //   value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      // );
+    });
+  };
+
   return (
     <div className="container">
       <TitleBanner />
       <div className="search-bar">
-        <form>
-          <input type="text" placeholder="검색어를 입력해주세요." />
+        <form onSubmit={filterSearchResults}>
+          <input
+            type="text"
+            placeholder="검색어를 입력해주세요."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -139,6 +166,9 @@ const Calories = () => {
           </button>
         </form>
       </div>
+      {filterSearchResults(currentItems).map((item, index) => (
+        <div key={index}>{/* ... (이하 생략) */}</div>
+      ))}
       <table className="calories-table">
         <thead className="sm-radius">
           <tr className="sm-radius">
@@ -151,7 +181,7 @@ const Calories = () => {
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index}>
-              <th scope="row">{item.NO}</th>
+              <th scope="row">{item.INDEX}</th>
               <td>{item.NAME}</td>
               <td>
                 {item.SERVING_SIZE}
@@ -163,6 +193,35 @@ const Calories = () => {
         </tbody>
       </table>
       <nav className="pagination">
+        <ul className="pagination">
+          <li className="page-item first-page" onClick={goFirstPage}>
+            맨앞
+          </li>
+          {getDisplayedPageNumbers().map((item, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                if (item === "이전") {
+                  handlePageChange(currentPage - 1);
+                } else if (item === "다음") {
+                  handlePageChange(currentPage + 1);
+                } else {
+                  handlePageChange(item);
+                }
+              }}
+              className={
+                item === currentPage ? "active page-item" : "page-item"
+              }
+            >
+              {item}
+            </li>
+          ))}
+          <li className="page-item last-page" onClick={goLastPage}>
+            맨뒤
+          </li>
+        </ul>
+      </nav>
+      {/* <nav className="pagination">
         <ul className="pagination">
           <li className="page-item first-page">맨앞</li>
           {Array.from({
@@ -180,7 +239,7 @@ const Calories = () => {
           ))}
           <li className="page-item last-page">맨뒤</li>
         </ul>
-      </nav>
+      </nav> */}
 
       <div className="recom-list bg-white web-shadow container md-radius df jcsb">
         <div>
