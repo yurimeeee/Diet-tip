@@ -45,6 +45,10 @@ const Calories = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
   const [caloriesData, setCaloriesData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  // console.log(calories_DB[1].NAME);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +57,7 @@ const Calories = () => {
         for (const key in item) {
           if (Object.prototype.hasOwnProperty.call(item, key)) {
             data.push(...item[key]);
-            console.log(item);
+            // console.log(item);
           }
         }
       });
@@ -119,36 +123,78 @@ const Calories = () => {
     setCurrentPage(Math.ceil(calories_DB.length / itemsPerPage));
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-
   // 검색어 변경 핸들러
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // setSearchTerm(e.target.value);
+    // JSON 데이터에서 검색 로직 수행
+    // const result = calories_DB.find((item) => item.NAME === searchTerm);
+    const result = [];
+    const searchTermLower = searchTerm.toLowerCase();
+
+    calories_DB.forEach((item) => {
+      for (const key in item) {
+        // 배열인 경우
+        if (Array.isArray(item[key])) {
+          const foundItems = item[key].filter((subItem) =>
+            subItem.NAME.toLowerCase().includes(searchTermLower)
+          );
+
+          if (foundItems.length > 0) {
+            result.push(...foundItems);
+          }
+        } else {
+          // 배열이 아닌 경우
+          if (
+            key === "NAME" &&
+            item[key].toLowerCase().includes(searchTermLower)
+          ) {
+            result.push(item);
+          }
+        }
+      }
+    });
+
+    // 중복 제거
+    const uniqueResult = Array.from(
+      new Set(result.map((item) => JSON.stringify(item)))
+    ).map((stringifiedItem) => JSON.parse(stringifiedItem));
+
+    // 검색 결과 설정
+    setSearchResult(uniqueResult);
+    // setSearchResult(result);
+    // console.log(searchTerm, "searchTerm");
+    // console.log(searchResult, "searchResult");
+  };
+  //검색종료
+  const searchComplete = () => {
+    setSearchResult([]);
+    setSearchTerm("");
   };
 
   // 검색 결과 필터링 함수
-  const filterSearchResults = (data) => {
-    return data.filter((item) => {
-      // item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
-      return item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
-      // 여기에서 검색 조건을 추가할 수 있습니다.
-      // 예를 들어, 음식명으로만 검색하도록 하려면 item.NAME.toLowerCase().includes(searchTerm.toLowerCase())와 같이 사용합니다.
-      // return Object.values(item).some((value) =>
-      //   value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-      // );
-    });
-  };
+  // const filterSearchResults = (data) => {
+  //   return data.filter((item) => {
+  //     // item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
+  //     return item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
+  //     // 여기에서 검색 조건을 추가할 수 있습니다.
+  //     // 예를 들어, 음식명으로만 검색하도록 하려면 item.NAME.toLowerCase().includes(searchTerm.toLowerCase())와 같이 사용합니다.
+  //     // return Object.values(item).some((value) =>
+  //     //   value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+  //     // );
+  //   });
+  // };
 
   return (
     <div className="container">
       <TitleBanner />
       <div className="search-bar">
-        <form onSubmit={filterSearchResults}>
+        <form onSubmit={handleSearch}>
           <input
             type="text"
             placeholder="검색어를 입력해주세요."
             value={searchTerm}
-            onChange={handleSearchChange}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button>
             <svg
@@ -166,9 +212,24 @@ const Calories = () => {
           </button>
         </form>
       </div>
-      {filterSearchResults(currentItems).map((item, index) => (
-        <div key={index}>{/* ... (이하 생략) */}</div>
-      ))}
+      {searchResult.length > 0 && (
+        <div className="search_result">
+          <div className="df jcsb aic">
+            <h3>
+              총 <span>{searchResult.length}</span>건의 검색 결과
+            </h3>
+            <p className="w-gray-btn" onClick={searchComplete}>
+              검색 종료
+            </p>
+          </div>
+          <ul>
+            {searchResult.map((item, idx) => (
+              <li key={idx}>{item.NAME}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <table className="calories-table">
         <thead className="sm-radius">
           <tr className="sm-radius">

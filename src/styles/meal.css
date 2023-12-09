@@ -672,6 +672,36 @@ body {
   margin-bottom: 0px;
 }
 
+.search_result {
+  margin-bottom: 30px;
+}
+.search_result > div {
+  margin-bottom: 10px;
+}
+.search_result > div h3 {
+  font-size: 16px;
+  color: #495057;
+}
+.search_result > div span {
+  font-weight: 500;
+  color: #32a061;
+}
+.search_result > div p {
+  font-size: 14px;
+}
+.search_result ul {
+  color: #495057;
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 10px;
+}
+.search_result ul li {
+  margin-right: 10px;
+}
+
 .calories-table {
   width: 100%;
   color: #545454;

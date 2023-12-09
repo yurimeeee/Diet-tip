@@ -1,5 +1,41 @@
 @import "common";
 
+.search_result {
+  margin-bottom: 30px;
+
+  > div {
+    margin-bottom: 10px;
+
+    h3 {
+      font-size: 16px;
+      color: $gray-3;
+    }
+
+    span {
+      font-weight: 500;
+      color: $point-1;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  ul {
+    color: $gray-3;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px;
+    border-radius: 10px;
+
+    li {
+      margin-right: 10px;
+    }
+  }
+}
+
 .calories-table {
   width: 100%;
   color: #545454;
