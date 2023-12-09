@@ -10,7 +10,7 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
   };
 
   console.log(clickedData, "chart clickedData");
-  const [chartFood, setFoodName] = useState(clickedData.NAME);
+  // const [chartFood, setFoodName] = useState(clickedData.NAME);
   // console.log(chartFood);
   const [chartData, setChartData] = useState({
     labels: [
@@ -111,9 +111,7 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
   return (
     <div className="chart-wrap">
       <div className="chart">
-        <h2>
-          <span>{chartFood}</span> 영양정보
-        </h2>
+        <h2>{/* <span>{chartFood}</span> 영양정보 */}</h2>
         <Pie data={chartData} />
         <p className="m-gray-btn">닫기</p>
       </div>

@@ -10,6 +10,7 @@ import image2 from "../asset/meal/season_2.png";
 import image3 from "../asset/meal/season_3.png";
 import calories_DB from "../data/calories_DB.json";
 import Chart from "../components/Chart";
+import PaginationComp from "../components/Pagination";
 
 const seasonList = [
   {
@@ -45,6 +46,7 @@ const Calories = () => {
   const [clickedData, setClickedData] = useState(calories_DB[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  //식품 정보 불러오기
   useEffect(() => {
     const fetchData = async () => {
       const data = [];
@@ -62,62 +64,17 @@ const Calories = () => {
     // fetchData();
   }, []);
 
-  //전체 데이터에서 현재 페이지에 해당하는 데이터만 추출
+  /* 페이지네이션 start */
+  //전체 데이터에서 현재 페이지 데이터 추출
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = calories_DB.slice(indexOfFirstItem, indexOfLastItem);
 
   //페이지 변경
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+  /* 페이지네이션 end */
 
-  //페이지네이션 10개씩 표시
-  const getDisplayedPageNumbers = () => {
-    const totalPageCount = Math.ceil(calories_DB.length / itemsPerPage);
-    const pageNumbers = [];
-    const totalDisplayedPages = 5;
-
-    let startPage = Math.max(
-      1,
-      currentPage - Math.floor(totalDisplayedPages / 2)
-    );
-    let endPage = Math.min(totalPageCount, startPage + totalDisplayedPages - 1);
-
-    if (totalPageCount > totalDisplayedPages) {
-      if (currentPage <= Math.ceil(totalDisplayedPages / 2)) {
-        endPage = totalDisplayedPages;
-      } else if (
-        currentPage >
-        totalPageCount - Math.ceil(totalDisplayedPages / 2)
-      ) {
-        startPage = totalPageCount - totalDisplayedPages + 1;
-      }
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
-    }
-
-    //이전, 다음 페이지
-    if (currentPage > 1) {
-      pageNumbers.unshift("이전");
-    }
-    if (currentPage < totalPageCount) {
-      pageNumbers.push("다음");
-    }
-
-    return pageNumbers;
-  };
-
-  const goFirstPage = () => {
-    setCurrentPage(1);
-  };
-
-  const goLastPage = () => {
-    setCurrentPage(Math.ceil(calories_DB.length / itemsPerPage));
-  };
-
+  /* 식품 검색 start */
   // 검색어 변경 핸들러
   const handleSearch = (e) => {
     e.preventDefault();
@@ -131,9 +88,14 @@ const Calories = () => {
           const foundItems = item[key].filter((subItem) =>
             subItem.NAME.toLowerCase().includes(searchTermLower)
           );
-
           if (foundItems.length > 0) {
-            result.push(...foundItems);
+            // 검색된 객체에 NO 필드 추가
+            const itemsWithNO = foundItems.map((foundItem) => ({
+              ...foundItem,
+              NO: item.NO,
+            }));
+
+            result.push(...itemsWithNO);
           }
         } else {
           // 배열이 아닌 경우
@@ -141,7 +103,11 @@ const Calories = () => {
             key === "NAME" &&
             item[key].toLowerCase().includes(searchTermLower)
           ) {
-            result.push(item);
+            result.push({
+              ...item,
+              NO: item.NO,
+            });
+            console.log(result);
           }
         }
       }
@@ -161,15 +127,22 @@ const Calories = () => {
     setSearchResult([]);
     setSearchTerm("");
   };
-  const clickedIdxHandler = (e) => {
-    // const listItem = e.target.closest("tr");
+  /* 식품 검색 end */
 
-    // const dataIdx = listItem.getAttribute("data-idx");
+  /* 차트로 데이터 전달 */
+  const clickedIdxHandler = (e) => {
     const dataIdx = Number(e.target.getAttribute("data-idx"));
     setClickedIdx(dataIdx);
-    console.log(clickedIdx, "clickedIdx");
+    // console.log(clickedIdx, "clickedIdx");
     const dataInfo = calories_DB[clickedIdx];
-    console.log(dataInfo, "dataInfo");
+    setClickedData(dataInfo);
+    setIsModalOpen(true);
+  };
+
+  const clickedResultHandler = (e) => {
+    const dataIdx = Number(e.target.getAttribute("data-idx")) - 1;
+    setClickedIdx(dataIdx);
+    const dataInfo = calories_DB[clickedIdx];
     setClickedData(dataInfo);
     setIsModalOpen(true);
   };
@@ -213,7 +186,13 @@ const Calories = () => {
           </div>
           <ul>
             {searchResult.map((item, idx) => (
-              <li key={idx}>{item.NAME}</li>
+              <li
+                key={idx}
+                data-idx={item.INDEX}
+                onClick={clickedResultHandler}
+              >
+                {item.NAME}
+              </li>
             ))}
           </ul>
         </div>
@@ -251,7 +230,7 @@ const Calories = () => {
           ))}
         </tbody>
       </table>
-      <nav className="pagination">
+      {/* <nav className="pagination">
         <ul className="pagination">
           <li className="page-item first-page" onClick={goFirstPage}>
             맨앞
@@ -279,26 +258,12 @@ const Calories = () => {
             맨뒤
           </li>
         </ul>
-      </nav>
-      {/* <nav className="pagination">
-        <ul className="pagination">
-          <li className="page-item first-page">맨앞</li>
-          {Array.from({
-            length: Math.ceil(calories_DB.length / itemsPerPage),
-          }).map((item, index) => (
-            <li
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={
-                currentPage === index + 1 ? "active page-item" : "page-item"
-              }
-            >
-              {index + 1}
-            </li>
-          ))}
-          <li className="page-item last-page">맨뒤</li>
-        </ul>
       </nav> */}
+      <PaginationComp
+        currentPage={currentPage}
+        totalPageCount={Math.ceil(calories_DB.length / itemsPerPage)}
+        handlePageChange={handlePageChange}
+      />
 
       <div className="recom-list bg-white web-shadow container md-radius df jcsb">
         <div>
