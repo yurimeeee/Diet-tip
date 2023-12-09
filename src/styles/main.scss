@@ -39,6 +39,93 @@
       }
     }
   }
+  .modal{
+    position: absolute;
+    width: 335px;
+    height: 390px;
+    background-color: $white;
+    border-radius: 10px;
+    border: none;
+    z-index: 300;
+    text-align: center;
+    padding: 40px;
+    box-sizing: border-box;
+    .modal-container{
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      .answer-btns{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .modal-close-btn{
+        border: none;
+        background-color: $green-5;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        transition: 0.5s;
+        &:hover{
+          background-color: $green-4;
+        }
+      }
+      .level-test-img{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+      }
+      h5{
+        font-weight: 900;
+        margin: 0;
+        color: $point-1;
+      }
+      p{
+        font-size: $font-14;
+        white-space: nowrap;
+      }
+      #progress{
+        width: 100%;
+        .progress{
+          position: relative;
+          background-color: $green-1;
+          height: 15px;
+          width: 100%;
+          border-radius: 7.5px;
+          .progress-bar{
+            position: absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            width: 10%;
+            border-radius: 7.5px;
+            background-color: $green-5;
+          }
+        }
+      }
+
+    }
+    
+  }
+
+  .modal-off{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .4);
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    display: none;
+    z-index: 200;
+  }
 
   .hot-board{
     h5{

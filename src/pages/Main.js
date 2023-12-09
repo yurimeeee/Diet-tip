@@ -121,19 +121,19 @@ const Main = () => {
           <img src={exerciseIcon} alt="exercise icon" className="exercise-icon"></img>
           <h5>날씨에 맞는 추천 운동</h5>
           <p>오늘처럼 흐린 날에는 관절에 무리가 갈 수 있어요. 과하지 않은 실내 운동을 추천해요! 일교차에도 유의하세요.</p>
-          <span class="w-badge"># 홈트레이닝</span>
+          <span className="w-badge"># 홈트레이닝</span>
         </div>
         <div className="exercise-card video">
           <div className="video-container"></div>
-          <button class="w-green-btn">브릿지 동작</button>
+          <button className="w-green-btn">브릿지 동작</button>
         </div>
         <div className="exercise-card video">
           <div className="video-container"></div>
-          <button class="w-green-btn">브릿지 동작</button>
+          <button className="w-green-btn">브릿지 동작</button>
         </div>
         <div className="exercise-card video">
           <div className="video-container"></div>
-          <button class="w-green-btn">브릿지 동작</button>
+          <button className="w-green-btn">브릿지 동작</button>
         </div>
       </section>
     </main>
