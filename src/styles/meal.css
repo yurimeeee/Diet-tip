@@ -702,6 +702,45 @@ body {
   margin-right: 10px;
 }
 
+.chart-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.chart-wrap .modal-overlay {
+  z-index: 100;
+}
+.chart-wrap .chart {
+  width: 50%;
+  height: 50vh;
+  padding: 30px 0;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1000;
+}
+.chart-wrap .chart h2 {
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 16px;
+}
+.chart-wrap .chart h2 span {
+  font-weight: 600;
+}
+.chart-wrap .chart canvas {
+  width: 330px !important;
+  height: 330px !important;
+}
+.chart-wrap .chart p {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
 .calories-table {
   width: 100%;
   color: #545454;

@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../styles/meal.css";
 import TitleBanner from "../components/TitleBanner";
-
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-// import "./styles.css";
-
 import image1 from "../asset/meal/season_1.png";
 import image2 from "../asset/meal/season_2.png";
 import image3 from "../asset/meal/season_3.png";
-
 import calories_DB from "../data/calories_DB.json";
+import Chart from "../components/Chart";
 
 const seasonList = [
   {
@@ -47,8 +41,9 @@ const Calories = () => {
   const [caloriesData, setCaloriesData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-
-  // console.log(calories_DB[1].NAME);
+  const [clickedIdx, setClickedIdx] = useState("");
+  const [clickedData, setClickedData] = useState(calories_DB[0]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -126,9 +121,6 @@ const Calories = () => {
   // 검색어 변경 핸들러
   const handleSearch = (e) => {
     e.preventDefault();
-    // setSearchTerm(e.target.value);
-    // JSON 데이터에서 검색 로직 수행
-    // const result = calories_DB.find((item) => item.NAME === searchTerm);
     const result = [];
     const searchTermLower = searchTerm.toLowerCase();
 
@@ -155,35 +147,32 @@ const Calories = () => {
       }
     });
 
-    // 중복 제거
+    //중복제거
     const uniqueResult = Array.from(
       new Set(result.map((item) => JSON.stringify(item)))
     ).map((stringifiedItem) => JSON.parse(stringifiedItem));
 
-    // 검색 결과 설정
+    //검색 결과
     setSearchResult(uniqueResult);
-    // setSearchResult(result);
-    // console.log(searchTerm, "searchTerm");
-    // console.log(searchResult, "searchResult");
   };
+
   //검색종료
   const searchComplete = () => {
     setSearchResult([]);
     setSearchTerm("");
   };
+  const clickedIdxHandler = (e) => {
+    // const listItem = e.target.closest("tr");
 
-  // 검색 결과 필터링 함수
-  // const filterSearchResults = (data) => {
-  //   return data.filter((item) => {
-  //     // item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
-  //     return item.NAME.toLowerCase().includes(searchTerm.toLowerCase());
-  //     // 여기에서 검색 조건을 추가할 수 있습니다.
-  //     // 예를 들어, 음식명으로만 검색하도록 하려면 item.NAME.toLowerCase().includes(searchTerm.toLowerCase())와 같이 사용합니다.
-  //     // return Object.values(item).some((value) =>
-  //     //   value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-  //     // );
-  //   });
-  // };
+    // const dataIdx = listItem.getAttribute("data-idx");
+    const dataIdx = Number(e.target.getAttribute("data-idx"));
+    setClickedIdx(dataIdx);
+    console.log(clickedIdx, "clickedIdx");
+    const dataInfo = calories_DB[clickedIdx];
+    console.log(dataInfo, "dataInfo");
+    setClickedData(dataInfo);
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="container">
@@ -229,6 +218,13 @@ const Calories = () => {
           </ul>
         </div>
       )}
+      {isModalOpen && (
+        <Chart
+          clickedIdx={clickedIdx}
+          clickedData={clickedData}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
 
       <table className="calories-table">
         <thead className="sm-radius">
@@ -243,12 +239,14 @@ const Calories = () => {
           {currentItems.map((item, index) => (
             <tr key={index}>
               <th scope="row">{item.INDEX}</th>
-              <td>{item.NAME}</td>
+              <td onClick={clickedIdxHandler} data-idx={index}>
+                {item.NAME}
+              </td>
               <td>
                 {item.SERVING_SIZE}
                 {item.SERVING_UNIT}
               </td>
-              <td>{item.KCAL}</td>
+              <td>{item.KCAL}kcal</td>
             </tr>
           ))}
         </tbody>
