@@ -15,8 +15,6 @@ import image1 from "../asset/meal/season_1.png";
 import image2 from "../asset/meal/season_2.png";
 import image3 from "../asset/meal/season_3.png";
 
-import calories_DB from "../data/calories_DB.json";
-
 const seasonList = [
   {
     name: "우엉",
@@ -42,79 +40,59 @@ const seasonList = [
 ];
 
 const Calories = () => {
+  const [rowdata, setRowData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
-  const [caloriesData, setCaloriesData] = useState([]);
-
-  // for (var i = 0; i < calories_DB.length; i++) {
-  //   var innerArray = calories_DB[i];
-  //   // console.log(innerArray);
-  // }
-
+  // console.log("response:");
   useEffect(() => {
+    // fc61d1b656c44d8ebab1
+    const apiKey = "fc61d1b656c44d8ebab1";
+    // API 주소
+    const apiUrl = `http://openapi.foodsafetykorea.go.kr/api/${apiKey}/I2790/json/1/50`;
+
     const fetchData = async () => {
-      const data = [];
-      calories_DB.forEach((item) => {
-        for (const key in item) {
-          if (Object.prototype.hasOwnProperty.call(item, key)) {
-            data.push(...item[key]);
-            console.log(item);
-          }
+      try {
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          throw new Error(
+            `서버 응답이 올바르지 않습니다. 상태 코드: ${response.status}`
+          );
         }
-      });
-      setCaloriesData(data);
+        const data = await response.json();
+        console.log("data", data.I2790.row);
+        // console.log("API 데이터:", data.I2790.row);
+        // setRowData(data.I2790.row);
+        // const descKorArray = data.I2790.row.map((item) => item.DESC_KOR);
+        // console.log(descKorArray);
+        const extractedData = data.I2790.row.map((item) => {
+          return {
+            DESC_KOR: item.DESC_KOR,
+            SERVING_SIZE: item.SERVING_SIZE,
+            SERVING_UNIT: item.SERVING_UNIT,
+            NUTR_CONT1: item.NUTR_CONT1,
+            // 원하는 필드들을 추가로 포함시키세요.
+          };
+        });
+        console.log("extractedData", extractedData);
+        setRowData(extractedData);
+        console.log("rowdata", rowdata);
+      } catch (error) {
+        console.error("API 호출 중 오류:", error);
+      }
     };
 
-    // fetchData();
+    fetchData();
   }, []); // 컴포넌트가 처음 렌더링될 때만 실행
 
   // 전체 데이터에서 현재 페이지에 해당하는 데이터만 추출
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = calories_DB.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = rowdata.slice(indexOfFirstItem, indexOfLastItem);
 
-  // 페이지 변경
+  // 페이지 변경 핸들러
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-
-  // 전체 페이지 중에서 현재 페이지 주변의 페이지 번호만 가져오는 함수
-  const getDisplayedPageNumbers = () => {
-    const totalPageCount = Math.ceil(calories_DB.length / itemsPerPage);
-    const pageNumbers = [];
-    const totalDisplayedPages = 10; // 보여질 페이지 숫자 조절 가능
-
-    let startPage = Math.max(
-      1,
-      currentPage - Math.floor(totalDisplayedPages / 2)
-    );
-    let endPage = Math.min(totalPageCount, startPage + totalDisplayedPages - 1);
-
-    if (totalPageCount > totalDisplayedPages) {
-      // Adjust startPage and endPage if current page is near the edges
-      if (currentPage <= Math.ceil(totalDisplayedPages / 2)) {
-        endPage = totalDisplayedPages;
-      } else if (
-        currentPage >
-        totalPageCount - Math.ceil(totalDisplayedPages / 2)
-      ) {
-        startPage = totalPageCount - totalDisplayedPages + 1;
-      }
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
-    }
-
-    // 이전 페이지 및 다음 페이지를 추가
-    if (currentPage > 1) {
-      pageNumbers.unshift("이전");
-    }
-    if (currentPage < totalPageCount) {
-      pageNumbers.push("다음");
-    }
-
-    return pageNumbers;
   };
 
   return (
@@ -149,38 +127,53 @@ const Calories = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((item, index) => (
+          {/* {currentItems.map((item, index) => ( */}
+          {/* {rowdata.map((item, index) => (
             <tr key={index}>
-              <th scope="row">{item.NO}</th>
-              <td>{item.NAME}</td>
+              <th scope="row">{index}</th>
+              <td>{item.DESC_KOR}</td>
               <td>
                 {item.SERVING_SIZE}
                 {item.SERVING_UNIT}
               </td>
-              <td>{item.KCAL}</td>
+              <td>{item.NUTR_CONT1}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
       <nav className="pagination">
         <ul className="pagination">
           <li className="page-item first-page">맨앞</li>
-          {Array.from({
-            length: Math.ceil(calories_DB.length / itemsPerPage),
-          }).map((item, index) => (
-            <li
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={
-                currentPage === index + 1 ? "active page-item" : "page-item"
-              }
-            >
-              {index + 1}
-            </li>
-          ))}
+          {/* {Array.from({ length: Math.ceil(rowdata.length / itemsPerPage) }).map(
+            (item, index) => (
+              <li
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                className={
+                  currentPage === index + 1 ? "active page-item" : "page-item"
+                }
+              >
+                {index + 1}
+              </li>
+            )
+          )} */}
           <li className="page-item last-page">맨뒤</li>
         </ul>
       </nav>
+      {/* 페이지네이션 추가 */}
+      <div className="pagination-container">
+        {/* {Array.from({ length: Math.ceil(rowdata.length / itemsPerPage) }).map(
+          (item, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={currentPage === index + 1 ? "active" : ""}
+            >
+              {index + 1}
+            </button>
+          )
+        )} */}
+      </div>
 
       <div className="recom-list bg-white web-shadow container md-radius df jcsb">
         <div>

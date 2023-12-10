@@ -2,7 +2,7 @@ import '../styles/mypage.css';
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faGear } from '@fortawesome/free-solid-svg-icons'
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import levelImg from "../asset/level-1-badge.png";
 import profileImg from "../asset/profile-img.png";
 import Today from '../components/Today';
@@ -13,14 +13,27 @@ const Mypage = () => {
   const [userName, setUserName] = useState(null);
   const [usetImg, setUsetImg] = useState(null);
 
+  const moveAlam = () => {
+    window.location.replace('/alam');
+  }
+
   useEffect(()=>{
-    if (user !== null) {
-      setUserName(user.displayName);
-      setUsetImg(user.photoURL);
-    }else{
-      console.log('유저 정보 불러오기 실패');
-    }
-  }, [user]);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if(user.displayName !== null){  
+          setUserName(user.displayName);
+        }else{
+          setUserName(user.email);
+        }
+        console.log(userName);
+        setUsetImg(user.photoURL);
+      } else {
+        console.log('유저 정보 불러오기 실패');
+        alert('먼저 로그인해주세요');
+        window.location.replace('/login');
+      }
+    });
+  });
 
   
 
@@ -31,7 +44,7 @@ const Mypage = () => {
           <div className='area-middle-top'>
           <h5>{userName}님, 어서오세요.</h5>
             <div className='buttons'>
-              <button type="button" className="button">
+              <button type="button" className="button" onClick={moveAlam}>
                 <FontAwesomeIcon icon={faBell} className='icon'/>
               </button>
               <button type="button" className="button">

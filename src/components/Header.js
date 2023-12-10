@@ -1,48 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import React, { useEffect } from "react";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { yesLogin, noLogin } from "../store/loginSlice";
+import { Link } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
 const Header = () => {
   const auth = getAuth();
-  const [isLogin,setisLogin] = useState(false);
-  const [user,setUser] = useState(null);
-
+  const isLoginYN = useSelector((state) => state.isLogin.value);
+  const dispatch = useDispatch();
 
   //로그인 상태인지 파악
-  useEffect(()=>{
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setisLogin(true);
-        setUser(user.uid);
+        dispatch(yesLogin());
       } else {
-        setisLogin(false);
+        dispatch(noLogin());
       }
     });
   }, []);
 
-  const provider = new GoogleAuthProvider();
-
-  //구글 계정 로그아웃
+  //로그아웃
   let logOut = () => {
-    setisLogin(false);
-    setUser(null);
-    alert('로그아웃 성공');
-    signOut(auth).then(() => {
-      // Sign-out successful.
-    }).catch((error) => {
-      // An error happened.
-    });
-  }
+    signOut(auth)
+      .then(() => {
+        dispatch(noLogin());
+        alert("로그아웃 성공");
+        window.location.replace("/");
+      })
+      .catch((error) => {
+        dispatch(yesLogin());
+        alert("로그아웃 실패");
+      });
+  };
 
   //로그인 페이지로 이동
   // const navigate = useNavigate();
   const moveLogin = () => {
-    window.location.replace('/login');
-  }
-  
+    window.location.replace("/login");
+  };
+  //마이 페이지로 이동
+  const moveMp = () => {
+    window.location.replace("/mypage");
+  };
 
-  
-  return(
+  return (
     <header className="container">
       <div>
         <h1>
@@ -51,15 +59,21 @@ const Header = () => {
           </a>
         </h1>
         <aside>
-          <button type="button" className="loginout w-green-btn" onClick={isLogin ? logOut : moveLogin}>
-            {isLogin ? '로그아웃' : '로그인'}
+          <button
+            type="button"
+            className="loginout w-green-btn"
+            onClick={isLoginYN ? logOut : moveLogin}
+          >
+            {isLoginYN ? "로그아웃" : "로그인"}
           </button>
-          {isLogin
-            ? 
-              <button type="button" className="mypage"> mypage </button> 
-            : 
-              ``
-          }
+          {isLoginYN ? (
+            <button type="button" className="mypage" onClick={moveMp}>
+              {" "}
+              mypage{" "}
+            </button>
+          ) : (
+            ``
+          )}
         </aside>
       </div>
       <nav className="main-menu">
@@ -71,10 +85,10 @@ const Header = () => {
             </a>
             <ul>
               <li>
-                <a href="">식단 공유</a>
+                <a href="/meal">식단 공유</a>
               </li>
               <li>
-                <a href="">칼로리 사전</a>
+                <a href="/calories">칼로리 사전</a>
               </li>
             </ul>
           </li>

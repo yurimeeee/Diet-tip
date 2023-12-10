@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-
-// import {
-//   IconChevronLeft,
-//   IconChevronRight,
-//   IconCalendarEvent,
-// } from "@tabler/icons-react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useLocation } from 'react-router-dom';
 import {
   faChevronLeft,
   faChevronRight,
@@ -17,17 +11,14 @@ const Weekly = ({ todoDate }) => {
   const today = now.getDate();
   const lastday = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const location = useLocation();
+  const [mainYN, setMainYn] = useState(true);
 
   const [dayList, setDayList] = useState([]);
-  // const [showMonthlyCalendar, setShowMonthlyCalendar] = useState(false);
-
-  // const toggleMonthlyCalendar = () => {
-  //   setShowMonthlyCalendar(!showMonthlyCalendar);
-  // };
 
   // 현재 주의 월요일을 계산하는 함수
   const calculateStartOfWeek = () => {
-    const currentDayOfWeek = now.getDay(); // 현재 요일 (0: 일요일, 1: 월요일, ...)
+    const currentDayOfWeek = now.getDay(); // 현재 요일
     const daysUntilMonday = (currentDayOfWeek + 6) % 7; // 월요일까지 남은 일 수
     const startDate = new Date(now);
     startDate.setDate(today - daysUntilMonday); // 현재 날짜에서 월요일까지의 날 수를 빼서 월요일의 날짜를 계산
@@ -44,61 +35,89 @@ const Weekly = ({ todoDate }) => {
     calculateStartOfWeek();
   }, [now]);
 
-  // 이전 주를 표시하도록 데이터 업데이트 함수
-  const showPreviousWeek = () => {
-    // now 변수를 업데이트
+  //현재 page path 파악
+  useEffect(()=>{
+    if (location.pathname === "/") {
+      setMainYn(true);
+      console.log(mainYN);
+    } else {
+      setMainYn(false);
+    }
+  },[location.pathname])
+
+  const updateWeek = (increment) => {
     const newNow = new Date(now);
-    newNow.setDate(newNow.getDate() - 7);
+    newNow.setDate(newNow.getDate() + increment * 7);
     setNow(newNow);
   };
 
-  // 다음 주를 표시하도록 데이터 업데이트 함수
-  const showNextWeek = () => {
-    // now 변수를 업데이트
-    const newNow = new Date(now);
-    newNow.setDate(newNow.getDate() + 7);
-    setNow(newNow);
+  const showPreviousWeek = () => {
+    updateWeek(-1);
   };
+
+  const showNextWeek = () => {
+    updateWeek(1);
+  };
+
+  // 오늘 날짜 표기
+  const isToday = (date) => {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  };
+
   return (
-    <div className="Calendar df jcsb container">
+    <div className={mainYN ? 'Calendar': 'Calendar df jcsb'}>
       <div className="Year-MonthList">
         <p>
-          <span className="Year">{now.getFullYear()}</span>
+          <span className="Year">{now.getFullYear()}{mainYN ? '년': ''}</span>
           &nbsp;&nbsp;
           <span className="Month">
             {/* {now.toLocaleString("en-us", { month: "long" })} */}
             {now.getMonth() + 1}월
           </span>
         </p>
-        <h2 className="sec-tt">Weekly Best</h2>
       </div>
       <div className="DayList">
         <div className="weekly-wrap">
-          {dayList.map((day, index) => (
-            <div
-              className={`daylist ${day === today ? "today" : ""}`}
-              key={index}
-            >
+          {dayList.map((day, index) => {
+            const currentDate = new Date(
+              now.getFullYear(),
+              now.getMonth(),
+              day
+            );
+            const isTodayDate = isToday(currentDate);
+
+            return (
               <div
-                className={`weak ${
-                  daysOfWeek[index] === "Sun"
-                    ? "Sun"
-                    : daysOfWeek[index] === "Sat"
-                    ? "Sat"
-                    : ""
-                }`}
+                className={`daylist ${isTodayDate ? "today" : ""}`}
+                key={index}
               >
-                {daysOfWeek[index]}
+                <div
+                  className={`weak ${
+                    daysOfWeek[index] === "Sun"
+                      ? "Sun"
+                      : daysOfWeek[index] === "Sat"
+                      ? "Sat"
+                      : ""
+                  }`}
+                >
+                  {daysOfWeek[index]}
+                </div>
+                <div className="day">{day}</div>
               </div>
-              <div className="day">{day}</div>
-            </div>
-          ))}
+            );
+          })}
+
           <div className="week-btns">
             <button onClick={showPreviousWeek} className="prev">
-              <FontAwesomeIcon icon={faChevronLeft} />
+              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
             </button>
             <button onClick={showNextWeek} className="next">
-              <FontAwesomeIcon icon={faChevronRight} />
+              <FontAwesomeIcon icon={faChevronRight} size="lg" />
             </button>
           </div>
         </div>

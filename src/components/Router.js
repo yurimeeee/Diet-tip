@@ -7,6 +7,9 @@ import Health from "../pages/Health";
 import Mypage from "../pages/Mypage";
 import Login from "../pages/Login";
 import Signin from "../pages/Signin";
+import FreeBoard from "../pages/FreeBoard";
+import QnA from "../pages/QnA";
+import Alam from "../pages/Alam";
 
 const AppRouter = createBrowserRouter([
   {
@@ -26,6 +29,10 @@ const AppRouter = createBrowserRouter([
     element: <Mypage />,
   },
   {
+    path: "/alam",
+    element: <Alam />,
+  },
+  {
     path: "/meal",
     element: <DailyMeal />,
   },
@@ -36,6 +43,14 @@ const AppRouter = createBrowserRouter([
   {
     path: "/health",
     element: <Health />,
+  },
+  {
+    path: "/freeboard",
+    element: <FreeBoard />,
+  },
+  {
+    path: "/qnaboard",
+    element: <QnA />,
   },
 ]);
 export default AppRouter;
