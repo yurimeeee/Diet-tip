@@ -697,9 +697,6 @@ body {
 .Main .banner .banner-text p + p {
   font-size: 28px;
 }
-.Main .banner .banner-text p + p span {
-  color: #32a061;
-}
 .Main .banner .banner-img {
   display: flex;
   gap: 30px;

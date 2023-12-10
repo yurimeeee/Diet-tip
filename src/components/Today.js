@@ -29,7 +29,7 @@ const Today = () => {
     // 현재 page path 파악
     if (location.pathname === "/") {
       setMainYn(true);
-      console.log(mainYN);
+      // console.log(mainYN);
       loadWeather();
     } else {
       setMainYn(false);

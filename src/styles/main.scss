@@ -24,9 +24,6 @@
       }
       p+p{
         font-size: $font-28;
-        span{
-          color: $point-1;
-        }
       }
     }
     .banner-img{
@@ -127,6 +124,7 @@
 
   .modal-off{
     position: fixed;
+    
     top:0;
     bottom: 0;
     left: 0;
