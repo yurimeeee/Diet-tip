@@ -712,7 +712,7 @@ body {
 .Main .modal {
   position: absolute;
   width: 335px;
-  height: 390px;
+  height: 440px;
   background-color: #fff;
   border-radius: 10px;
   border: none;
@@ -724,6 +724,14 @@ body {
 .Main .modal .modal-container {
   display: flex;
   height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.Main .modal .modal-container > div {
+  display: flex;
+  height: 100%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -752,6 +760,9 @@ body {
   width: 120px;
   height: 120px;
   object-fit: cover;
+}
+.Main .modal .modal-container .result-img {
+  margin-bottom: 30px;
 }
 .Main .modal .modal-container h5 {
   font-weight: 900;

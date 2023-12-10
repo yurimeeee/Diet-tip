@@ -42,7 +42,7 @@
   .modal{
     position: absolute;
     width: 335px;
-    height: 390px;
+    height: 440px;
     background-color: $white;
     border-radius: 10px;
     border: none;
@@ -56,6 +56,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      > div{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
       .answer-btns{
         display: flex;
         flex-direction: column;
@@ -80,6 +88,9 @@
         width: 120px;
         height: 120px;
         object-fit: cover;
+      }
+      .result-img{
+        margin-bottom: 30px;
       }
       h5{
         font-weight: 900;
