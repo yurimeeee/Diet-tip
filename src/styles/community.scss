@@ -115,25 +115,18 @@ button{
   width: 50%;
 }
 .free-select{
-  position: relative;
-  width: 100px;
-  padding: 5px 15px;
-  border-radius: 66px;
-  border: 1px solid #32a061;
-  text-align: center;
-  // background: url(icon_down_arrow.png) no-repeat 90% center;
-  ul{
-    position: absolute;
-    width: 100%;
-    top: 30px;
-    left: 0;
-    border-radius: 66px;
-    border: 1px solid #32a061;
-    cursor: pointer;
-    li{
-      padding: 5px 15px;
-      cursor: pointer;
-    }
+  margin-right: 16px;
+  input{
+    caret-color: transparent;
+  }
+  .css-1fdsijx-ValueContainer{
+    padding: 2px 0px 2px 15px;
+  }
+  .css-1u9des2-indicatorSeparator{
+    display: none;
+  }
+  svg{
+    color: $point-1;
   }
 }
 .news-box{
