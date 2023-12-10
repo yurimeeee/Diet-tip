@@ -689,7 +689,7 @@ body {
 .search_result > div p {
   font-size: 14px;
 }
-.search_result ul {
+.search_result .result_bg {
   color: #495057;
   background-color: #ffffff;
   display: flex;
@@ -698,7 +698,7 @@ body {
   padding: 16px;
   border-radius: 10px;
 }
-.search_result ul li {
+.search_result .result_bg li {
   margin-right: 10px;
 }
 
@@ -731,9 +731,31 @@ body {
 .chart-wrap .chart h2 span {
   font-weight: 600;
 }
+.chart-wrap .chart .chart-desc span {
+  padding: 5px 15px;
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.15);
+}
+.chart-wrap .chart .chart-desc span:first-child {
+  background: #ecfbd4;
+  background-color: #5ac479;
+  color: #fff;
+  border-radius: 10px 66px 66px 66px;
+  z-index: 10;
+}
+.chart-wrap .chart .chart-desc span:last-child {
+  color: #2e8654;
+  padding: 5px 15px 5px 35px;
+  border-radius: 0 66px 66px 66px;
+  z-index: 1;
+  left: -25px;
+}
 .chart-wrap .chart canvas {
   width: 330px !important;
   height: 330px !important;
+  margin-bottom: 20px;
 }
 .chart-wrap .chart p {
   position: absolute;
@@ -892,27 +914,32 @@ nav.pagination {
   background-color: #9da1a6;
   display: inline-block;
   position: absolute;
-  top: -0.8px;
+  top: 2px;
   left: 100%;
   margin-left: 8px;
 }
 .recom-list .swiper .recom-wrap {
   position: relative;
 }
-.recom-list .swiper .recom-wrap:hover .recom-desc {
-  opacity: 1;
+.recom-list .swiper .recom-wrap > div {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
-.recom-list .swiper .recom-wrap:hover img {
-  filter: blur(7px);
-  -webkit-filter: blur(7px);
+.recom-list .swiper .recom-wrap > div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
 }
-.recom-list .swiper .recom-wrap .recom-desc {
+.recom-list .swiper .recom-wrap > div .recom-desc {
   position: absolute;
   width: 100%;
   height: 100%;
   padding: 0 15px;
   box-sizing: border-box;
   top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -920,7 +947,14 @@ nav.pagination {
   opacity: 0;
   transition: 0.4s;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.446);
+  background-color: rgba(98, 98, 98, 0.446);
+}
+.recom-list .swiper .recom-wrap > div:hover .recom-desc {
+  opacity: 1;
+}
+.recom-list .swiper .recom-wrap > div:hover img {
+  filter: blur(7px);
+  -webkit-filter: blur(7px);
 }
 
 .sec-tt {

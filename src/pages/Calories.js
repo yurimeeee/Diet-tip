@@ -42,6 +42,7 @@ const Calories = () => {
   const [caloriesData, setCaloriesData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [noResult, setNoResult] = useState(false);
   const [clickedIdx, setClickedIdx] = useState("");
   const [clickedData, setClickedData] = useState(calories_DB[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,6 +97,7 @@ const Calories = () => {
             }));
 
             result.push(...itemsWithNO);
+            setNoResult(false);
           }
         } else {
           // 배열이 아닌 경우
@@ -107,11 +109,16 @@ const Calories = () => {
               ...item,
               NO: item.NO,
             });
-            console.log(result);
+            setNoResult(false);
           }
         }
       }
     });
+
+    if (result.length <= 0) {
+      // console.log("검색결과가 없음");
+      setNoResult(true);
+    }
 
     //중복제거
     const uniqueResult = Array.from(
@@ -132,20 +139,24 @@ const Calories = () => {
   /* 차트로 데이터 전달 */
   const clickedIdxHandler = (e) => {
     const dataIdx = Number(e.target.getAttribute("data-idx"));
-    setClickedIdx(dataIdx);
-    // console.log(clickedIdx, "clickedIdx");
-    const dataInfo = calories_DB[clickedIdx];
+    // setClickedIdx(dataIdx);
+    // const dataInfo = calories_DB[clickedIdx];
+    const dataInfo = calories_DB[dataIdx];
     setClickedData(dataInfo);
     setIsModalOpen(true);
   };
 
   const clickedResultHandler = (e) => {
     const dataIdx = Number(e.target.getAttribute("data-idx")) - 1;
-    setClickedIdx(dataIdx);
-    const dataInfo = calories_DB[clickedIdx];
+    // setClickedIdx(dataIdx);
+    const dataInfo = calories_DB[dataIdx];
     setClickedData(dataInfo);
     setIsModalOpen(true);
   };
+
+  if (!setIsModalOpen) {
+    setClickedData("");
+  }
 
   return (
     <div className="container">
@@ -184,7 +195,7 @@ const Calories = () => {
               검색 종료
             </p>
           </div>
-          <ul>
+          <ul className="result_bg">
             {searchResult.map((item, idx) => (
               <li
                 key={idx}
@@ -195,6 +206,11 @@ const Calories = () => {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+      {noResult && (
+        <div className="search_result">
+          <div className="result_bg">검색 결과가 없습니다.</div>
         </div>
       )}
       {isModalOpen && (
@@ -230,35 +246,6 @@ const Calories = () => {
           ))}
         </tbody>
       </table>
-      {/* <nav className="pagination">
-        <ul className="pagination">
-          <li className="page-item first-page" onClick={goFirstPage}>
-            맨앞
-          </li>
-          {getDisplayedPageNumbers().map((item, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                if (item === "이전") {
-                  handlePageChange(currentPage - 1);
-                } else if (item === "다음") {
-                  handlePageChange(currentPage + 1);
-                } else {
-                  handlePageChange(item);
-                }
-              }}
-              className={
-                item === currentPage ? "active page-item" : "page-item"
-              }
-            >
-              {item}
-            </li>
-          ))}
-          <li className="page-item last-page" onClick={goLastPage}>
-            맨뒤
-          </li>
-        </ul>
-      </nav> */}
       <PaginationComp
         currentPage={currentPage}
         totalPageCount={Math.ceil(calories_DB.length / itemsPerPage)}
@@ -284,8 +271,10 @@ const Calories = () => {
             {seasonList.map((list, index) => (
               <SwiperSlide key={index}>
                 <div className="recom-wrap">
-                  <img src={list.img} alt={list.imgDesc} />
-                  <div className="recom-desc">{list.desc}</div>
+                  <div>
+                    <img src={list.img} alt={list.imgDesc} />
+                    <div className="recom-desc">{list.desc}</div>
+                  </div>
                 </div>
                 <span className="recom-name">{list.name}</span>
                 <span>{list.nutrient}</span>
