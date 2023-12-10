@@ -38,6 +38,18 @@ function Health(){
             <SwiperSlide>
               <HealthSlide/>
             </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
           </Swiper>
         </div>
       </div>
