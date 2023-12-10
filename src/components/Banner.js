@@ -140,8 +140,10 @@ const Banner = () => {
   }, []);
 
   useEffect(()=>{
-    btns.forEach((item)=>{item.classList.remove('active');})
-    btns[currentSlide].classList.add('active');
+    document.querySelectorAll('.banner-control').forEach((control) => {
+      control.classList.remove('active');
+    });
+    document.querySelectorAll('.banner-control')[currentSlide].classList.add('active');
     banner.current.style.backgroundColor = bannerText[currentSlide].bcolor;
     bannerBtn.current.classList.remove('w-red-btn');
     bannerBtn.current.classList.remove('w-green-btn');
@@ -154,7 +156,9 @@ const Banner = () => {
   },[currentSlide]);
 
   const handleButtonClick = (e,idx) => {
-    btns.forEach((item)=>{item.classList.remove('active');})
+    document.querySelectorAll('.banner-control').forEach((control) => {
+      control.classList.remove('active');
+    });
     e.currentTarget.classList.add('active');
     setCurrentSlide(idx);
   };
