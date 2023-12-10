@@ -11,6 +11,7 @@
     padding: 40px 190px;
     box-sizing: border-box;
     margin-bottom: $unit-3;
+    position: relative;
     .banner-text{
       display: flex;
       flex-direction: column;
@@ -33,6 +34,30 @@
       .level-badge{
         width: 100px;
         height: 100px;
+      }
+    }
+    .banner-cotntrols{
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      button{
+        padding: 0;
+        border: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $gray-2;
+        transition: 0.4s;
+        &:hover{
+          background-color: $gray-3;
+        }
+        &.active{
+          background-color: $point-1;
+        }
+      }
+      button + button{
+        margin-left: 5px;
       }
     }
   }

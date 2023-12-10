@@ -23,13 +23,14 @@ const Banner = () => {
   const qAmt = qnaList.length;
   const [score, setScore] = useState(0);
   const [fscore, setFScore] = useState(0);
-  const btns = useRef(null);
   const pBar = useRef(null);
   const [init,setInit] = useState(false);
   const slides = [B0,B1,B2];
   const [currentSlide, setCurrentSlide] = useState(0);
   const banner = useRef(null);
   const bannerBtn = useRef(null);
+  let btns = document.querySelectorAll('.banner-control');
+
 
   //모달 열기
   const openModal = (e)=>{
@@ -139,6 +140,8 @@ const Banner = () => {
   }, []);
 
   useEffect(()=>{
+    btns.forEach((item)=>{item.classList.remove('active');})
+    btns[currentSlide].classList.add('active');
     banner.current.style.backgroundColor = bannerText[currentSlide].bcolor;
     bannerBtn.current.classList.remove('w-red-btn');
     bannerBtn.current.classList.remove('w-green-btn');
@@ -149,8 +152,14 @@ const Banner = () => {
       setTestYN(false);
     }
   },[currentSlide]);
-  
-  console.log(testYN);
+
+  const handleButtonClick = (e,idx) => {
+    btns.forEach((item)=>{item.classList.remove('active');})
+    e.currentTarget.classList.add('active');
+    setCurrentSlide(idx);
+  };
+
+
 
 
 
@@ -168,6 +177,11 @@ const Banner = () => {
         </div>
         <div className="banner-img">
           <img src={slides[currentSlide]} alt="banner img"></img>
+        </div>
+        <div className="banner-cotntrols">
+          {bannerText.map((item,idx)=>(
+            <button className="banner-control" key={idx} data-idx={idx} onClick={(e)=>handleButtonClick(e,idx)}></button>
+          ))}
         </div>
       </section>
       <dialog className="modal" id="modal1">
@@ -187,7 +201,7 @@ const Banner = () => {
             <div className="test-testing">
               <h5>Q.{qidx+1}</h5>
               <p>{qnaList[qidx].q}</p>
-              <div className="answer-btns" ref={btns}>
+              <div className="answer-btns">
                 {qnaList[qidx].a.map((answerText, idx) => (
                   <button key={idx} className="w-green-btn" score={answerText.score} type="button" onClick={() => addAnswer(answerText.score)}>
                     {answerText.answer}

@@ -681,6 +681,7 @@ body {
   padding: 40px 190px;
   box-sizing: border-box;
   margin-bottom: 72px;
+  position: relative;
 }
 .Main .banner .banner-text {
   display: flex;
@@ -705,6 +706,30 @@ body {
 .Main .banner .banner-img .level-badge {
   width: 100px;
   height: 100px;
+}
+.Main .banner .banner-cotntrols {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.Main .banner .banner-cotntrols button {
+  padding: 0;
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #9da1a6;
+  transition: 0.4s;
+}
+.Main .banner .banner-cotntrols button:hover {
+  background-color: #495057;
+}
+.Main .banner .banner-cotntrols button.active {
+  background-color: #32a061;
+}
+.Main .banner .banner-cotntrols button + button {
+  margin-left: 5px;
 }
 .Main .modal {
   position: absolute;

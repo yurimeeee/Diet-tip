@@ -588,6 +588,89 @@ body {
   background-color: #f2f3f5;
 }
 
+/* weekly */
+.weekly-wrap {
+  width: 350px;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+}
+
+.daylist {
+  margin: 0 2px;
+  width: 45px;
+  padding: 15px 0;
+  border-radius: 46px;
+  transition: 0.3s;
+  text-align: center;
+  box-sizing: border-box;
+}
+.daylist .weak {
+  color: #9da1a6;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.daylist .day {
+  font-weight: 500;
+}
+.daylist .Sat {
+  color: rgb(64, 82, 129);
+}
+.daylist .Sun {
+  color: #f46b2a;
+}
+.daylist:hover {
+  background: #5ac479;
+  color: #ebf4ff;
+}
+.daylist:hover .weak,
+.daylist:hover .day {
+  color: #fff;
+}
+.daylist:hover .Sat {
+  color: #ebf4ff;
+}
+.daylist:hover .Sun {
+  color: #ff6363;
+}
+
+.daylist.today {
+  box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+}
+
+.week-btns {
+  top: 50%;
+}
+
+.week-btns button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(34, 72, 97, 0.5176470588);
+}
+
+.prev {
+  left: -22px;
+}
+
+.next {
+  right: -22px;
+}
+
+.Calendar {
+  margin: 60px 0 30px;
+  position: relative;
+}
+.Calendar .sec-tt {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+}
+
 a.login-btn {
   color: #32a061;
   transition: 0.3s;
@@ -601,16 +684,16 @@ a.login-btn:hover {
   margin: 72px 0 192px;
 }
 
-.Signin form {
+.Signin form, .Login form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.Signin form label {
+.Signin form label, .Login form label {
   display: none;
 }
-.Signin form input {
+.Signin form input, .Login form input {
   display: block;
   border: 1px solid #32a061;
   width: 400px;
@@ -621,16 +704,16 @@ a.login-btn:hover {
   border-radius: 24px;
   margin-bottom: 10px;
 }
-.Signin form input::placeholder {
+.Signin form input::placeholder, .Login form input::placeholder {
   color: #32a061;
   opacity: 0.5;
 }
-.Signin form input:focus {
+.Signin form input:focus, .Login form input:focus {
   outline: none;
   border-color: #32a061;
   box-shadow: 0 0 5px #32a061;
 }
-.Signin form button {
+.Signin form button, .Login form button {
   margin-top: 20px;
 }
 
