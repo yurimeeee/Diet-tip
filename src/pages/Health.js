@@ -8,6 +8,7 @@ import HealthSlide from "../components/HealthSlide";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { Pagination } from 'swiper/modules';
+import Kakao from "../components/Kakao";
 
 function Health(){
   return (
@@ -37,11 +38,27 @@ function Health(){
             <SwiperSlide>
               <HealthSlide/>
             </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
+            <SwiperSlide>
+              <HealthSlide/>
+            </SwiperSlide>   
           </Swiper>
         </div>
       </div>
+      <div className="map container">
         <h2 className="sectionTitle tt4 jcc">우리동네 운동맛집</h2>
-        <p>내 주변 가까운 운동시설을 확인해보고 오늘부터 운동을 시작해보세요!</p>   
+        <p>내 주변 가까운 운동시설을 확인해보고 오늘부터 운동을 시작해보세요!</p>
+        <input type='text'/>
+        <Kakao/>
+      </div>        
       <div>
       </div>
     </>

@@ -709,6 +709,101 @@ body {
   width: 100px;
   height: 100px;
 }
+.Main .modal {
+  position: absolute;
+  width: 335px;
+  height: 440px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: none;
+  z-index: 300;
+  text-align: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+.Main .modal .modal-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.Main .modal .modal-container > div {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.Main .modal .modal-container .answer-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.Main .modal .modal-container .modal-close-btn {
+  border: none;
+  background-color: #94dfb6;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  transition: 0.5s;
+}
+.Main .modal .modal-container .modal-close-btn:hover {
+  background-color: #5ac479;
+}
+.Main .modal .modal-container .level-test-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.Main .modal .modal-container .result-img {
+  margin-bottom: 30px;
+}
+.Main .modal .modal-container h5 {
+  font-weight: 900;
+  margin: 0;
+  color: #32a061;
+}
+.Main .modal .modal-container p {
+  font-size: 14px;
+  white-space: nowrap;
+}
+.Main .modal .modal-container #progress {
+  width: 100%;
+}
+.Main .modal .modal-container #progress .progress {
+  position: relative;
+  background-color: #ecfbd4;
+  height: 15px;
+  width: 100%;
+  border-radius: 7.5px;
+}
+.Main .modal .modal-container #progress .progress .progress-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10%;
+  border-radius: 7.5px;
+  background-color: #94dfb6;
+}
+.Main .modal-off {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  display: none;
+  z-index: 200;
+}
 .Main .hot-board h5 {
   margin-bottom: 40px;
 }

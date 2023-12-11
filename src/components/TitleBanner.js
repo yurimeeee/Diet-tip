@@ -34,7 +34,7 @@ const TitleBanner = ({ onModeChange }) => {
         <h2 className="point-1">
           {shouldShowMealComponent ? "데일리 식단" : "칼로리 사전"}
         </h2>
-        <h3 className="gray-4">
+        <h3 className="gray-3">
           {" "}
           {shouldShowMealComponent
             ? "오늘 당신의 식단은 무엇인가요?"

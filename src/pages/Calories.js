@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../styles/meal.css";
 import TitleBanner from "../components/TitleBanner";
-
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-// import "./styles.css";
-
 import image1 from "../asset/meal/season_1.png";
 import image2 from "../asset/meal/season_2.png";
 import image3 from "../asset/meal/season_3.png";
-
 import calories_DB from "../data/calories_DB.json";
+import Chart from "../components/Chart";
+import PaginationComp from "../components/Pagination";
 
 const seasonList = [
   {
@@ -45,12 +40,14 @@ const Calories = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
   const [caloriesData, setCaloriesData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [noResult, setNoResult] = useState(false);
+  const [clickedIdx, setClickedIdx] = useState("");
+  const [clickedData, setClickedData] = useState(calories_DB[0]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // for (var i = 0; i < calories_DB.length; i++) {
-  //   var innerArray = calories_DB[i];
-  //   // console.log(innerArray);
-  // }
-
+  //식품 정보 불러오기
   useEffect(() => {
     const fetchData = async () => {
       const data = [];
@@ -58,7 +55,7 @@ const Calories = () => {
         for (const key in item) {
           if (Object.prototype.hasOwnProperty.call(item, key)) {
             data.push(...item[key]);
-            console.log(item);
+            // console.log(item);
           }
         }
       });
@@ -66,63 +63,112 @@ const Calories = () => {
     };
 
     // fetchData();
-  }, []); // 컴포넌트가 처음 렌더링될 때만 실행
+  }, []);
 
-  // 전체 데이터에서 현재 페이지에 해당하는 데이터만 추출
+  /* 페이지네이션 start */
+  //전체 데이터에서 현재 페이지 데이터 추출
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = calories_DB.slice(indexOfFirstItem, indexOfLastItem);
 
-  // 페이지 변경
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  //페이지 변경
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+  /* 페이지네이션 end */
 
-  // 전체 페이지 중에서 현재 페이지 주변의 페이지 번호만 가져오는 함수
-  const getDisplayedPageNumbers = () => {
-    const totalPageCount = Math.ceil(calories_DB.length / itemsPerPage);
-    const pageNumbers = [];
-    const totalDisplayedPages = 10; // 보여질 페이지 숫자 조절 가능
+  /* 식품 검색 start */
+  // 검색어 변경 핸들러
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const result = [];
+    const searchTermLower = searchTerm.toLowerCase();
 
-    let startPage = Math.max(
-      1,
-      currentPage - Math.floor(totalDisplayedPages / 2)
-    );
-    let endPage = Math.min(totalPageCount, startPage + totalDisplayedPages - 1);
+    calories_DB.forEach((item) => {
+      for (const key in item) {
+        // 배열인 경우
+        if (Array.isArray(item[key])) {
+          const foundItems = item[key].filter((subItem) =>
+            subItem.NAME.toLowerCase().includes(searchTermLower)
+          );
+          if (foundItems.length > 0) {
+            // 검색된 객체에 NO 필드 추가
+            const itemsWithNO = foundItems.map((foundItem) => ({
+              ...foundItem,
+              NO: item.NO,
+            }));
 
-    if (totalPageCount > totalDisplayedPages) {
-      // Adjust startPage and endPage if current page is near the edges
-      if (currentPage <= Math.ceil(totalDisplayedPages / 2)) {
-        endPage = totalDisplayedPages;
-      } else if (
-        currentPage >
-        totalPageCount - Math.ceil(totalDisplayedPages / 2)
-      ) {
-        startPage = totalPageCount - totalDisplayedPages + 1;
+            result.push(...itemsWithNO);
+            setNoResult(false);
+          }
+        } else {
+          // 배열이 아닌 경우
+          if (
+            key === "NAME" &&
+            item[key].toLowerCase().includes(searchTermLower)
+          ) {
+            result.push({
+              ...item,
+              NO: item.NO,
+            });
+            setNoResult(false);
+          }
+        }
       }
+    });
+
+    if (result.length <= 0) {
+      // console.log("검색결과가 없음");
+      setNoResult(true);
     }
 
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
-    }
+    //중복제거
+    const uniqueResult = Array.from(
+      new Set(result.map((item) => JSON.stringify(item)))
+    ).map((stringifiedItem) => JSON.parse(stringifiedItem));
 
-    // 이전 페이지 및 다음 페이지를 추가
-    if (currentPage > 1) {
-      pageNumbers.unshift("이전");
-    }
-    if (currentPage < totalPageCount) {
-      pageNumbers.push("다음");
-    }
-
-    return pageNumbers;
+    //검색 결과
+    setSearchResult(uniqueResult);
   };
+
+  //검색종료
+  const searchComplete = () => {
+    setSearchResult([]);
+    setSearchTerm("");
+  };
+  /* 식품 검색 end */
+
+  /* 차트로 데이터 전달 */
+  const clickedIdxHandler = (e) => {
+    const dataIdx = Number(e.target.getAttribute("data-idx"));
+    // setClickedIdx(dataIdx);
+    // const dataInfo = calories_DB[clickedIdx];
+    const dataInfo = calories_DB[dataIdx];
+    setClickedData(dataInfo);
+    setIsModalOpen(true);
+  };
+
+  const clickedResultHandler = (e) => {
+    const dataIdx = Number(e.target.getAttribute("data-idx")) - 1;
+    // setClickedIdx(dataIdx);
+    const dataInfo = calories_DB[dataIdx];
+    setClickedData(dataInfo);
+    setIsModalOpen(true);
+  };
+
+  if (!setIsModalOpen) {
+    setClickedData("");
+  }
 
   return (
     <div className="container">
       <TitleBanner />
       <div className="search-bar">
-        <form>
-          <input type="text" placeholder="검색어를 입력해주세요." />
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="검색어를 입력해주세요."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -139,6 +185,42 @@ const Calories = () => {
           </button>
         </form>
       </div>
+      {searchResult.length > 0 && (
+        <div className="search_result">
+          <div className="df jcsb aic">
+            <h3>
+              총 <span>{searchResult.length}</span>건의 검색 결과
+            </h3>
+            <p className="w-gray-btn" onClick={searchComplete}>
+              검색 종료
+            </p>
+          </div>
+          <ul className="result_bg">
+            {searchResult.map((item, idx) => (
+              <li
+                key={idx}
+                data-idx={item.INDEX}
+                onClick={clickedResultHandler}
+              >
+                {item.NAME}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {noResult && (
+        <div className="search_result">
+          <div className="result_bg">검색 결과가 없습니다.</div>
+        </div>
+      )}
+      {isModalOpen && (
+        <Chart
+          clickedIdx={clickedIdx}
+          clickedData={clickedData}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
+
       <table className="calories-table">
         <thead className="sm-radius">
           <tr className="sm-radius">
@@ -151,36 +233,24 @@ const Calories = () => {
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index}>
-              <th scope="row">{item.NO}</th>
-              <td>{item.NAME}</td>
+              <th scope="row">{item.INDEX}</th>
+              <td onClick={clickedIdxHandler} data-idx={index}>
+                {item.NAME}
+              </td>
               <td>
                 {item.SERVING_SIZE}
                 {item.SERVING_UNIT}
               </td>
-              <td>{item.KCAL}</td>
+              <td>{item.KCAL}kcal</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <nav className="pagination">
-        <ul className="pagination">
-          <li className="page-item first-page">맨앞</li>
-          {Array.from({
-            length: Math.ceil(calories_DB.length / itemsPerPage),
-          }).map((item, index) => (
-            <li
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={
-                currentPage === index + 1 ? "active page-item" : "page-item"
-              }
-            >
-              {index + 1}
-            </li>
-          ))}
-          <li className="page-item last-page">맨뒤</li>
-        </ul>
-      </nav>
+      <PaginationComp
+        currentPage={currentPage}
+        totalPageCount={Math.ceil(calories_DB.length / itemsPerPage)}
+        handlePageChange={handlePageChange}
+      />
 
       <div className="recom-list bg-white web-shadow container md-radius df jcsb">
         <div>
@@ -201,8 +271,10 @@ const Calories = () => {
             {seasonList.map((list, index) => (
               <SwiperSlide key={index}>
                 <div className="recom-wrap">
-                  <img src={list.img} alt={list.imgDesc} />
-                  <div className="recom-desc">{list.desc}</div>
+                  <div>
+                    <img src={list.img} alt={list.imgDesc} />
+                    <div className="recom-desc">{list.desc}</div>
+                  </div>
                 </div>
                 <span className="recom-name">{list.name}</span>
                 <span>{list.nutrient}</span>
