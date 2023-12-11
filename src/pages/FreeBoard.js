@@ -1,73 +1,19 @@
-import React, { useState } from "react";
-import Select from "react-select"; //react-select 라이브러리
-import styled from "styled-components"; //css-in-js 라이브러리
+import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faMagnifyingGlass, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faImage, faCommentDots, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
 import "../styles/community.scss";
 import Banner from "../asset/community/banner_freeboard.png";
+import CustomSelect from "../components/CustomSelect";
+import News from "../components/News";
+import freeBoard_data from "../data/freeBoard_data.json"
 
-const SelectBox = styled(Select).attrs({
-  classNamePrefix: 'react-select',
-})`
-  .react-select__control {
-    cursor: pointer;
-    background: transparent;
-    border-radius: 66px;
-    border: 1px solid #32a061;
-    box-shadow: none;
-    // width: 136px;
-    // text-align: center;
-    &:hover{
-      border: 1px solid #32a061;
-    }
-  }
-  .react-select__single-value {
-    color: #32a061; /* 텍스트 색상 지정 */
-    font-size: 16px;
-  }
-  .react-select__menu {
-    background-color: #f2f3f5;
-    border-radius: 10px;
-    border: 1px solid #32a061;
-    box-shadow: none;
-    overflow: hidden;
-  }
-  .react-select__option {
-    background-color: transparent; /* option 배경색 */
-    color: black; /* option 텍스트 색상 */
-  }
-  .react-select__option--is-selected {
-    background-color: #32a061; /* 클릭된 option 배경색 */
-    color: white; /* click 옵션 텍스트 색상 */
-  }
-  .react-select__option--is-focused {
-    background-color: #94dfb6;
-    color: #000; /* hover 옵션 텍스트 색상 */
-  }
-  .react-select__option:active{
-    background-color: #94dfb6;
-  }
-`;
 
 const FreeBoard = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
 
-  const options = [
-    { value: 'all', label: '전체' },
-    { value: 'review', label: '후기' },
-    { value: 'beforeAfter', label: '비포&애프터' },
-    { value: 'tip', label: '꿀 TIP' },
-    { value: 'etc', label: '기타' },
-  ];
-
-  const handleChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
-  };
-
+  const FreeBoardList = freeBoard_data;
+  const sortedData = FreeBoardList.sort((a, b) => b.id - a.id).slice(0, 20);
   
-
-
   return(
     <main className="Community">
       <section className="fb-banner bg-point-1 pd">
@@ -88,16 +34,7 @@ const FreeBoard = () => {
   
       <div className="container">
         <div className="df mg-t3">
-          <div className="free-select">
-            <SelectBox
-              value={selectedOption}
-              onChange={handleChange}
-              options={options}
-            />
-          </div>
-
-          
-
+          <CustomSelect/>
           <button className="w-green-btn">
             <FontAwesomeIcon icon={faPencil} /> 글 쓰기
           </button>
@@ -116,19 +53,21 @@ const FreeBoard = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="free-td-1">1566</td>
-              <td className="free-td-2 green-4">후기</td>
-              <td className="free-td-3 link"><a href="" className="link">평양 마라톤 풀코스 참가 후기</a></td>
-              <td className="free-td-4">아임닭맛있닭</td>
-              <td className="free-td-5">2023-12-02</td>
-              <td className="free-td-6">
-                <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />136
-              </td>
-              <td className="free-td-7">
-                <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />954
-              </td>
-            </tr>
+            {sortedData.map((item, index) => (
+              <tr key={index}>
+                <td className="free-td-1">{item.id}</td>
+                <td className="free-td-2 green-4">{item.category}</td>
+                <td className="free-td-3 link"><a href="" className="link">{item.title}</a></td>
+                <td className="free-td-4">{item.userId}</td>
+                <td className="free-td-5">{item.date}</td>
+                <td className="free-td-6">
+                  <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{item.thumbUp}
+                </td>
+                <td className="free-td-7">
+                  <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />{item.view}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
         
@@ -146,7 +85,8 @@ const FreeBoard = () => {
       </div>
   
   
-      <div className="container news">
+      <div className="container">
+        <News/>
         <h2 className="mg-t3 tt5 bold">오늘의 뉴스</h2>
   
         <div className="mg-t1 news-box lg-radius df sm-shadow">

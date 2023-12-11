@@ -143,18 +143,22 @@ button{
 .news-md{
   margin: 10px 0 20px 0;
 }
-.free-td-1,
-.free-td-2,
-.free-td-6,
-.free-td-7{
+.free-td-1{
   flex: 1;
 }
-.free-td-4,
+.free-td-6,
+.free-td-7{
+  flex: 1.2;
+}
+.free-td-2,
 .free-td-5{
   flex: 1.5;
 }
+.free-td-4{
+  flex: 2;
+}
 .free-td-3{
-  flex: 10;
+  flex: 9;
 }
 
 /* Q&A */
