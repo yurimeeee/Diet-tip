@@ -39,7 +39,6 @@ const Mypage = () => {
   });
 
   //chart.js
-  console.log(userJson); 
   const [label,setLabel] = useState([]);
   const [kg,setKg] = useState([]);
   const [health, setHealth] = useState([]);
