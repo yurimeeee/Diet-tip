@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import leveltestImg from "../asset/level-test-sticker.png"
 import { qnaList, result } from "../data/test_data";
-import level1Img from "../asset/level-1-badge.png";
-import level2Img from "../asset/level-2-badge.png";
-import level3Img from "../asset/level-3-badge.png";
 import resultImg1 from "../asset/test/result-level1.png";
 import resultImg2 from "../asset/test/result-level2.png";
 import resultImg3 from "../asset/test/result-level3.png";
+import B0 from "../asset/main-banner/banner-img0.png";
+import B1 from "../asset/main-banner/banner-img1.png";
+import B2 from "../asset/main-banner/banner-img2.png";
+import bannerText from "../data/banner_data";
 import Kakao from "https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js";
-window.Kakao.init("b20a514da7c33c650ca0a06403dad918");
+
 
 const Banner = () => {
   const [modalSwitch, setModalSwitch] = useState(false);
@@ -22,11 +23,13 @@ const Banner = () => {
   const qAmt = qnaList.length;
   const [score, setScore] = useState(0);
   const [fscore, setFScore] = useState(0);
-  const btns = useRef(null);
   const pBar = useRef(null);
-  
-  console.log('스코어'+score);
-  console.log('qidx'+qidx);
+  const [init,setInit] = useState(false);
+  const slides = [B0,B1,B2];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const banner = useRef(null);
+  const bannerBtn = useRef(null);
+  let btns = document.querySelectorAll('.banner-control');
 
 
   //모달 열기
@@ -105,8 +108,12 @@ const Banner = () => {
     setResult(true);
   }
   
-
+  //카카오톡 공유하기
   const shareMessage = () => {
+    if(!init){
+      window.Kakao.init("b20a514da7c33c650ca0a06403dad918");
+      setInit(true);
+    }
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
@@ -122,18 +129,63 @@ const Banner = () => {
     });
   }
 
+  const [testYN,setTestYN] = useState(false);
+
+  //배너 오토 슬라이드
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(()=>{
+    document.querySelectorAll('.banner-control').forEach((control) => {
+      control.classList.remove('active');
+    });
+    document.querySelectorAll('.banner-control')[currentSlide].classList.add('active');
+    banner.current.style.backgroundColor = bannerText[currentSlide].bcolor;
+    bannerBtn.current.classList.remove('w-red-btn');
+    bannerBtn.current.classList.remove('w-green-btn');
+    bannerBtn.current.classList.add(bannerText[currentSlide].btncolor);
+    if(currentSlide === 2){
+      setTestYN(true);
+    }else{
+      setTestYN(false);
+    }
+  },[currentSlide]);
+
+  const handleButtonClick = (e,idx) => {
+    document.querySelectorAll('.banner-control').forEach((control) => {
+      control.classList.remove('active');
+    });
+    e.currentTarget.classList.add('active');
+    setCurrentSlide(idx);
+  };
+
+
+
+
+
   return(
     <>
-      <section className="banner">
+      <section className="banner" ref={banner}>
         <div className="banner-text">
-          <p>다이어팁에 처음 왔다면</p>
-          <p>내 <span>관리레벨 테스트하고</span> 예쁜 <span>레벨 뱃지</span> 받자!</p>
-          <button className="w-green-btn" type="button" data-modal="#modal1" onClick={openModal}>테스트 시작하기</button>
+          <p>{bannerText[currentSlide].sp}</p>
+          <p dangerouslySetInnerHTML={{ __html: bannerText[currentSlide].bp }} className="ptag"></p>
+          <button className="w-green-btn" type="button" data-modal="#modal1" ref={bannerBtn}
+            onClick={testYN ? openModal : null }
+          >
+            {bannerText[currentSlide].btn}
+          </button>
         </div>
         <div className="banner-img">
-          <img src={level1Img} className="level-badge" alt="level badge"></img>
-          <img src={level2Img} className="level-badge" alt="level badge"></img>
-          <img src={level3Img} className="level-badge" alt="level badge"></img>
+          <img src={slides[currentSlide]} alt="banner img"></img>
+        </div>
+        <div className="banner-cotntrols">
+          {bannerText.map((item,idx)=>(
+            <button className="banner-control" key={idx} data-idx={idx} onClick={(e)=>handleButtonClick(e,idx)}></button>
+          ))}
         </div>
       </section>
       <dialog className="modal" id="modal1">
@@ -153,7 +205,7 @@ const Banner = () => {
             <div className="test-testing">
               <h5>Q.{qidx+1}</h5>
               <p>{qnaList[qidx].q}</p>
-              <div className="answer-btns" ref={btns}>
+              <div className="answer-btns">
                 {qnaList[qidx].a.map((answerText, idx) => (
                   <button key={idx} className="w-green-btn" score={answerText.score} type="button" onClick={() => addAnswer(answerText.score)}>
                     {answerText.answer}
