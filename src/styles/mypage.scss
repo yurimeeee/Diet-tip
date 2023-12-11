@@ -229,8 +229,19 @@ h6{
   }
   .recommand-btns{
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 20px;
+  }
+}
+
+//chart
+.chart-container{
+  position: relative;
+  button{
+    position: absolute;
+    top:50%;
+    right: -10px;
+    transform: translateX(100%);
   }
 }
 

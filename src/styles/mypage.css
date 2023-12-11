@@ -9,6 +9,10 @@ a {
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
+.mb-5 {
+  margin-bottom: 120px;
+}
+
 /* Variables end.*/
 body {
   font: 100% "Pretendard Variable";
@@ -399,7 +403,7 @@ body {
 }
 
 header {
-  padding: 72px 0;
+  padding: 48px 0;
 }
 header div {
   position: relative;
@@ -671,7 +675,7 @@ body {
   margin-bottom: 0px;
 }
 
-section {
+section + section {
   margin-top: 48px;
 }
 
@@ -882,8 +886,18 @@ h6 {
 }
 .recommand .recommand-btns {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 20px;
+}
+
+.chart-container {
+  position: relative;
+}
+.chart-container button {
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateX(100%);
 }
 
 /*# sourceMappingURL=mypage.css.map */

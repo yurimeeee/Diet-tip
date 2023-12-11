@@ -3,6 +3,7 @@ import badSticker from '../asset/bad-sticker.png';
 import goodsticker from '../asset/good-sticker.png';
 import { useLocation } from 'react-router-dom';
 import Weekly from "./Weekly";
+import userJson from "../data/user.json";
 
 const Today = () => {
   const location = useLocation();
@@ -36,6 +37,18 @@ const Today = () => {
     }
   }, [location.pathname]); // location.pathname이 변경될 때마다 실행
 
+  const [tmeal, setTmeal] = useState(null);
+  const [texercise, setTexercise] = useState(null);
+
+  useEffect(()=>{
+    setTmeal(
+      userJson.user1[1].today[0].meal === 'bad' ?  badSticker : goodsticker
+    );
+    setTexercise(
+      userJson.user1[1].today[1].exercise === 'bad' ?  badSticker : goodsticker
+    );
+  },[]);
+
 
 
   return(
@@ -60,11 +73,11 @@ const Today = () => {
               ''}
             <div className='today-card lg-radius'>
               <h6>식단</h6>
-              <img src={badSticker} alt='today meal sticker' className='sticker'/>
+              <img src={tmeal} alt='today meal sticker' className='sticker'/>
             </div>
             <div className='today-card lg-radius'>
               <h6>운동</h6>
-              <img src={goodsticker} alt='today meal sticker' className='sticker'/>
+              <img src={texercise} alt='today meal sticker' className='sticker'/>
             </div>
           </div>
         </div>

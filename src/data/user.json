@@ -3,10 +3,10 @@
     {"profile": [
       {"level": 1},
       {"imgURL": "https://res.cloudinary.com/dxevg72i5/image/upload/v1701671014/profile-img_cziscx.png"},
-      {"strength": "낮은편"},
-      {"frequency": "낮은편"},
-      {"nutrition": "낮은편"},
-      {"record": "낮은편"}
+      {"strength": "적당함"},
+      {"frequency": "낮음"},
+      {"nutrition": "고르지못함"},
+      {"record": "꾸준함"}
     ]},
     {"today": [
       {"meal": "bad"},
@@ -21,11 +21,11 @@
       "data": [
         {"12.1": [{"kg": 56.7},{"health": 30}]},
         {"12.5": [{"kg": 56.3},{"health": 40}]},
-        {"12.10": [{"kg": 56.7},{"health": 30}]},
-        {"12.15": [{"kg": 56.7},{"health": 30}]},
-        {"12.20": [{"kg": 56.7},{"health": 30}]},
-        {"12.25": [{"kg": 56.7},{"health": 30}]},
-        {"12.30": [{"kg": 56.7},{"health": 30}]}
+        {"12.10": [{"kg": 55.8},{"health": 50}]},
+        {"12.15": [{"kg": 55.2},{"health": 60}]},
+        {"12.20": [{"kg": 54.9},{"health": 50}]},
+        {"12.25": [{"kg": 54.5},{"health": 45}]},
+        {"12.30": [{"kg": 53.9},{"health": 55}]}
       ]
     }
     
