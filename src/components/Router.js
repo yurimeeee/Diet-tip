@@ -6,6 +6,7 @@ import DailyMeal from "../pages/DailyMeal";
 import Mypage from "../pages/Mypage";
 import Login from "../pages/Login";
 import Signin from "../pages/Signin";
+import Alam from "../pages/Alam";
 
 const AppRouter = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const AppRouter = createBrowserRouter([
   {
     path: "/mypage",
     element: <Mypage />,
+  },
+  {
+    path: "/alam",
+    element: <Alam />,
   },
   {
     path: "/meal",

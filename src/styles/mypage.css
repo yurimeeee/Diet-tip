@@ -9,6 +9,10 @@ a {
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
+.mb-5 {
+  margin-bottom: 120px;
+}
+
 /* Variables end.*/
 body {
   font: 100% "Pretendard Variable";
@@ -399,7 +403,7 @@ body {
 }
 
 header {
-  padding: 72px 0;
+  padding: 48px 0;
 }
 header div {
   position: relative;
@@ -588,8 +592,91 @@ body {
   background-color: #f2f3f5;
 }
 
+/* weekly */
+.weekly-wrap {
+  width: 350px;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+}
+
+.daylist {
+  margin: 0 2px;
+  width: 45px;
+  padding: 15px 0;
+  border-radius: 46px;
+  transition: 0.3s;
+  text-align: center;
+  box-sizing: border-box;
+}
+.daylist .weak {
+  color: #9da1a6;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.daylist .day {
+  font-weight: 500;
+}
+.daylist .Sat {
+  color: rgb(64, 82, 129);
+}
+.daylist .Sun {
+  color: #f46b2a;
+}
+.daylist:hover {
+  background: #5ac479;
+  color: #ebf4ff;
+}
+.daylist:hover .weak,
+.daylist:hover .day {
+  color: #fff;
+}
+.daylist:hover .Sat {
+  color: #ebf4ff;
+}
+.daylist:hover .Sun {
+  color: #ff6363;
+}
+
+.daylist.today {
+  box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+}
+
+.week-btns {
+  top: 50%;
+}
+
+.week-btns button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(34, 72, 97, 0.5176470588);
+}
+
+.prev {
+  left: -22px;
+}
+
+.next {
+  right: -22px;
+}
+
+.Calendar {
+  margin: 60px 0 30px;
+  position: relative;
+}
+.Calendar .sec-tt {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+}
+
 section + section {
-  margin-top: 120px;
+  margin-top: 48px;
 }
 
 h5 {
@@ -607,6 +694,11 @@ h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.level-badge {
+  width: 48px;
+  height: 48px;
 }
 
 .area-middle-top {
@@ -694,25 +786,74 @@ h6 {
   justify-content: space-between;
 }
 
+.today_content {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 100px;
+}
+.today_content .Calendar {
+  margin: 0;
+}
+.today_content .Calendar .Year-MonthList p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.today h5 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 .today-cards {
   display: flex;
   gap: 20px;
 }
-.today-cards p {
-  font-weight: bold;
+
+.today-card, .today-card-big {
+  display: flex;
+  background-color: #fff;
+  padding: 30px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 160px;
+  transition: 0.3s;
+}
+.today-card:hover, .today-card-big:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+.today-card-big {
+  width: 310px;
+}
+.today-card-big .weather {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.today-card-big .weather .weather-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.today-card-big .weather .weather-text p {
+  width: 74px;
+  display: flex;
+  justify-content: space-between;
+}
+.today-card-big .weather .weather-icon {
+  object-fit: cover;
+  width: 60px;
 }
 
 .today-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 20px;
-  justify-content: center;
-  background-color: #fff;
-  padding: 30px;
   width: 130px;
   height: 160px;
-  box-sizing: border-box;
 }
 .today-card .sticker {
   width: 50px;
@@ -745,8 +886,18 @@ h6 {
 }
 .recommand .recommand-btns {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 20px;
+}
+
+.chart-container {
+  position: relative;
+}
+.chart-container button {
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateX(100%);
 }
 
 /*# sourceMappingURL=mypage.css.map */
