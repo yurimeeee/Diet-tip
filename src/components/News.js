@@ -1,49 +1,95 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from 'axios';
-import { useEffect, useState } from "react"
 
 const News = () => {
-  const [newsData, setNewsData] = useState([]);
+  //카테고리
+  const [ category, setCategory ] = useState('all');
+  const onSelect = useCallback(category => {
+    setCategory(category);
+  }, []);
+
+  const categories = [
+    {
+      name:'all',
+      text:'전체'
+    },
+    {
+      name:'health',
+      text:'건강'
+    },
+    {
+      name:'entertainment',
+      text:'엔터테인먼트'
+    }
+  ];
+
+  //뉴스 api 불러오기
+  const [ articles, setArticles ] = useState(null);
+  const [ loading, setLoading ] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    //async를 사용하는 함수 선언
+    const fatchData = async() => {
+      setLoading(true);
       try {
-        const response = await axios.get('https://openapi.naver.com/v1/search/news.json', {
-          headers: {
-            'X-Naver-Client-Id': 'ugNYxtATUlGXyJit4E4C',
-            'X-Naver-Client-Secret': 'ayNvMCZVLl',
-          },
-          params: {
-            query: '건강',  // 검색어 예시 (원하는 검색어로 변경)
-            display: 4,       // 표시할 뉴스 수
-          },
-        });
-        console.log(response);
-        setNewsData(response.data.items);
-      } catch (error) {
-        console.error('Error fetching news:', error);
+        const query = category === 'all' ? '' : `&category=${category}`;
+        const response = await axios.get(
+          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=577ab2fa6f994abba6cd12f0b2a44fef`,
+        );
+        setArticles(response.data.articles);
+      } catch (e){
+        console.log(e);
       }
+      console.log(articles);
+      setLoading(false);
     };
+    fatchData();
+  }, [category]);
+  // category 값이 바뀔 때마다 뉴스를 새로 불러와야 함으로 
+  // useEffect의 의존배열(두번째 파라미터 설정)에 category 넣어줌
 
-    console.log(setNewsData);
-    fetchData();
-  }, []);
+  if(loading){
+    return <p className="mg-t1">불러오는 중...</p>
+  }
+
+  if(!articles){
+    return null;
+  }
+
+  // publishedAt에서 'T' 이전의 날짜를 추출하는 함수
+  const formatDate = (publishedAt) => {
+    return publishedAt.split('T')[0];
+  };
 
   return (
     <>
-      <h2 className="mg-t3 tt5 bold">오늘의 뉴스</h2>
-        {newsData.map((news, index) => (
-          <div key={index} className="mg-t1 news-box lg-radius df sm-shadow">
-            <a href={news.link} target="_blank" rel="noopener noreferrer">
-              <img src="news-01.jpg" alt="" />
-              <div>
-                <p className="tt5 bold">{news.title}</p>
-                <p className="tt7 news-md">사이언스타임즈</p>
-                <p>바다의 별인 불가사리에게 모자를 씌운다면 어디에 올려야 할까. 중앙에 볼록 튀어나온 지점일까, 아니면 5개의 모서리 중 하나일까....</p>
-              </div>
+      <div className="news-category mg-t1">
+        <ul className="df point-1">
+          {categories.map(c => (
+            <li
+              key={c.name}
+              className={category === c.name ? 'active' : ''}
+              onClick={() => onSelect(c.name)}
+            >
+              {c.text}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="news-frame df">
+        {articles.map((article) => (
+          <div key={article.url} className="mg-t1 news-box lg-radius df sm-shadow">
+            {article.urlToImage && (
+              <img src={article.urlToImage} alt="thumbnail" />
+            )}
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
+              <p className="tt5 bold">{article.title}</p>
+              <p className="tt7 news-date">{formatDate(article.publishedAt)}</p>
+              <p>{article.description}</p>
             </a>
           </div>
         ))}
+      </div>
     </>
   );
 }

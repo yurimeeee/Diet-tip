@@ -86,17 +86,9 @@ const FreeBoard = () => {
   
   
       <div className="container">
-        <News/>
         <h2 className="mg-t3 tt5 bold">오늘의 뉴스</h2>
+        <News/>
   
-        <div className="mg-t1 news-box lg-radius df sm-shadow">
-          <img src="news-01.jpg" alt="" />
-          <div>
-            <p className="tt5 bold">불가사리 머리는 어디? 첨단 분석 기법 총동원</p>
-            <p className="tt7 news-md">사이언스타임즈</p>
-            <p>바다의 별인 불가사리에게 모자를 씌운다면 어디에 올려야 할까. 중앙에 볼록 튀어나온 지점일까, 아니면 5개의 모서리 중 하나일까....</p>
-          </div>
-        </div>
       </div>
     </main>
   );
