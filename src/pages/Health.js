@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import App from "../App";
 import HealthBanner from "../components/HealthBanner";
 import HealthLevel from "../components/HealthLevel";
@@ -9,8 +9,39 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { Pagination } from 'swiper/modules';
 import Kakao from "../components/Kakao";
+import VideoList from '../components/VideoList';
+
 
 function Health(){
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const [videos, setVideos] = useState([]);
+
+  const searchVideos = async (keyword) => {
+    const response = await apiClient.get("search", {
+      params: {
+        part: "snippet",
+        q: keyword,
+        type: "video",
+        maxResults: 20,
+      },
+    });
+};
+
+  useEffect(() => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch(
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=KR&maxResults=25&key=${apiKey}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => setVideos(result.items))
+      .catch((error) => console.log('error', error));
+  }, []);
+
   return (
     <>
       <div className="container">
@@ -20,6 +51,8 @@ function Health(){
           <div className="levels df jcc aic">
             <HealthLevel/>
           </div>
+          <VideoList videos={videos} />
+          <video src={searchVideos}/>
         </div>
       </div>
       <div className="recomSlide">

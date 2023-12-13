@@ -1,7 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import YouTube from 'react-youtube';
 import testImg from "../asset/health/testImg.png";
 
-const HealthBanner = () => {
+
+function HealthBanner() {
+	const opts = {
+		height: '390',
+		width: '640',
+		playerVars: {
+        autoplay: 1,
+      },
+	}
+
 	return(
 		<div className="container">
 			<div className="bannerWrap">
@@ -21,7 +31,8 @@ const HealthBanner = () => {
 					<button type="button" className="youtubeBtn w-green-btn">유튜브 보러가기</button>
 				</div>
 				<div className="bannerImg">
-					<img src={testImg} alt="내 이미지" className="banner-img md-radius" />
+					{/* <img src={testImg} alt="내 이미지" className="banner-img md-radius" /> */}
+					<YouTube videoId="2g811Eo7K8U" opts={opts}/>;
 				</div>
 			</div>		
 		</div>
