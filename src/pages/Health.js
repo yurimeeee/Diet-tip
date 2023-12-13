@@ -3,44 +3,45 @@ import App from "../App";
 import HealthBanner from "../components/HealthBanner";
 import HealthLevel from "../components/HealthLevel";
 import "../styles/health.css";
-import HealthSlide from "../components/HealthSlide";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { Pagination } from 'swiper/modules';
 import Kakao from "../components/Kakao";
-import VideoList from '../components/VideoList';
+import axios from "axios";
 
 
 function Health(){
-  const apiKey = process.env.REACT_APP_API_KEY;
-  const [videos, setVideos] = useState([]);
 
-  const searchVideos = async (keyword) => {
-    const response = await apiClient.get("search", {
-      params: {
-        part: "snippet",
-        q: keyword,
-        type: "video",
-        maxResults: 20,
-      },
-    });
-};
+  const [playlist, setPlaylist] = useState([]);
+	const url = "https://www.youtube.com/watch?v="
 
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
+	useEffect(() => {
+
+		const params = {
+      key: 'AIzaSyC_NLQDH12JUt7zJDLMLnxhfYzJsnH-fVA',
+      q: "하루스트레칭",
+      part: "snippet",
+      type: "video",
+      maxResults: 10,
+      fields: "items(id,etag, snippet(title,thumbnails,description))",
+      videoEmbeddable: true,
     };
 
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=KR&maxResults=25&key=${apiKey}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setVideos(result.items))
-      .catch((error) => console.log('error', error));
-  }, []);
+		axios
+			.get(
+				`https://www.googleapis.com/youtube/v3/search`,{params}
+			)
+			.then((res) => { //성공했을 때
+				console.log(res);
+				setPlaylist(res.data.items);
+			})
+			.catch((err) => { //실패했을 때
+				console.log(err);
+			});
+	}, []);
+
+	console.log(playlist);
 
   return (
     <>
@@ -51,13 +52,13 @@ function Health(){
           <div className="levels df jcc aic">
             <HealthLevel/>
           </div>
-          <VideoList videos={videos} />
-          <video src={searchVideos}/>
         </div>
       </div>
       <div className="recomSlide">
         <h2 className="sectionTitle tt4 jcc">아직도 운동을 시작하지 못했다면?</h2>
         <p>다이어팁이 추천하는 운동 유튜버와 함께 운동 루틴을 만들어보세요!</p>
+        {playlist.map(data => {
+      return(
         <div className="healthSlides">
           <Swiper
             slidesPerView={5}
@@ -69,22 +70,20 @@ function Health(){
             className="mySwiper"
             >
             <SwiperSlide>
-              <HealthSlide/>
-            </SwiperSlide>   
-            <SwiperSlide>
-              <HealthSlide/>
-            </SwiperSlide>   
-            <SwiperSlide>
-              <HealthSlide/>
-            </SwiperSlide>   
-            <SwiperSlide>
-              <HealthSlide/>
-            </SwiperSlide>   
-            <SwiperSlide>
-              <HealthSlide/>
+            <div className="jcc aic">    
+              <img src={data.snippet.title} className="recomImg"/>
+              <h2>{data.snippet.title}</h2>
+              <p>{data.snippet.title}</p>
+              <div className="df jcc">
+                <button type="button" className="w-green-btn">구독하기</button>
+                <button type="button" className="w-red-btn">영상보기</button>
+              </div>
+            </div>
             </SwiperSlide>   
           </Swiper>
         </div>
+         )
+        })} 
       </div>
       <div className="map container">
         <h2 className="sectionTitle tt4 jcc">우리동네 운동맛집</h2>
@@ -97,5 +96,4 @@ function Health(){
     </>
   );
   };
-
 export default Health;
