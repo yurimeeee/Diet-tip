@@ -6,13 +6,14 @@ a {
 }
 
 @font-face {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
-    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
+.mb-5 {
+  margin-bottom: 120px;
+}
+
 /* Variables end.*/
 body {
   font: 100% "Pretendard Variable";
@@ -38,7 +39,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -403,7 +404,7 @@ body {
 }
 
 header {
-  padding: 72px 0;
+  padding: 48px 0;
 }
 header div {
   position: relative;
@@ -692,7 +693,7 @@ body {
 .search_result > div p {
   font-size: 14px;
 }
-.search_result .result_bg {
+.search_result ul {
   color: #495057;
   background-color: #ffffff;
   display: flex;
@@ -701,7 +702,7 @@ body {
   padding: 16px;
   border-radius: 10px;
 }
-.search_result .result_bg li {
+.search_result ul li {
   margin-right: 10px;
 }
 
@@ -760,10 +761,18 @@ body {
   height: 330px !important;
   margin-bottom: 20px;
 }
-.chart-wrap .chart p {
+.chart-wrap .chart .modal-close {
+  background-color: #94dfb6;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  top: 10px;
+  transition: 0.5s;
+}
+.chart-wrap .chart .modal-close:hover {
+  background-color: #5ac479;
 }
 
 .calories-table {
@@ -772,7 +781,8 @@ body {
   font-size: 16px;
   line-height: 48px;
 }
-.meal .calories-table thead {
+
+.calories-table thead {
   border-radius: 4px;
   background: rgba(208, 208, 208, 0.3);
 }
@@ -785,19 +795,25 @@ body {
   height: 48px;
   border-bottom: 1px solid #ccc;
 }
-.meal table {
+
+/* 테이블 스타일 설정 */
+table {
   width: 100%;
   border-collapse: collapse;
 }
-.meal td:nth-child(1) {
+
+/* 각 열의 너비 설정 */
+td:nth-child(1) {
   width: 10%;
   text-align: center;
 }
-.meal td:nth-child(2) {
+
+td:nth-child(2) {
   width: 60%;
 }
-.meal td:nth-child(3),
-.meal td:nth-child(4) {
+
+td:nth-child(3),
+td:nth-child(4) {
   width: 15%;
   text-align: center;
 }
@@ -817,34 +833,37 @@ nav.pagination {
   border-radius: 20px;
   box-sizing: border-box;
 }
-.meal .head-banner p {
+.head-banner p {
   font-size: 20px;
   margin: 50px 0 16px;
 }
-.meal .head-banner h2 {
+.head-banner h2 {
   font-size: 52px;
   font-weight: 700;
   margin-bottom: 20px;
 }
-.meal .head-banner h3 {
+.head-banner h3 {
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 30px;
 }
-.meal .banner-img {
+
+.banner-img {
   width: 485px;
   height: 336px;
 }
-.meal .container {
+
+.container {
   width: 1320px;
   margin: 0 auto;
   box-sizing: border-box;
 }
-.meal .search-bar {
+
+.search-bar {
   display: flex;
   justify-content: end;
 }
-.meal .search-bar form {
+.search-bar form {
   width: 648px;
   height: 48px;
   border-radius: 100px;
@@ -854,83 +873,84 @@ nav.pagination {
   box-sizing: border-box;
   margin: 72px 0 40px;
 }
-.meal .search-bar input {
+.search-bar form.active {
+  box-shadow: 0px 0px 0px 5px rgba(148, 223, 182, 0.35);
+  transition: 0.3s;
+}
+.search-bar input {
   flex: 1;
   line-height: 32px;
   font-size: 16px;
 }
-.meal .search-bar input,
-.meal .search-bar button {
+.search-bar input,
+.search-bar button {
   border: none;
   background: none;
 }
-.meal .search-bar input:focus,
-.meal .search-bar button:focus {
+.search-bar input:focus,
+.search-bar button:focus {
   outline: none;
 }
-.meal .recom-list {
+
+.recom-list {
   width: 100%;
   height: 336px;
   padding: 48px;
   box-sizing: border-box;
 }
-.meal .recom-list h3 {
+.recom-list h3 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 16px;
 }
-.meal .recom-list p {
+.recom-list p {
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 48px;
 }
-.meal .recom-list .swiper {
+
+.recom-list .swiper {
   width: 840px;
   height: 240px;
 }
-.meal .recom-list .swiper span {
+.recom-list .swiper span {
   display: inline-block;
   font-style: 14px;
   color: #495057;
   margin-top: 6px;
   position: relative;
 }
-.meal .recom-list .swiper .recom-name {
+.recom-list .swiper .recom-name {
   margin-right: 20px;
 }
-.meal .recom-list .swiper .recom-name::after {
+.recom-list .swiper .recom-name::after {
   content: "";
   width: 2px;
   height: 14px;
   background-color: #9da1a6;
   display: inline-block;
   position: absolute;
-  top: 2px;
+  top: -0.8px;
   left: 100%;
   margin-left: 8px;
 }
-.meal .recom-list .swiper .recom-wrap {
+.recom-list .swiper .recom-wrap {
   position: relative;
 }
-.recom-list .swiper .recom-wrap > div {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+.recom-list .swiper .recom-wrap:hover .recom-desc {
+  opacity: 1;
 }
-.recom-list .swiper .recom-wrap > div img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  vertical-align: bottom;
+.recom-list .swiper .recom-wrap:hover img {
+  filter: blur(7px);
+  -webkit-filter: blur(7px);
 }
-.recom-list .swiper .recom-wrap > div .recom-desc {
+.recom-list .swiper .recom-wrap .recom-desc {
   position: absolute;
   width: 100%;
   height: 100%;
   padding: 0 15px;
   box-sizing: border-box;
   top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -938,14 +958,7 @@ nav.pagination {
   opacity: 0;
   transition: 0.4s;
   color: #fff;
-  background-color: rgba(98, 98, 98, 0.446);
-}
-.recom-list .swiper .recom-wrap > div:hover .recom-desc {
-  opacity: 1;
-}
-.recom-list .swiper .recom-wrap > div:hover img {
-  filter: blur(7px);
-  -webkit-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.446);
 }
 
 .sec-tt {
@@ -954,35 +967,48 @@ nav.pagination {
   font-weight: 500;
   margin-bottom: 30px;
 }
-.meal .meal-post-wrap {
+
+.meal-post-wrap {
   display: flex;
   justify-content: space-between;
   margin-bottom: 72px;
 }
-.meal .meal-card {
+
+.meal-card {
   width: 312px;
   position: relative;
 }
-.meal-card .heart-active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 312px;
-  background: rgba(255, 255, 255, 0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.85);
-  transition: 0.5s;
+.meal-card .img-container {
+  position: relative;
+  overflow: hidden;
 }
-.meal .meal-card .meal-img {
+.meal-card .img-container:hover .like-container {
+  bottom: 0;
+}
+.meal-card .img-container .meal-img {
   width: 100%;
   height: 312px;
   object-fit: cover;
+  vertical-align: bottom;
 }
-.meal-card .meal-img:hover + .heart-active {
+.meal-card .img-container .like-container {
+  bottom: -100%;
   display: flex;
+  background-color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.meal-card .img-container .like-container img {
+  object-fit: cover;
+  width: 52px;
+  height: 44px;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .today-meal {
@@ -998,73 +1024,78 @@ nav.pagination {
 .today-meal .meal-card:nth-child(5n) {
   margin-right: 0;
 }
-.meal .today-meal .meal-card .meal-img {
+.today-meal .meal-card .meal-img {
   width: 100%;
   height: 246px;
   object-fit: cover;
 }
-.meal .meal-info {
+
+.meal-info {
   color: #495057;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
 }
-.meal .meal-info img {
+.meal-info img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   margin-right: 10px;
 }
-.meal .meal-info .meal-user {
+.meal-info .meal-user {
   font-size: 16px;
   font-weight: 500;
 }
-.meal .meal-info .like-reply-wrap {
+.meal-info .like-reply-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.meal .meal-info .like-reply-wrap svg {
+.meal-info .like-reply-wrap svg {
   margin-right: 10px;
 }
-.meal .meal-info .like-reply-wrap span {
+.meal-info .like-reply-wrap span {
   line-height: 16px;
   font-size: 16px;
   font-weight: 700;
 }
-.meal .hashtag {
+
+.hashtag {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
 }
-.meal .meal-create {
+
+.meal-create {
   padding: 20px 75px;
   background: #fff;
   margin-top: 30px;
 }
-.meal .meal-create img {
+.meal-create img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
-.meal .meal-create textarea {
+.meal-create textarea {
   width: 100%;
   resize: none;
   border: none;
   margin-left: 50px;
 }
-.meal .meal-create textarea:focus {
+.meal-create textarea:focus {
   outline: none;
 }
-.meal .tag-wrap {
+
+.tag-wrap {
   display: flex;
   gap: 16px;
   margin-bottom: 16px;
   margin-left: 50px;
 }
-.meal .tag-input {
+
+.tag-input {
   width: 240px;
   height: 30px;
   border-radius: 4px;
@@ -1073,14 +1104,15 @@ nav.pagination {
   background: rgba(228, 228, 228, 0.3);
   color: #495057;
 }
-.meal .tag-input:focus {
+.tag-input:focus {
   outline: none;
 }
-.meal .form-tag-wrap {
+
+.form-tag-wrap {
   display: flex;
   gap: 10px;
 }
-.meal .form-tag-wrap div {
+.form-tag-wrap div {
   position: relative;
 }
 .form-tag-wrap div .tag-del {
@@ -1097,10 +1129,12 @@ nav.pagination {
   align-items: center;
   box-shadow: 0px 5px 12.5px 0px rgba(0, 0, 0, 0.42);
 }
-.meal .hidden {
+
+.hidden {
   display: none;
 }
-.meal .utility {
+
+.utility {
   color: #32a061;
   display: flex;
   gap: 16px;
@@ -1120,11 +1154,13 @@ hr {
   border: 1px solid #f2f3f5;
   margin-bottom: 15px;
 }
-.meal .form-btns {
+
+.form-btns {
   display: flex;
   gap: 12px;
 }
-.meal .cancel-confirm {
+
+.cancel-confirm {
   position: absolute;
   top: 300px;
   margin: 0 auto;
@@ -1139,16 +1175,17 @@ hr {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 35px 0px;
   text-align: center;
 }
-.meal .cancel-confirm h2 {
+.cancel-confirm h2 {
   margin-bottom: 32px;
 }
-.meal .cancel-confirm .modal-btn {
+.cancel-confirm .modal-btn {
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
 }
-.meal .modal-overlay {
+
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1169,7 +1206,8 @@ hr {
   display: flex;
   z-index: 1000;
 }
-.meal .meal-view {
+
+.meal-view {
   background: #fff;
   border-radius: 12px;
   width: 960px;
@@ -1184,58 +1222,101 @@ hr {
   transform: translate(-50%, -50%);
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25);
 }
-.meal .meal-view > div:first-child {
+.meal-view > div:first-child {
   border-right: 1px solid #dadada;
   padding: 0 20px;
 }
-.meal .meal-view > div {
+.meal-view > div {
   width: 50%;
   box-sizing: border-box;
 }
-.meal .meal-view > div .meal-img {
+.meal-view > div .meal-img-wrap {
+  position: relative;
+}
+.meal-view > div .meal-img-wrap .like-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 1s ease-in-out, fill 1s ease-in-out, opacity 1s ease-in-out;
+}
+.meal-view > div .meal-img-wrap .like-icon {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  animation: heartAnimation 1.5s ease-in-out;
+}
+@keyframes heartAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    fill: none;
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    fill: #fff;
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0; /* 최종적으로 투명도 0으로 감소 */
+    fill: #fff;
+  }
+}
+.meal-view > div .meal-img {
   width: 440px;
   height: 440px;
   object-fit: cover;
+  position: relative;
 }
-.meal .meal-view > div .meal-info {
+.meal-view > div .meal-img::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 50px;
+  top: 50px;
+  background: #94dfb6;
+}
+.meal-view > div .meal-info {
   margin-bottom: 10px;
 }
-.meal .meal-view > div .meal-info img {
+.meal-view > div .meal-info img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 16px;
 }
-.meal .meal-view > div .meal-info .meal-user {
+.meal-view > div .meal-info .meal-user {
   font-size: 18px;
   font-weight: 500;
 }
-.meal .meal-view .reply-wrap {
+.meal-view .reply-wrap {
   height: calc(100% - 40px);
 }
-.meal .meal-view .reply-wrap .meal-info {
+.meal-view .reply-wrap .meal-info {
   border-bottom: 1px solid #dadada;
   padding: 0 20px 10px 10px;
   margin-bottom: 0;
 }
-.meal .meal-view .reply-wrap .meal-info P {
+.meal-view .reply-wrap .meal-info P {
   margin-right: 8px;
 }
-.meal .meal-view .reply-wrap .meal-info > div {
+.meal-view .reply-wrap .meal-info > div {
   display: flex;
   align-items: center;
 }
-.meal .meal-view .reply-wrap .level-badge {
+.meal-view .reply-wrap .level-badge {
   width: 24px;
   height: 24px;
   border-radius: 50%;
 }
-.meal .meal-view .reply-wrap .reply-img {
+.meal-view .reply-wrap .reply-img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
-.meal .meal-view .reply-wrap .reply-box {
+.meal-view .reply-wrap .reply-box {
   height: calc(100% - 24px);
   display: flex;
   flex-direction: column;
@@ -1256,23 +1337,17 @@ hr {
   top: -1px;
   bottom: 0;
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    0deg,
-    rgb(255, 255, 255) 0%,
-    rgba(255, 255, 255, 0) 10%,
-    rgba(255, 255, 255, 0) 95%,
-    rgb(255, 255, 255) 100%
-  );
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 95%, rgb(255, 255, 255) 100%);
   pointer-events: none;
 }
-.meal .meal-view .reply-wrap .reply {
+.meal-view .reply-wrap .reply {
   color: #495057;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 10px 10px;
 }
-.meal .meal-view .reply-wrap .reply > div {
+.meal-view .reply-wrap .reply > div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1300,10 +1375,10 @@ hr {
   padding: 20px 20px 0 10px;
   position: relative;
 }
-.meal .add-reply input {
+.add-reply input {
   border: none;
 }
-.meal .add-reply input:focus {
+.add-reply input:focus {
   outline: none;
 }
 .add-reply .reply-to {

@@ -1,0 +1,137 @@
+@import "common";
+
+.bannerWrap{
+	background-color: #fff;
+	border-radius: 20px;
+	display:flex; 
+	justify-content: space-between;  
+	padding: 60px 96px;
+}
+
+.bannerTitle {
+	ul{
+	display: flex;
+	gap:5px;
+	}
+	li{
+	border-radius: 50px;
+	border: 1px solid $point-2;
+	padding: 0 10px
+	}
+	span{
+			color: $point-2;
+			font-size: $mb-tt;
+	}
+	.youtubeBtn{
+		margin-top:50px;
+		padding: 11px;
+	}
+}
+
+.bannerMainTitle{
+	padding: $unit-s-4 0; 
+	h1{
+		font-size: $font-40;
+		color: $point-1;
+	}
+	p{
+		font-weight: bold;
+		display: inline;
+	}
+}
+
+.bannerSubTitle{
+	width:70%;
+	h3{
+		font-weight: bold;
+	}
+	p{
+		padding-top: $unit-s-4;
+		color: $gray-2;
+	}
+}
+
+.levels{
+	width:80%;
+	margin: 0 auto;
+}
+
+.level{
+	width:30%;
+	img{
+		width: 25%;
+	}
+}
+
+
+.sectionTitle{
+	color: $point-1;
+	font-weight: bold;
+}
+
+
+// slide
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	border-radius:10px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+	margin: 0 auto;
+}
+
+.swiper {
+  width: 100%;
+  height: 412px;
+  margin: 0px auto;
+}
+.append-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.append-buttons button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #007aff;
+  color: #007aff;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 10px;
+  font-size: 13px;
+}
