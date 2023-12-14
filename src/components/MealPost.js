@@ -9,10 +9,12 @@ import { faL, faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faComment as solidComment } from "@fortawesome/free-solid-svg-icons";
 import { faComment as regularComment } from "@fortawesome/free-regular-svg-icons";
+import likeImg from "../asset/like-fill.png";
 
 const MealPost = ({
   username,
   photo,
+  like,
   post,
   userId,
   id,
@@ -39,12 +41,19 @@ const MealPost = ({
 
   return (
     <div className="meal-card" onClick={() => handleClick(id)}>
-      <img src={photo || mealImg} alt="식단이미지" className="meal-img" />
-      {/* {heartActive && ( */}
-      <div className="heart-active">
+      <div className="img-container">
+        <img src={photo || mealImg} alt="식단이미지" className="meal-img" />
+        {/* {heartActive && ( */}
+        {/* <div className="heart-active"> */}
+        <div className="like-container">
+          <img alt="like icon" src={likeImg}></img>
+        </div>
+        {/* <div className="heart-active">
+        
         <FontAwesomeIcon icon={solidHeart} size="4x" />
+      </div> */}
+        {/* )} */}
       </div>
-      {/* )} */}
       <div className="meal-info">
         <div className="df aic">
           <img src={profileImg} alt="유저 프로필" />
@@ -54,7 +63,7 @@ const MealPost = ({
           <div>
             <FontAwesomeIcon icon={regularHeart} />
             {/* <FontAwesomeIcon icon={solidHeart} /> */}
-            <span>{6}</span>
+            <span>{like}</span>
           </div>
           <div>
             <FontAwesomeIcon

@@ -49,7 +49,7 @@ const DailyMeal = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [replyCount, setReplyCount] = useState("");
 
-  console.log("replyCount", replyCount);
+  // console.log("replyCount", replyCount);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -64,7 +64,7 @@ const DailyMeal = () => {
 
   // const [posts, setPosts] = useState([]);
 
-  console.log("posts", posts);
+  // console.log("posts", posts);
   useEffect(() => {
     let unsubscribe = null;
     const fetchPosts = async () => {
@@ -77,7 +77,7 @@ const DailyMeal = () => {
 
       unsubscribe = await onSnapshot(mealQuery, (snapshot) => {
         const posts = snapshot.docs.map((doc) => {
-          const { text, createdAt, userId, username, photo, hashTags } =
+          const { text, createdAt, userId, username, photo, hashTags, like } =
             doc.data();
           return {
             text,
@@ -87,6 +87,7 @@ const DailyMeal = () => {
             photo,
             id: doc.id,
             hashTags,
+            like,
           };
         });
         // 리덕스 액션을 통해 스토어에 데이터 저장

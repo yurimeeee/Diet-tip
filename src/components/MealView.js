@@ -6,6 +6,8 @@ import {
   addDoc,
   getDoc,
   deleteDoc,
+  updateDoc,
+  docRef,
 } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { auth, db, storage } from "../firebase";
@@ -31,6 +33,33 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [replyIdx, setReplyIdx] = useState("");
   const [nereplyIdx, setNeReplyIdx] = useState("");
   const [isnestedReplysView, setIsNestedReplysView] = useState(false);
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(clickedData.like);
+
+  console.log(clickedData, "clickedData");
+  //식단 좋아요
+  const handleDoubleClick = async () => {
+    console.log(isLiked);
+    setIsLiked(!isLiked);
+    if (!isLiked) {
+      let newLikeCount = clickedData.like++;
+      setLikeCount(newLikeCount);
+      const docRef = doc(db, "meal", clickedData.id);
+
+      const updateData = {
+        like: likeCount, // 예시로 숫자 20을 넣었으니 실제 필드에 맞게 수정하세요.
+        // 다른 필드 및 값을 여기에 추가
+      };
+      // 문서 업데이트
+      try {
+        await updateDoc(docRef, updateData);
+        console.log("문서 업데이트 성공!");
+      } catch (error) {
+        console.error("문서 업데이트 실패:", error);
+      }
+    }
+  };
 
   const closeModal = () => {
     setIsViewOpen(false);
@@ -205,7 +234,30 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     <div className="meal-view-bg">
       <div className="meal-view df">
         <div className="meal-view-col">
-          <img src={clickedData.photo} alt="식단이미지" className="meal-img" />
+          <div className="meal-img-wrap">
+            <img
+              src={clickedData.photo}
+              alt="식단이미지"
+              className={isLiked ? "liked meal-img" : "meal-img"}
+              onDoubleClick={handleDoubleClick}
+            />
+            {isLiked && (
+              <svg
+                className="like-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="52"
+                height="45"
+                viewBox="0 0 52 45"
+                fill="none"
+              >
+                <path
+                  d="M24.3019 41.7445L24.2944 41.7375L24.2869 41.7306L24.0399 41.5034L24.033 41.497L6.24612 24.9791L6.24588 24.9789C3.5367 22.4639 2 18.933 2 15.2322V14.897C2 8.70813 6.3949 3.39753 12.481 2.2366L12.4851 2.23582C15.9417 1.56905 19.4822 2.36597 22.3057 4.3523C23.1033 4.9199 23.8425 5.57215 24.5091 6.3176L26.0162 8.0032L27.5052 6.30153C27.8638 5.89167 28.2511 5.51237 28.6701 5.15448L28.6701 5.15451L28.6794 5.14646C29.0103 4.86032 29.3424 4.59862 29.686 4.35814L29.6904 4.35502C32.5145 2.36672 36.0584 1.5677 39.5198 2.22658C45.6038 3.3875 50 8.70672 50 14.897V15.2322C50 18.933 48.4633 22.4639 45.7541 24.9789L45.7539 24.9791L27.967 41.497L27.9601 41.5034L27.7131 41.7306L27.7077 41.7356C27.2392 42.1698 26.626 42.4111 26 42.4111C25.3631 42.4111 24.758 42.1729 24.3019 41.7445Z"
+                  stroke="white"
+                  stroke-width="4"
+                />
+              </svg>
+            )}
+          </div>
           <div className="meal-info">
             <div className="df aic">
               <img src={profileImg} alt="유저 프로필" />
@@ -213,9 +265,12 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
             </div>
             <div className="like-reply-wrap">
               <div>
-                <FontAwesomeIcon icon={regularHeart} />
-                {/* <FontAwesomeIcon icon={solidHeart} /> */}
-                <span>6</span>
+                {isLiked ? (
+                  <FontAwesomeIcon icon={solidHeart} />
+                ) : (
+                  <FontAwesomeIcon icon={regularHeart} />
+                )}
+                <span>{clickedData.like}</span>
               </div>
               <div>
                 {replys.length === 0 ? (
