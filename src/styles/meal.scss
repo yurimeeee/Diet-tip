@@ -1,12 +1,186 @@
 @import "common";
-.meal {
+
+.search_result {
+  margin-bottom: 30px;
+
+  > div {
+    margin-bottom: 10px;
+
+    h3 {
+      font-size: 16px;
+      color: $gray-3;
+    }
+
+    span {
+      font-weight: 500;
+      color: $point-1;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .result_bg {
+    color: $gray-3;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px;
+    border-radius: 10px;
+
+    li {
+      margin-right: 10px;
+    }
+  }
+}
+
+.chart-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  .modal-overlay {
+    z-index: 100;
+  }
+
+  .chart {
+    width: 50%;
+    height: 50vh;
+    padding: 30px 0;
+    border-radius: 10px;
+    background: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1000;
+
+    h2 {
+      font-weight: 500;
+      color: $gray-3;
+      margin-bottom: 16px;
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .chart-desc {
+      span {
+        // border: 1.5px solid $green-4;
+        padding: 5px 15px;
+        display: inline-block;
+        position: relative;
+        font-size: 14px;
+        box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.15);
+
+        &:first-child {
+          background: $green-1;
+          background-color: $green-4;
+          color: $white;
+          // color: $gray-3;
+          // border-radius: 66px;
+          border-radius: 10px 66px 66px 66px;
+          z-index: 10;
+        }
+        &:last-child {
+          color: $green-3;
+          padding: 5px 15px 5px 35px;
+          border-radius: 0 66px 66px 66px;
+          z-index: 1;
+          left: -25px;
+        }
+      }
+    }
+
+    canvas {
+      width: 330px !important;
+      height: 330px !important;
+      margin-bottom: 20px;
+    }
+
+    p {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+    }
+  }
+}
+
+.calories-table {
+  width: 100%;
+  color: #545454;
+  font-size: 16px;
+  line-height: 48px;
+}
+
+  .calories-table thead {
+    border-radius: 4px;
+    background: rgba(208, 208, 208, 0.3);
+  }
+
+.calories-table tbody {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.calories-table tr {
+  height: 48px;
+  border-bottom: 1px solid #ccc;
+}
+/* 테이블 스타일 설정 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* 각 열의 너비 설정 */
+td:nth-child(1) {
+  width: 10%;
+  text-align: center;
+}
+
+td:nth-child(2) {
+  width: 60%;
+}
+
+td:nth-child(3),
+td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+nav.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 100px;
+}
+
+.head-banner {
+  // max-width: 100%;
+  background: $white;
+  height: 432px;
+  display: flex;
+  justify-content: space-between;
+  padding: 48px 112px;
+  border-radius: 20px;
+  box-sizing: border-box;
+
+  p {
+    font-size: 20px;
+    margin: 50px 0 16px;
+
+.meal{
   .calories-table {
     width: 100%;
     color: #545454;
     font-size: 16px;
     line-height: 48px;
-  }
 
+  }
+  
   .calories-table thead {
     border-radius: 4px;
     background: rgba(208, 208, 208, 0.3);
@@ -118,37 +292,53 @@
     background-color: $gray-2;
     display: inline-block;
     position: absolute;
-    top: -0.8px;
+    top: 2px;
     left: 100%;
     margin-left: 8px;
   }
 
   .recom-wrap {
     position: relative;
-    &:hover {
-      .recom-desc {
-        opacity: 1;
-      }
-      img {
-        filter: blur(7px);
-        -webkit-filter: blur(7px);
-      }
-    }
-    .recom-desc {
-      position: absolute;
+
+    > div {
       width: 100%;
       height: 100%;
-      padding: 0 15px;
-      box-sizing: border-box;
-      top: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1.4;
-      opacity: 0;
-      transition: 0.4s;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.446);
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        vertical-align: bottom;
+      }
+
+      .recom-desc {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.4;
+        opacity: 0;
+        transition: 0.4s;
+        color: #fff;
+        background-color: rgba(98, 98, 98, 0.446);
+      }
+
+      &:hover {
+        .recom-desc {
+          opacity: 1;
+        }
+        img {
+          filter: blur(7px);
+          -webkit-filter: blur(7px);
+        }
+      }
     }
   }
 }
