@@ -111,10 +111,10 @@ const Header = () => {
             </a>
             <ul>
               <li>
-                <a href="">자유게시판</a>
+                <a href="/FreeBoard">자유게시판</a>
               </li>
               <li>
-                <a href="">Q&A</a>
+                <a href="/qnaboard">Q&A</a>
               </li>
             </ul>
           </li>
