@@ -10,7 +10,7 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
   };
 
   console.log(clickedData, "chart clickedData");
-  const [chartFood, setFoodName] = useState(clickedData);
+  // const [chartFood, setFoodName] = useState(clickedData.NAME);
   // console.log(chartFood);
   const [chartData, setChartData] = useState({
     labels: [
@@ -111,28 +111,9 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
   return (
     <div className="chart-wrap">
       <div className="chart">
-        <h2>
-          <span>{chartFood.NAME}</span> 영양정보
-        </h2>
-
+        <h2>{/* <span>{chartFood}</span> 영양정보 */}</h2>
         <Pie data={chartData} />
-        <div className="df jcc">
-          <h3 className="chart-desc">
-            <span>단위</span>
-            <span>
-              {chartFood.SERVING_SIZE}
-              {chartFood.SERVING_UNIT}
-            </span>
-          </h3>
-          <h3 className="chart-desc">
-            <span>칼로리</span>
-            <span>{chartFood.KCAL}kcal</span>
-          </h3>
-        </div>
-
-        <p className="m-gray-btn" onClick={closeModal}>
-          닫기
-        </p>
+        <p className="m-gray-btn">닫기</p>
       </div>
       <div className="modal-overlay" onClick={closeModal}></div>
     </div>
