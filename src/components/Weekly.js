@@ -39,7 +39,7 @@ const Weekly = ({ todoDate }) => {
   useEffect(()=>{
     if (location.pathname === "/") {
       setMainYn(true);
-      console.log(mainYN);
+      // console.log(mainYN);
     } else {
       setMainYn(false);
     }

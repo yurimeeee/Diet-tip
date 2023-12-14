@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/signin.css";
 import { useState } from "react";
 import GoogleLogin from "../components/GoogleLogin";
 import { Link } from 'react-router-dom';

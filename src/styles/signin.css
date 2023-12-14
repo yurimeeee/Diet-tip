@@ -399,7 +399,7 @@ body {
 }
 
 header {
-  padding: 72px 0;
+  padding: 48px 0;
 }
 header div {
   position: relative;
@@ -684,16 +684,16 @@ a.login-btn:hover {
   margin: 72px 0 192px;
 }
 
-.Signin form {
+.Signin form, .Login form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.Signin form label {
+.Signin form label, .Login form label {
   display: none;
 }
-.Signin form input {
+.Signin form input, .Login form input {
   display: block;
   border: 1px solid #32a061;
   width: 400px;
@@ -704,20 +704,16 @@ a.login-btn:hover {
   border-radius: 24px;
   margin-bottom: 10px;
 }
-.Signin form input::-moz-placeholder {
+.Signin form input::placeholder, .Login form input::placeholder {
   color: #32a061;
   opacity: 0.5;
 }
-.Signin form input::placeholder {
-  color: #32a061;
-  opacity: 0.5;
-}
-.Signin form input:focus {
+.Signin form input:focus, .Login form input:focus {
   outline: none;
   border-color: #32a061;
   box-shadow: 0 0 5px #32a061;
 }
-.Signin form button {
+.Signin form button, .Login form button {
   margin-top: 20px;
 }
 
