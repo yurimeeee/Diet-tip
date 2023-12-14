@@ -57,7 +57,7 @@ const QnA = () => {
         <tbody>
           <tr>
             <td className="qna-td-1"><img src="icon_q.png" alt="" /></td>
-            <td className="qna-td-2 point-1">기타</td>
+            <td className="qna-td-2 green-4">기타</td>
             <td className="qna-td-3">12월에 평양에서 열리는 마라톤대회 도전하려고 합니다. 풀코스 관련..</td>
             <td className="qna-td-4">아임닭맛있닭</td>
             <td className="qna-td-5">2023-00-00</td>
@@ -67,7 +67,7 @@ const QnA = () => {
           </tr>
           <tr>
             <td className="qna-td-1"><img src="icon_q.png" alt="" /></td>
-            <td className="qna-td-2 point-1">기타</td>
+            <td className="qna-td-2 green-4">기타</td>
             <td className="qna-td-3">12월에 평양에서 열리는 마라톤대회 도전하려고 합니다. 풀코스 관련..</td>
             <td className="qna-td-4">아임닭맛있닭</td>
             <td className="qna-td-5">2023-11-19</td>
@@ -77,11 +77,11 @@ const QnA = () => {
           </tr>
           <tr>
             <td className="qna-td-1"><img src="icon_q.png" alt="" /></td>
-            <td className="qna-td-2 point-1">기타</td>
+            <td className="qna-td-2 green-4">기타</td>
             <td className="qna-td-3">12월에 평양에서 열리는 마라톤대회 도전하려고 합니다. 풀코스 관련..</td>
             <td className="qna-td-4">아임닭맛있닭</td>
             <td className="qna-td-5">2023-11-19</td>
-            <td className="qna-td-6 point-1">답변완료</td>
+            <td className="qna-td-6 green-4">답변완료</td>
             <td className="qna-td-7">136</td>
             <td className="qna-td-8">954</td>
           </tr>
