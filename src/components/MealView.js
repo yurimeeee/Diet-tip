@@ -33,30 +33,27 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [replyIdx, setReplyIdx] = useState("");
   const [nereplyIdx, setNeReplyIdx] = useState("");
   const [isnestedReplysView, setIsNestedReplysView] = useState(false);
-
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(clickedData.like);
 
-  console.log(clickedData, "clickedData");
+  // console.log(clickedData, "clickedData");
+
   //식단 좋아요
   const handleDoubleClick = async () => {
-    console.log(isLiked);
     setIsLiked(!isLiked);
     if (!isLiked) {
-      let newLikeCount = clickedData.like++;
+      let newLikeCount = ++clickedData.like;
       setLikeCount(newLikeCount);
       const docRef = doc(db, "meal", clickedData.id);
-
       const updateData = {
-        like: likeCount, // 예시로 숫자 20을 넣었으니 실제 필드에 맞게 수정하세요.
-        // 다른 필드 및 값을 여기에 추가
+        // like: likeCount,
+        like: newLikeCount,
       };
-      // 문서 업데이트
       try {
         await updateDoc(docRef, updateData);
-        console.log("문서 업데이트 성공!");
+        console.log("좋아요 성공:");
       } catch (error) {
-        console.error("문서 업데이트 실패:", error);
+        console.error("좋아요 실패:", error);
       }
     }
   };
@@ -68,8 +65,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const toggleSet = () => {
     SetToggleMore(!toggleMore);
   };
-  // /meal/5CmhHuAthxC3TOocCeTm
-  // /meal/Gc4gTa3hjjMtuSvs9lLAw5UBDxH3/5CmhHuAthxC3TOocCeTm
+
   //식단 삭제
   const onDelete = async () => {
     // // const ok = confirm("식단을 삭제하시나요?");
@@ -85,7 +81,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
       const replyDocs = replyQuerySnapshot.docs;
       await Promise.all(replyDocs.map(async (doc) => await deleteDoc(doc.ref)));
 
-      // if (photo) {
+      //스토리지에서 사진 삭제
       const photoRef = ref(storage, `meal/${user.uid}/${clickedData.id}`);
       await deleteObject(photoRef);
       console.log(photoRef);
@@ -98,7 +94,6 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
 
   //댓글 불러오기
   useEffect(() => {
-    // Firestore에서 데이터 가져오기
     const fetchData = async () => {
       const querySnapshot = await getDocs(
         collection(db, `meal/${clickedData.id}/reply`)
@@ -196,26 +191,23 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     //유저 없거나, 게시글 빈값이거나 글자수 초과시 리턴
     if (!user || newReplys === "" || newReplys.length > 1000) return;
     try {
-      let docRef;
+      // let docRef;
 
-      // 대댓글 모드에 따라 경로 설정
+      //대댓글 모드에 따라 경로 설정
       const replyPath = isReplyToMode
         ? `meal/${clickedData.id}/reply/${replyIdx}/nestedReply`
         : `meal/${clickedData.id}/reply`;
 
-      // 데이터 추가
+      //댓글 추가
       const doc = await addDoc(collection(db, replyPath), {
         content: newReplys,
         createdAt: Date.now(),
         username: user.displayName,
         userId: user.uid,
-        replyIdx: replyIdx, // 이 부분을 추가
+        replyIdx: replyIdx,
       });
-
-      //초기화
       setNewReplys("");
-      //부모 컴포넌트로 댓글 수 전달
-      onReplyCount(replys);
+      onReplyCount(replys); //부모 컴포넌트로 댓글 수 전달
 
       //추가된 댓글 다시 불러오기
       const querySnapshot = await getDocs(collection(db, replyPath));
