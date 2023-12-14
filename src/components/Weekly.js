@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useLocation } from 'react-router-dom';
 import {
   faChevronLeft,
   faChevronRight,
@@ -10,6 +11,8 @@ const Weekly = ({ todoDate }) => {
   const today = now.getDate();
   const lastday = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const location = useLocation();
+  const [mainYN, setMainYn] = useState(true);
 
   const [dayList, setDayList] = useState([]);
 
@@ -31,6 +34,16 @@ const Weekly = ({ todoDate }) => {
   useEffect(() => {
     calculateStartOfWeek();
   }, [now]);
+
+  //현재 page path 파악
+  useEffect(()=>{
+    if (location.pathname === "/") {
+      setMainYn(true);
+      // console.log(mainYN);
+    } else {
+      setMainYn(false);
+    }
+  },[location.pathname])
 
   const updateWeek = (increment) => {
     const newNow = new Date(now);
@@ -57,10 +70,10 @@ const Weekly = ({ todoDate }) => {
   };
 
   return (
-    <div className="Calendar df jcsb ">
+    <div className={mainYN ? 'Calendar': 'Calendar df jcsb'}>
       <div className="Year-MonthList">
         <p>
-          <span className="Year">{now.getFullYear()}</span>
+          <span className="Year">{now.getFullYear()}{mainYN ? '년': ''}</span>
           &nbsp;&nbsp;
           <span className="Month">
             {/* {now.toLocaleString("en-us", { month: "long" })} */}

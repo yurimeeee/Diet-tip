@@ -3,7 +3,7 @@
 
 //layout
 section+section{
-  margin-top: $unit-5;
+  margin-top: $unit-2;
 }
 
 //title
@@ -22,6 +22,12 @@ h6{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+//level-badge
+.level-badge{
+  width: 48px;
+  height: 48px;
 }
 
 //area-top
@@ -119,25 +125,77 @@ h6{
 }
 
 //today
+.today_content{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 100px;
+  //today-weekly
+  .Calendar{
+    margin: 0;
+    .Year-MonthList p{
+      font-weight: bold;
+      margin-bottom: 10px;
+      // text-align: center;
+    }
+  }
+}
+
 //today-cards
+.today{
+  h5{
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
 .today-cards{
   display: flex;
   gap: 20px;
-  p{
-    font-weight: bold;
+}
+%today-card{
+  display: flex;
+  background-color: $white;
+  padding:30px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 160px;
+  transition: 0.3s;
+  &:hover{
+    background-color: rgba(255,255,255,.8);
+    box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+  }
+}
+.today-card-big{
+  @extend %today-card;
+  width: 310px;
+  .weather{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    .weather-text{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      p{
+        width: 74px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .weather-icon{
+      object-fit: cover;
+      width: 60px;
+    }
   }
 }
 .today-card{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend %today-card;
   gap: 20px;
-  justify-content: center;
-  background-color: $white;
-  padding:30px;
   width: 130px;
   height: 160px;
-  box-sizing: border-box;
   .sticker{
     width: 50px;
     height: 50px;
@@ -171,8 +229,19 @@ h6{
   }
   .recommand-btns{
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 20px;
+  }
+}
+
+//chart
+.chart-container{
+  position: relative;
+  button{
+    position: absolute;
+    top:50%;
+    right: -10px;
+    transform: translateX(100%);
   }
 }
 
