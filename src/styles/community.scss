@@ -76,6 +76,11 @@
         border-top: 1px solid #dcdbdb;
       }
     }
+    img{
+      width: 20px;
+      margin-right: 5px;
+      vertical-align:bottom;
+    }
   }
   
 }
@@ -200,7 +205,7 @@ button{
   flex: 1.5;
 }
 .free-td-4{
-  flex: 2;
+  flex: 2.5;
 }
 .free-td-3{
   flex: 9;

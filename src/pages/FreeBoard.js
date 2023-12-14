@@ -1,9 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencil, faMagnifyingGlass, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { faImage, faCommentDots, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
+import { faPencil, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
 import "../styles/community.scss";
 import Banner from "../asset/community/banner_freeboard.png";
+import level_1 from "../asset/level-1-badge.png";
+import level_2 from "../asset/level-2-badge.png";
+import level_3 from "../asset/level-3-badge.png";
 import CustomSelect from "../components/CustomSelect";
 import News from "../components/News";
 import freeBoard_data from "../data/freeBoard_data.json"
@@ -13,6 +16,12 @@ const FreeBoard = () => {
 
   const FreeBoardList = freeBoard_data;
   const sortedData = FreeBoardList.sort((a, b) => b.id - a.id).slice(0, 20);
+
+  const levelImg = {
+    '1': level_1, 
+    '2': level_2, 
+    '3': level_3,
+  };
   
   return(
     <main className="Community">
@@ -58,7 +67,14 @@ const FreeBoard = () => {
                 <td className="free-td-1">{item.id}</td>
                 <td className="free-td-2 green-4">{item.category}</td>
                 <td className="free-td-3 link"><a href="" className="link">{item.title}</a></td>
-                <td className="free-td-4">{item.userId}</td>
+                <td className="free-td-4">
+                  {item.level && (
+                    <>
+                      <img src={levelImg[item.level]} alt={`Level ${item.level}`} />
+                      {item.userId}
+                    </>
+                  )}
+                </td>
                 <td className="free-td-5">{item.date}</td>
                 <td className="free-td-6">
                   <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{item.thumbUp}
