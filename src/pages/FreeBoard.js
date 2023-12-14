@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faImage, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
@@ -7,6 +7,7 @@ import Banner from "../asset/community/banner_freeboard.png";
 import level_1 from "../asset/level-1-badge.png";
 import level_2 from "../asset/level-2-badge.png";
 import level_3 from "../asset/level-3-badge.png";
+import PaginationComp from "../components/Pagination";
 import CustomSelect from "../components/CustomSelect";
 import News from "../components/News";
 import freeBoard_data from "../data/freeBoard_data.json"
@@ -15,25 +16,64 @@ import freeBoard_data from "../data/freeBoard_data.json"
 const FreeBoard = () => {
 
   const FreeBoardList = freeBoard_data;
-  const [ sortedData, setSortedData ] = useState(FreeBoardList.sort((a, b) => b.id - a.id).slice(0, 20));
+  const itemsPerPage = 20;
+  const [ sortedData, setSortedData ] = useState(
+    FreeBoardList.sort((a, b) => b.id - a.id).slice(0, itemsPerPage)
+  );
+  const [totalFilteredItems, setTotalFilteredItems] = useState(FreeBoardList.length);
   const levelImg = {
     '1': level_1, 
     '2': level_2, 
     '3': level_3,
   };
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  
+  //페이지네이션
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  //카테고리
+  const [ selectedCategory, setSelectedCategory ] = useState(null);
   const handleSelectChange = (selectedOption) => {
     setSelectedCategory(selectedOption);
 
     //선택한 카테고리에 따라 데이터 필터링
     const filteredData = selectedOption && selectedOption.label !== '전체' 
-      ? FreeBoardList.filter(item => item.category === selectedOption.label)
+      ? FreeBoardList.filter((item) => item.category === selectedOption.label)
       : FreeBoardList;
 
     //데이터 정렬 후 상위 20개 데이터로 업데이트
-    setSortedData(filteredData.sort((a,b) => b.id - a.id).slice(0,20));
+    setSortedData(filteredData.sort((a,b) => b.id - a.id).slice(0, itemsPerPage));
+
+    // 현재 페이지를 1로 리셋
+    setCurrentPage(1);
   };
+
+  //페이지네이션 및 카테고리 변경 감지
+  useEffect(() => {
+    const fetchData = async () => {
+      const indexOfLastItem = currentPage * itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      let currentItems;
+
+      // 선택한 카테고리에 따라 데이터 필터링
+      if (selectedCategory && selectedCategory.label !== '전체') {
+        const filteredData = FreeBoardList.filter((item) => item.category === selectedCategory.label);
+        currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+        setTotalFilteredItems(filteredData.length); // 필터링된 데이터의 갯수 업데이트
+      } else {
+        currentItems = FreeBoardList.slice(indexOfFirstItem, indexOfLastItem);
+        setTotalFilteredItems(FreeBoardList.length); // 전체 데이터의 갯수로 업데이트
+      }
+
+      // 데이터 정렬 후 상위 20개 데이터로 업데이트
+      setSortedData(currentItems.sort((a, b) => b.id - a.id));
+    };
+
+    fetchData();
+  }, [currentPage, selectedCategory, FreeBoardList]);
 
   return(
     <main className="Community">
@@ -99,17 +139,11 @@ const FreeBoard = () => {
           </tbody>
         </table>
         
-        <nav className="pagination mg-t3">
-          <ul className="pagination">
-            <li className="page-item first-page">맨앞</li>
-            <li className="page-item">1</li>
-            <li className="page-item">2</li>
-            <li className="page-item active">3</li>
-            <li className="page-item">4</li>
-            <li className="page-item">5</li>
-            <li className="page-item last-page">맨뒤</li>
-          </ul>
-        </nav>
+        <PaginationComp
+          currentPage={currentPage}
+          totalPageCount={Math.ceil(totalFilteredItems / itemsPerPage)}
+          handlePageChange={handlePageChange}
+        />
       </div>
   
   

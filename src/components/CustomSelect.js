@@ -32,6 +32,7 @@ const CustomSelect = ({ onSelectChange }) => {
     .react-select__option {
       background-color: transparent; /* option 배경색 */
       color: black; /* option 텍스트 색상 */
+      cursor: pointer;
     }
     .react-select__option--is-selected {
       background-color: #32a061; /* 클릭된 option 배경색 */
