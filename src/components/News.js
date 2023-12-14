@@ -36,7 +36,10 @@ const News = () => {
         const response = await axios.get(
           `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=577ab2fa6f994abba6cd12f0b2a44fef`,
         );
-        setArticles(response.data.articles);
+        const newsFiltered = response.data.articles.filter(
+          article => article.urlToImage && article.description
+        );
+        setArticles(newsFiltered.slice(0, 4));
       } catch (e){
         console.log(e);
       }
@@ -56,9 +59,9 @@ const News = () => {
     return null;
   }
 
-  // publishedAt에서 'T' 이전의 날짜를 추출하는 함수
+  // 날짜를 'YYYY-MM-DD HH:mm:ss' 형식으로 포맷팅
   const formatDate = (publishedAt) => {
-    return publishedAt.split('T')[0];
+    return new Date(publishedAt).toISOString().replace('T', ' ').replace('Z', '').slice(0, 19);
   };
 
   return (
@@ -83,9 +86,9 @@ const News = () => {
               <img src={article.urlToImage} alt="thumbnail" />
             )}
             <a href={article.url} target="_blank" rel="noopener noreferrer">
-              <p className="tt5 bold">{article.title}</p>
+              <p className="tt5 news-tt bold">{article.title}</p>
               <p className="tt7 news-date">{formatDate(article.publishedAt)}</p>
-              <p>{article.description}</p>
+              <p className="news-content">{article.description}</p>
             </a>
           </div>
         ))}
