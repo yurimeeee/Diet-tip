@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faImage, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
@@ -15,14 +15,26 @@ import freeBoard_data from "../data/freeBoard_data.json"
 const FreeBoard = () => {
 
   const FreeBoardList = freeBoard_data;
-  const sortedData = FreeBoardList.sort((a, b) => b.id - a.id).slice(0, 20);
-
+  const [ sortedData, setSortedData ] = useState(FreeBoardList.sort((a, b) => b.id - a.id).slice(0, 20));
   const levelImg = {
     '1': level_1, 
     '2': level_2, 
     '3': level_3,
   };
-  
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const handleSelectChange = (selectedOption) => {
+    setSelectedCategory(selectedOption);
+
+    //선택한 카테고리에 따라 데이터 필터링
+    const filteredData = selectedOption && selectedOption.label !== '전체' 
+      ? FreeBoardList.filter(item => item.category === selectedOption.label)
+      : FreeBoardList;
+
+    //데이터 정렬 후 상위 20개 데이터로 업데이트
+    setSortedData(filteredData.sort((a,b) => b.id - a.id).slice(0,20));
+  };
+
   return(
     <main className="Community">
       <section className="fb-banner bg-point-1 pd">
@@ -43,7 +55,7 @@ const FreeBoard = () => {
   
       <div className="container">
         <div className="df mg-t3">
-          <CustomSelect/>
+          <CustomSelect onSelectChange={handleSelectChange} />
           <button className="w-green-btn">
             <FontAwesomeIcon icon={faPencil} /> 글 쓰기
           </button>

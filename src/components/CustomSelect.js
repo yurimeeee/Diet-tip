@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Select from "react-select"; //react-select 라이브러리
 import styled from "styled-components"; //css-in-js 라이브러리
 
-const CustomSelect = () => {
+const CustomSelect = ({ onSelectChange }) => {
   const SelectBox = styled(Select).attrs({
     classNamePrefix: 'react-select',
   })`
@@ -58,18 +58,19 @@ const CustomSelect = () => {
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
+    onSelectChange(selectedOption);
   };
+  console.log(selectedOption);
 
   return(
     <div className="free-select">
       <SelectBox
-        value={selectedOption}
+        value={selectedOption || options[0]} //선택된 옵션이 없을 경우 배열의 첫번째를 기본값으로
         onChange={handleChange}
         options={options}
       />
     </div>
   );
 };
-
 
 export default CustomSelect;
