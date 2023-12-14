@@ -34,7 +34,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -843,7 +843,8 @@ h6 {
   justify-content: space-between;
 }
 .today-card-big .weather .weather-icon {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 60px;
 }
 

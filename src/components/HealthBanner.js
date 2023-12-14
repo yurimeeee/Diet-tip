@@ -1,5 +1,4 @@
 import React, { useEffect, useState} from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 function HealthBanner() {
@@ -8,7 +7,7 @@ function HealthBanner() {
 
 	useEffect(() => {
 
-		const params = {
+	const params = {
       key: 'AIzaSyC_NLQDH12JUt7zJDLMLnxhfYzJsnH-fVA',
       q: "하루스트레칭",
       part: "snippet",

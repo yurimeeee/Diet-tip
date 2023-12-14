@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import Kakao from "../components/Kakao";
 import axios from "axios";
+import LevelCont from "../components/LevelCont";
 
 
 function Health(){
@@ -20,7 +21,7 @@ function Health(){
 
 		const params = {
       key: 'AIzaSyC_NLQDH12JUt7zJDLMLnxhfYzJsnH-fVA',
-      q: "하루스트레칭",
+      q: "dnsehd",
       part: "snippet",
       type: "video",
       maxResults: 10,
@@ -46,12 +47,13 @@ function Health(){
   return (
     <>
       <div className="container">
-        <HealthBanner/>
-        <div className="healthLevel">
+        <HealthBanner className="mg-t1"/>
+        <div className="healthLevel mg-t3">
           <h2 className="sectionTitle tt4">나에게 딱 맞는 운동을 만나보세요!</h2>
           <div className="levels df jcc aic">
             <HealthLevel/>
           </div>
+            <LevelCont/>
         </div>
       </div>
       <div className="recomSlide">

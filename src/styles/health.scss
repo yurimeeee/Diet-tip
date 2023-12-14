@@ -1,5 +1,14 @@
 @import "common";
 
+.recomSlide, 
+.healthLevel,
+.map{
+	text-align: center;
+	width: 100%;
+	height: 100vh;
+	margin-top: 120px;
+}
+
 .bannerWrap{
 	background-color: #fff;
 	border-radius: 20px;
@@ -51,15 +60,30 @@
 	}
 }
 
+// HealthLevel
+
 .levels{
 	width:80%;
-	margin: 0 auto;
+	height:50%;
+	margin: 72px auto;
+	gap:50px;
 }
 
 .level{
-	width:30%;
+	height:100%;
+	width:20%;
+	text-align: center;
 	img{
-		width: 25%;
+		width: 45%;
+	}
+	h2{
+		color:$point-2;
+		font-size:$font-20;
+		font-weight: bold;
+		margin: 17px 0;
+	}
+	button{
+		margin-top: 17px;
 	}
 }
 
@@ -67,6 +91,10 @@
 .sectionTitle{
 	color: $point-1;
 	font-weight: bold;
+}
+
+.LevelCont{
+	width: 100%;
 }
 
 
@@ -92,6 +120,7 @@ body {
 .swiper {
   width: 100%;
   height: 100%;
+
 }
 
 .swiper-slide {
@@ -135,3 +164,5 @@ body {
   margin: 0 10px;
   font-size: 13px;
 }
+
+//map

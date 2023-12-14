@@ -28,7 +28,7 @@ const HealthLevel = () => {
     level.map((data) => (
       <div className="level jcc aic">    
           <img src={data.img}/>
-          <h2>{data.title}</h2>
+          <h2 className="day">{data.title}</h2>
           <p>{data.subtitle}</p>
         <button type="button" className="w-red-btn">시작하기</button>
       </div>

@@ -35,7 +35,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -769,7 +769,8 @@ body {
   font-size: 16px;
   line-height: 48px;
 }
-.meal .calories-table thead {
+
+.calories-table thead {
   border-radius: 4px;
   background: rgba(208, 208, 208, 0.3);
 }
@@ -782,19 +783,25 @@ body {
   height: 48px;
   border-bottom: 1px solid #ccc;
 }
-.meal table {
+
+/* 테이블 스타일 설정 */
+table {
   width: 100%;
   border-collapse: collapse;
 }
-.meal td:nth-child(1) {
+
+/* 각 열의 너비 설정 */
+td:nth-child(1) {
   width: 10%;
   text-align: center;
 }
-.meal td:nth-child(2) {
+
+td:nth-child(2) {
   width: 60%;
 }
-.meal td:nth-child(3),
-.meal td:nth-child(4) {
+
+td:nth-child(3),
+td:nth-child(4) {
   width: 15%;
   text-align: center;
 }
@@ -814,88 +821,103 @@ nav.pagination {
   border-radius: 20px;
   box-sizing: border-box;
 }
-.meal .head-banner p {
+.head-banner p {
   font-size: 20px;
   margin: 50px 0 16px;
 }
-.meal .head-banner h2 {
-  font-size: 52px;
-  font-weight: 700;
-  margin-bottom: 20px;
+.head-banner .calories-table thead {
+  border-radius: 4px;
+  background: rgba(208, 208, 208, 0.3);
 }
-.meal .head-banner h3 {
+.head-banner h3 {
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 30px;
 }
-.meal .banner-img {
+
+.banner-img {
   width: 485px;
   height: 336px;
 }
-.meal .container {
+
+.container {
   width: 1320px;
   margin: 0 auto;
   box-sizing: border-box;
 }
-.meal .search-bar {
+
+.search-bar {
   display: flex;
   justify-content: end;
+  /* 테이블 스타일 설정 */
+  /* 각 열의 너비 설정 */
 }
-.meal .search-bar form {
+.search-bar form {
   width: 648px;
   height: 48px;
-  border-radius: 100px;
-  border: 1px solid #32a061;
+}
+.search-bar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.search-bar td:nth-child(1) {
+  width: 10%;
+  text-align: center;
+}
+.search-bar td:nth-child(2) {
+  width: 60%;
+}
+.search-bar td:nth-child(3),
+.search-bar td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+.search-bar .head-banner {
+  background: #fff;
+  height: 432px;
   display: flex;
-  padding: 14px 20px;
+  justify-content: space-between;
+  padding: 48px 112px;
+  border-radius: 20px;
   box-sizing: border-box;
-  margin: 72px 0 40px;
 }
-.meal .search-bar input {
-  flex: 1;
-  line-height: 32px;
-  font-size: 16px;
+.search-bar .head-banner p {
+  font-size: 20px;
+  margin: 50px 0 16px;
 }
-.meal .search-bar input,
-.meal .search-bar button {
-  border: none;
-  background: none;
-}
-.meal .search-bar input:focus,
-.meal .search-bar button:focus {
-  outline: none;
-}
-.meal .recom-list {
+
+.recom-list {
   width: 100%;
   height: 336px;
   padding: 48px;
   box-sizing: border-box;
 }
-.meal .recom-list h3 {
+.recom-list h3 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 16px;
 }
-.meal .recom-list p {
+.recom-list p {
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 48px;
 }
-.meal .recom-list .swiper {
+
+.recom-list .swiper {
   width: 840px;
   height: 240px;
 }
-.meal .recom-list .swiper span {
+.recom-list .swiper span {
   display: inline-block;
   font-style: 14px;
   color: #495057;
   margin-top: 6px;
   position: relative;
 }
-.meal .recom-list .swiper .recom-name {
+.recom-list .swiper .recom-name {
   margin-right: 20px;
 }
-.meal .recom-list .swiper .recom-name::after {
+.recom-list .swiper .recom-name::after {
   content: "";
   width: 2px;
   height: 14px;
@@ -906,17 +928,9 @@ nav.pagination {
   left: 100%;
   margin-left: 8px;
 }
-.meal .recom-list .swiper .recom-wrap {
+.recom-list .swiper .recom-wrap {
   position: relative;
 }
-.meal .recom-list .swiper .recom-wrap:hover .recom-desc {
-  opacity: 1;
-}
-.meal .recom-list .swiper .recom-wrap:hover img {
-  filter: blur(7px);
-  -webkit-filter: blur(7px);
-}
-
 .recom-list .swiper .recom-wrap > div {
   width: 100%;
   height: 100%;
@@ -925,7 +939,8 @@ nav.pagination {
 .recom-list .swiper .recom-wrap > div img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   vertical-align: bottom;
 }
 .recom-list .swiper .recom-wrap > div .recom-desc {
@@ -959,12 +974,14 @@ nav.pagination {
   font-weight: 500;
   margin-bottom: 30px;
 }
-.meal .meal-post-wrap {
+
+.meal-post-wrap {
   display: flex;
   justify-content: space-between;
   margin-bottom: 72px;
 }
-.meal .meal-card {
+
+.meal-card {
   width: 312px;
   position: relative;
 }
@@ -981,7 +998,7 @@ nav.pagination {
   color: rgba(255, 255, 255, 0.85);
   transition: 0.5s;
 }
-.meal .meal-card .meal-img {
+.meal-card .meal-img {
   width: 100%;
   height: 312px;
   -o-object-fit: cover;
@@ -1004,74 +1021,85 @@ nav.pagination {
 .today-meal .meal-card:nth-child(5n) {
   margin-right: 0;
 }
-.meal .today-meal .meal-card .meal-img {
+.today-meal .meal-card .meal-img {
   width: 100%;
   height: 246px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.meal .meal-info {
+
+.meal-info {
   color: #495057;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
 }
-.meal .meal-info img {
+.meal-info img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   margin-right: 10px;
 }
-.meal .meal-info .meal-user {
+.meal-info .meal-user {
   font-size: 16px;
   font-weight: 500;
 }
-.meal .meal-info .like-reply-wrap {
+.meal-info .like-reply-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.meal .meal-info .like-reply-wrap svg {
+.meal-info .like-reply-wrap svg {
   margin-right: 10px;
 }
-.meal .meal-info .like-reply-wrap span {
+.meal-info .like-reply-wrap span {
   line-height: 16px;
   font-size: 16px;
   font-weight: 700;
+  margin-bottom: 20px;
 }
-.meal .hashtag {
+.meal-info .like-reply-wrap h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hashtag {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
 }
-.meal .meal-create {
+
+.meal-create {
   padding: 20px 75px;
   background: #fff;
   margin-top: 30px;
 }
-.meal .meal-create img {
+.meal-create img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
-.meal .meal-create textarea {
+.meal-create textarea {
   width: 100%;
   resize: none;
   border: none;
   margin-left: 50px;
 }
-.meal .meal-create textarea:focus {
+.meal-create textarea:focus {
   outline: none;
 }
-.meal .tag-wrap {
+
+.tag-wrap {
   display: flex;
   gap: 16px;
   margin-bottom: 16px;
   margin-left: 50px;
 }
-.meal .tag-input {
+
+.tag-input {
   width: 240px;
   height: 30px;
   border-radius: 4px;
@@ -1080,14 +1108,15 @@ nav.pagination {
   background: rgba(228, 228, 228, 0.3);
   color: #495057;
 }
-.meal .tag-input:focus {
+.tag-input:focus {
   outline: none;
 }
-.meal .form-tag-wrap {
+
+.form-tag-wrap {
   display: flex;
   gap: 10px;
 }
-.meal .form-tag-wrap div {
+.form-tag-wrap div {
   position: relative;
 }
 .form-tag-wrap div .tag-del {
@@ -1104,10 +1133,12 @@ nav.pagination {
   align-items: center;
   box-shadow: 0px 5px 12.5px 0px rgba(0, 0, 0, 0.42);
 }
-.meal .hidden {
+
+.hidden {
   display: none;
 }
-.meal .utility {
+
+.utility {
   color: #32a061;
   display: flex;
   gap: 16px;
@@ -1127,11 +1158,13 @@ hr {
   border: 1px solid #f2f3f5;
   margin-bottom: 15px;
 }
-.meal .form-btns {
+
+.form-btns {
   display: flex;
   gap: 12px;
 }
-.meal .cancel-confirm {
+
+.cancel-confirm {
   position: absolute;
   top: 300px;
   margin: 0 auto;
@@ -1146,16 +1179,17 @@ hr {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 35px 0px;
   text-align: center;
 }
-.meal .cancel-confirm h2 {
+.cancel-confirm h2 {
   margin-bottom: 32px;
 }
-.meal .cancel-confirm .modal-btn {
+.cancel-confirm .modal-btn {
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
 }
-.meal .modal-overlay {
+
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1176,7 +1210,8 @@ hr {
   display: flex;
   z-index: 1000;
 }
-.meal .meal-view {
+
+.meal-view {
   background: #fff;
   border-radius: 12px;
   width: 960px;
@@ -1190,71 +1225,194 @@ hr {
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.25);
+  /* weekly */
 }
-.meal .meal-view > div:first-child {
+.meal-view > div:first-child {
   border-right: 1px solid #dadada;
   padding: 0 20px;
 }
-.meal .meal-view > div {
+.meal-view > div {
   width: 50%;
   box-sizing: border-box;
 }
-.meal .meal-view > div .meal-img {
-  width: 440px;
-  height: 440px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.meal-view .search-bar {
+  display: flex;
+  justify-content: end;
 }
-.meal .meal-view > div .meal-info {
-  margin-bottom: 10px;
+.meal-view .search-bar form {
+  width: 648px;
+  height: 48px;
+  border-radius: 100px;
+  border: 1px solid #32a061;
+  display: flex;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  margin: 72px 0 40px;
 }
-.meal .meal-view > div .meal-info img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 16px;
+.meal-view .search-bar input {
+  flex: 1;
+  line-height: 32px;
+  font-size: 16px;
 }
-.meal .meal-view > div .meal-info .meal-user {
-  font-size: 18px;
-  font-weight: 500;
+.meal-view .search-bar input,
+.meal-view .search-bar button {
+  border: none;
+  background: none;
 }
-.meal .meal-view .reply-wrap {
+.meal-view .search-bar input:focus,
+.meal-view .search-bar button:focus {
+  outline: none;
+}
+.meal-view .reply-wrap {
   height: calc(100% - 40px);
 }
-.meal .meal-view .reply-wrap .meal-info {
+.meal-view .reply-wrap .meal-info {
   border-bottom: 1px solid #dadada;
   padding: 0 20px 10px 10px;
   margin-bottom: 0;
 }
-.meal .meal-view .reply-wrap .meal-info P {
+.meal-view .reply-wrap .meal-info P {
   margin-right: 8px;
 }
-.meal .meal-view .reply-wrap .meal-info > div {
+.meal-view .reply-wrap .meal-info .recom-desc {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  top: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+  opacity: 0;
+  transition: 0.4s;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.446);
 }
-.meal .meal-view .reply-wrap .level-badge {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+.meal-view .weekly-wrap {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
 }
-.meal .meal-view .reply-wrap .reply-img {
+.meal-view .daylist {
+  margin: 0 2px;
+  width: 45px;
+  padding: 15px 0;
+  border-radius: 46px;
+  transition: 0.3s;
+  text-align: center;
+}
+.meal-view .daylist .weak {
+  color: #9da1a6;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.meal-view .daylist .day {
+  font-weight: 600;
+}
+.meal-view .daylist .Sat {
+  color: rgb(64, 82, 129);
+}
+.meal-view .daylist .Sun {
+  color: #f46b2a;
+}
+.meal-view .daylist:hover {
+  background: #5ac479;
+  color: #ebf4ff;
+}
+.meal-view .daylist:hover .weak,
+.meal-view .daylist:hover .day {
+  color: #fff;
+}
+.meal-view .daylist:hover .Sat {
+  color: #ebf4ff;
+}
+.meal-view .daylist:hover .Sun {
+  color: #ff6363;
+}
+.meal-view .daylist.today {
+  border: 1.8px solid #32a061;
+}
+.meal-view .week-btns {
+  /* position: absolute; */
+  top: 50%;
+}
+.meal-view .week-btns button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(34, 72, 97, 0.5176470588);
+}
+.meal-view .prev {
+  left: -22px;
+}
+.meal-view .next {
+  right: -22px;
+}
+.meal-view .Calendar {
+  margin: 72px 0 30px;
+}
+.meal-view .calendarChange {
+  font-size: 14px;
+  gap: 5px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.meal-view .sec-tt {
+  color: #495057;
+  font-size: 20px;
+  font-weight: 500;
+}
+.meal-view .meal-post-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.meal-view .meal-card {
+  width: 312px;
+}
+.meal-view .meal-card .meal-img {
+  width: 100%;
+  height: 312px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.meal-view .today-meal .meal-card {
+  width: 246px;
+}
+.meal-view .today-meal .meal-card .meal-img {
+  width: 100%;
+  height: 246px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.meal-view .meal-info {
+  color: #495057;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.meal-view .meal-info img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  margin-right: 10px;
 }
-.meal .meal-view .reply-wrap .reply-box {
+.meal-view .meal-info .reply-box {
   height: calc(100% - 24px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
 }
-.meal-view .reply-wrap .reply-box > div > ul {
+.meal-view .meal-info .reply-box > div > ul {
   height: 560px;
   overflow-y: scroll;
 }
-.meal-view .reply-wrap .reply-box > div > ul::after {
+.meal-view .meal-info .reply-box > div > ul::after {
   content: "";
   display: block;
   width: 100%;
@@ -1267,26 +1425,24 @@ hr {
   background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 95%, rgb(255, 255, 255) 100%);
   pointer-events: none;
 }
-.meal .meal-view .reply-wrap .reply {
-  color: #495057;
+.meal-view .meal-info .like-reply-wrap {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 20px 10px 10px;
 }
-.meal .meal-view .reply-wrap .reply > div {
+.meal-view .meal-info .like-reply-wrap > div {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.meal-view .reply-wrap .add-nested-reply {
+.meal-view .meal-info .add-nested-reply {
   font-size: 13px;
   color: #9da1a6;
   margin-left: 65px;
   margin-top: -10px;
   margin-bottom: 10px;
 }
-.meal-view .reply-wrap .nested-replys {
+.meal-view .meal-info .nested-replys {
   margin-left: 40px;
 }
 .meal-view .hashtag {
@@ -1302,10 +1458,13 @@ hr {
   padding: 20px 20px 0 10px;
   position: relative;
 }
-.meal .add-reply input {
+.add-reply input {
   border: none;
+  padding: 0 10px;
+  background: rgba(228, 228, 228, 0.3);
+  color: #495057;
 }
-.meal .add-reply input:focus {
+.add-reply input:focus {
   outline: none;
 }
 .add-reply .reply-to {
@@ -1323,6 +1482,153 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.add-reply .hidden {
+  display: none;
+}
+.add-reply .utility {
+  color: #32a061;
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+}
+.add-reply .utility svg {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.add-reply hr {
+  border: 1px solid #f2f3f5;
+  margin-bottom: 15px;
+}
+.add-reply .form-btns {
+  display: flex;
+  gap: 12px;
+}
+.add-reply .cancel-confirm {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  transform: -50%;
+  background: #fff;
+  width: 240px;
+  height: 160px;
+  padding: 48px 0 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 35px 0px;
+  text-align: center;
+}
+.add-reply .cancel-confirm h2 {
+  margin-bottom: 32px;
+}
+.add-reply .cancel-confirm .modal-btn {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.add-reply .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(94, 94, 94, 0.25);
+  display: flex;
+}
+.add-reply .meal-view {
+  background: #fff;
+  border-radius: 12px;
+  width: 960px;
+  height: 787px;
+  box-sizing: border-box;
+  padding: 20px 0;
+}
+.add-reply .meal-view > div:first-child {
+  border-right: 1px solid #dadada;
+  padding: 0 20px;
+}
+.add-reply .meal-view > div {
+  width: 50%;
+  box-sizing: border-box;
+}
+.add-reply .meal-view > div .meal-img {
+  width: 440px;
+  height: 440px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.add-reply .meal-view > div .meal-info {
+  margin-bottom: 10px;
+}
+.add-reply .meal-view > div .meal-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+.add-reply .meal-view > div .meal-info .meal-user {
+  font-size: 18px;
+  font-weight: 500;
+}
+.add-reply .meal-view .reply-wrap {
+  height: calc(100% - 40px);
+}
+.add-reply .meal-view .reply-wrap .meal-info {
+  border-bottom: 1px solid #dadada;
+  padding: 0 20px 10px 10px;
+}
+.add-reply .meal-view .reply-wrap .meal-info P {
+  margin-right: 8px;
+}
+.add-reply .meal-view .reply-wrap .meal-info > div {
+  display: flex;
+  align-items: center;
+}
+.add-reply .meal-view .reply-wrap .level-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.add-reply .meal-view .reply-wrap .reply-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.add-reply .meal-view .reply-wrap .reply-box {
+  height: calc(100% - 24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.add-reply .meal-view .reply-wrap .reply {
+  color: #495057;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 10px 10px;
+}
+.add-reply .meal-view .reply-wrap .reply > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.add-reply .add-reply {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #dadada;
+  padding-top: 20px;
+  padding: 20px 20px 0 10px;
+}
+.add-reply .add-reply input {
+  border: none;
+}
+.add-reply .add-reply input:focus {
+  outline: none;
+}
+.add-reply .add-reply > div {
+  display: flex;
+  gap: 8px;
 }
 
 .btn-wraps {

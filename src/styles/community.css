@@ -669,4 +669,295 @@ body {
   position: absolute;
   bottom: 0;
   margin-bottom: 0px;
-}/*# sourceMappingURL=common.css.map */
+}
+
+.Community .hidden {
+  display: none;
+}
+.Community .show {
+  display: block;
+}
+.Community .bold {
+  font-weight: bold;
+}
+.Community .pd {
+  padding: 48px 0;
+}
+.Community .mg-t1 {
+  margin-top: 24px;
+}
+.Community .mg-t2 {
+  margin-top: 48px;
+}
+.Community .mg-t3 {
+  margin-top: 72px;
+}
+.Community .mg-r1 {
+  margin-right: 5px;
+}
+.Community .icon-sm {
+  width: 15px;
+}
+.Community img {
+  display: inline-block;
+}
+.Community a {
+  color: #000;
+  display: block;
+}
+.Community a:hover {
+  font-weight: bold;
+}
+.Community input {
+  border: none;
+  font-family: "Pretendard-Regular";
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.Community input:focus {
+  outline: none;
+}
+.Community input:focus::-moz-placeholder {
+  color: transparent;
+}
+.Community input:focus::placeholder {
+  color: transparent;
+}
+.Community table {
+  width: 100%;
+  text-align: center;
+}
+.Community table .link {
+  text-align: left;
+}
+.Community table th, .Community table td {
+  padding: 15px 0;
+}
+.Community table tr {
+  background: #fff;
+  border-bottom: 1px solid #dcdbdb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 24px;
+}
+.Community table tr:first-child {
+  border-top: 1px solid #dcdbdb;
+}
+
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.search {
+  position: relative;
+}
+.search input {
+  border-radius: 50px;
+  padding: 15px 50px;
+  width: 100%;
+}
+.search input:focus {
+  box-shadow: 0px 0px 0px 5px rgba(148, 223, 182, 0.35);
+  transition: 0.3s;
+}
+.search button {
+  position: absolute;
+  left: 15px;
+  bottom: 13px;
+  font-size: 20px;
+}
+
+.pagination {
+  text-align: center;
+}
+
+/* Free Board */
+.fb-banner img {
+  margin-right: 112px;
+  height: 190px;
+}
+
+.fb-banner-content {
+  width: 50%;
+}
+
+.free-select {
+  position: relative;
+  width: 100px;
+  padding: 5px 15px;
+  border-radius: 66px;
+  border: 1px solid #32a061;
+  text-align: center;
+}
+.free-select ul {
+  position: absolute;
+  width: 100%;
+  top: 30px;
+  left: 0;
+  border-radius: 66px;
+  border: 1px solid #32a061;
+  cursor: pointer;
+}
+.free-select ul li {
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.news-box {
+  width: 50%;
+  background: #fff;
+  padding: 24px;
+  gap: 24px;
+}
+.news-box img {
+  width: 25%;
+  border-radius: 10px;
+  /* object-fit: cover; */
+}
+
+.news-md {
+  margin: 10px 0 20px 0;
+}
+
+.free-td-1,
+.free-td-2,
+.free-td-6,
+.free-td-7 {
+  flex: 1;
+}
+
+.free-td-4,
+.free-td-5 {
+  flex: 1.5;
+}
+
+.free-td-3 {
+  flex: 10;
+}
+
+/* Q&A */
+.top-posts {
+  padding: 24px;
+  width: 37%;
+}
+
+.posts-box {
+  margin-top: 16px;
+  flex-direction: column;
+  gap: 4px;
+}
+.posts-box p {
+  background: #fff;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.qna-category {
+  background: #fff;
+  font-size: 1rem;
+  border-radius: 60px;
+  padding: 13px 20px;
+  color: #32a061;
+  font-weight: bold;
+  border: none;
+  opacity: 1;
+}
+
+table.pna-list img {
+  width: 30px;
+}
+
+.qna-td-1 {
+  flex: 1;
+}
+
+.qna-td-2,
+.qna-td-6,
+.qna-td-7,
+.qna-td-8 {
+  flex: 1.5;
+}
+
+.qna-td-5 {
+  flex: 2;
+}
+
+.qna-td-4 {
+  flex: 3;
+}
+
+.qna-td-3 {
+  flex: 12;
+  text-align: left;
+}
+
+/* Q&A Detail */
+.q-card {
+  background: #fff;
+  padding: 48px;
+  gap: 24px;
+}
+.q-card img {
+  height: 50px;
+}
+
+.q-content {
+  flex-direction: column;
+}
+
+.q-tt {
+  margin-top: 13px;
+}
+
+.q-info {
+  margin: 24px 0 36px 0;
+  gap: 24px;
+}
+.q-info img {
+  display: inline;
+}
+
+.reply-form {
+  position: relative;
+}
+.reply-form #reply {
+  padding: 24px 48px;
+  border-radius: 20px;
+  width: 100%;
+}
+.reply-form button {
+  position: absolute;
+  right: 48px;
+  bottom: 22px;
+  font-size: 20px;
+}
+
+.a-frame {
+  flex-direction: column;
+  align-items: flex-end;
+}
+.a-frame .a-box {
+  width: 90%;
+  flex-direction: column;
+  gap: 24px;
+}
+.a-frame .a-tt {
+  margin-left: 36px;
+  align-items: center;
+  gap: 10px;
+}
+.a-frame .a-tt img {
+  width: 24px;
+}
+.a-frame .a-card {
+  background: #fffeec;
+  padding: 36px;
+  gap: 24px;
+}
+.a-frame .a-card img {
+  height: 40px;
+}/*# sourceMappingURL=community.css.map */
