@@ -46,6 +46,16 @@ const Calories = () => {
   const [clickedIdx, setClickedIdx] = useState("");
   const [clickedData, setClickedData] = useState(calories_DB[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  //인풋 포커스
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
 
   //식품 정보 불러오기
   useEffect(() => {
@@ -162,12 +172,17 @@ const Calories = () => {
     <div className="container">
       <TitleBanner />
       <div className="search-bar">
-        <form onSubmit={handleSearch}>
+        <form
+          onSubmit={handleSearch}
+          className={isInputFocused ? "active" : ""}
+        >
           <input
             type="text"
             placeholder="검색어를 입력해주세요."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
           />
           <button>
             <svg

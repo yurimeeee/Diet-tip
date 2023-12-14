@@ -73,7 +73,7 @@ function Kakao(){
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     function placesSearchCB (data, status, pagination) {
       const ps = new kakao.maps.services.Places(); 
-      ps.keywordSearch('강서구 헬스장', placesSearchCB); 
+      ps.keywordSearch('운동', placesSearchCB); 
 
       if (status === kakao.maps.services.Status.OK) {
 

@@ -130,9 +130,7 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
           </h3>
         </div>
 
-        <p className="m-gray-btn" onClick={closeModal}>
-          닫기
-        </p>
+        <div className="modal-close" onClick={closeModal}></div>
       </div>
       <div className="modal-overlay" onClick={closeModal}></div>
     </div>
