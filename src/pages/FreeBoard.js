@@ -12,7 +12,6 @@ import CustomSelect from "../components/CustomSelect";
 import News from "../components/News";
 import freeBoard_data from "../data/freeBoard_data.json"
 
-
 const FreeBoard = () => {
 
   const FreeBoardList = freeBoard_data;
@@ -20,13 +19,31 @@ const FreeBoard = () => {
   const [ sortedData, setSortedData ] = useState(
     FreeBoardList.sort((a, b) => b.id - a.id).slice(0, itemsPerPage)
   );
-  const [totalFilteredItems, setTotalFilteredItems] = useState(FreeBoardList.length);
+  const [ totalFilteredItems, setTotalFilteredItems ] = useState(FreeBoardList.length);
   const levelImg = {
     '1': level_1, 
     '2': level_2, 
     '3': level_3,
   };
 
+  //검색
+  const [ search, setSearch ] = useState('');
+  const onChangeSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value); //input value로 들어온 검색어 가져오기
+  };
+  const onSearch = (e) => {
+    e.preventDefault();
+    const filteredData = FreeBoardList.filter((item) => 
+      item.title.toLowerCase().includes(search.toLowerCase()) ||
+      item.content.toLowerCase().includes(search.toLowerCase())
+    );
+
+    //검색된 결과를 정렬 후 상위 20개 데이터로 업데이트
+    setSortedData(filteredData.sort((a,b) => b.id - a.id).slice(0, itemsPerPage));
+    setTotalFilteredItems(filteredData.length);
+    setCurrentPage(1);
+  }
   
   //페이지네이션
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -82,11 +99,11 @@ const FreeBoard = () => {
           <div className="fb-banner-content">
             <h2 className="tt4 bold white">자유게시판</h2>
             <p className="tt2 bold white mg-t1">경험, 정보, 후기! 무엇이든 자유롭게 공유해보세요!</p>
-            <form className="mg-t2 search">
+            <form className="mg-t2 search" onSubmit={e => onSearch(e)}>
               <button type="submit" className="point-1">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
-              <input type="text" placeholder="검색어를 입력해주세요." />
+              <input type="text" value={search} onChange={onChangeSearch} placeholder="검색어를 입력해주세요." />
             </form>
           </div>
           <img src={Banner} alt="" />
