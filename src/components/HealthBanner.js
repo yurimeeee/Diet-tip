@@ -3,34 +3,34 @@ import axios from "axios";
 
 function HealthBanner() {
 	const [playlist, setPlaylist] = useState([]);
-	const url = "https://www.youtube.com/watch?v="
+  const url = "https://www.youtube.com/watch?v="
 
-	useEffect(() => {
+  useEffect(() => {
 
-	const params = {
-      key: 'AIzaSyC_NLQDH12JUt7zJDLMLnxhfYzJsnH-fVA',
+  const params = {
+      key: process.env.REACT_APP_YOUTUBE_API_KEY,
       q: "하루스트레칭",
       part: "snippet",
       type: "video",
       maxResults: 1,
       fields: "items(id,etag, snippet(title,thumbnails,description))",
       videoEmbeddable: true,
-    };
+  };
 
-		axios
-			.get(
-				`https://www.googleapis.com/youtube/v3/search`,{params}
-			)
-			.then((res) => { //성공했을 때
-				console.log(res);
-				setPlaylist(res.data.items);
-			})
-			.catch((err) => { //실패했을 때
-				console.log(err);
-			});
-	}, []);
+  axios
+    .get(
+      `https://www.googleapis.com/youtube/v3/search`,{params}
+    )
+    .then((res) => { //성공했을 때
+      console.log(res);
+      setPlaylist(res.data.items);
+    })
+    .catch((err) => { //실패했을 때
+      console.log(err);
+    });
+  }, []);
 
-	console.log(playlist);
+  console.log(playlist);
 
 	return(
 		<div className="container">

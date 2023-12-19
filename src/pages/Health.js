@@ -7,9 +7,10 @@ import "../styles/health.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Pagination } from "swiper/modules";
-// import Kakao from "../components/Kakao";
+import Kakao from "../components/Kakao";
 import axios from "axios";
 import LevelCont from "../components/LevelCont";
+
 
 function Health() {
   const [playlist, setPlaylist] = useState([]);
@@ -17,7 +18,7 @@ function Health() {
 
   useEffect(() => {
     const params = {
-      key: "AIzaSyC_NLQDH12JUt7zJDLMLnxhfYzJsnH-fVA",
+      key: process.env.REACT_APP_YOUTUBE_API_KEY,
       q: "하루스트레칭",
       part: "snippet",
       type: "video",
@@ -60,8 +61,6 @@ function Health() {
           아직도 운동을 시작하지 못했다면?
         </h2>
         <p>다이어팁이 추천하는 운동 유튜버와 함께 운동 루틴을 만들어보세요!</p>
-        {playlist.map((data) => {
-          return (
             <div className="healthSlides">
               <Swiper
                 slidesPerView={5}
@@ -71,7 +70,9 @@ function Health() {
                 }}
                 modules={[Pagination]}
                 className="mySwiper"
-              >
+                >
+                {playlist.map((data) => {
+                  return (
                 <SwiperSlide>
                   <div className="jcc aic">
                     <img src={data.snippet.title} className="recomImg" />
@@ -87,18 +88,18 @@ function Health() {
                     </div>
                   </div>
                 </SwiperSlide>
+                );
+                })}
               </Swiper>
             </div>
-          );
-        })}
-      </div>
+        </div>
       <div className="map container">
         <h2 className="sectionTitle tt4 jcc">우리동네 운동맛집</h2>
         <p>
           내 주변 가까운 운동시설을 확인해보고 오늘부터 운동을 시작해보세요!
         </p>
         <input type="text" />
-        {/* <Kakao/> */}
+        <Kakao/>
       </div>
       <div></div>
     </>

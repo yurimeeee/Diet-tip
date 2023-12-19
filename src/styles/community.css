@@ -9,6 +9,10 @@ a {
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
+.mb-5 {
+  margin-bottom: 120px;
+}
+
 /* Variables end.*/
 body {
   font: 100% "Pretendard Variable";
@@ -399,7 +403,7 @@ body {
 }
 
 header {
-  padding: 72px 0;
+  padding: 48px 0;
 }
 header div {
   position: relative;
@@ -786,57 +790,74 @@ button {
 }
 
 .free-select {
-  position: relative;
-  width: 100px;
-  padding: 5px 15px;
-  border-radius: 66px;
-  border: 1px solid #32a061;
-  text-align: center;
+  margin-right: 16px;
 }
-.free-select ul {
-  position: absolute;
-  width: 100%;
-  top: 30px;
-  left: 0;
-  border-radius: 66px;
-  border: 1px solid #32a061;
-  cursor: pointer;
+.free-select input {
+  caret-color: transparent;
 }
-.free-select ul li {
-  padding: 5px 15px;
-  cursor: pointer;
+.free-select .css-1fdsijx-ValueContainer {
+  padding: 2px 0px 2px 15px;
+}
+.free-select .css-1u9des2-indicatorSeparator {
+  display: none;
+}
+.free-select svg {
+  color: #32a061;
 }
 
-.news-box {
-  width: 50%;
+.news-frame {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.news-frame .news-box {
+  width: 45.4%;
   background: #fff;
   padding: 24px;
   gap: 24px;
 }
-.news-box img {
+.news-frame .news-box img {
   width: 25%;
   border-radius: 10px;
   /* object-fit: cover; */
 }
-
-.news-md {
+.news-frame .news-date {
   margin: 10px 0 20px 0;
 }
+.news-frame .news-category ul li {
+  cursor: pointer;
+}
+.news-frame .news-category ul li .active, .news-frame .news-category ul li:hover {
+  font-weight: bold;
+}
+.news-frame .news-category ul li .active::after, .news-frame .news-category ul li:hover::after {
+  font-weight: normal;
+}
+.news-frame .news-category ul li:not(:last-child)::after {
+  content: "|";
+  padding: 0 16px;
+  color: #9da1a6;
+}
 
-.free-td-1,
-.free-td-2,
-.free-td-6,
-.free-td-7 {
+.free-td-1 {
   flex: 1;
 }
 
-.free-td-4,
+.free-td-6,
+.free-td-7 {
+  flex: 1.2;
+}
+
+.free-td-2,
 .free-td-5 {
   flex: 1.5;
 }
 
+.free-td-4 {
+  flex: 2;
+}
+
 .free-td-3 {
-  flex: 10;
+  flex: 9;
 }
 
 /* Q&A */

@@ -9,6 +9,10 @@ a {
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
+.mb-5 {
+  margin-bottom: 120px;
+}
+
 /* Variables end.*/
 body {
   font: 100% "Pretendard Variable";
@@ -703,6 +707,10 @@ a.login-btn:hover {
   background-color: transparent;
   border-radius: 24px;
   margin-bottom: 10px;
+}
+.Signin form input::-moz-placeholder, .Login form input::-moz-placeholder {
+  color: #32a061;
+  opacity: 0.5;
 }
 .Signin form input::placeholder, .Login form input::placeholder {
   color: #32a061;
