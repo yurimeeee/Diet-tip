@@ -900,4 +900,67 @@ h6 {
   transform: translateX(100%);
 }
 
+.Alert {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+}
+.Alert section + section {
+  margin-top: 0;
+}
+.Alert .maintt {
+  text-align: center;
+}
+.Alert .alert-board {
+  width: 648px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 48px;
+  box-sizing: border-box;
+}
+.Alert .alert-board .post-img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+.Alert .alert-board > p {
+  margin-bottom: 24px;
+}
+.Alert .alert-board p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.Alert .alert-board .reply-text {
+  margin-left: 42px;
+}
+.Alert .alert-board .alert.like, .Alert .alert-board .alert.reply {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.Alert .alert-board .green {
+  background-color: #32a061;
+}
+.Alert .alert-board .red {
+  background-color: #f46b2a;
+}
+.Alert .alert-board .alert.report {
+  display: flex;
+  justify-content: space-between;
+}
+.Alert .alert-board .alert.report .badges {
+  display: flex;
+  gap: 10px;
+}
+.Alert .alert-board .progress {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
 /*# sourceMappingURL=mypage.css.map */

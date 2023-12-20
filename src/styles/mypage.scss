@@ -245,6 +245,73 @@ h6{
   }
 }
 
+//alert page
+.Alert{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  section+section{
+    margin-top: 0;
+  }
+  gap: 20px;
+  .maintt{
+    text-align: center;
+  }
+  .alert-board{
+    width: 648px;
+    background-color: $white;
+    border-radius: 20px;
+    padding: 48px;
+    box-sizing: border-box;
+    .post-img{
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+    }
+    >p{
+      margin-bottom: $unit-1;
+    }
+    p{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+    .reply-text{
+      margin-left: 42px;
+    }
+    .alert.like, .alert.reply{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .green{
+      background-color: $point-1;
+    }
+    .red{
+      background-color: $point-2;
+    }
+    .alert.report{
+      display: flex;
+      justify-content: space-between;
+      .badges{
+        display: flex;
+        gap: 10px;
+      }
+    }
+    .progress{
+      display: flex;
+      justify-content: space-between;
+      margin-top: $unit-1;
+    }
+  }
+
+
+
+}
+
 
 
 

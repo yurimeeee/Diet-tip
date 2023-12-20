@@ -17,8 +17,8 @@ const Mypage = () => {
   const [userName, setUserName] = useState(null);
   const [usetImg, setUsetImg] = useState(null);
 
-  const moveAlam = () => {
-    window.location.replace('/alam');
+  const moveAlert = () => {
+    window.location.replace('/alert');
   }
 
   useEffect(()=>{
@@ -124,7 +124,7 @@ const Mypage = () => {
           <div className='area-middle-top'>
           <h5>{userName}님, 어서오세요.</h5>
             <div className='buttons'>
-              <button type="button" className="button" onClick={moveAlam}>
+              <button type="button" className="button" onClick={moveAlert}>
                 <FontAwesomeIcon icon={faBell} className='icon'/>
               </button>
               <button type="button" className="button">
