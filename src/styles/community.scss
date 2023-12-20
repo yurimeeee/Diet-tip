@@ -217,15 +217,18 @@ button{
 .top-posts{
   padding: 24px;
   width: 37%;
-}
-.posts-box{
-  margin-top: 16px;
-  flex-direction:column;
-  gap: 4px;
-  p{
-    background: $white;
-    padding: 8px;
-    border-radius: 10px;
+  .posts-box{
+    margin-top: 16px;
+    flex-direction:column;
+    gap: 4px;
+    p{
+      background: $white;
+      padding: 8px;
+      border-radius: 10px;
+    }
+    .posts-number{
+      margin-right: 10px;
+    }
   }
 }
 .qna-category{
