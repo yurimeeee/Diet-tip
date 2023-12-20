@@ -135,7 +135,7 @@ const FreeBoard = () => {
               <tr key={index}>
                 <td className="free-td-1">{item.id}</td>
                 <td className="free-td-2 green-4">{item.category}</td>
-                <td className="free-td-3 link"><a href="" className="link">{item.title}</a></td>
+                <td className="free-td-3"><a href="" className="link">{item.title}</a></td>
                 <td className="free-td-4">
                   {item.level && (
                     <>

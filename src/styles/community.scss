@@ -82,7 +82,9 @@
       vertical-align: bottom;
     }
   }
-  
+  .w-green-btn{
+    padding: 9px 15px;
+  }
 }
 button{
   border: none;
@@ -237,13 +239,13 @@ button{
   opacity: 1;
   margin-right: 10px;
 }
-table.pna-list img{
+.pna-list .qna-td-1 img{
   width: 30px;
 }
-.qna-td-1{
+.qna-td-1,
+.qna-td-2{
   flex: 1;
 }
-.qna-td-2,
 .qna-td-6,
 .qna-td-7,
 .qna-td-8{
@@ -256,7 +258,7 @@ table.pna-list img{
   flex: 3;
 }
 .qna-td-3{
-  flex: 12;
+  flex: 10;
   text-align: left;
 }
 
