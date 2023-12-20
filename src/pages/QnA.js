@@ -11,6 +11,7 @@ import level_1 from "../asset/level-1-badge.png";
 import level_2 from "../asset/level-2-badge.png";
 import level_3 from "../asset/level-3-badge.png";
 import PaginationComp from "../components/Pagination";
+import Search from "../components/Search";
 import QnaView from "../components/QnaView";
 
 const QnA = () => {
@@ -110,6 +111,17 @@ const QnA = () => {
     }
   }, [selectedCateData, allData, currentPage, itemsPerPage]);
   
+  // 검색
+  const onSearch = (searchValue) => {
+    const filteredData = allData.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.content.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    
+    // 검색된 결과를 상태에 업데이트
+    setSelectedCateData(filteredData);
+    setCurrentPage(1);
+  };
 
   console.log(allData);
 
@@ -136,12 +148,7 @@ const QnA = () => {
               </div>
               <img src={Banner} alt="" />
             </div>
-            <form className="mg-t1 search">
-              <button type="submit" className="point-1">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-              <input type="text" placeholder="검색어를 입력해주세요." />
-            </form>
+            <Search onSearch={onSearch} />
           </div>
         
           <div className="top-posts bg-green-2 lg-radius sm-shadow">
