@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import App from "../App";
 import HealthBanner from "../components/HealthBanner";
 import HealthLevel from "../components/HealthLevel";
@@ -8,40 +8,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Pagination } from "swiper/modules";
 import Kakao from "../components/Kakao";
-import axios from "axios";
-import LevelCont from "../components/LevelCont";
-import textImg from "../asset/health/testImg.png"
+import youtubeData from "../data/youtubeData.json"
 
 
 function Health() {
-  // const [playlist, setPlaylist] = useState([]);
-  // const url = "https://www.youtube.com/watch?v=";
-
-  // useEffect(() => {
-  //   const params = {
-  //     key: process.env.REACT_APP_YOUTUBE_API_KEY,
-  //     q: "하루스트레칭",
-  //     part: "snippet",
-  //     type: "video",
-  //     maxResults: 10,
-  //     fields: "items(id,etag, snippet(title,thumbnails,description))",
-  //     videoEmbeddable: true,
-  //   };
-
-  //   axios
-  //     .get(`https://www.googleapis.com/youtube/v3/search`, { params })
-  //     .then((res) => {
-  //       //성공했을 때
-  //       console.log(res);
-  //       setPlaylist(res.data.items);
-  //     })
-  //     .catch((err) => {
-  //       //실패했을 때
-  //       console.log(err);
-  //     });
-  // }, []);
-
-  // console.log(playlist);
+  const url = "https://www.youtube.com/"
 
   return (
     <>
@@ -51,10 +22,9 @@ function Health() {
           <h2 className="sectionTitle tt4">
             나에게 딱 맞는 운동을 만나보세요!
           </h2>
-          <div className="levels df jcc aic">
+          <div className="levels">
             <HealthLevel />
           </div>
-            <LevelCont/>
         </div>
       </div>
       <div className="recomSlide">
@@ -72,170 +42,29 @@ function Health() {
                 modules={[Pagination]}
                 className="mySwiper"
                 >
-                {/* {playlist.map((data) => {
-                  return ( */}
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
-                    <h2>{data.snippet.title}</h2>
-                    <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                {/* );
-                })} */}
+                {youtubeData.map((data) => {
+                  return (
+                    <SwiperSlide>
+                      <div className="recomSlide jcc aic">
+                        <div className="recomImg" >
+                        <img src={data.snippet.thumbnails.high.url}/>  
+                        </div>
+                        <h2>{data.snippet.localized.title}</h2>
+                        <h2>{data.snippet.customUrl}</h2>
+                        <div className="channelInfo df jcc">
+                          <p>구독자{data.statistics.subscriberCount}명</p>
+                          <p>영상{data.statistics.videoCount}개</p>
+                        </div>
+                        <div className="df jcc">
+                          <button type="button" className="w-red-btn" 
+                          onClick={()=>{window.open(url + data.snippet.customUrl)}}>
+                            채널보기
+                          </button>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
         </div>
