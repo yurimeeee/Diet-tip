@@ -221,20 +221,21 @@ button{
   flex-direction:column;
   gap: 4px;
   p{
-    background: #fff;
+    background: $white;
     padding: 8px;
     border-radius: 10px;
   }
 }
 .qna-category{
-  background: #fff;
+  background: $white;
   font-size: 1rem;
   border-radius: 60px;
   padding: 13px 20px;
-  color: #32a061;
+  color: $point-1;
   font-weight: bold;
   border: none;
   opacity: 1;
+  margin-right: 10px;
 }
 table.pna-list img{
   width: 30px;
@@ -259,9 +260,9 @@ table.pna-list img{
   text-align: left;
 }
 
-/* Q&A Detail */
+/* Q&A View */
 .q-card{
-  background: #fff;
+  background: $white;
   padding: 48px;
   gap: 24px;
   img{
@@ -314,7 +315,7 @@ table.pna-list img{
     }
   }
   .a-card{
-    background: #fffeec;
+    background: $yellow-2;
     padding: 36px;
     gap: 24px;
     img{
