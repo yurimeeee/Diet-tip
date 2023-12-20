@@ -35,22 +35,27 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [isnestedReplysView, setIsNestedReplysView] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(clickedData.like);
-
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [newPost, setNewPost] = useState(clickedData.text);
+  const [inputHashTag, setInputHashTag] = useState("");
+  const [hashTags, setHashTags] = useState(clickedData.hashTags);
+  // const [hashTags, setHashTags] = useState("");
+  // const [updateHashTags, setUpdateHashTags] = useState(clickedData.hashTags);
+  // const [updateNewPost, setUpdateNewPost] = useState();
   // console.log(clickedData, "clickedData");
 
+  const docRef = doc(db, "meal", clickedData.id);
+
+  let updateTags = [];
   //식단 좋아요
   const handleDoubleClick = async () => {
     setIsLiked(!isLiked);
     if (!isLiked) {
       let newLikeCount = ++clickedData.like;
       setLikeCount(newLikeCount);
-      const docRef = doc(db, "meal", clickedData.id);
-      const updateData = {
-        // like: likeCount,
-        like: newLikeCount,
-      };
+
       try {
-        await updateDoc(docRef, updateData);
+        await updateDoc(docRef, { like: newLikeCount });
         console.log("좋아요 성공:");
       } catch (error) {
         console.error("좋아요 실패:", error);
@@ -90,6 +95,91 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     } finally {
       setIsViewOpen(false);
     }
+  };
+
+  //식단 수정 모드
+  const editModeHandler = () => {
+    setIsEditMode(!isEditMode);
+    setHashTags(clickedData.hashTags);
+    setNewPost(clickedData.text);
+  };
+
+  //해시태그 새로운 값 입력 시 상태 업데이트
+  const handleInputChange = (e) => {
+    setInputHashTag(e.target.value);
+  };
+
+  //식단 수정
+  const updateMealPost = async (e, index) => {
+    e.preventDefault();
+    console.log("수정작동:");
+    console.log(newPost, "newPost");
+    let newnewpost = newPost;
+    let newHashtags = [...hashTags];
+    try {
+      await updateDoc(docRef, { text: newPost, hashTags: newHashtags });
+      console.log("게시물이 성공적으로 수정되었습니다.");
+    } catch (error) {
+      console.error("게시물 수정에 실패했습니다:", error);
+    }
+    setIsEditMode(false);
+
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      let hashTags = data.hashTags || [];
+
+      if (index >= 0 && index < hashTags.length) {
+        hashTags.splice(index, 1);
+      }
+
+      await updateDoc(docRef, {
+        hashTags: hashTags,
+      });
+    }
+  };
+
+  // 해시태그 추가
+  const keyDownHandler = async (e) => {
+    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
+      e.preventDefault();
+      if (inputHashTag.trim() === "" || hashTags.length === 5) {
+        return;
+      }
+      // 입력값을 배열에 추가
+      setHashTags((prevHashtags) => [...prevHashtags, inputHashTag.trim()]);
+      // 입력값 초기화
+      setInputHashTag("");
+
+      // updateTags = [...hashTags];
+      // setUpdateHashTags([...clickedData.hashTags, hashTags]);
+      console.log(hashTags, "hashTags 추가 등록");
+      console.log(updateTags, "updateTags 추가 등록");
+    }
+  };
+  // console.log(hashTags, "hashTags 추가 등록");
+  // console.log(newPost, "newPost");
+
+  //해시태그 삭제
+  const deleteHashTag = async (index) => {
+    const updatedHashTags = [...hashTags];
+    updatedHashTags.splice(index, 1);
+    setHashTags(updatedHashTags);
+
+    // 문서에서 현재 배열을 가져옵니다
+    // const docSnap = await getDoc(docRef);
+    // if (docSnap.exists()) {
+    //   const data = docSnap.data();
+    //   let hashTags = data.hashTags || [];
+
+    //   if (index >= 0 && index < hashTags.length) {
+    //     hashTags.splice(index, 1);
+    //   }
+
+    //   await updateDoc(docRef, {
+    //     hashTags: hashTags,
+    //   });
+    // }
   };
 
   //댓글 불러오기
@@ -269,22 +359,70 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                   <FontAwesomeIcon icon={regularComment} />
                 ) : (
                   <FontAwesomeIcon icon={solidComment} />
-                )}{" "}
+                )}
                 <span>{replys.length}</span>
               </div>
             </div>
           </div>
+          {!isEditMode ? (
+            <p>{newPost}</p>
+          ) : (
+            <form>
+              <textarea
+                name="mealText"
+                value={newPost}
+                rows={5}
+                onChange={(e) => {
+                  setNewPost(e.target.value);
+                }}
+              ></textarea>
+              <div className="tag-wrap">
+                <input
+                  value={inputHashTag}
+                  onChange={handleInputChange}
+                  onKeyDown={keyDownHandler}
+                  placeholder="#해시태그를 등록해보세요. (최대 5개)"
+                  className="tag-input"
+                />
+                <div className="form-tag-wrap">
+                  {hashTags.map((tag, index) => (
+                    <div className="w-badge" key={index}>
+                      {tag}
+                      <span className="tag-del">
+                        <FontAwesomeIcon
+                          icon={faXmark}
+                          size="sm"
+                          onClick={() => {
+                            deleteHashTag(index);
+                          }}
+                        />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-          <p>{clickedData.text}</p>
-          <div className="hashtag">
-            {clickedData.hashTags
-              ? clickedData.hashTags.map((tag, index) => (
-                  <span key={index} className="m-badge">
-                    {tag}
-                  </span>
-                ))
-              : null}
-          </div>
+              <div className="btn-wraps">
+                <button className="m-green-btn" onClick={updateMealPost}>
+                  수정
+                </button>
+                <button className="m-gray-btn" onClick={editModeHandler}>
+                  취소
+                </button>
+              </div>
+            </form>
+          )}
+          {!isEditMode && (
+            <div className="hashtag">
+              {hashTags
+                ? hashTags.map((tag, index) => (
+                    <span key={index} className="m-badge">
+                      {tag}
+                    </span>
+                  ))
+                : null}
+            </div>
+          )}
         </div>
         <div className="meal-view-col reply-wrap">
           <div className="meal-info">
@@ -292,12 +430,16 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
               <img src={profileImg} alt="유저 프로필" />
               <p className="meal-user">{clickedData.username}</p>
               <img src={levelImg} alt="유저 레벨" className="level-badge" />
-              <button className="w-green-btn">팔로우</button>
+              {auth.currentUser.uid !== clickedData.userId && (
+                <button className="w-green-btn">팔로우</button>
+              )}
             </div>
             <div onClick={toggleSet}>
               {toggleMore && auth.currentUser.uid === clickedData.userId ? (
                 <div className="btn-wraps">
-                  <button className="m-green-btn">수정</button>
+                  <button className="m-green-btn" onClick={editModeHandler}>
+                    수정
+                  </button>
                   <button className="m-red-btn" onClick={onDelete}>
                     삭제
                   </button>
@@ -311,8 +453,8 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                   fill="none"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M5.625 17.8125C4.87908 17.8125 4.16371 17.5162 3.63626 16.9887C3.10882 16.4613 2.8125 15.7459 2.8125 15C2.8125 14.2541 3.10882 13.5387 3.63626 13.0113C4.16371 12.4838 4.87908 12.1875 5.625 12.1875C6.37092 12.1875 7.08629 12.4838 7.61374 13.0113C8.14118 13.5387 8.4375 14.2541 8.4375 15C8.4375 15.7459 8.14118 16.4613 7.61374 16.9887C7.08629 17.5162 6.37092 17.8125 5.625 17.8125ZM15 17.8125C14.2541 17.8125 13.5387 17.5162 13.0113 16.9887C12.4838 16.4613 12.1875 15.7459 12.1875 15C12.1875 14.2541 12.4838 13.5387 13.0113 13.0113C13.5387 12.4838 14.2541 12.1875 15 12.1875C15.7459 12.1875 16.4613 12.4838 16.9887 13.0113C17.5162 13.5387 17.8125 14.2541 17.8125 15C17.8125 15.7459 17.5162 16.4613 16.9887 16.9887C16.4613 17.5162 15.7459 17.8125 15 17.8125ZM24.375 17.8125C23.6291 17.8125 22.9137 17.5162 22.3863 16.9887C21.8588 16.4613 21.5625 15.7459 21.5625 15C21.5625 14.2541 21.8588 13.5387 22.3863 13.0113C22.9137 12.4838 23.6291 12.1875 24.375 12.1875C25.1209 12.1875 25.8363 12.4838 26.3637 13.0113C26.8912 13.5387 27.1875 14.2541 27.1875 15C27.1875 15.7459 26.8912 16.4613 26.3637 16.9887C25.8363 17.5162 25.1209 17.8125 24.375 17.8125Z"
                     fill="#495057"
                   />

@@ -23,7 +23,6 @@ const MealPost = ({
   replyCount,
 }) => {
   const [isreplyCount, setIsReplyCount] = useState(replyCount);
-  const [heartActive, setHeartActive] = useState(false);
 
   //댓글 불러오기
   useEffect(() => {
@@ -43,16 +42,9 @@ const MealPost = ({
     <div className="meal-card" onClick={() => handleClick(id)}>
       <div className="img-container">
         <img src={photo || mealImg} alt="식단이미지" className="meal-img" />
-        {/* {heartActive && ( */}
-        {/* <div className="heart-active"> */}
         <div className="like-container">
           <img alt="like icon" src={likeImg}></img>
         </div>
-        {/* <div className="heart-active">
-        
-        <FontAwesomeIcon icon={solidHeart} size="4x" />
-      </div> */}
-        {/* )} */}
       </div>
       <div className="meal-info">
         <div className="df aic">

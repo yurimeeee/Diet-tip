@@ -63,6 +63,7 @@ const MealCreate = ({ onModeChange }) => {
         username: user.displayName,
         userId: user.uid,
         hashTags,
+        like: 0,
       });
       if (file) {
         // 파일 위치에 대한 참조

@@ -716,7 +716,6 @@ body {
 }
 .chart-wrap .chart {
   width: 50%;
-  height: 50vh;
   padding: 30px 0;
   border-radius: 10px;
   background: #fff;
@@ -968,30 +967,32 @@ nav.pagination {
   margin-bottom: 30px;
 }
 
-.meal-post-wrap {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 72px;
+.sec-tt.wb {
+  margin-top: -60px;
 }
 
-.meal-card {
-  width: 312px;
+.meal-post-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  gap: 16px;
+}
+.meal-post-wrap .meal-card {
   position: relative;
 }
-.meal-card .img-container {
+.meal-post-wrap .meal-card .img-container {
   position: relative;
   overflow: hidden;
 }
-.meal-card .img-container:hover .like-container {
+.meal-post-wrap .meal-card .img-container:hover .like-container {
   bottom: 0;
 }
-.meal-card .img-container .meal-img {
+.meal-post-wrap .meal-card .img-container .meal-img {
   width: 100%;
   height: 312px;
   object-fit: cover;
   vertical-align: bottom;
 }
-.meal-card .img-container .like-container {
+.meal-post-wrap .meal-card .img-container .like-container {
   bottom: -100%;
   display: flex;
   background-color: rgba(255, 255, 255, 0.6);
@@ -1003,7 +1004,7 @@ nav.pagination {
   justify-content: center;
   z-index: 1;
 }
-.meal-card .img-container .like-container img {
+.meal-post-wrap .meal-card .img-container .like-container img {
   object-fit: cover;
   width: 52px;
   height: 44px;
@@ -1011,25 +1012,174 @@ nav.pagination {
   z-index: 10;
 }
 
-.today-meal {
-  flex-wrap: wrap;
-  justify-content: start;
+.meal-post-wrap.today-meal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18%, 1fr));
+  gap: 16px;
 }
-
-.today-meal .meal-card {
-  width: 246px;
-  margin-right: 22.5px;
-  margin-bottom: 20px;
+.meal-post-wrap.today-meal .meal-card {
+  position: relative;
 }
-.today-meal .meal-card:nth-child(5n) {
-  margin-right: 0;
-}
-.today-meal .meal-card .meal-img {
+.meal-post-wrap.today-meal .meal-card .img-container .meal-img {
   width: 100%;
-  height: 246px;
+  height: 250px !important;
   object-fit: cover;
+  vertical-align: bottom;
 }
 
+@media (max-width: 1130px) {
+  .meal-post-wrap.today-meal {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    gap: 16px;
+  }
+  .meal-post-wrap.today-meal .meal-card {
+    position: relative;
+  }
+  .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
+    width: 100%;
+    height: 250px !important;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+}
+@media (max-width: 768px) {
+  .meal-post-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    gap: 16px;
+  }
+  .meal-post-wrap .meal-card {
+    position: relative;
+  }
+  .meal-post-wrap .meal-card .img-container .meal-img {
+    width: 100%;
+    height: 230px !important;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+  .best-meal > div:last-child {
+    display: none;
+  }
+  .meal-post-wrap.today-meal {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    gap: 16px;
+  }
+  .meal-post-wrap.today-meal .meal-card {
+    position: relative;
+  }
+  .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
+    width: 100%;
+    height: 230px !important;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+}
+@media (max-width: 479px) {
+  .sec-tt {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .sec-tt.wb {
+    margin-top: 0px;
+  }
+  .w-badge {
+    font-size: 14px !important;
+  }
+  .w-green-btn {
+    font-size: 14px !important;
+  }
+  .w-gray-btn {
+    font-size: 14px !important;
+  }
+  .meal-post-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    gap: 10px;
+  }
+  .meal-post-wrap .meal-card {
+    position: relative;
+  }
+  .meal-post-wrap .meal-card .img-container .meal-img {
+    width: 100%;
+    height: 134px !important;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+  .meal-post-wrap .meal-card .meal-info img {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+  .meal-post-wrap .meal-card .meal-info .meal-user {
+    font-size: 11px;
+  }
+  .meal-post-wrap .meal-card .meal-info .like-reply-wrap > div {
+    display: flex;
+    align-items: center;
+  }
+  .meal-post-wrap .meal-card .meal-info .like-reply-wrap span {
+    font-size: 11px;
+    line-height: 14px;
+  }
+  .meal-post-wrap .meal-card .meal-info .like-reply-wrap svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 3px;
+  }
+  .meal-post-wrap .meal-card .hashtag {
+    display: none;
+  }
+  .best-meal {
+    margin-bottom: 40px;
+  }
+  .meal-post-wrap.today-meal {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    gap: 10px;
+  }
+  .meal-post-wrap.today-meal .meal-card {
+    position: relative;
+  }
+  .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
+    width: 100%;
+    height: 134px !important;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+  /* weekly */
+  .Calendar {
+    margin: 30px 0 !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .Calendar .Year-MonthList {
+    color: #343a40;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .meal-create {
+    padding: 20px 16px !important;
+  }
+  .meal-create > div {
+    display: none;
+  }
+  .meal-create form textarea {
+    margin-left: 0;
+  }
+  .meal-create .tag-wrap {
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    flex-direction: column;
+  }
+  .meal-create .tag-wrap .form-tag-wrap {
+    flex-wrap: wrap;
+  }
+}
 .meal-info {
   color: #495057;
   display: flex;
@@ -1366,6 +1516,28 @@ hr {
   position: absolute;
   bottom: 40px;
 }
+.meal-view textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  border: 1px solid #f2f3f5;
+  height: 70%;
+}
+.meal-view textarea:focus {
+  outline: none;
+}
+.meal-view .tag-wrap {
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-left: 0;
+  flex-direction: column;
+}
+.meal-view .tag-wrap .form-tag-wrap {
+  flex-wrap: wrap;
+}
+.meal-view .btn-wraps {
+  justify-content: end;
+}
 
 .add-reply {
   display: flex;
@@ -1401,6 +1573,112 @@ hr {
 .btn-wraps {
   display: flex;
   gap: 8px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1320px; /* 데스크톱에서 최대 너비 설정 */
+  margin: 0 auto;
+}
+
+/* 1320px 이하일 때 컨테이너 크기 조정 */
+@media (max-width: 1420px) {
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+}
+/* 태블릿 스타일 */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+/* 모바일 스타일 */
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .chart-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .chart-wrap .modal-overlay {
+    z-index: 100;
+  }
+  .chart-wrap .chart {
+    width: 95%;
+    padding: 40px 0;
+  }
+  .calories-table {
+    font-size: 14px;
+  }
+  .calories-table th,
+  .calories-table td {
+    padding: 0 16px;
+  }
+  .pagination .pagination .page-item {
+    font-size: 11px;
+  }
+  .head-banner {
+    height: 195px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 16px;
+    border-radius: 10px;
+  }
+  .head-banner p {
+    font-size: 13px;
+    margin: 16px 0 6px;
+  }
+  .head-banner h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .head-banner h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  .banner-img {
+    width: 156px;
+    height: 121px;
+    object-fit: cover;
+  }
+  .search-bar form {
+    width: 648px;
+    height: 48px;
+    border-radius: 100px;
+    border: 1px solid #32a061;
+    display: flex;
+    padding: 14px 20px;
+    box-sizing: border-box;
+    margin: 20px 0 30px;
+  }
+  .recom-list {
+    width: 100%;
+    height: 260px;
+    padding: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  .recom-list h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .recom-list p {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
 }
 
 /*# sourceMappingURL=meal.css.map */
