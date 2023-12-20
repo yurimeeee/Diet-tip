@@ -3,6 +3,7 @@ import "../styles/health.css";
 import seed from "../asset/health/iconSeed.png";
 import Sprout from "../asset/health/iconSprout.png";
 import Tree from "../asset/health/iconTree.png";
+import LevelCont from "./LevelCont";
 
 
 const level = [
@@ -23,7 +24,7 @@ const level = [
     }
 ]
 
-const HealthLevel = () => {
+function HealthLevel() {
   return(
     level.map((data) => (
       <div className="level jcc aic">    
@@ -33,7 +34,10 @@ const HealthLevel = () => {
         <button type="button" className="w-red-btn">시작하기</button>
       </div>
     ))
-  )}
+  )
+}
+
+
 
 export default HealthLevel
 

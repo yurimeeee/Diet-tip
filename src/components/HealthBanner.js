@@ -33,34 +33,32 @@ function HealthBanner() {
   console.log(playlist);
 
 	return(
-		<div className="container">
-			<div className="bannerWrap">
-				{playlist.map(playObj => {
-					return (
-					<>
-						<div className="bannerTitle">
-							<ul>
-									<li><span>#오늘의요가</span></li>
-									<li><span>#하루스트레칭</span></li>
-									<li><span>#몸을깨우는스트레칭</span></li>
-							</ul>
-							<div className="bannerMainTitle">
-								<h1>오늘의 <p>잠깐</p> 스트레칭</h1>
-							</div>
-							<div className="bannerSubTitle">
-								<h3>{playObj.snippet.title}</h3>
-								<p>{playObj.snippet.description}</p>
-							</div>
-							<button type="button" className="youtubeBtn w-green-btn"
-							onClick={()=>{window.open(url + playObj.id.videoId)}}>유튜브 보러가기</button>
+		<div className="bannerWrap">
+			{playlist.map(playObj => {
+				return (
+				<>
+					<div className="bannerTitle">
+						<ul>
+								<li><span>#오늘의요가</span></li>
+								<li><span>#하루스트레칭</span></li>
+								<li><span>#몸을깨우는스트레칭</span></li>
+						</ul>
+						<div className="bannerMainTitle">
+							<h1>오늘의 <p>잠깐</p> 스트레칭</h1>
 						</div>
-						<div className="bannerImg">
-							<img id="test" src={playObj.snippet.thumbnails.high.url} alt="" />
+						<div className="bannerSubTitle">
+							<h3>{playObj.snippet.title}</h3>
+							<p>{playObj.snippet.description}</p>
 						</div>
-					</>
-					)})}
-			</div>		
-		</div>
+						<button type="button" className="youtubeBtn w-green-btn"
+						onClick={()=>{window.open(url + playObj.id.videoId)}}>유튜브 보러가기</button>
+					</div>
+					<div className="bannerImg">
+						<img id="test" src={playObj.snippet.thumbnails.high.url} alt="" />
+					</div>
+				</>
+				)})}
+		</div>		
 	)
 }
 

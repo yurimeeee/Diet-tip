@@ -680,16 +680,24 @@ body {
 .map {
   text-align: center;
   width: 100%;
-  height: 100vh;
   margin-top: 120px;
 }
 
 .bannerWrap {
+  height: 432px;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   padding: 60px 96px;
+  box-sizing: border-box;
+}
+.bannerWrap img {
+  width: 504px;
+  height: 312px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .bannerTitle ul {
@@ -743,7 +751,6 @@ body {
 .level {
   height: 100%;
   width: 20%;
-  text-align: center;
 }
 .level img {
   width: 45%;
@@ -766,6 +773,24 @@ body {
 .LevelCont {
   width: 100%;
 }
+.LevelCont .levelWrap {
+  width: 423px;
+  height: 370px;
+}
+.LevelCont .levelWrap .levelImg img {
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.LevelCont .levelWrap p {
+  text-align: left;
+}
+.LevelCont .youtubeProfile img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
 
 #app {
   height: 100%;
@@ -786,43 +811,40 @@ body {
   padding: 0;
 }
 
-.swiper {
+.healthSlides .swiper {
   width: 100%;
-  height: 100%;
+  height: 412px;
+  margin: 0px auto;
 }
-
-.swiper-slide {
+.healthSlides .swiper-slide {
+  height: 100%;
   text-align: center;
   font-size: 18px;
   background: #fff;
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
 }
-
-.swiper-slide img {
+.healthSlides .swiper-slide img {
   display: block;
-  width: 40%;
+  width: 55%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  border-radius: 50%;
   margin: 0 auto;
 }
-
-.swiper {
-  width: 100%;
-  height: 412px;
-  margin: 0px auto;
+.healthSlides .recomSlide {
+  height: 93%;
 }
-
-.append-buttons {
+.healthSlides .recomImg {
+  width: 100%;
+  height: 50%;
+}
+.healthSlides .append-buttons {
   text-align: center;
   margin-top: 20px;
 }
-
-.append-buttons button {
+.healthSlides .append-buttons button {
   display: inline-block;
   cursor: pointer;
   border: 1px solid #007aff;
