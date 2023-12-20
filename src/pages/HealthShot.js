@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import App from "../App";
 import HealthBanner2 from "../components/HealthBanner2";
 import "../styles/health.css";
-// import $ from 'jquery'
+import MealCreate from "../components/MealCreate";
+
 
 function Healthshot() {
+
+  const [isWritingMode, setIsWritingMode] = useState(false);
+
+  const handleModeChange = (val) => {
+    setIsWritingMode(val);
+  };
 
   return (
     <div className="container">
       <HealthBanner2 />
-
-      <h1>Masonry - imagesLoaded progress</h1>
+      {isWritingMode && (
+        <MealCreate
+          isWritingMode={isWritingMode}
+          onModeChange={handleModeChange}
+        />
+      )}
 
       <div className="grid">
         <div className="grid-sizer"></div>
