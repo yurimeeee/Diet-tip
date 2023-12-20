@@ -6,6 +6,8 @@ import {
   addDoc,
   getDoc,
   deleteDoc,
+  updateDoc,
+  docRef,
 } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { auth, db, storage } from "../firebase";
@@ -31,6 +33,30 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [replyIdx, setReplyIdx] = useState("");
   const [nereplyIdx, setNeReplyIdx] = useState("");
   const [isnestedReplysView, setIsNestedReplysView] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(clickedData.like);
+
+  // console.log(clickedData, "clickedData");
+
+  //식단 좋아요
+  const handleDoubleClick = async () => {
+    setIsLiked(!isLiked);
+    if (!isLiked) {
+      let newLikeCount = ++clickedData.like;
+      setLikeCount(newLikeCount);
+      const docRef = doc(db, "meal", clickedData.id);
+      const updateData = {
+        // like: likeCount,
+        like: newLikeCount,
+      };
+      try {
+        await updateDoc(docRef, updateData);
+        console.log("좋아요 성공:");
+      } catch (error) {
+        console.error("좋아요 실패:", error);
+      }
+    }
+  };
 
   const closeModal = () => {
     setIsViewOpen(false);
@@ -39,8 +65,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const toggleSet = () => {
     SetToggleMore(!toggleMore);
   };
-  // /meal/5CmhHuAthxC3TOocCeTm
-  // /meal/Gc4gTa3hjjMtuSvs9lLAw5UBDxH3/5CmhHuAthxC3TOocCeTm
+
   //식단 삭제
   const onDelete = async () => {
     // // const ok = confirm("식단을 삭제하시나요?");
@@ -56,7 +81,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
       const replyDocs = replyQuerySnapshot.docs;
       await Promise.all(replyDocs.map(async (doc) => await deleteDoc(doc.ref)));
 
-      // if (photo) {
+      //스토리지에서 사진 삭제
       const photoRef = ref(storage, `meal/${user.uid}/${clickedData.id}`);
       await deleteObject(photoRef);
       console.log(photoRef);
@@ -69,7 +94,6 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
 
   //댓글 불러오기
   useEffect(() => {
-    // Firestore에서 데이터 가져오기
     const fetchData = async () => {
       const querySnapshot = await getDocs(
         collection(db, `meal/${clickedData.id}/reply`)
@@ -167,26 +191,23 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     //유저 없거나, 게시글 빈값이거나 글자수 초과시 리턴
     if (!user || newReplys === "" || newReplys.length > 1000) return;
     try {
-      let docRef;
+      // let docRef;
 
-      // 대댓글 모드에 따라 경로 설정
+      //대댓글 모드에 따라 경로 설정
       const replyPath = isReplyToMode
         ? `meal/${clickedData.id}/reply/${replyIdx}/nestedReply`
         : `meal/${clickedData.id}/reply`;
 
-      // 데이터 추가
+      //댓글 추가
       const doc = await addDoc(collection(db, replyPath), {
         content: newReplys,
         createdAt: Date.now(),
         username: user.displayName,
         userId: user.uid,
-        replyIdx: replyIdx, // 이 부분을 추가
+        replyIdx: replyIdx,
       });
-
-      //초기화
       setNewReplys("");
-      //부모 컴포넌트로 댓글 수 전달
-      onReplyCount(replys);
+      onReplyCount(replys); //부모 컴포넌트로 댓글 수 전달
 
       //추가된 댓글 다시 불러오기
       const querySnapshot = await getDocs(collection(db, replyPath));
@@ -205,7 +226,30 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     <div className="meal-view-bg">
       <div className="meal-view df">
         <div className="meal-view-col">
-          <img src={clickedData.photo} alt="식단이미지" className="meal-img" />
+          <div className="meal-img-wrap">
+            <img
+              src={clickedData.photo}
+              alt="식단이미지"
+              className={isLiked ? "liked meal-img" : "meal-img"}
+              onDoubleClick={handleDoubleClick}
+            />
+            {isLiked && (
+              <svg
+                className="like-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="52"
+                height="45"
+                viewBox="0 0 52 45"
+                fill="none"
+              >
+                <path
+                  d="M24.3019 41.7445L24.2944 41.7375L24.2869 41.7306L24.0399 41.5034L24.033 41.497L6.24612 24.9791L6.24588 24.9789C3.5367 22.4639 2 18.933 2 15.2322V14.897C2 8.70813 6.3949 3.39753 12.481 2.2366L12.4851 2.23582C15.9417 1.56905 19.4822 2.36597 22.3057 4.3523C23.1033 4.9199 23.8425 5.57215 24.5091 6.3176L26.0162 8.0032L27.5052 6.30153C27.8638 5.89167 28.2511 5.51237 28.6701 5.15448L28.6701 5.15451L28.6794 5.14646C29.0103 4.86032 29.3424 4.59862 29.686 4.35814L29.6904 4.35502C32.5145 2.36672 36.0584 1.5677 39.5198 2.22658C45.6038 3.3875 50 8.70672 50 14.897V15.2322C50 18.933 48.4633 22.4639 45.7541 24.9789L45.7539 24.9791L27.967 41.497L27.9601 41.5034L27.7131 41.7306L27.7077 41.7356C27.2392 42.1698 26.626 42.4111 26 42.4111C25.3631 42.4111 24.758 42.1729 24.3019 41.7445Z"
+                  stroke="white"
+                  stroke-width="4"
+                />
+              </svg>
+            )}
+          </div>
           <div className="meal-info">
             <div className="df aic">
               <img src={profileImg} alt="유저 프로필" />
@@ -213,9 +257,12 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
             </div>
             <div className="like-reply-wrap">
               <div>
-                <FontAwesomeIcon icon={regularHeart} />
-                {/* <FontAwesomeIcon icon={solidHeart} /> */}
-                <span>6</span>
+                {isLiked ? (
+                  <FontAwesomeIcon icon={solidHeart} />
+                ) : (
+                  <FontAwesomeIcon icon={regularHeart} />
+                )}
+                <span>{clickedData.like}</span>
               </div>
               <div>
                 {replys.length === 0 ? (
