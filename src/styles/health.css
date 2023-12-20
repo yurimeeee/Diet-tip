@@ -9,6 +9,10 @@ a {
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
+.mb-5 {
+  margin-bottom: 120px;
+}
+
 /* Variables end.*/
 body {
   font: 100% "Pretendard Variable";
@@ -34,7 +38,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -399,7 +403,7 @@ body {
 }
 
 header {
-  padding: 72px 0;
+  padding: 48px 0;
 }
 header div {
   position: relative;
@@ -588,12 +592,112 @@ body {
   background-color: #f2f3f5;
 }
 
+/* weekly */
+.weekly-wrap {
+  width: 350px;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+}
+
+.daylist {
+  margin: 0 2px;
+  width: 45px;
+  padding: 15px 0;
+  border-radius: 46px;
+  transition: 0.3s;
+  text-align: center;
+  box-sizing: border-box;
+}
+.daylist .weak {
+  color: #9da1a6;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.daylist .day {
+  font-weight: 500;
+}
+.daylist .Sat {
+  color: rgb(64, 82, 129);
+}
+.daylist .Sun {
+  color: #f46b2a;
+}
+.daylist:hover {
+  background: #5ac479;
+  color: #ebf4ff;
+}
+.daylist:hover .weak,
+.daylist:hover .day {
+  color: #fff;
+}
+.daylist:hover .Sat {
+  color: #ebf4ff;
+}
+.daylist:hover .Sun {
+  color: #ff6363;
+}
+
+.daylist.today {
+  box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(9, 167, 72, 0.75);
+}
+
+.week-btns {
+  top: 50%;
+}
+
+.week-btns button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(34, 72, 97, 0.5176470588);
+}
+
+.prev {
+  left: -22px;
+}
+
+.next {
+  right: -22px;
+}
+
+.Calendar {
+  margin: 60px 0 30px;
+  position: relative;
+}
+.Calendar .sec-tt {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+}
+
+.recomSlide,
+.healthLevel,
+.map {
+  text-align: center;
+  width: 100%;
+  margin-top: 120px;
+}
+
 .bannerWrap {
+  height: 432px;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   padding: 60px 96px;
+  box-sizing: border-box;
+}
+.bannerWrap img {
+  width: 504px;
+  height: 312px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .bannerTitle ul {
@@ -639,19 +743,53 @@ body {
 
 .levels {
   width: 80%;
-  margin: 0 auto;
+  height: 50%;
+  margin: 72px auto;
+  gap: 50px;
 }
 
 .level {
-  width: 30%;
+  height: 100%;
+  width: 20%;
 }
 .level img {
-  width: 25%;
+  width: 45%;
+}
+.level h2 {
+  color: #f46b2a;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 17px 0;
+}
+.level button {
+  margin-top: 17px;
 }
 
 .sectionTitle {
   color: #32a061;
   font-weight: bold;
+}
+
+.LevelCont {
+  width: 100%;
+}
+.LevelCont .levelWrap {
+  width: 423px;
+  height: 370px;
+}
+.LevelCont .levelWrap .levelImg img {
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.LevelCont .levelWrap p {
+  text-align: left;
+}
+.LevelCont .youtubeProfile img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
 
 #app {
@@ -673,43 +811,40 @@ body {
   padding: 0;
 }
 
-.swiper {
+.healthSlides .swiper {
   width: 100%;
-  height: 100%;
+  height: 412px;
+  margin: 0px auto;
 }
-
-.swiper-slide {
+.healthSlides .swiper-slide {
+  height: 100%;
   text-align: center;
   font-size: 18px;
   background: #fff;
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
 }
-
-.swiper-slide img {
+.healthSlides .swiper-slide img {
   display: block;
-  width: 40%;
+  width: 55%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  border-radius: 50%;
   margin: 0 auto;
 }
-
-.swiper {
-  width: 100%;
-  height: 412px;
-  margin: 0px auto;
+.healthSlides .recomSlide {
+  height: 93%;
 }
-
-.append-buttons {
+.healthSlides .recomImg {
+  width: 100%;
+  height: 50%;
+}
+.healthSlides .append-buttons {
   text-align: center;
   margin-top: 20px;
 }
-
-.append-buttons button {
+.healthSlides .append-buttons button {
   display: inline-block;
   cursor: pointer;
   border: 1px solid #007aff;

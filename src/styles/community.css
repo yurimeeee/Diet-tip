@@ -675,230 +675,310 @@ body {
   margin-bottom: 0px;
 }
 
-section + section {
+.Community .hidden {
+  display: none;
+}
+.Community .show {
+  display: block;
+}
+.Community .bold {
+  font-weight: bold;
+}
+.Community .pd {
+  padding: 48px 0;
+}
+.Community .mg-t1 {
+  margin-top: 24px;
+}
+.Community .mg-t2 {
   margin-top: 48px;
 }
-
-h5 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 40px;
+.Community .mg-t3 {
+  margin-top: 72px;
 }
-
-h6 {
-  font-size: 18px;
-  font-weight: bold;
+.Community .mg-r1 {
+  margin-right: 5px;
 }
-
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.Community .icon-sm {
+  width: 15px;
 }
-
-.level-badge {
-  width: 48px;
-  height: 48px;
-}
-
-.area-middle-top {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-.area-middle-top h5 {
-  margin: 0;
-}
-.area-middle-top .buttons {
-  display: flex;
-  gap: 20px;
-}
-.area-middle-top .buttons .button {
-  border: 1px solid #32a061;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  background-color: transparent;
-  transition: 0.3s ease-in background-color;
-}
-.area-middle-top .buttons .button:hover {
-  background-color: #32a061;
-}
-.area-middle-top .buttons .button .icon {
-  color: #32a061;
-  font-size: 24px;
-  transition: 0.3s ease-in color;
-}
-.area-middle-top .buttons .button:hover .icon {
-  color: #fff;
-}
-
-.area-middle {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.area-middle-middle {
-  display: flex;
-  gap: 100px;
-}
-
-.area-right {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.profile-card {
+.Community img {
   display: inline-block;
-  padding: 34px;
-  background-color: #fff;
-  box-sizing: border-box;
 }
-.profile-card .profile-img {
-  width: 300px;
-  height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin-bottom: 20px;
+.Community a {
+  color: #000;
+  display: block;
 }
-.profile-card .about-user {
-  width: 100%;
-}
-.profile-card .about-user ul {
-  padding-top: 15px;
-}
-.profile-card .about-user ul li {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-.profile-card .about-user ul li + li {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid #9da1a6;
-}
-.profile-card .user-info {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.today_content {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  gap: 100px;
-}
-.today_content .Calendar {
-  margin: 0;
-}
-.today_content .Calendar .Year-MonthList p {
+.Community a:hover {
   font-weight: bold;
-  margin-bottom: 10px;
 }
-
-.today h5 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.today-cards {
-  display: flex;
-  gap: 20px;
-}
-
-.today-card, .today-card-big {
-  display: flex;
-  background-color: #fff;
-  padding: 30px;
+.Community input {
+  border: none;
+  font-family: "Pretendard-Regular";
   box-sizing: border-box;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 160px;
-  transition: 0.3s;
+  font-size: 16px;
 }
-.today-card:hover, .today-card-big:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+.Community input:focus {
+  outline: none;
 }
-
-.today-card-big {
-  width: 310px;
+.Community input:focus::-moz-placeholder {
+  color: transparent;
 }
-.today-card-big .weather {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
+.Community input:focus::placeholder {
+  color: transparent;
 }
-.today-card-big .weather .weather-text {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.Community table {
+  width: 100%;
+  text-align: center;
 }
-.today-card-big .weather .weather-text p {
-  width: 74px;
-  display: flex;
-  justify-content: space-between;
+.Community table .link {
+  text-align: left;
 }
-.today-card-big .weather .weather-icon {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 60px;
+.Community table th, .Community table td {
+  padding: 15px 0;
 }
-
-.today-card {
-  gap: 20px;
-  width: 130px;
-  height: 160px;
-}
-.today-card .sticker {
-  width: 50px;
-  height: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.goal-card {
-  background-color: #fff;
-  display: flex;
-  gap: 20px;
-  padding: 20px 140px;
-}
-.goal-card + .goal-card {
-  margin-top: 20px;
-}
-.goal-card p {
-  font-weight: 700;
-  display: flex;
-  gap: 10px;
-}
-
-.recommand {
+.Community table tr {
+  background: #fff;
+  border-bottom: 1px solid #dcdbdb;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 24px;
+  gap: 24px;
 }
-.recommand h5 {
-  margin: 0;
-}
-.recommand .recommand-btns {
-  display: flex;
-  align-items: start;
-  gap: 20px;
+.Community table tr:first-child {
+  border-top: 1px solid #dcdbdb;
 }
 
-.chart-container {
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.search {
   position: relative;
 }
-.chart-container button {
+.search input {
+  border-radius: 50px;
+  padding: 15px 50px;
+  width: 100%;
+}
+.search input:focus {
+  box-shadow: 0px 0px 0px 5px rgba(148, 223, 182, 0.35);
+  transition: 0.3s;
+}
+.search button {
   position: absolute;
-  top: 50%;
-  right: -10px;
-  transform: translateX(100%);
-}/*# sourceMappingURL=mypage.css.map */
+  left: 15px;
+  bottom: 13px;
+  font-size: 20px;
+}
+
+.pagination {
+  text-align: center;
+}
+
+/* Free Board */
+.fb-banner img {
+  margin-right: 112px;
+  height: 190px;
+}
+
+.fb-banner-content {
+  width: 50%;
+}
+
+.free-select {
+  margin-right: 16px;
+}
+.free-select input {
+  caret-color: transparent;
+}
+.free-select .css-1fdsijx-ValueContainer {
+  padding: 2px 0px 2px 15px;
+}
+.free-select .css-1u9des2-indicatorSeparator {
+  display: none;
+}
+.free-select svg {
+  color: #32a061;
+}
+
+.news-frame {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.news-frame .news-box {
+  width: 45.4%;
+  background: #fff;
+  padding: 24px;
+  gap: 24px;
+}
+.news-frame .news-box img {
+  width: 25%;
+  border-radius: 10px;
+  /* object-fit: cover; */
+}
+.news-frame .news-date {
+  margin: 10px 0 20px 0;
+}
+.news-frame .news-category ul li {
+  cursor: pointer;
+}
+.news-frame .news-category ul li .active, .news-frame .news-category ul li:hover {
+  font-weight: bold;
+}
+.news-frame .news-category ul li .active::after, .news-frame .news-category ul li:hover::after {
+  font-weight: normal;
+}
+.news-frame .news-category ul li:not(:last-child)::after {
+  content: "|";
+  padding: 0 16px;
+  color: #9da1a6;
+}
+
+.free-td-1 {
+  flex: 1;
+}
+
+.free-td-6,
+.free-td-7 {
+  flex: 1.2;
+}
+
+.free-td-2,
+.free-td-5 {
+  flex: 1.5;
+}
+
+.free-td-4 {
+  flex: 2;
+}
+
+.free-td-3 {
+  flex: 9;
+}
+
+/* Q&A */
+.top-posts {
+  padding: 24px;
+  width: 37%;
+}
+
+.posts-box {
+  margin-top: 16px;
+  flex-direction: column;
+  gap: 4px;
+}
+.posts-box p {
+  background: #fff;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.qna-category {
+  background: #fff;
+  font-size: 1rem;
+  border-radius: 60px;
+  padding: 13px 20px;
+  color: #32a061;
+  font-weight: bold;
+  border: none;
+  opacity: 1;
+}
+
+table.pna-list img {
+  width: 30px;
+}
+
+.qna-td-1 {
+  flex: 1;
+}
+
+.qna-td-2,
+.qna-td-6,
+.qna-td-7,
+.qna-td-8 {
+  flex: 1.5;
+}
+
+.qna-td-5 {
+  flex: 2;
+}
+
+.qna-td-4 {
+  flex: 3;
+}
+
+.qna-td-3 {
+  flex: 12;
+  text-align: left;
+}
+
+/* Q&A Detail */
+.q-card {
+  background: #fff;
+  padding: 48px;
+  gap: 24px;
+}
+.q-card img {
+  height: 50px;
+}
+
+.q-content {
+  flex-direction: column;
+}
+
+.q-tt {
+  margin-top: 13px;
+}
+
+.q-info {
+  margin: 24px 0 36px 0;
+  gap: 24px;
+}
+.q-info img {
+  display: inline;
+}
+
+.reply-form {
+  position: relative;
+}
+.reply-form #reply {
+  padding: 24px 48px;
+  border-radius: 20px;
+  width: 100%;
+}
+.reply-form button {
+  position: absolute;
+  right: 48px;
+  bottom: 22px;
+  font-size: 20px;
+}
+
+.a-frame {
+  flex-direction: column;
+  align-items: flex-end;
+}
+.a-frame .a-box {
+  width: 90%;
+  flex-direction: column;
+  gap: 24px;
+}
+.a-frame .a-tt {
+  margin-left: 36px;
+  align-items: center;
+  gap: 10px;
+}
+.a-frame .a-tt img {
+  width: 24px;
+}
+.a-frame .a-card {
+  background: #fffeec;
+  padding: 36px;
+  gap: 24px;
+}
+.a-frame .a-card img {
+  height: 40px;
+}/*# sourceMappingURL=community.css.map */

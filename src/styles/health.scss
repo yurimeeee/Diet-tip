@@ -1,11 +1,27 @@
 @import "common";
 
+.recomSlide, 
+.healthLevel,
+.map{
+	text-align: center;
+	width: 100%;
+	margin-top: 120px;
+}
+
 .bannerWrap{
+	height: 432px;
 	background-color: #fff;
-	border-radius: 20px;
+	border-radius: 10px;
 	display:flex; 
 	justify-content: space-between;  
 	padding: 60px 96px;
+	box-sizing: border-box;
+	img{
+		width: 504px;
+    height: 312px;
+    border-radius: 10px;
+    object-fit: cover;
+	}
 }
 
 .bannerTitle {
@@ -51,15 +67,29 @@
 	}
 }
 
+// HealthLevel
+
 .levels{
 	width:80%;
-	margin: 0 auto;
+	height:50%;
+	margin: 72px auto;
+	gap:50px;
 }
 
 .level{
-	width:30%;
+	height:100%;
+	width:20%;
 	img{
-		width: 25%;
+		width: 45%;
+	}
+	h2{
+		color:$point-2;
+		font-size:$font-20;
+		font-weight: bold;
+		margin: 17px 0;
+	}
+	button{
+		margin-top: 17px;
 	}
 }
 
@@ -67,6 +97,30 @@
 .sectionTitle{
 	color: $point-1;
 	font-weight: bold;
+}
+
+.LevelCont{
+	// display: none;
+	width: 100%;
+	.levelWrap{
+	 width: 423px;
+	 height: 370px;
+	 .levelImg{
+		 img{
+			border-radius: 10px;
+			object-fit: cover;
+			width:100%;
+		 }
+		}
+		p{
+			text-align: left;
+		} 
+	}
+	.youtubeProfile img{
+		width:24px;
+		height: 24px;
+		border-radius: 50%;
+	}
 }
 
 
@@ -89,49 +143,56 @@ body {
   padding: 0;
 }
 
-.swiper {
-  width: 100%;
-  height: 100%;
+.healthSlides{
+	.swiper {
+		width: 100%;
+		height: 412px;
+		margin: 0px auto;
+	}
+	
+	.swiper-slide {
+		height: 100%;
+		text-align: center;
+		font-size: 18px;
+		background: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius:10px;
+		img{
+			display: block;
+			width: 55%;
+			height: 100%;
+			border-radius: 50%;
+			margin: 0 auto;
+		}
+	}
+	
+	.recomSlide{
+		height: 93%;
+	}
+	.recomImg{
+		width:100%;
+		height: 50%;
+	}
+	
+	.append-buttons {
+		text-align: center;
+		margin-top: 20px;
+	}
+	
+	.append-buttons button {
+		display: inline-block;
+		cursor: pointer;
+		border: 1px solid #007aff;
+		color: #007aff;
+		text-decoration: none;
+		padding: 4px 10px;
+		border-radius: 4px;
+		margin: 0 10px;
+		font-size: 13px;
+	}
 }
 
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
 
-  /* Center slide text vertically */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-	border-radius:10px;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 40%;
-  height: 100%;
-  object-fit: cover;
-	margin: 0 auto;
-}
-
-.swiper {
-  width: 100%;
-  height: 412px;
-  margin: 0px auto;
-}
-.append-buttons {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.append-buttons button {
-  display: inline-block;
-  cursor: pointer;
-  border: 1px solid #007aff;
-  color: #007aff;
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 4px;
-  margin: 0 10px;
-  font-size: 13px;
-}
+//map
