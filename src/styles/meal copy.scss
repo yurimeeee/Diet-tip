@@ -334,8 +334,6 @@ nav.pagination {
     .img-container {
       position: relative;
       overflow: hidden;
-      cursor: pointer;
-
       &:hover {
         .like-container {
           bottom: 0;
@@ -799,7 +797,6 @@ hr {
     box-sizing: border-box;
     .meal-img-wrap {
       position: relative;
-      cursor: pointer;
 
       .like-icon {
         position: absolute;
@@ -947,10 +944,6 @@ hr {
         align-items: center;
         gap: 10px;
       }
-
-      svg {
-        cursor: pointer;
-      }
     }
 
     .add-nested-reply {
@@ -975,6 +968,7 @@ hr {
     resize: none;
     border: none;
     border: 1px solid #f2f3f5;
+    height: 70%;
 
     &:focus {
       outline: none;
@@ -989,14 +983,6 @@ hr {
     .form-tag-wrap {
       flex-wrap: wrap;
     }
-  }
-
-  .update-form {
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    // align-items: flex-end;
   }
 
   .btn-wraps {

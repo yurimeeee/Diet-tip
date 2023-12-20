@@ -53,8 +53,7 @@ const MealPost = ({
         </div>
         <div className="like-reply-wrap">
           <div>
-            <FontAwesomeIcon icon={regularHeart} />
-            {/* <FontAwesomeIcon icon={solidHeart} /> */}
+            <FontAwesomeIcon icon={like > 0 ? solidHeart : regularHeart} />
             <span>{like}</span>
           </div>
           <div>

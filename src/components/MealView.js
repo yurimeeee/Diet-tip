@@ -8,6 +8,7 @@ import {
   deleteDoc,
   updateDoc,
   docRef,
+  deleteField,
 } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { auth, db, storage } from "../firebase";
@@ -100,8 +101,10 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   //식단 수정 모드
   const editModeHandler = () => {
     setIsEditMode(!isEditMode);
+    //취소 시, 입력 내용 초기화
     setHashTags(clickedData.hashTags);
     setNewPost(clickedData.text);
+    setInputHashTag("");
   };
 
   //해시태그 새로운 값 입력 시 상태 업데이트
@@ -199,7 +202,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     if (nestedReplys.length > 0) {
       setIsNestedReplysView(true);
     }
-  }, []);
+  }, [clickedData.id]);
 
   const replyInputHandler = (e) => {
     setNewReplys(e.target.value);
@@ -312,6 +315,19 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     }
   };
 
+  //댓글 삭제
+  const deleteReply = async (index) => {
+    console.log(index);
+    const replyDocRef = doc(db, `meal/${clickedData.id}/reply`, index);
+
+    try {
+      await deleteDoc(replyDocRef);
+      console.log("댓글이 성공적으로 삭제되었습니다.");
+    } catch (error) {
+      console.error("댓글 삭제 실패:", error);
+    }
+  };
+
   return (
     <div className="meal-view-bg">
       <div className="meal-view df">
@@ -367,38 +383,40 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
           {!isEditMode ? (
             <p>{newPost}</p>
           ) : (
-            <form>
-              <textarea
-                name="mealText"
-                value={newPost}
-                rows={5}
-                onChange={(e) => {
-                  setNewPost(e.target.value);
-                }}
-              ></textarea>
-              <div className="tag-wrap">
-                <input
-                  value={inputHashTag}
-                  onChange={handleInputChange}
-                  onKeyDown={keyDownHandler}
-                  placeholder="#해시태그를 등록해보세요. (최대 5개)"
-                  className="tag-input"
-                />
-                <div className="form-tag-wrap">
-                  {hashTags.map((tag, index) => (
-                    <div className="w-badge" key={index}>
-                      {tag}
-                      <span className="tag-del">
-                        <FontAwesomeIcon
-                          icon={faXmark}
-                          size="sm"
-                          onClick={() => {
-                            deleteHashTag(index);
-                          }}
-                        />
-                      </span>
-                    </div>
-                  ))}
+            <form className="update-form">
+              <div>
+                <textarea
+                  name="mealText"
+                  value={newPost}
+                  rows={5}
+                  onChange={(e) => {
+                    setNewPost(e.target.value);
+                  }}
+                ></textarea>
+                <div className="tag-wrap">
+                  <input
+                    value={inputHashTag}
+                    onChange={handleInputChange}
+                    onKeyDown={keyDownHandler}
+                    placeholder="#해시태그를 등록해보세요. (최대 5개)"
+                    className="tag-input"
+                  />
+                  <div className="form-tag-wrap">
+                    {hashTags.map((tag, index) => (
+                      <div className="w-badge" key={index}>
+                        {tag}
+                        <span className="tag-del">
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            size="sm"
+                            onClick={() => {
+                              deleteHashTag(index);
+                            }}
+                          />
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -477,7 +495,19 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                         <p className="reply-user">{reply.username}</p>
                         <p className="reply-text ">{reply.content} </p>
                       </div>
-                      <FontAwesomeIcon icon={regularHeart} />
+                      <div>
+                        <FontAwesomeIcon icon={regularHeart} />
+                        {auth.currentUser.uid === clickedData.userId && (
+                          <button>
+                            <FontAwesomeIcon
+                              icon={faXmark}
+                              onClick={() => {
+                                deleteReply(reply.id);
+                              }}
+                            />
+                          </button>
+                        )}
+                      </div>
                     </div>
                     <p className="add-nested-reply" onClick={handleItemIdx}>
                       답글달기...

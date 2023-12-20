@@ -9,7 +9,7 @@ import Login from "../pages/Login";
 import Signin from "../pages/Signin";
 import FreeBoard from "../pages/FreeBoard";
 import QnA from "../pages/QnA";
-import Alam from "../pages/Alam";
+import Alert from "../pages/Alert";
 
 const AppRouter = createBrowserRouter([
   {
@@ -29,8 +29,8 @@ const AppRouter = createBrowserRouter([
     element: <Mypage />,
   },
   {
-    path: "/alam",
-    element: <Alam />,
+    path: "/alert",
+    element: <Alert />,
   },
   {
     path: "/meal",

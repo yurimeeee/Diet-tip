@@ -7,11 +7,10 @@ import "../styles/health.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Pagination } from "swiper/modules";
-import Kakao from "../components/Kakao";
+// import Kakao from "../components/Kakao";
 import axios from "axios";
 import LevelCont from "../components/LevelCont";
-import textImg from "../asset/health/testImg.png"
-
+import textImg from "../asset/health/testImg.png";
 
 function Health() {
   // const [playlist, setPlaylist] = useState([]);
@@ -54,7 +53,7 @@ function Health() {
           <div className="levels df jcc aic">
             <HealthLevel />
           </div>
-            <LevelCont/>
+          <LevelCont />
         </div>
       </div>
       <div className="recomSlide">
@@ -62,190 +61,190 @@ function Health() {
           아직도 운동을 시작하지 못했다면?
         </h2>
         <p>다이어팁이 추천하는 운동 유튜버와 함께 운동 루틴을 만들어보세요!</p>
-            <div className="healthSlides">
-              <Swiper
-                slidesPerView={5}
-                spaceBetween={25}
-                pagination={{
-                  clickable: true,
-                }}
-                modules={[Pagination]}
-                className="mySwiper"
-                >
-                {/* {playlist.map((data) => {
+        <div className="healthSlides">
+          <Swiper
+            slidesPerView={5}
+            spaceBetween={25}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+          >
+            {/* {playlist.map((data) => {
                   return ( */}
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="recomSlide jcc aic">
-                    {/* <img src={data.snippet.title} className="recomImg" />
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="recomSlide jcc aic">
+                {/* <img src={data.snippet.title} className="recomImg" />
                     <h2>{data.snippet.title}</h2>
                     <p>{data.snippet.title}</p> */}
-                    <div className="recomImg" >
-                     <img src={textImg}/>  
-                    </div>
-                    <h2>닉네임</h2>
-                    <div className="channelInfo df jcc">
-                      <p>구독자수</p>
-                      <p>영상수</p>
-                    </div>
-                    <div className="df jcc">
-                      <button type="button" className="w-red-btn">
-                        영상보기
-                      </button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                {/* );
+                <div className="recomImg">
+                  <img src={textImg} />
+                </div>
+                <h2>닉네임</h2>
+                <div className="channelInfo df jcc">
+                  <p>구독자수</p>
+                  <p>영상수</p>
+                </div>
+                <div className="df jcc">
+                  <button type="button" className="w-red-btn">
+                    영상보기
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+            {/* );
                 })} */}
-              </Swiper>
-            </div>
+          </Swiper>
         </div>
+      </div>
       <div className="map container">
         <h2 className="sectionTitle tt4 jcc">우리동네 운동맛집</h2>
         <p>
           내 주변 가까운 운동시설을 확인해보고 오늘부터 운동을 시작해보세요!
         </p>
         <input type="text" />
-        <Kakao/>
+        {/* <Kakao /> */}
       </div>
       <div></div>
     </>
