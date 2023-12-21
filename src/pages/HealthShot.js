@@ -3,6 +3,7 @@ import App from "../App";
 import HealthBanner2 from "../components/HealthBanner2";
 import "../styles/health.css";
 import MealCreate from "../components/MealCreate";
+import TitleBanner from "../components/TitleBanner";
 
 
 function Healthshot() {
@@ -15,7 +16,11 @@ function Healthshot() {
 
   return (
     <div className="container">
-      <HealthBanner2 />
+      {/* <HealthBanner2 /> */}
+      <HealthBanner2
+        isWritingMode={isWritingMode}
+        onModeChange={handleModeChange}
+      />
       {isWritingMode && (
         <MealCreate
           isWritingMode={isWritingMode}
