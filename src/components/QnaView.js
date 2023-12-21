@@ -46,14 +46,18 @@ const QnaView = ({ post, onClose }) => {
     //post의 id를 기반으로 댓글을 불러옴
     const commentsQuery = query(
       collection(db, replyPath),
-      // where('postId', '==', post.id),
       orderBy('timestamp', 'asc')
     );
-
+    
     const commentsSnapshot = await getDocs(commentsQuery);
     const commentsData = commentsSnapshot.docs.map((doc) => doc.data());
     setComments(commentsData);
+
+    console.log(commentsQuery);
+    console.log(commentsSnapshot);
+    console.log(commentsData);
   };
+
 
   const handleReplySubmit = async (e) => {
     e.preventDefault();
@@ -72,7 +76,7 @@ const QnaView = ({ post, onClose }) => {
 
       // 댓글 추가 후 다시 댓글 불러오기
       loadComments();
-
+      
       // 댓글 입력란 초기화
       setReplyText('');
     } catch (e) {

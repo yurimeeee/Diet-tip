@@ -3,11 +3,7 @@ import { db } from "../firebase";
 import { collection, getDocs, query, limit, orderBy } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import {
-  faImage,
-  faThumbsUp,
-  faEye,
-} from "@fortawesome/free-regular-svg-icons";
+import { faImage, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
 import "../styles/community.scss";
 import Banner from "../asset/community/banner_qna.png";
 import icon_q from "../asset/community/icon_q.png";
@@ -136,6 +132,11 @@ const QnA = () => {
     console.log(postId);
   };
 
+  //미답변 또는 답변완료 여부를 판단하여 반환하는 함수
+  const getAnswerStatus = (post) => {
+    return post.commentsData && post.commentsData.length > 0 ? "답변완료" : "미답변";
+  };
+
   console.log(allData);
 
   return(
@@ -231,7 +232,7 @@ const QnA = () => {
                   <td className="qna-td-5">
                     {item.date}
                   </td>
-                  <td className="qna-td-6 point-2">미답변</td>
+                  <td className="qna-td-6 point-2">{getAnswerStatus(item, item.comments)}</td>
                   <td className="qna-td-7">
                     <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
                     {item.thumbsUp}
