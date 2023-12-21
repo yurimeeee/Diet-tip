@@ -117,10 +117,19 @@ const QnA = () => {
       item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
       item.content.toLowerCase().includes(searchValue.toLowerCase())
     );
-    
+
     // 검색된 결과를 상태에 업데이트
     setSelectedCateData(filteredData);
     setCurrentPage(1);
+  };
+
+  //게시물 상세보기
+  const [ selectedPost, setSelectedPost ] = useState(null);
+
+  //선택한 게시물 Id
+  const handlePostClick = (postId) => {
+    setSelectedPost(postId);
+    console.log(postId);
   };
 
   console.log(allData);
@@ -155,7 +164,7 @@ const QnA = () => {
             <h3 className="tt5 bold">주간 인기글</h3>
             <div className="posts-box df">
               {topPostsData.map((post, index) => (
-                <p key={post.id} className="df">
+                <p key={post.id} className="df" onClick={(e) => {e.preventDefault(); handlePostClick(post.id, e);}}>
                   <span className="posts-number bold">{index + 1}.</span>
                   <a href="" className="link">
                     {post.title}
@@ -168,63 +177,73 @@ const QnA = () => {
         </div>
       </div>
 
-      {/* <QnaView/> */}
-      <div className="container">
-        <button className="w-green-btn mg-t3">
-          <FontAwesomeIcon icon={faPencil} /> 글 쓰기
-        </button>
-        <table className="mg-t1 pna-list">
-          <thead className="hidden">
-            <tr>
-              <th>번호</th>
-              <th>카테고리</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>작성일</th>
-              <th>추천</th>
-              <th>조회</th>
-            </tr>
-          </thead>
-      
-          <tbody>
-            {currentPageData.map(( item ) => (
-              <tr key={item.id}>
-                <td className="qna-td-1"><img src={icon_q} alt="" /></td>
-                <td className="qna-td-2 green-4">{item.category}</td>
-                <td className="qna-td-3">
-                  <a href="" className="link">{item.title}</a>
-                </td>
-                <td className="qna-td-4">
-                  {item.userLevel && (
-                  <>
-                    <img src={levelImg[item.userLevel]} alt={`Level ${item.userLevel}`} />
-                    {item.userId}
-                  </>
-                )}
-                </td>
-                <td className="qna-td-5">
-                  {item.date}
-                </td>
-                <td className="qna-td-6 point-2">미답변</td>
-                <td className="qna-td-7">
-                  <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
-                  {item.thumbsUp}
-                </td>
-                <td className="qna-td-8">
-                  <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
-                  {item.view}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      
-        <PaginationComp
-          currentPage={currentPage}
-          totalPageCount={totalPageCount}
-          handlePageChange={handlePageChange}
+      {selectedPost ? (
+        <QnaView
+          post={allData.find((item) => item.id === selectedPost)}
+          onClose={() => setSelectedPost(null)}
         />
-      </div>
+      ) : (
+        <div className="container">
+          <button className="w-green-btn mg-t3">
+            <FontAwesomeIcon icon={faPencil} /> 글 쓰기
+          </button>
+          <table className="mg-t1 pna-list">
+            <thead className="hidden">
+              <tr>
+                <th>번호</th>
+                <th>카테고리</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>추천</th>
+                <th>조회</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+              {currentPageData.map(( item ) => (
+                <tr key={item.id} onClick={() => handlePostClick(item.id)}>
+                  <td className="qna-td-1"><img src={icon_q} alt="" /></td>
+                  <td className="qna-td-2 green-4">{item.category}</td>
+                  <td className="qna-td-3 link" style={{ cursor: 'pointer' }}>
+                    {item.title}
+                  </td>
+                  <td className="qna-td-4">
+                    {item.userLevel && (
+                      <>
+                        <img 
+                          src={levelImg[item.userLevel]} 
+                          alt={`Level ${item.userLevel}`} 
+                          className="level-img"
+                        />
+                        {item.userId}
+                      </>
+                    )}
+                  </td>
+                  <td className="qna-td-5">
+                    {item.date}
+                  </td>
+                  <td className="qna-td-6 point-2">미답변</td>
+                  <td className="qna-td-7">
+                    <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
+                    {item.thumbsUp}
+                  </td>
+                  <td className="qna-td-8">
+                    <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
+                    {item.view}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        
+          <PaginationComp
+            currentPage={currentPage}
+            totalPageCount={totalPageCount}
+            handlePageChange={handlePageChange}
+          />
+        </div>
+      )}
     </main>
   );
 };

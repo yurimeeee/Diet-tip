@@ -32,6 +32,12 @@
   img{
     display: inline-block;
   }
+  .level-img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: bottom;
+  }
   a{
     color: #000;
     display: block;
@@ -60,6 +66,9 @@
     text-align: center;
     .link{
       text-align: left;
+      &:hover{
+        font-weight: bold;
+      }
     }
     th, td{
       padding: 15px 0;
@@ -75,11 +84,6 @@
       &:first-child{
         border-top: 1px solid #dcdbdb;
       }
-    }
-    img{
-      width: 20px;
-      margin-right: 5px;
-      vertical-align: bottom;
     }
   }
   .w-green-btn{
@@ -283,6 +287,7 @@ button{
 .q-info{
   margin: 24px 0 36px 0;
   gap: 24px;
+  align-items: center;
   img{
     display:inline;
   }

@@ -127,7 +127,11 @@ const FreeBoard = () => {
                 <td className="free-td-4">
                   {item.level && (
                     <>
-                      <img src={levelImg[item.level]} alt={`Level ${item.level}`} />
+                      <img 
+                        src={levelImg[item.level]} 
+                        alt={`Level ${item.level}`}
+                        className="level-img"
+                      />
                       {item.userId}
                     </>
                   )}
