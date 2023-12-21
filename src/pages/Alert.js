@@ -3,7 +3,7 @@ import avatasmall1 from "../asset/user/avatar-yr-small.png";
 import postIcon from "../asset/post-icon.png";
 
 const Alert = () => {
-  return (
+  return(
     <main className="Alert container">
       {/* <h5 className="maintt">알림</h5> */}
       <section>

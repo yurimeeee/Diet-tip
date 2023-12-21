@@ -686,6 +686,7 @@ a.login-btn:hover {
 .Signin,
 .Login {
   margin: 72px 0 192px;
+  padding: 150px 0;
 }
 
 .Signin form, .Login form {
