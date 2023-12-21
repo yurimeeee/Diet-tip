@@ -53,10 +53,12 @@ const DailyMeal = () => {
   // console.log("replyCount", replyCount);
   const openModal = () => {
     setIsModalOpen(true);
+    document.body.style.overflow = "hidden"; // 스크롤 막기
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    document.body.style.overflow = "visible"; // 스크롤 허용
   };
 
   const handleModeChange = (val) => {

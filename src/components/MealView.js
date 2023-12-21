@@ -10,7 +10,13 @@ import {
   docRef,
   deleteField,
 } from "firebase/firestore";
-import { deleteObject, ref } from "firebase/storage";
+import {
+  deleteObject,
+  ref,
+  getStorage,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
 import { auth, db, storage } from "../firebase";
 import profileImg from "../asset/user/avatar-yr.png";
 import levelImg from "../asset/user/level-1.png";
@@ -21,10 +27,10 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faComment as solidComment } from "@fortawesome/free-solid-svg-icons";
 import { faComment as regularComment } from "@fortawesome/free-regular-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faImage } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
-  const user = auth.currentUser;
   const [toggleMore, SetToggleMore] = useState(false);
   const [replys, setReplys] = useState([]);
   const [newReplys, setNewReplys] = useState("");
@@ -40,109 +46,78 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [newPost, setNewPost] = useState(clickedData.text);
   const [inputHashTag, setInputHashTag] = useState("");
   const [hashTags, setHashTags] = useState(clickedData.hashTags);
-  // const [hashTags, setHashTags] = useState("");
-  // const [updateHashTags, setUpdateHashTags] = useState(clickedData.hashTags);
-  // const [updateNewPost, setUpdateNewPost] = useState();
-  // console.log(clickedData, "clickedData");
+  const [file, setFile] = useState("");
+  const [mealImg, setMealImg] = useState(clickedData.photo);
 
+  const user = auth.currentUser;
+  const anonymous = auth.currentUser === null;
+  const navigate = useNavigate();
   const docRef = doc(db, "meal", clickedData.id);
+  const storage = getStorage();
 
-  let updateTags = [];
-  //식단 좋아요
+  /* 더블 클릭 -> 식단 좋아요 */
   const handleDoubleClick = async () => {
     setIsLiked(!isLiked);
     if (!isLiked) {
       let newLikeCount = ++clickedData.like;
       setLikeCount(newLikeCount);
-
-      try {
-        await updateDoc(docRef, { like: newLikeCount });
-        console.log("좋아요 성공:");
-      } catch (error) {
-        console.error("좋아요 실패:", error);
-      }
+      await updateDoc(docRef, { like: newLikeCount });
     }
   };
 
+  document.body.style.overflow = "hidden"; // 스크롤 막기
   const closeModal = () => {
     setIsViewOpen(false);
+    document.body.style.overflow = "visible";
   };
 
   const toggleSet = () => {
     SetToggleMore(!toggleMore);
   };
 
-  //식단 삭제
+  /* 식단 삭제 */
   const onDelete = async () => {
-    // // const ok = confirm("식단을 삭제하시나요?");
-    // if (!ok) return;
-    try {
-      await deleteDoc(doc(db, "meal", clickedData.id));
-      // await deleteDoc(doc(db, "meal", `${clickedData.id}/reply`));
+    if (user) {
+      const ok = window.confirm("식단을 삭제할까요?");
+      if (!ok) return;
+      try {
+        await deleteDoc(doc(db, "meal", clickedData.id));
+        // meal 컬렉션 내의 reply 문서 모두 삭제
+        const replyQuerySnapshot = await getDocs(
+          collection(db, `meal/${clickedData.id}/reply`)
+        );
+        const replyDocs = replyQuerySnapshot.docs;
+        await Promise.all(
+          replyDocs.map(async (doc) => await deleteDoc(doc.ref))
+        );
 
-      // meal 컬렉션 내의 reply 문서 모두 삭제
-      const replyQuerySnapshot = await getDocs(
-        collection(db, `meal/${clickedData.id}/reply`)
-      );
-      const replyDocs = replyQuerySnapshot.docs;
-      await Promise.all(replyDocs.map(async (doc) => await deleteDoc(doc.ref)));
-
-      //스토리지에서 사진 삭제
-      const photoRef = ref(storage, `meal/${user.uid}/${clickedData.id}`);
-      await deleteObject(photoRef);
-      console.log(photoRef);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsViewOpen(false);
+        //스토리지에서 사진 삭제
+        const photoRef = ref(storage, `meal/${user.uid}/${clickedData.id}`);
+        await deleteObject(photoRef);
+        console.log(photoRef);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setIsViewOpen(false);
+      }
     }
   };
 
-  //식단 수정 모드
+  /* 식단 수정 모드로 변경 */
   const editModeHandler = () => {
     setIsEditMode(!isEditMode);
-    //취소 시, 입력 내용 초기화
+    //취소 시, 변경 사항 초기화
     setHashTags(clickedData.hashTags);
     setNewPost(clickedData.text);
     setInputHashTag("");
   };
 
-  //해시태그 새로운 값 입력 시 상태 업데이트
+  /* 해시태그 내용 입력시 */
   const handleInputChange = (e) => {
     setInputHashTag(e.target.value);
   };
 
-  //식단 수정
-  const updateMealPost = async (e, index) => {
-    e.preventDefault();
-    console.log("수정작동:");
-    console.log(newPost, "newPost");
-    let newnewpost = newPost;
-    let newHashtags = [...hashTags];
-    try {
-      await updateDoc(docRef, { text: newPost, hashTags: newHashtags });
-      console.log("게시물이 성공적으로 수정되었습니다.");
-    } catch (error) {
-      console.error("게시물 수정에 실패했습니다:", error);
-    }
-    setIsEditMode(false);
-
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      let hashTags = data.hashTags || [];
-
-      if (index >= 0 && index < hashTags.length) {
-        hashTags.splice(index, 1);
-      }
-
-      await updateDoc(docRef, {
-        hashTags: hashTags,
-      });
-    }
-  };
-
-  // 해시태그 추가
+  /* 해시태그 추가 */
   const keyDownHandler = async (e) => {
     if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       e.preventDefault();
@@ -151,41 +126,56 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
       }
       // 입력값을 배열에 추가
       setHashTags((prevHashtags) => [...prevHashtags, inputHashTag.trim()]);
-      // 입력값 초기화
       setInputHashTag("");
-
-      // updateTags = [...hashTags];
-      // setUpdateHashTags([...clickedData.hashTags, hashTags]);
-      console.log(hashTags, "hashTags 추가 등록");
-      console.log(updateTags, "updateTags 추가 등록");
     }
   };
-  // console.log(hashTags, "hashTags 추가 등록");
-  // console.log(newPost, "newPost");
 
-  //해시태그 삭제
+  /* 해시태그 삭제 */
   const deleteHashTag = async (index) => {
     const updatedHashTags = [...hashTags];
     updatedHashTags.splice(index, 1);
     setHashTags(updatedHashTags);
-
-    // 문서에서 현재 배열을 가져옵니다
-    // const docSnap = await getDoc(docRef);
-    // if (docSnap.exists()) {
-    //   const data = docSnap.data();
-    //   let hashTags = data.hashTags || [];
-
-    //   if (index >= 0 && index < hashTags.length) {
-    //     hashTags.splice(index, 1);
-    //   }
-
-    //   await updateDoc(docRef, {
-    //     hashTags: hashTags,
-    //   });
-    // }
   };
 
-  //댓글 불러오기
+  /* 수정 이미지 업로드시 */
+  const onFileChange = (e) => {
+    const { files } = e.target;
+    if (files && files.length == 1) {
+      setFile(files[0]);
+    }
+  };
+
+  /* 식단 수정 */
+  const updateMealPost = async (e, index) => {
+    e.preventDefault();
+    let newHashtags = [...hashTags];
+    await updateDoc(docRef, { text: newPost, hashTags: newHashtags });
+
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      let hashTags = data.hashTags || [];
+      if (index >= 0 && index < hashTags.length) {
+        hashTags.splice(index, 1);
+      }
+      await updateDoc(docRef, {
+        hashTags: hashTags,
+      });
+    }
+
+    // 변경된 이미지가 있다면, 스토리지 이미지 수정
+    if (file !== "") {
+      const storageRef = ref(storage, `meal/${user.uid}/${clickedData.id}`);
+      const result = await uploadBytes(storageRef, file);
+      if (result && result.ref) {
+        const newMealImg = await getDownloadURL(result.ref);
+        setMealImg(newMealImg);
+      }
+    }
+    setIsEditMode(false);
+  };
+
+  /* 댓글 불러오기 */
   useEffect(() => {
     const fetchData = async () => {
       const querySnapshot = await getDocs(
@@ -212,7 +202,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     setNewReplys("");
   };
 
-  //대댓글
+  /* 대댓글 */
   const handleItemIdx = (e) => {
     const listItem = e.target.closest("li");
 
@@ -232,16 +222,6 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
           ...doc.data(),
         }));
         setNestedReplys(data);
-
-        // const querySnapshot2 = await getDocs(
-        //   collection(db, `meal/${clickedData.id}/reply`)
-        // );
-        // const replyIdx = querySnapshot2.docs.map((doc) => ({
-        //   id: doc.id,
-        //   username: doc.data().username,
-        //   // ...doc.data(),
-        // }));
-
         // data-idx 값과 일치하는 문서
         const clickedDocument = replys.find((doc) => doc.id === dataIdx);
 
@@ -260,7 +240,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     }
   };
 
-  //대댓글 보기
+  /* 대댓글 보기 */
   const handleNestedItemIdx = (e) => {
     // 클릭한 요소의 데이터 인덱스
     const clickedDataIdx = e.currentTarget
@@ -280,12 +260,14 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const user = auth.currentUser;
-    //유저 없거나, 게시글 빈값이거나 글자수 초과시 리턴
-    if (!user || newReplys === "" || newReplys.length > 1000) return;
-    try {
-      // let docRef;
+    if (!user) {
+      alert("로그인 후 이용해주세요.");
+      navigate("/login");
+    }
+    // 댓글 빈값이거나 글자수 초과시 리턴
+    if (newReplys === "" || newReplys.length > 1000) return;
 
+    try {
       //대댓글 모드에 따라 경로 설정
       const replyPath = isReplyToMode
         ? `meal/${clickedData.id}/reply/${replyIdx}/nestedReply`
@@ -315,26 +297,20 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     }
   };
 
-  //댓글 삭제
+  /* 댓글 삭제 */
   const deleteReply = async (index) => {
-    console.log(index);
     const replyDocRef = doc(db, `meal/${clickedData.id}/reply`, index);
-
-    try {
-      await deleteDoc(replyDocRef);
-      console.log("댓글이 성공적으로 삭제되었습니다.");
-    } catch (error) {
-      console.error("댓글 삭제 실패:", error);
-    }
+    await deleteDoc(replyDocRef);
   };
 
   return (
     <div className="meal-view-bg">
-      <div className="meal-view df">
+      <div className="meal-view">
         <div className="meal-view-col">
           <div className="meal-img-wrap">
             <img
-              src={clickedData.photo}
+              // src={clickedData.photo}
+              src={mealImg}
               alt="식단이미지"
               className={isLiked ? "liked meal-img" : "meal-img"}
               onDoubleClick={handleDoubleClick}
@@ -381,7 +357,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
             </div>
           </div>
           {!isEditMode ? (
-            <p>{newPost}</p>
+            <p className="meal-text">{newPost}</p>
           ) : (
             <form className="update-form">
               <div>
@@ -419,6 +395,21 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                   </div>
                 </div>
               </div>
+              <div className="utility">
+                <div>
+                  <label htmlFor="add-img">
+                    <FontAwesomeIcon icon={faImage} />
+                    <span>이미지 수정</span>
+                  </label>
+                  <input
+                    type="file"
+                    id="add-img"
+                    className="hidden"
+                    onChange={onFileChange}
+                    accept="image/*"
+                  />
+                </div>
+              </div>
 
               <div className="btn-wraps">
                 <button className="m-green-btn" onClick={updateMealPost}>
@@ -448,12 +439,12 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
               <img src={profileImg} alt="유저 프로필" />
               <p className="meal-user">{clickedData.username}</p>
               <img src={levelImg} alt="유저 레벨" className="level-badge" />
-              {auth.currentUser.uid !== clickedData.userId && (
+              {(!user || user.uid) !== clickedData.userId && (
                 <button className="w-green-btn">팔로우</button>
               )}
             </div>
             <div onClick={toggleSet}>
-              {toggleMore && auth.currentUser.uid === clickedData.userId ? (
+              {toggleMore && user.uid === clickedData.userId ? (
                 <div className="btn-wraps">
                   <button className="m-green-btn" onClick={editModeHandler}>
                     수정
@@ -497,7 +488,7 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
                       </div>
                       <div>
                         <FontAwesomeIcon icon={regularHeart} />
-                        {auth.currentUser.uid === clickedData.userId && (
+                        {user && user.uid === clickedData.userId && (
                           <button>
                             <FontAwesomeIcon
                               icon={faXmark}

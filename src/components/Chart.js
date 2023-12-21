@@ -11,7 +11,6 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
 
   console.log(clickedData, "chart clickedData");
   const [chartFood, setFoodName] = useState(clickedData);
-  // console.log(chartFood);
   const [chartData, setChartData] = useState({
     labels: [
       "단백질(g)",
@@ -108,6 +107,67 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
     }
   }, [clickedData]);
 
+  const options = {
+    layout: {
+      padding: 0, // 간격 없애기
+      // padding: {
+      //   left: 50, // 왼쪽 간격
+      //   right: 50, // 오른쪽 간격
+      //   top: 50, // 위쪽 간격
+      //   // bottom: 50, // 아래쪽 간격
+      // },
+    },
+    // responsive: true,
+    // maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        // display: false,
+        position: "top",
+        labels: {
+          boxWidth: 15,
+        },
+      },
+      tooltip: {
+        // label: false,
+        // displayColors: false,
+        padding: 10,
+        caretPadding: 10,
+        backgroundColor: "#0E2044",
+        xAlign: "center",
+        yAlign: "bottom",
+        callbacks: {
+          // title: function () {
+          //   return "";
+          // },
+          // label: function (context) {
+          //   const value = context.parsed.y || 0;
+          //   return `${value}명`;
+          // },
+        },
+      },
+    },
+    elements: {
+      point: {
+        backgroundColor: "#fff",
+        borderColor: "#2D8CFF",
+        hoverRadius: 5,
+        hoverBackgroundColor: "#fff",
+        hoverBorderColor: "#2D8CFF",
+      },
+    },
+    // scales: {
+    //   x: {
+    //     display: true,
+    //     grid: {
+    //       display: false,
+    //     },
+    //   },
+    //   y: {
+    //     display: false,
+    //   },
+    // },
+  };
+
   return (
     <div className="chart-wrap">
       <div className="chart">
@@ -115,8 +175,8 @@ const Chart = ({ clickedData, setIsModalOpen }) => {
           <span>{chartFood.NAME}</span> 영양정보
         </h2>
 
-        <Pie data={chartData} />
-        <div className="df jcc">
+        <Pie data={chartData} options={options} />
+        <div className="chart-kcal">
           <h3 className="chart-desc">
             <span>단위</span>
             <span>

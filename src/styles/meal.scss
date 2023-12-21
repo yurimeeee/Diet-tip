@@ -46,7 +46,7 @@
   }
 
   .chart {
-    width: 50%;
+    width: 45%;
     // height: 50vh;
     padding: 30px 0;
     border-radius: 10px;
@@ -55,7 +55,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 
     h2 {
@@ -66,6 +69,11 @@
       span {
         font-weight: 600;
       }
+    }
+
+    .chart-kcal {
+      display: flex;
+      flex: 1;
     }
 
     .chart-desc {
@@ -774,6 +782,7 @@ hr {
   z-index: 1000;
 }
 .meal-view {
+  display: flex;
   background: $white;
   border-radius: 12px;
   width: 960px;
@@ -1159,6 +1168,26 @@ hr {
     p {
       font-size: 12px;
       margin-bottom: 16px;
+    }
+  }
+
+  //meal
+  .meal-view {
+    flex-direction: column;
+    width: 100vw;
+    height: calc(100vh - 40px);
+
+    > div {
+      width: 100%;
+    }
+    .meal-text {
+      height: 60px;
+      padding-bottom: 20px;
+    }
+
+    .hashtag {
+      position: relative;
+      bottom: 0px;
     }
   }
 }

@@ -715,7 +715,7 @@ body {
   z-index: 100;
 }
 .chart-wrap .chart {
-  width: 50%;
+  width: 45%;
   padding: 30px 0;
   border-radius: 10px;
   background: #fff;
@@ -723,7 +723,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1000;
 }
 .chart-wrap .chart h2 {
@@ -733,6 +736,10 @@ body {
 }
 .chart-wrap .chart h2 span {
   font-weight: 600;
+}
+.chart-wrap .chart .chart-kcal {
+  display: flex;
+  flex: 1;
 }
 .chart-wrap .chart .chart-desc span {
   padding: 5px 15px;
@@ -1359,6 +1366,7 @@ hr {
 }
 
 .meal-view {
+  display: flex;
   background: #fff;
   border-radius: 12px;
   width: 960px;
@@ -1688,6 +1696,22 @@ hr {
   .recom-list p {
     font-size: 12px;
     margin-bottom: 16px;
+  }
+  .meal-view {
+    flex-direction: column;
+    width: 100vw;
+    height: calc(100vh - 40px);
+  }
+  .meal-view > div {
+    width: 100%;
+  }
+  .meal-view .meal-text {
+    height: 60px;
+    padding-bottom: 20px;
+  }
+  .meal-view .hashtag {
+    position: relative;
+    bottom: 0px;
   }
 }
 
