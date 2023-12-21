@@ -860,10 +860,6 @@ body {
   font-size: 13px;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 /* force scrollbar */
 html {
   overflow-y: scroll;

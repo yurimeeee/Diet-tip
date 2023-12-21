@@ -715,7 +715,7 @@ body {
   z-index: 100;
 }
 .chart-wrap .chart {
-  width: 45%;
+  width: 50%;
   padding: 30px 0;
   border-radius: 10px;
   background: #fff;
@@ -723,10 +723,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute;
   z-index: 1000;
 }
 .chart-wrap .chart h2 {
@@ -736,10 +733,6 @@ body {
 }
 .chart-wrap .chart h2 span {
   font-weight: 600;
-}
-.chart-wrap .chart .chart-kcal {
-  display: flex;
-  flex: 1;
 }
 .chart-wrap .chart .chart-desc span {
   padding: 5px 15px;
@@ -853,7 +846,8 @@ nav.pagination {
   font-weight: 500;
   margin-bottom: 30px;
 }
-.head-banner .banner-img {
+
+.banner-img {
   width: 485px;
   height: 336px;
 }
@@ -988,7 +982,6 @@ nav.pagination {
 .meal-post-wrap .meal-card .img-container {
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 }
 .meal-post-wrap .meal-card .img-container:hover .like-container {
   bottom: 0;
@@ -1373,7 +1366,6 @@ hr {
 }
 
 .meal-view {
-  display: flex;
   background: #fff;
   border-radius: 12px;
   width: 960px;
@@ -1398,7 +1390,6 @@ hr {
 }
 .meal-view > div .meal-img-wrap {
   position: relative;
-  cursor: pointer;
 }
 .meal-view > div .meal-img-wrap .like-icon {
   position: absolute;
@@ -1520,9 +1511,6 @@ hr {
   align-items: center;
   gap: 10px;
 }
-.meal-view .reply-wrap .reply svg {
-  cursor: pointer;
-}
 .meal-view .reply-wrap .add-nested-reply {
   font-size: 13px;
   color: #9da1a6;
@@ -1542,6 +1530,7 @@ hr {
   resize: none;
   border: none;
   border: 1px solid #f2f3f5;
+  height: 70%;
 }
 .meal-view textarea:focus {
   outline: none;
@@ -1554,12 +1543,6 @@ hr {
 }
 .meal-view .tag-wrap .form-tag-wrap {
   flex-wrap: wrap;
-}
-.meal-view .update-form {
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .meal-view .btn-wraps {
   justify-content: end;
@@ -1706,20 +1689,4 @@ hr {
     font-size: 12px;
     margin-bottom: 16px;
   }
-  .meal-view {
-    flex-direction: column;
-    width: 100vw;
-    height: calc(100vh - 40px);
-  }
-  .meal-view > div {
-    width: 100%;
-  }
-  .meal-view .meal-text {
-    height: 60px;
-    padding-bottom: 20px;
-  }
-  .meal-view .hashtag {
-    position: relative;
-    bottom: 0px;
-  }
-}/*# sourceMappingURL=meal.css.map */
+}/*# sourceMappingURL=meal copy.css.map */
