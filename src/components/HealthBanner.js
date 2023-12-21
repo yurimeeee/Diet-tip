@@ -13,7 +13,7 @@ function HealthBanner() {
       part: "snippet",
       type: "video",
       maxResults: 1,
-      fields: "items(id,etag, snippet(title,thumbnails,description))",
+      fields: "items(id,snippet(title,thumbnails,description))",
       videoEmbeddable: true,
   };
 

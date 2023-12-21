@@ -4,6 +4,7 @@ import Calories from "../pages/Calories";
 import Main from "../pages/Main";
 import DailyMeal from "../pages/DailyMeal";
 import Health from "../pages/Health";
+import Healthshot from "../pages/HealthShot";
 import Mypage from "../pages/Mypage";
 import Login from "../pages/Login";
 import Signin from "../pages/Signin";
@@ -43,6 +44,10 @@ const AppRouter = createBrowserRouter([
   {
     path: "/health",
     element: <Health />,
+  },
+  {
+    path: "/healthshot",
+    element: <Healthshot />,
   },
   {
     path: "/freeboard",

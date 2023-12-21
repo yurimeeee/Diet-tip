@@ -70,7 +70,7 @@
 // HealthLevel
 
 .levels{
-	width:80%;
+	width:100%;
 	height:50%;
 	margin: 72px auto;
 	gap:50px;
@@ -78,9 +78,10 @@
 
 .level{
 	height:100%;
-	width:20%;
+	width:80%;
+	margin: 0 auto;
 	img{
-		width: 45%;
+		width: 25%;
 	}
 	h2{
 		color:$point-2;
@@ -102,24 +103,27 @@
 .LevelCont{
 	// display: none;
 	width: 100%;
-	.levelWrap{
-	 width: 423px;
-	 height: 370px;
-	 .levelImg{
-		 img{
-			border-radius: 10px;
-			object-fit: cover;
-			width:100%;
-		 }
+	.levelContWrap {
+		flex-wrap: wrap;
+		.levelWrap{
+		 width: 423px;
+		 height: 370px;
+		 .levelImg{
+			 img{
+				border-radius: 10px;
+				object-fit: cover;
+				width:100%;
+			 }
+			}
+			p{
+				text-align: left;
+			} 
 		}
-		p{
-			text-align: left;
-		} 
-	}
-	.youtubeProfile img{
-		width:24px;
-		height: 24px;
-		border-radius: 50%;
+		.youtubeProfile img{
+			width:24px;
+			height: 24px;
+			border-radius: 50%;
+		}
 	}
 }
 
@@ -196,3 +200,39 @@ body {
 
 
 //map
+* { box-sizing: border-box; }
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
+body { font-family: sans-serif; }
+
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
