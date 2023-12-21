@@ -19,6 +19,9 @@ import { db, auth } from "../firebase";
 import TitleBanner from "../components/TitleBanner";
 import MealView from "../components/MealView";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setPosts } from "../store/mealSlice";
+
 // const Modal = ({ isOpen, closeModal, children }) => {
 //   return (
 //     <>
@@ -37,38 +40,47 @@ import MealView from "../components/MealView";
 // };
 
 const DailyMeal = () => {
+  const dispatch = useDispatch();
+  const postsSelector = (state) => state.mealDB.posts;
+  const posts = useSelector(postsSelector);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWritingMode, setIsWritingMode] = useState(false);
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [replyCount, setReplyCount] = useState("");
+  const [bestPost, setBestPosts] = useState([]);
 
-  console.log("replyCount", replyCount);
+  // console.log("replyCount", replyCount);
   const openModal = () => {
     setIsModalOpen(true);
+    document.body.style.overflow = "hidden"; // 스크롤 막기
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    document.body.style.overflow = "visible"; // 스크롤 허용
   };
 
   const handleModeChange = (val) => {
     setIsWritingMode(val);
   };
 
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+
+  // console.log("posts", posts);
   useEffect(() => {
     let unsubscribe = null;
     const fetchPosts = async () => {
       //쿼리생성
-      const tweetsQuery = query(
+      const mealQuery = query(
         collection(db, "meal"), //컬렉션 지정
         orderBy("createdAt", "desc"), //시간순으로 내림차순
         limit(25)
       );
 
-      unsubscribe = await onSnapshot(tweetsQuery, (snapshot) => {
+      unsubscribe = await onSnapshot(mealQuery, (snapshot) => {
         const posts = snapshot.docs.map((doc) => {
-          const { text, createdAt, userId, username, photo, hashTags } =
+          const { text, createdAt, userId, username, photo, hashTags, like } =
             doc.data();
           return {
             text,
@@ -78,9 +90,22 @@ const DailyMeal = () => {
             photo,
             id: doc.id,
             hashTags,
+            like,
           };
         });
-        setPosts(posts);
+        // 리덕스 액션을 통해 스토어에 데이터 저장
+        dispatch(setPosts(posts));
+        // setPosts(posts);
+
+        // let bestPostSort = posts.sort((a, b) => b.like - a.like);
+        // setBestPosts(bestPostSort);
+        let bestPostSort = [...posts]; // 원본 배열을 변경하지 않고 복제본 생성
+        bestPostSort.sort((a, b) => b.like - a.like);
+        setBestPosts(bestPostSort);
+        console.log(bestPostSort);
+
+        // 결과 확인
+        console.log(posts);
       });
     };
 
@@ -89,7 +114,48 @@ const DailyMeal = () => {
       unsubscribe && unsubscribe();
       // 사용자가 타임라인을 보고 있을때만 작동
     };
-  }, []);
+    // }, []);
+  }, [dispatch]);
+
+  //best post
+  // useEffect(() => {
+  //   let unsubscribe = null;
+  //   const fetchPosts = async () => {
+  //     //쿼리생성
+  //     const mealQuery = query(
+  //       collection(db, "meal"), //컬렉션 지정
+  //       orderBy("like", "desc"), // like 필드의 값이 높은 순서대로 정렬
+  //       limit(4) // 상위 4개만 가져오도록 제한
+  //     );
+
+  //     unsubscribe = await onSnapshot(mealQuery, (snapshot) => {
+  //       const bestPost = snapshot.docs.map((doc) => {
+  //         const { text, createdAt, userId, username, photo, hashTags, like } =
+  //           doc.data();
+  //         return {
+  //           text,
+  //           createdAt,
+  //           userId,
+  //           username,
+  //           photo,
+  //           id: doc.id,
+  //           hashTags,
+  //           like,
+  //         };
+  //       });
+  //       // 리덕스 액션을 통해 스토어에 데이터 저장
+  //       // dispatch(setPosts(posts));
+  //       setBestPosts(bestPost);
+  //     });
+  //   };
+
+  //   fetchPosts();
+  //   return () => {
+  //     unsubscribe && unsubscribe();
+  //     // 사용자가 타임라인을 보고 있을때만 작동
+  //   };
+  //   // }, []);
+  // }, [dispatch]);
 
   //상세보기
   const [myData, setMyData] = useState([]);
@@ -152,9 +218,11 @@ const DailyMeal = () => {
           onReplyCount={onReplyCount}
         />
       ) : null}
-      <div className="meal-post-wrap">
-        {posts.slice(0, 4).map((post, index) => (
-          <div style={{ width: "312px" }} key={index}>
+      <h2 className="sec-tt wb">Weekly Best</h2>
+      <div className="meal-post-wrap best-meal">
+        {bestPost.slice(0, 4).map((post, index) => (
+          // <div style={{ width: "312px" }} key={index}>
+          <div key={index}>
             <MealPost
               key={index}
               {...post}
@@ -167,7 +235,7 @@ const DailyMeal = () => {
           </div>
         ))}
       </div>
-      <h2 className="sec-tt">Today’s pick! </h2>
+      <h2 className="sec-tt">Today’s pick!</h2>
       <div className="meal-post-wrap today-meal">
         {posts.map((post, index) => (
           <MealPost

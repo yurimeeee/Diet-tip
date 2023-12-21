@@ -38,7 +38,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -673,6 +673,4 @@ body {
   position: absolute;
   bottom: 0;
   margin-bottom: 0px;
-}
-
-/*# sourceMappingURL=common.css.map */
+}/*# sourceMappingURL=common.css.map */

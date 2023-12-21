@@ -1,139 +1,138 @@
 //common
-@import 'common';
+@import "common";
 
 //layout
-section+section{
+section + section {
   margin-top: $unit-2;
 }
 
 //title
-h5{
+h5 {
   font-size: $font-20;
   font-weight: bold;
   margin-bottom: 40px;
 }
-h6{
+h6 {
   font-size: 18px;
   font-weight: bold;
 }
 
 //profile
-.profile{
+.profile {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 //level-badge
-.level-badge{
+.level-badge {
   width: 48px;
   height: 48px;
 }
 
 //area-top
-.area-middle-top{
+.area-middle-top {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
 
-  h5{
+  h5 {
     margin: 0;
   }
   //button
-  .buttons{
+  .buttons {
     display: flex;
     gap: 20px;
 
-    .button{
+    .button {
       border: 1px solid $point-1;
       border-radius: 50%;
       width: 60px;
       height: 60px;
       background-color: transparent;
       transition: 0.3s ease-in background-color;
-      &:hover{
+      &:hover {
         background-color: $point-1;
       }
-      .icon{
-        color:$point-1;
+      .icon {
+        color: $point-1;
         font-size: 24px;
         transition: 0.3s ease-in color;
       }
-      &:hover .icon{
-        color:$white;
+      &:hover .icon {
+        color: $white;
       }
     }
   }
 }
 
 //area-middle
-.area-middle{
+.area-middle {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
 //area-middle-middle
-.area-middle-middle{
+.area-middle-middle {
   display: flex;
-  gap:100px;
+  gap: 100px;
 }
 
 //area-right
-.area-right{
+.area-right {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
 //profile-card
-.profile-card{
+.profile-card {
   display: inline-block;
   padding: 34px;
   background-color: $white;
   box-sizing: border-box;
-  .profile-img{
+  .profile-img {
     width: 300px;
     height: 300px;
     object-fit: cover;
     margin-bottom: 20px;
   }
-  .about-user{
+  .about-user {
     width: 100%;
-    ul{
+    ul {
       padding-top: $unit-s-3;
-      li{
+      li {
         display: flex;
         width: 100%;
         justify-content: space-between;
       }
-      li+li{
+      li + li {
         margin-top: 10px;
         padding-top: 10px;
         border-top: 1px solid $gray-2;
       }
     }
   }
-  .user-info{
+  .user-info {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
   }
-  
 }
 
 //today
-.today_content{
+.today_content {
   display: flex;
   justify-content: center;
   align-items: start;
   gap: 100px;
   //today-weekly
-  .Calendar{
+  .Calendar {
     margin: 0;
-    .Year-MonthList p{
+    .Year-MonthList p {
       font-weight: bold;
       margin-bottom: 10px;
       // text-align: center;
@@ -142,61 +141,61 @@ h6{
 }
 
 //today-cards
-.today{
-  h5{
+.today {
+  h5 {
     text-align: center;
     margin-bottom: 40px;
   }
 }
-.today-cards{
+.today-cards {
   display: flex;
   gap: 20px;
 }
-%today-card{
+%today-card {
   display: flex;
   background-color: $white;
-  padding:30px;
+  padding: 30px;
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 160px;
   transition: 0.3s;
-  &:hover{
-    background-color: rgba(255,255,255,.8);
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
   }
 }
-.today-card-big{
+.today-card-big {
   @extend %today-card;
   width: 310px;
-  .weather{
+  .weather {
     display: flex;
     gap: 30px;
     align-items: center;
     justify-content: center;
-    .weather-text{
+    .weather-text {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      p{
+      p {
         width: 74px;
         display: flex;
         justify-content: space-between;
       }
     }
-    .weather-icon{
+    .weather-icon {
       object-fit: cover;
       width: 60px;
     }
   }
 }
-.today-card{
+.today-card {
   @extend %today-card;
   gap: 20px;
   width: 130px;
   height: 160px;
-  .sticker{
+  .sticker {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -204,30 +203,30 @@ h6{
 }
 
 //goal-card
-.goal-card{
+.goal-card {
   background-color: $white;
   display: flex;
   gap: 20px;
   padding: 20px 140px;
-  &+.goal-card{
+  & + .goal-card {
     margin-top: 20px;
   }
-  p{
+  p {
     font-weight: 700;
     display: flex;
-    gap:10px;
+    gap: 10px;
   }
 }
 
 //recommand
-.recommand{
+.recommand {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  h5{
+  h5 {
     margin: 0;
   }
-  .recommand-btns{
+  .recommand-btns {
     display: flex;
     align-items: start;
     gap: 20px;
@@ -235,85 +234,77 @@ h6{
 }
 
 //chart
-.chart-container{
+.chart-container {
   position: relative;
-  button{
+  button {
     position: absolute;
-    top:50%;
+    top: 50%;
     right: -10px;
     transform: translateX(100%);
   }
 }
 
 //alert page
-.Alert{
+.Alert {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: start;
-  section+section{
+  section + section {
     margin-top: 0;
   }
   gap: 20px;
-  .maintt{
+  .maintt {
     text-align: center;
   }
-  .alert-board{
+  .alert-board {
     width: 648px;
     background-color: $white;
     border-radius: 20px;
     padding: 48px;
     box-sizing: border-box;
-    .post-img{
+    .post-img {
       width: 32px;
       height: 32px;
       object-fit: cover;
     }
-    >p{
+    > p {
       margin-bottom: $unit-1;
     }
-    p{
+    p {
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 600;
     }
-    .reply-text{
+    .reply-text {
       margin-left: 42px;
     }
-    .alert.like, .alert.reply{
+    .alert.like,
+    .alert.reply {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
     }
-    .green{
+    .green {
       background-color: $point-1;
     }
-    .red{
+    .red {
       background-color: $point-2;
     }
-    .alert.report{
+    .alert.report {
       display: flex;
       justify-content: space-between;
-      .badges{
+      .badges {
         display: flex;
         gap: 10px;
       }
     }
-    .progress{
+    .progress {
       display: flex;
       justify-content: space-between;
       margin-top: $unit-1;
     }
   }
-
-
-
 }
-
-
-
-
-
-

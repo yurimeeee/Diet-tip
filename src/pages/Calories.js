@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../styles/meal.css";
 import TitleBanner from "../components/TitleBanner";
-
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-// import "./styles.css";
-
 import image1 from "../asset/meal/season_1.png";
 import image2 from "../asset/meal/season_2.png";
 import image3 from "../asset/meal/season_3.png";
+import calories_DB from "../data/calories_DB.json";
+import Chart from "../components/Chart";
+import PaginationComp from "../components/Pagination";
 
 const seasonList = [
   {
@@ -40,66 +37,153 @@ const seasonList = [
 ];
 
 const Calories = () => {
-  const [rowdata, setRowData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
-  // console.log("response:");
+  const [caloriesData, setCaloriesData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [noResult, setNoResult] = useState(false);
+  const [clickedIdx, setClickedIdx] = useState("");
+  const [clickedData, setClickedData] = useState(calories_DB[0]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  //인풋 포커스
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+
+  //식품 정보 불러오기
   useEffect(() => {
-    // fc61d1b656c44d8ebab1
-    const apiKey = "fc61d1b656c44d8ebab1";
-    // API 주소
-    const apiUrl = `http://openapi.foodsafetykorea.go.kr/api/${apiKey}/I2790/json/1/50`;
-
     const fetchData = async () => {
-      try {
-        const response = await fetch(apiUrl);
-
-        if (!response.ok) {
-          throw new Error(
-            `서버 응답이 올바르지 않습니다. 상태 코드: ${response.status}`
-          );
+      const data = [];
+      calories_DB.forEach((item) => {
+        for (const key in item) {
+          if (Object.prototype.hasOwnProperty.call(item, key)) {
+            data.push(...item[key]);
+            // console.log(item);
+          }
         }
-
-        const data = await response.json();
-        // console.log("API 데이터:", data.I2790.row);
-        // setRowData(data.I2790.row);
-        // const descKorArray = data.I2790.row.map((item) => item.DESC_KOR);
-        // console.log(descKorArray);
-        const extractedData = data.I2790.row.map((item) => {
-          return {
-            DESC_ENG: item.DESC_ENG,
-            SERVING_SIZE: item.SERVING_SIZE,
-            NUTR_CONT1: item.NUTR_CONT1,
-            // 원하는 필드들을 추가로 포함시키세요.
-          };
-        });
-
-        setRowData(extractedData);
-        console.log("rowdata", rowdata);
-      } catch (error) {
-        console.error("API 호출 중 오류:", error);
-      }
+      });
+      setCaloriesData(data);
     };
 
-    fetchData();
-  }, []); // 컴포넌트가 처음 렌더링될 때만 실행
+    // fetchData();
+  }, []);
 
-  // 전체 데이터에서 현재 페이지에 해당하는 데이터만 추출
+  /* 페이지네이션 start */
+  //전체 데이터에서 현재 페이지 데이터 추출
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = rowdata.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = calories_DB.slice(indexOfFirstItem, indexOfLastItem);
 
-  // 페이지 변경 핸들러
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  //페이지 변경
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+  /* 페이지네이션 end */
+
+  /* 식품 검색 start */
+  // 검색어 변경 핸들러
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const result = [];
+    const searchTermLower = searchTerm.toLowerCase();
+
+    calories_DB.forEach((item) => {
+      for (const key in item) {
+        // 배열인 경우
+        if (Array.isArray(item[key])) {
+          const foundItems = item[key].filter((subItem) =>
+            subItem.NAME.toLowerCase().includes(searchTermLower)
+          );
+          if (foundItems.length > 0) {
+            // 검색된 객체에 NO 필드 추가
+            const itemsWithNO = foundItems.map((foundItem) => ({
+              ...foundItem,
+              NO: item.NO,
+            }));
+
+            result.push(...itemsWithNO);
+            setNoResult(false);
+          }
+        } else {
+          // 배열이 아닌 경우
+          if (
+            key === "NAME" &&
+            item[key].toLowerCase().includes(searchTermLower)
+          ) {
+            result.push({
+              ...item,
+              NO: item.NO,
+            });
+            setNoResult(false);
+          }
+        }
+      }
+    });
+
+    if (result.length <= 0) {
+      // console.log("검색결과가 없음");
+      setNoResult(true);
+    }
+
+    //중복제거
+    const uniqueResult = Array.from(
+      new Set(result.map((item) => JSON.stringify(item)))
+    ).map((stringifiedItem) => JSON.parse(stringifiedItem));
+
+    //검색 결과
+    setSearchResult(uniqueResult);
   };
+
+  //검색종료
+  const searchComplete = () => {
+    setSearchResult([]);
+    setSearchTerm("");
+  };
+  /* 식품 검색 end */
+
+  /* 차트로 데이터 전달 */
+  const clickedIdxHandler = (e) => {
+    const dataIdx = Number(e.target.getAttribute("data-idx"));
+    // setClickedIdx(dataIdx);
+    // const dataInfo = calories_DB[clickedIdx];
+    const dataInfo = calories_DB[dataIdx];
+    setClickedData(dataInfo);
+    setIsModalOpen(true);
+  };
+
+  const clickedResultHandler = (e) => {
+    const dataIdx = Number(e.target.getAttribute("data-idx")) - 1;
+    // setClickedIdx(dataIdx);
+    const dataInfo = calories_DB[dataIdx];
+    setClickedData(dataInfo);
+    setIsModalOpen(true);
+  };
+
+  if (!setIsModalOpen) {
+    setClickedData("");
+  }
 
   return (
     <div className="container">
       <TitleBanner />
       <div className="search-bar">
-        <form>
-          <input type="text" placeholder="검색어를 입력해주세요." />
+        <form
+          onSubmit={handleSearch}
+          className={isInputFocused ? "active" : ""}
+        >
+          <input
+            type="text"
+            placeholder="검색어를 입력해주세요."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+          />
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,6 +200,42 @@ const Calories = () => {
           </button>
         </form>
       </div>
+      {searchResult.length > 0 && (
+        <div className="search_result">
+          <div className="df jcsb aic">
+            <h3>
+              총 <span>{searchResult.length}</span>건의 검색 결과
+            </h3>
+            <p className="w-gray-btn" onClick={searchComplete}>
+              검색 종료
+            </p>
+          </div>
+          <ul className="result_bg">
+            {searchResult.map((item, idx) => (
+              <li
+                key={idx}
+                data-idx={item.INDEX}
+                onClick={clickedResultHandler}
+              >
+                {item.NAME}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {noResult && (
+        <div className="search_result">
+          <div className="result_bg">검색 결과가 없습니다.</div>
+        </div>
+      )}
+      {isModalOpen && (
+        <Chart
+          clickedIdx={clickedIdx}
+          clickedData={clickedData}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
+
       <table className="calories-table">
         <thead className="sm-radius">
           <tr className="sm-radius">
@@ -126,53 +246,26 @@ const Calories = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {currentItems.map((item, index) => ( */}
-          {rowdata.map((item, index) => (
+          {currentItems.map((item, index) => (
             <tr key={index}>
-              <th scope="row">{index}</th>
-              <td>{item.DESC_KOR}</td>
+              <th scope="row">{item.INDEX}</th>
+              <td onClick={clickedIdxHandler} data-idx={index}>
+                {item.NAME}
+              </td>
               <td>
                 {item.SERVING_SIZE}
                 {item.SERVING_UNIT}
               </td>
-              <td>{item.NUTR_CONT1}</td>
+              <td>{item.KCAL}kcal</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <nav className="pagination">
-        <ul className="pagination">
-          <li className="page-item first-page">맨앞</li>
-          {Array.from({ length: Math.ceil(rowdata.length / itemsPerPage) }).map(
-            (item, index) => (
-              <li
-                key={index}
-                onClick={() => handlePageChange(index + 1)}
-                className={
-                  currentPage === index + 1 ? "active page-item" : "page-item"
-                }
-              >
-                {index + 1}
-              </li>
-            )
-          )}
-          <li className="page-item last-page">맨뒤</li>
-        </ul>
-      </nav>
-      {/* 페이지네이션 추가 */}
-      <div className="pagination-container">
-        {Array.from({ length: Math.ceil(rowdata.length / itemsPerPage) }).map(
-          (item, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? "active" : ""}
-            >
-              {index + 1}
-            </button>
-          )
-        )}
-      </div>
+      <PaginationComp
+        currentPage={currentPage}
+        totalPageCount={Math.ceil(calories_DB.length / itemsPerPage)}
+        handlePageChange={handlePageChange}
+      />
 
       <div className="recom-list bg-white web-shadow container md-radius df jcsb">
         <div>
@@ -193,8 +286,10 @@ const Calories = () => {
             {seasonList.map((list, index) => (
               <SwiperSlide key={index}>
                 <div className="recom-wrap">
-                  <img src={list.img} alt={list.imgDesc} />
-                  <div className="recom-desc">{list.desc}</div>
+                  <div>
+                    <img src={list.img} alt={list.imgDesc} />
+                    <div className="recom-desc">{list.desc}</div>
+                  </div>
                 </div>
                 <span className="recom-name">{list.name}</span>
                 <span>{list.nutrient}</span>

@@ -38,7 +38,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -937,7 +937,8 @@ h6 {
 .Alert .alert-board .reply-text {
   margin-left: 42px;
 }
-.Alert .alert-board .alert.like, .Alert .alert-board .alert.reply {
+.Alert .alert-board .alert.like,
+.Alert .alert-board .alert.reply {
   display: flex;
   align-items: center;
   justify-content: space-between;

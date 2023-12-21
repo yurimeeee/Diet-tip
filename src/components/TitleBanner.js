@@ -4,9 +4,11 @@ import { Route, useLocation } from "react-router-dom";
 import bannerImg from "../asset/meal/banner.png";
 import "../styles/meal.css";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const TitleBanner = ({ onModeChange }) => {
   const [isWritingMode, setIsWritingMode] = useState(false);
+  const navigate = useNavigate();
 
   const writingMode = () => {
     //로그인 유무 확인
@@ -15,7 +17,8 @@ const TitleBanner = ({ onModeChange }) => {
       // isWritingMode 값이 변경되었음을 부모 컴포넌트에 알림
       onModeChange(true);
     } else {
-      alert("로그인이 필요합니다!");
+      alert("로그인 후 이용해주세요.");
+      navigate("/login");
     }
   };
 
@@ -34,7 +37,7 @@ const TitleBanner = ({ onModeChange }) => {
         <h2 className="point-1">
           {shouldShowMealComponent ? "데일리 식단" : "칼로리 사전"}
         </h2>
-        <h3 className="gray-4">
+        <h3 className="gray-3">
           {" "}
           {shouldShowMealComponent
             ? "오늘 당신의 식단은 무엇인가요?"

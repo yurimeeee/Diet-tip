@@ -9,6 +9,10 @@ a {
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
+.mb-5 {
+  margin-bottom: 120px;
+}
+
 /* Variables end.*/
 body {
   font: 100% "Pretendard Variable";
@@ -34,7 +38,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -781,7 +785,8 @@ body {
 .Main .modal .modal-container .level-test-img {
   width: 120px;
   height: 120px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .Main .modal .modal-container .result-img {
   margin-bottom: 30px;
@@ -859,7 +864,8 @@ body {
   display: inline-block;
   width: 220px;
   height: 220px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
   z-index: 1;
 }
@@ -877,7 +883,8 @@ body {
   z-index: 1;
 }
 .Main .hot-board .hot-board-main .img-container .like-container img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 52px;
   height: 44px;
   cursor: pointer;
@@ -897,7 +904,8 @@ body {
 .Main .hot-board .hot-board-main .text-card .text-card-img {
   width: 100px;
   height: 100px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
 }
 .Main .hot-board .hot-board-main .text-card .text-card-text {
@@ -930,12 +938,14 @@ body {
 .Main .hot-board .hot-board-main .text-card .text-card-text .profile-icon {
   width: 28px;
   height: 28px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .Main .hot-board .hot-board-main .text-card .text-card-text .like-icon {
   width: 24px;
   height: 20px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .Main .recommand-exercise {
   display: flex;
@@ -960,7 +970,8 @@ body {
 .Main .recommand-exercise .exercise-card .exercise-icon {
   width: 97.2px;
   height: 100px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .Main .recommand-exercise .exercise-card .video-container {
   background-color: #9da1a6;
@@ -970,6 +981,4 @@ body {
 }
 .Main .recommand-exercise .exercise-card.video {
   justify-content: space-between;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

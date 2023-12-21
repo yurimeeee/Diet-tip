@@ -9,10 +9,12 @@ import { faL, faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faComment as solidComment } from "@fortawesome/free-solid-svg-icons";
 import { faComment as regularComment } from "@fortawesome/free-regular-svg-icons";
+import likeImg from "../asset/like-fill.png";
 
 const MealPost = ({
   username,
   photo,
+  like,
   post,
   userId,
   id,
@@ -21,7 +23,6 @@ const MealPost = ({
   replyCount,
 }) => {
   const [isreplyCount, setIsReplyCount] = useState(replyCount);
-  const [heartActive, setHeartActive] = useState(false);
 
   //댓글 불러오기
   useEffect(() => {
@@ -37,48 +38,14 @@ const MealPost = ({
     fetchData();
   }, [id]);
 
-  //더블 클릭
-  // const handleDoubleClick = () => {
-  //   setTimeout(setHeartActive(true), 1500);
-  //   setHeartActive(false);
-  // };
-
-  const handleHover = () => {
-    setHeartActive(true);
-  };
-
-  const handleLeave = () => {
-    setHeartActive(false);
-  };
-
-  // // 이미지에 대한 호버 이벤트만 한 번만 실행되도록 useEffect 사용
-  // useEffect(() => {
-  //   const imgElement = document.querySelector(".meal-img");
-
-  //   if (imgElement) {
-  //     imgElement.addEventListener("mouseenter", handleHover);
-  //     imgElement.addEventListener("mouseleave", handleLeave);
-
-  //     return () => {
-  //       imgElement.removeEventListener("mouseenter", handleHover);
-  //       imgElement.removeEventListener("mouseleave", handleLeave);
-  //     };
-  //   }
-  // }, []);
   return (
     <div className="meal-card" onClick={() => handleClick(id)}>
-      <img
-        src={photo || mealImg}
-        alt="식단이미지"
-        className="meal-img"
-        // onMouseEnter={handleHover}
-        // onMouseLeave={handleLeave}
-      />
-      {/* {heartActive && ( */}
-      <div className="heart-active">
-        <FontAwesomeIcon icon={solidHeart} size="4x" />
+      <div className="img-container">
+        <img src={photo || mealImg} alt="식단이미지" className="meal-img" />
+        <div className="like-container">
+          <img alt="like icon" src={likeImg}></img>
+        </div>
       </div>
-      {/* )} */}
       <div className="meal-info">
         <div className="df aic">
           <img src={profileImg} alt="유저 프로필" />
@@ -86,9 +53,8 @@ const MealPost = ({
         </div>
         <div className="like-reply-wrap">
           <div>
-            <FontAwesomeIcon icon={regularHeart} />
-            {/* <FontAwesomeIcon icon={solidHeart} /> */}
-            <span>{6}</span>
+            <FontAwesomeIcon icon={like > 0 ? solidHeart : regularHeart} />
+            <span>{like}</span>
           </div>
           <div>
             <FontAwesomeIcon

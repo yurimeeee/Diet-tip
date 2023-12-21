@@ -38,7 +38,7 @@ body {
   color: #2e8654;
 }
 
-.green--4 {
+.green-4 {
   color: #5ac479;
 }
 
@@ -709,6 +709,10 @@ a.login-btn:hover {
   border-radius: 24px;
   margin-bottom: 10px;
 }
+.Signin form input::-moz-placeholder, .Login form input::-moz-placeholder {
+  color: #32a061;
+  opacity: 0.5;
+}
 .Signin form input::placeholder, .Login form input::placeholder {
   color: #32a061;
   opacity: 0.5;
@@ -743,6 +747,4 @@ a.login-btn:hover {
 }
 .Login .google {
   margin-top: 40px;
-}
-
-/*# sourceMappingURL=signin.css.map */
+}/*# sourceMappingURL=signin.css.map */
