@@ -33,7 +33,7 @@ function HealthBanner() {
   console.log(playlist);
 
 	return(
-		<div className="bannerWrap">
+		<div className="bannerWrap web-shadow">
 			{playlist.map(playObj => {
 				return (
 				<>

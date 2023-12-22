@@ -95,7 +95,7 @@ function Kakao(){
 
   return(
     <>
-      <div id="map" style={{
+      <div id="map" className="web-shadow" style={{
         width:'100%',
         height:'600px'
       }}>

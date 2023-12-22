@@ -7,17 +7,17 @@ function LevelCont(props) {
   const [playlist, setPlaylist] = useState([]);
   const url = "https://www.youtube.com/watch?v="
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  const params = {
-      key: process.env.REACT_APP_YOUTUBE_API_KEY,
-      q: props.search,
-      part: "snippet",
-      type: "video",
-      maxResults: 10,
-      fields: "items(id,snippet(title,thumbnails,description))",
-      videoEmbeddable: true,
-  };
+  // const params = {
+  //     key: process.env.REACT_APP_YOUTUBE_API_KEY,
+  //     q: props.search,
+  //     part: "snippet",
+  //     type: "video",
+  //     maxResults: 10,
+  //     fields: "items(id,snippet(title,thumbnails,description))",
+  //     videoEmbeddable: true,
+  // };
   // axios
   //   .get(
   //     `https://www.googleapis.com/youtube/v3/search`,{params}
@@ -29,9 +29,9 @@ function LevelCont(props) {
   //   .catch((err) => { //실패했을 때
   //     console.log(err);
   //   });
-  }, [props]);
+  // }, [props]);
 
-  console.log(playlist);
+  // console.log(playlist);
 
 
   return (
@@ -45,7 +45,7 @@ function LevelCont(props) {
               <div className="levelImg">
                 <img src={playObj.snippet.thumbnails.high.url} alt=""/>
               </div>
-              <p>{playObj.snippet.title}</p>
+              <h3>{playObj.snippet.title}</h3>
               <p>조회수:1234회 1개월전</p>
               <div className="youtubeProfile df">
                 <img src={testImg}/>
