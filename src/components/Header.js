@@ -8,7 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { yesLogin, noLogin } from "../store/loginSlice";
 import { Link } from "react-router-dom";
-import { HashRouter as Router } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const auth = getAuth();
@@ -32,7 +32,8 @@ const Header = () => {
       .then(() => {
         dispatch(noLogin());
         alert("로그아웃 성공");
-        window.location.replace("/");
+        // window.location.replace("/");
+        navigate("/");
       })
       .catch((error) => {
         dispatch(yesLogin());
@@ -41,22 +42,24 @@ const Header = () => {
   };
 
   //로그인 페이지로 이동
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const moveLogin = () => {
-    window.location.replace("/login");
+    // window.location.replace("/login");
+    navigate("/login");
   };
   //마이 페이지로 이동
   const moveMp = () => {
-    window.location.replace("/mypage");
+    // window.location.replace("/mypage");
+    navigate("/mypage");
   };
 
   return (
     <header className="container">
       <div>
         <h1>
-          <a href="/">
+          <Link to="/">
             <span>다이어팁</span>
-          </a>
+          </Link>
         </h1>
         <aside>
           <button
@@ -79,42 +82,42 @@ const Header = () => {
       <nav className="main-menu">
         <ul>
           <li>
-            <a href="" className="big-menu">
+            <a href="javascript:void(0)" className="big-menu">
               <span className="icon meal"></span>
               <span>식단&식품</span>
             </a>
             <ul>
               <li>
-                <a href="/meal">식단 공유</a>
+                <Link to="/meal">식단 공유</Link>
               </li>
               <li>
-                <a href="/calories">칼로리 사전</a>
+                <Link to="/calories">칼로리 사전</Link>
               </li>
             </ul>
           </li>
           <li>
-            <a href="" className="big-menu">
+            <a href="javascript:void(0)" className="big-menu">
               <span className="icon health"></span>운동
             </a>
             <ul>
               <li>
-                <a href="/health">운동 추천</a>
+                <Link to="/health">운동 추천</Link>
               </li>
               <li>
-                <a href="/healthshot">운동 인증</a>
+                <Link to="/healthshot">운동 인증</Link>
               </li>
             </ul>
           </li>
           <li>
-            <a href="" className="big-menu">
+            <a href="javascript:void(0)" className="big-menu">
               <span className="icon community"></span>커뮤니티
             </a>
             <ul>
               <li>
-                <a href="/FreeBoard">자유게시판</a>
+                <Link to="/freeboard">자유게시판</Link>
               </li>
               <li>
-                <a href="/qnaboard">Q&A</a>
+                <Link to="/qnaboard">Q&A</Link>
               </li>
             </ul>
           </li>

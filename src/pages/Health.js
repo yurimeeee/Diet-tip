@@ -7,12 +7,11 @@ import "../styles/health.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Pagination } from "swiper/modules";
-import Kakao from "../components/Kakao";
-import youtubeData from "../data/youtubeData.json"
-
+// import Kakao from "../components/Kakao";
+import youtubeData from "../data/youtubeData.json";
 
 function Health() {
-  const url = "https://www.youtube.com/"
+  const url = "https://www.youtube.com/";
 
   return (
     <>
