@@ -803,23 +803,20 @@ body {
 }
 
 /* 테이블 스타일 설정 */
-table {
+table.calories-table {
   width: 100%;
   border-collapse: collapse;
+  /* 각 열의 너비 설정 */
 }
-
-/* 각 열의 너비 설정 */
-td:nth-child(1) {
+table.calories-table td:nth-child(1) {
   width: 10%;
   text-align: center;
 }
-
-td:nth-child(2) {
+table.calories-table td:nth-child(2) {
   width: 60%;
 }
-
-td:nth-child(3),
-td:nth-child(4) {
+table.calories-table td:nth-child(3),
+table.calories-table td:nth-child(4) {
   width: 15%;
   text-align: center;
 }
@@ -941,6 +938,7 @@ nav.pagination {
 }
 .recom-list .swiper .recom-wrap {
   position: relative;
+  overflow: hidden;
 }
 .recom-list .swiper .recom-wrap:hover .recom-desc {
   opacity: 1;
@@ -948,6 +946,10 @@ nav.pagination {
 .recom-list .swiper .recom-wrap:hover img {
   filter: blur(7px);
   -webkit-filter: blur(7px);
+  height: 100%;
+}
+.recom-list .swiper .recom-wrap img {
+  vertical-align: bottom;
 }
 .recom-list .swiper .recom-wrap .recom-desc {
   position: absolute;
@@ -956,6 +958,7 @@ nav.pagination {
   padding: 0 15px;
   box-sizing: border-box;
   top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1603,7 +1606,6 @@ hr {
   .container {
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 30px;
   }
 }
 /* 태블릿 스타일 */

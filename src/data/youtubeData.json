@@ -92,51 +92,6 @@
     },
     {
       "kind": "youtube#channel",
-      "etag": "wiIlNHmFoccChJcpRaRhkRuxa08",
-      "id": "UCbo9-xR1_zaOCDasI3QY3Pg",
-      "snippet": {
-        "title": "MSG훈",
-        "description": "운동에 맛을 더하다 MSG훈\n\n\n→ 최저가 닭가슴살 다이어트 식품 구매(VIP 할인 구매)\nhttps://metree.co.kr/index/index.php?sponsor=100091209\n링크 클릭 후 회원가입하시면 자동으로 MSG훈 코드 입력됩니다!\nMSG훈 추천인 코드 : 100091209\n\n\n→ 비즈니스 문의: misojihuun@gmail.com\n\n\n→ MSG훈 인스타그램: @msg.hun\nhttps://www.instagram.com/msg.hun/\n",
-        "customUrl": "@msg2304",
-        "publishedAt": "2018-10-24T03:05:17Z",
-        "thumbnails": {
-          "default": {
-            "url": "https://yt3.ggpht.com/u2IlC4Vhr6QnXFQ02Ld6ZL-sUjF1NQkUYcusFCUngaQTNTGK92KO9a33NZkICY5OBx_5y5E5Ww=s88-c-k-c0x00ffffff-no-rj",
-            "width": 88,
-            "height": 88
-          },
-          "medium": {
-            "url": "https://yt3.ggpht.com/u2IlC4Vhr6QnXFQ02Ld6ZL-sUjF1NQkUYcusFCUngaQTNTGK92KO9a33NZkICY5OBx_5y5E5Ww=s240-c-k-c0x00ffffff-no-rj",
-            "width": 240,
-            "height": 240
-          },
-          "high": {
-            "url": "https://yt3.ggpht.com/u2IlC4Vhr6QnXFQ02Ld6ZL-sUjF1NQkUYcusFCUngaQTNTGK92KO9a33NZkICY5OBx_5y5E5Ww=s800-c-k-c0x00ffffff-no-rj",
-            "width": 800,
-            "height": 800
-          }
-        },
-        "localized": {
-          "title": "MSG훈",
-          "description": "운동에 맛을 더하다 MSG훈\n\n\n→ 최저가 닭가슴살 다이어트 식품 구매(VIP 할인 구매)\nhttps://metree.co.kr/index/index.php?sponsor=100091209\n링크 클릭 후 회원가입하시면 자동으로 MSG훈 코드 입력됩니다!\nMSG훈 추천인 코드 : 100091209\n\n\n→ 비즈니스 문의: misojihuun@gmail.com\n\n\n→ MSG훈 인스타그램: @msg.hun\nhttps://www.instagram.com/msg.hun/\n"
-        },
-        "country": "KR"
-      },
-      "contentDetails": {
-        "relatedPlaylists": {
-          "likes": "",
-          "uploads": "UUbo9-xR1_zaOCDasI3QY3Pg"
-        }
-      },
-      "statistics": {
-        "viewCount": "10831117",
-        "subscriberCount": "51300",
-        "hiddenSubscriberCount": false,
-        "videoCount": "395"
-      }
-    },
-    {
-      "kind": "youtube#channel",
       "etag": "-zL2S-GHsLRDL3lxukFj445yhh4",
       "id": "UCygs-_iDpCJOnhuCZibK7JQ",
       "snippet": {
@@ -452,5 +407,53 @@
         "hiddenSubscriberCount": false,
         "videoCount": "1616"
       }
+    },
+    {
+      "kind": "youtube#channel",
+      "etag": "0KyCxqsWqY8pCFzoilUbu5bvSL0",
+      "id": "UCQ2vUGzZrLpUBqsmsL_5EIQ",
+      "snippet": {
+        "title": "MIZI",
+        "description": "Hi, I'm MIZI, a lifestyle coach.\n\nI want to share my lifestyle and workout routines with you.\n\nHopefully, it makes you feel good and healthier.\n\nThanks so much!\n\n안녕하세요 행복하게 먹고, 즐겁게 운동하는 라이프스타일 코치 미지입니다 :)\n\n채널을 통해 제 라이프 스타일, 운동 방법 등을 여러분들과 공유하고싶어요\n\n여러분들의 하루하루가 더 건강하고 즐거워 지도록 좋은 영상 많이 올릴게요!! \n\n",
+        "customUrl": "@mizilee",
+        "publishedAt": "2014-10-11T17:48:11Z",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/ytc/AIf8zZQz8j8czqkH7GmMZBfbyZeM4yp5C4uSuwyFIXrpUA=s88-c-k-c0x00ffffff-no-rj",
+            "width": 88,
+            "height": 88
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/ytc/AIf8zZQz8j8czqkH7GmMZBfbyZeM4yp5C4uSuwyFIXrpUA=s240-c-k-c0x00ffffff-no-rj",
+            "width": 240,
+            "height": 240
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/ytc/AIf8zZQz8j8czqkH7GmMZBfbyZeM4yp5C4uSuwyFIXrpUA=s800-c-k-c0x00ffffff-no-rj",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "localized": {
+          "title": "MIZI",
+          "description": "Hi, I'm MIZI, a lifestyle coach.\n\nI want to share my lifestyle and workout routines with you.\n\nHopefully, it makes you feel good and healthier.\n\nThanks so much!\n\n안녕하세요 행복하게 먹고, 즐겁게 운동하는 라이프스타일 코치 미지입니다 :)\n\n채널을 통해 제 라이프 스타일, 운동 방법 등을 여러분들과 공유하고싶어요\n\n여러분들의 하루하루가 더 건강하고 즐거워 지도록 좋은 영상 많이 올릴게요!! \n\n"
+        },
+        "country": "KR"
+      },
+      "contentDetails": {
+        "relatedPlaylists": {
+          "likes": "",
+          "uploads": "UUQ2vUGzZrLpUBqsmsL_5EIQ"
+        }
+      },
+      "statistics": {
+        "viewCount": "141537797",
+        "subscriberCount": "1080000",
+        "hiddenSubscriberCount": false,
+        "videoCount": "206"
+      }
     }
+      
+    
+
   ]
