@@ -788,13 +788,18 @@ body {
 }
 .LevelCont .levelContWrap .levelWrap {
   width: 423px;
-  height: 450px;
+  height: 380px;
 }
 .LevelCont .levelContWrap .levelWrap .levelImg img {
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+  height: 237px;
+}
+.LevelCont .levelContWrap .levelWrap h3 {
+  font-weight: 500;
+  padding: 10px 0;
 }
 .LevelCont .levelContWrap .levelWrap p {
   text-align: left;
@@ -852,9 +857,23 @@ body {
   border-radius: 50%;
   margin: 0 auto;
 }
-.healthSlides .recomImg {
+.healthSlides .recomSlide .recomImg {
   width: 100%;
   height: 50%;
+}
+.healthSlides .recomSlide .recomInfo {
+  padding: 10px 0 20px;
+}
+.healthSlides .recomSlide h2 {
+  font-weight: 400;
+}
+.healthSlides .recomSlide h3 {
+  font-size: 14px;
+  padding: 10px 0;
+}
+.healthSlides .recomSlide p {
+  font-size: 14px;
+  color: #9da1a6;
 }
 .healthSlides .append-buttons {
   text-align: center;

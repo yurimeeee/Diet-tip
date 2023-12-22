@@ -49,7 +49,6 @@ function HealthLevel() {
         ))}
       </div>
       <div>
-        {selectedItem.title}
         {selectedItem.list}
       </div>
     </div>

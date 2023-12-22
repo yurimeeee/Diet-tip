@@ -49,11 +49,14 @@ function Health() {
                         <div className="recomImg" >
                         <img src={data.snippet.thumbnails.high.url}/>  
                         </div>
-                        <h2>{data.snippet.localized.title}</h2>
-                        <h2>{data.snippet.customUrl}</h2>
-                        <div className="channelInfo df jcc">
-                          <p>구독자{data.statistics.subscriberCount}명</p>
-                          <p>영상{data.statistics.videoCount}개</p>
+                        <div className="recomInfo">
+                          <h2>{data.snippet.localized.title}</h2>
+                          <h3>{data.snippet.customUrl}</h3>
+                          <div className="channelInfo df jcc">
+                            <p>구독자{data.statistics.subscriberCount}명</p>
+                            <p>·</p>
+                            <p>영상{data.statistics.videoCount}개</p>
+                          </div>
                         </div>
                         <div className="df jcc">
                           <button type="button" className="w-red-btn" 

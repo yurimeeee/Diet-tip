@@ -115,13 +115,18 @@
 		flex-wrap: wrap;
 		.levelWrap{
 		 width: 423px;
-		 height: 450px;
+		 height: 380px;
 		 .levelImg{
 			 img{
 				border-radius: 10px;
 				object-fit: cover;
 				width:100%;
+				height: 237px;
 			 }
+			}
+			h3{
+				font-weight: 500;
+				padding: 10px 0;
 			}
 			p{
 				text-align: left;
@@ -184,11 +189,27 @@ body {
 			}
 		}
 	}
-	
+
+.recomSlide{
 	.recomImg{
 		width:100%;
 		height: 50%;
 	}
+	.recomInfo{
+		padding: 10px 0 20px;
+	}
+	h2{
+		font-weight: 400;
+	}
+	h3{
+		font-size: $web-sm-tt;
+		padding: 10px 0;
+	}
+	p{
+		font-size: $web-sm-tt;
+		color:$gray-2
+	}
+}
 	
 	.append-buttons {
 		text-align: center;
@@ -224,7 +245,7 @@ body {
 			border: 1px solid green;
 			padding: 0 35px;
 			box-sizing: border-box;
-			;	
+			text-align: center;	
 		}
 		button{
 			width:10%;
