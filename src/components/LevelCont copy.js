@@ -7,20 +7,40 @@ function LevelCont(props) {
   const [playlist, setPlaylist] = useState([]);
   const url = "https://www.youtube.com/watch?v="
 
-  // useEffect(() => {
+  useEffect(() => {
+
+  const params = {
+      key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      q: props.search,
+      part: "snippet",
+      type: "video",
+      maxResults: 3,
+      fields: "items(id,snippet)",
+      videoEmbeddable: true,
+  };
+  axios
+    .get(
+      `https://www.googleapis.com/youtube/v3/search`,{params}
+    )
+    .then((res) => { //성공했을 때
+      console.log(res);
+      setPlaylist(res.data.items);
+    })
+    .catch((err) => { //실패했을 때
+      console.log(err);
+    });
 
   // const params = {
   //     key: process.env.REACT_APP_YOUTUBE_API_KEY,
-  //     q: props.search,
-  //     part: "snippet",
+  //     // q: props.search,
+  //     part: "statistics",
   //     type: "video",
-  //     maxResults: 15,
-  //     fields: "items(id,snippet)",
-  //     videoEmbeddable: true,
+  //     maxResults: 3,
+  //     fields: "items(statistics)",
   // };
   // axios
   //   .get(
-  //     `https://www.googleapis.com/youtube/v3/search`,{params}
+  //     `https://www.googleapis.com/youtube/v3/videos`,{params}
   //   )
   //   .then((res) => { //성공했을 때
   //     console.log(res);
@@ -29,18 +49,17 @@ function LevelCont(props) {
   //   .catch((err) => { //실패했을 때
   //     console.log(err);
   //   });
-  // }, [props]);
+  }, [props]);
 
 
   console.log(playlist);
-  
 
 
   return (
     <div className="LevelCont">
 
       <div className="levelContWrap df jcsb">
-        {playlist.slice(0, 9).map(playObj => {
+        {playlist.map(playObj => {
           return (
             <>
             <div className="levelWrap">
@@ -58,11 +77,9 @@ function LevelCont(props) {
           )   
         })}  
       </div>
-      {
       <div className="MoreBtn">
         <button>더보기</button>  
       </div>
-      }
     </div>
   )
 }

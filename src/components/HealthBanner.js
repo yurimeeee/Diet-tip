@@ -48,7 +48,6 @@ function HealthBanner() {
 						</div>
 						<div className="bannerSubTitle">
 							<h3>{playObj.snippet.title}</h3>
-							<p>{playObj.snippet.description}</p>
 						</div>
 						<button type="button" className="youtubeBtn w-green-btn"
 						onClick={()=>{window.open(url + playObj.id.videoId)}}>유튜브 보러가기</button>

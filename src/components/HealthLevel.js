@@ -10,7 +10,7 @@ const level = [
     img: seed,
     title: "씨앗운동",
     subtitle:"운동을 시작하기 어려운 초보자를 위한 추천 운동",
-    list: <LevelCont search="초보운동"/>,
+    list: <LevelCont search="왕초보운동"/>,
     id: 0
   },
   {
@@ -24,7 +24,7 @@ const level = [
     img: Tree,
     title: "나무운동",
     subtitle: "매일 매일 운동하는 프로 운동러들을 위한 추천 운동",
-    list: <LevelCont search="홈트"/>,
+    list: <LevelCont search="근력운동"/>,
     id: 2
   }
 ]
@@ -38,7 +38,7 @@ function HealthLevel() {
     <div>
       <div className="level df jcc aic">
         {level.map(item => (
-          <div className="jcc aic" key={item.id}>  
+          <div className="levelIcon jcc aic" key={item.id}>  
             <img src={item.img}/>
             <h2 className="day">{item.title}</h2>
             <p>{item.subtitle}</p>

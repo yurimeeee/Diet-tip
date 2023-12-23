@@ -999,7 +999,8 @@ nav.pagination {
 .meal-post-wrap .meal-card .img-container .meal-img {
   width: 100%;
   height: 312px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   vertical-align: bottom;
 }
 .meal-post-wrap .meal-card .img-container .like-container {
@@ -1015,7 +1016,8 @@ nav.pagination {
   z-index: 1;
 }
 .meal-post-wrap .meal-card .img-container .like-container img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 52px;
   height: 44px;
   cursor: pointer;
@@ -1033,7 +1035,8 @@ nav.pagination {
 .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
   width: 100%;
   height: 250px !important;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   vertical-align: bottom;
 }
 
@@ -1049,7 +1052,8 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 250px !important;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     vertical-align: bottom;
   }
 }
@@ -1065,7 +1069,8 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     vertical-align: bottom;
   }
   .best-meal > div:last-child {
@@ -1082,7 +1087,8 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     vertical-align: bottom;
   }
 }
@@ -1114,7 +1120,8 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     vertical-align: bottom;
   }
   .meal-post-wrap .meal-card .meal-info img {
@@ -1155,7 +1162,8 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     vertical-align: bottom;
   }
   /* weekly */
@@ -1427,7 +1435,8 @@ hr {
 .meal-view > div .meal-img {
   width: 440px;
   height: 440px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
 }
 .meal-view > div .meal-img::after {
@@ -1669,7 +1678,8 @@ hr {
   .banner-img {
     width: 156px;
     height: 121px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .search-bar form {
     width: 648px;
@@ -1714,6 +1724,4 @@ hr {
     position: relative;
     bottom: 0px;
   }
-}
-
-/*# sourceMappingURL=meal.css.map */
+}/*# sourceMappingURL=meal.css.map */

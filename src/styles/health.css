@@ -699,10 +699,11 @@ body {
   justify-content: space-between;
   padding: 60px 96px;
   box-sizing: border-box;
+  align-items: center;
 }
 .bannerWrap img {
   width: 504px;
-  height: 312px;
+  height: 282px;
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -742,7 +743,7 @@ body {
   width: 70%;
 }
 .bannerSubTitle h3 {
-  font-weight: bold;
+  font-weight: 400;
 }
 .bannerSubTitle p {
   padding-top: 20px;
@@ -760,17 +761,21 @@ body {
   height: 100%;
   width: 80%;
   margin: 0 auto;
+  gap: 5%;
 }
-.level img {
-  width: 25%;
+.level .levelIcon {
+  width: 20%;
 }
-.level h2 {
+.level .levelIcon img {
+  width: 50%;
+}
+.level .levelIcon h2 {
   color: #f46b2a;
   font-size: 20px;
   font-weight: bold;
   margin: 17px 0;
 }
-.level button {
+.level .levelIcon button {
   margin-top: 17px;
 }
 
@@ -800,6 +805,7 @@ body {
 .LevelCont .levelContWrap .levelWrap h3 {
   font-weight: 500;
   padding: 10px 0;
+  cursor: pointer;
 }
 .LevelCont .levelContWrap .levelWrap p {
   text-align: left;
@@ -811,6 +817,19 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
+}
+.LevelCont .MoreBtn {
+  width: 100%;
+}
+.LevelCont .MoreBtn button {
+  width: 30%;
+  height: 27px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid lightgray;
+  color: gray;
+  margin: 0 auto;
+  display: block;
 }
 
 #app {
@@ -834,10 +853,11 @@ body {
 
 .healthSlides .swiper {
   width: 100%;
-  height: 500px;
+  height: 550px;
   margin: 0px auto;
 }
 .healthSlides .swiper .swiper-wrapper {
+  margin-top: 30px;
   height: 435px;
 }
 .healthSlides .swiper .swiper-wrapper .swiper-slide {
@@ -856,6 +876,10 @@ body {
   height: 100%;
   border-radius: 50%;
   margin: 0 auto;
+}
+.healthSlides .swiper .swiper-wrapper .swiper-slide:hover {
+  transform: translateY(-30px);
+  box-shadow: 0px 8px 35px 0px rgba(0, 0, 0, 0.16);
 }
 .healthSlides .recomSlide .recomImg {
   width: 100%;
@@ -906,6 +930,7 @@ body {
   border: 1px solid green;
   padding: 0 35px;
   box-sizing: border-box;
+  text-align: center;
 }
 .kakaoMap form button {
   width: 10%;
