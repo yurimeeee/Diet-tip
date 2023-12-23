@@ -35,6 +35,16 @@ const QnA = () => {
         const boardData = processQuerySnapshot(boardQuerySnapshot);
         setAllData(boardData);
 
+        // 각 게시글에 대한 댓글을 가져오기
+        const boardDataWithComments = await Promise.all(boardData.map(async (post) => {
+          const commentsQuery = query(collection(db, `community/${post.id}/comments`), orderBy("timestamp", "asc"));
+          const commentsQuerySnapshot = await getDocs(commentsQuery);
+          const commentsData = commentsQuerySnapshot.docs.map((doc) => doc.data());
+          return { ...post, commentsData };
+        }));
+
+        setAllData(boardDataWithComments);
+
         //주간 인기글 5개 필터링
         const topPosts = boardData
           .filter((post) => post.thumbsUp > 0)
@@ -135,6 +145,7 @@ const QnA = () => {
   //미답변 또는 답변완료 여부를 판단하여 반환하는 함수
   const getAnswerStatus = (post) => {
     return post.commentsData && post.commentsData.length > 0 ? "답변완료" : "미답변";
+    // return Array.isArray(post.comments) && post.comments.length > 0 ? "답변완료" : "미답변";
   };
 
   console.log(allData);
@@ -190,6 +201,7 @@ const QnA = () => {
         <QnaView
           post={allData.find((item) => item.id === selectedPost)}
           onClose={() => setSelectedPost(null)}
+          setAllData={setAllData}
         />
       ) : (
         <div className="container">
@@ -232,7 +244,9 @@ const QnA = () => {
                   <td className="qna-td-5">
                     {item.date}
                   </td>
-                  <td className="qna-td-6 point-2">{getAnswerStatus(item, item.comments)}</td>
+                  <td className={`qna-td-6 ${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
+                    {getAnswerStatus(item)}
+                  </td>
                   <td className="qna-td-7">
                     <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
                     {item.thumbsUp}

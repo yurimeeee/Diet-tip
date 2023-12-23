@@ -12,7 +12,7 @@ import level_3 from "../asset/level-3-badge.png";
 
 const auth = getAuth();
 
-const QnaView = ({ post, onClose }) => {
+const QnaView = ({ post, onClose, setAllData }) => {
   const levelImg = {
     '1': level_1, 
     '2': level_2, 
@@ -38,8 +38,7 @@ const QnaView = ({ post, onClose }) => {
       loadComments();
     }
 
-    // 컴포넌트 언마운트 시에 이벤트 리스너 해제
-    return () => unsubscribe();
+    return () => unsubscribe(); // 컴포넌트 언마운트 시에 이벤트 리스너 해제
   }, [auth, post]);
 
   const loadComments = async () => {
@@ -53,11 +52,22 @@ const QnaView = ({ post, onClose }) => {
     const commentsData = commentsSnapshot.docs.map((doc) => doc.data());
     setComments(commentsData);
 
-    console.log(commentsQuery);
-    console.log(commentsSnapshot);
     console.log(commentsData);
-  };
 
+    // 댓글이 추가되었을 때 게시글 목록 업데이트
+    setAllData((prevAllData) =>
+      prevAllData.map((prevPost) => {
+        if (prevPost.id === post.id) {
+          // 현재 게시글에 해당하는 경우 댓글 수를 업데이트
+          return {
+            ...prevPost,
+            commentsData: commentsData,
+          };
+        }
+        return prevPost;
+      })
+    );
+  };
 
   const handleReplySubmit = async (e) => {
     e.preventDefault();
@@ -67,26 +77,25 @@ const QnaView = ({ post, onClose }) => {
       postId: post.id,
       text: replyText,
       userId: auth.currentUser ? auth.currentUser.displayName : 'USER_ID', // 사용자 ID를 가져오거나 기본 값 사용
-      timestamp: new Date(),
+      timestamp: new Date()
     };
 
     try {
       const docRef = await addDoc(collection(db, replyPath), commentData);
-      console.log('Comment written with ID: ', docRef.id);
+      console.log(docRef.id);
 
-      // 댓글 추가 후 다시 댓글 불러오기
-      loadComments();
-      
-      // 댓글 입력란 초기화
-      setReplyText('');
+      loadComments(); //댓글 추가 후 다시 댓글 불러오기
+      setReplyText(''); //댓글 입력란 초기화
     } catch (e) {
       console.error('Error adding comment: ', e);
     }
   };
 
   if (!post) {
-    return null; // post가 없으면 QnaView를 보여주지 않음
+    return null; //post가 없으면 QnaView를 보여주지 않음
   }
+
+  console.log(post);
 
   return(
     <div className="container">
