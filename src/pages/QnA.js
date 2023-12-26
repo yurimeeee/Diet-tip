@@ -154,7 +154,7 @@ const QnA = () => {
     <main className="Community">
       <div className="bg-point-1 pd">
         <div className="container df jcsb">
-          <div>
+          <div className="QnaBanner">
             <div className="df jcsb">
               <div>
                 <h2 className="tt4 bold white">Q&A</h2>
@@ -186,9 +186,9 @@ const QnA = () => {
               {topPostsData.map((post, index) => (
                 <p key={post.id} className="df" onClick={(e) => {e.preventDefault(); handlePostClick(post.id, e);}}>
                   <span className="posts-number bold">{index + 1}.</span>
-                  <a href="" className="link">
-                    {post.title}
-                    <b> <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{post.thumbsUp}</b>
+                  <a href="">
+                    <span className="posts-tt link mg-r1">{post.title}</span>
+                    <span><FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{post.thumbsUp}</span>
                   </a>
                 </p>
               ))}
