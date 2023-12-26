@@ -3,11 +3,7 @@ import { db } from "../firebase";
 import { collection, getDocs, query, limit, orderBy } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import {
-  faImage,
-  faThumbsUp,
-  faEye,
-} from "@fortawesome/free-regular-svg-icons";
+import { faImage, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
 import "../styles/community.scss";
 import Banner from "../asset/community/banner_qna.png";
 import icon_q from "../asset/community/icon_q.png";
@@ -38,6 +34,16 @@ const QnA = () => {
         const boardQuerySnapshot = await getDocs(boardQuery);
         const boardData = processQuerySnapshot(boardQuerySnapshot);
         setAllData(boardData);
+
+        // 각 게시글에 대한 댓글을 가져오기
+        const boardDataWithComments = await Promise.all(boardData.map(async (post) => {
+          const commentsQuery = query(collection(db, `community/${post.id}/comments`), orderBy("timestamp", "asc"));
+          const commentsQuerySnapshot = await getDocs(commentsQuery);
+          const commentsData = commentsQuerySnapshot.docs.map((doc) => doc.data());
+          return { ...post, commentsData };
+        }));
+
+        setAllData(boardDataWithComments);
 
         //주간 인기글 5개 필터링
         const topPosts = boardData
@@ -136,13 +142,19 @@ const QnA = () => {
     console.log(postId);
   };
 
+  //미답변 또는 답변완료 여부를 판단하여 반환하는 함수
+  const getAnswerStatus = (post) => {
+    return post.commentsData && post.commentsData.length > 0 ? "답변완료" : "미답변";
+    // return Array.isArray(post.comments) && post.comments.length > 0 ? "답변완료" : "미답변";
+  };
+
   console.log(allData);
 
   return(
     <main className="Community">
       <div className="bg-point-1 pd">
         <div className="container df jcsb">
-          <div>
+          <div className="QnaBanner">
             <div className="df jcsb">
               <div>
                 <h2 className="tt4 bold white">Q&A</h2>
@@ -174,9 +186,9 @@ const QnA = () => {
               {topPostsData.map((post, index) => (
                 <p key={post.id} className="df" onClick={(e) => {e.preventDefault(); handlePostClick(post.id, e);}}>
                   <span className="posts-number bold">{index + 1}.</span>
-                  <a href="" className="link">
-                    {post.title}
-                    <b> <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{post.thumbsUp}</b>
+                  <a href="">
+                    <span className="posts-tt link mg-r1">{post.title}</span>
+                    <span><FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{post.thumbsUp}</span>
                   </a>
                 </p>
               ))}
@@ -189,6 +201,7 @@ const QnA = () => {
         <QnaView
           post={allData.find((item) => item.id === selectedPost)}
           onClose={() => setSelectedPost(null)}
+          setAllData={setAllData}
         />
       ) : (
         <div className="container">
@@ -231,7 +244,9 @@ const QnA = () => {
                   <td className="qna-td-5">
                     {item.date}
                   </td>
-                  <td className="qna-td-6 point-2">미답변</td>
+                  <td className={`qna-td-6 ${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
+                    {getAnswerStatus(item)}
+                  </td>
                   <td className="qna-td-7">
                     <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
                     {item.thumbsUp}
