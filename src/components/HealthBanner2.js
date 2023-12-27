@@ -22,7 +22,7 @@ function HealthBanner2({ onModeChange }) {
 	const shouldShowMealComponent = location.pathname === "/healthshot";
 
 	return(
-		<div className="bannerWrap">
+		<div className="bannerWrap web-shadow">
 			<div className="bannerTitle">
 				<ul>
 						<li><span>#오운완</span></li>
@@ -33,8 +33,8 @@ function HealthBanner2({ onModeChange }) {
 					<h1>오늘도 <p>운동</p> 완성</h1>
 				</div>
 				<div className="bannerSubTitle">
-					<h3>오늘도 빠짐없이 실천한 나와의 운동 약속!</h3>
-					<h3>매일 운동 사진 공유하고 달라진 내 모습을 자랑하세요.</h3>
+					<h3>오늘도 빠짐없이 실천한 나와의 운동 약속!<br/>
+					매일 운동 사진 공유하고 달라진 내 모습을 자랑하세요.</h3>
 				</div>
 				{shouldShowMealComponent && (
 				// <div>
@@ -45,7 +45,7 @@ function HealthBanner2({ onModeChange }) {
 
 			</div>
 			<div className="bannerImg">
-				<img id="test" src={bannerImg} alt="" />
+				<img className="img2" src={bannerImg} alt="" />
 			</div>
 		</div>		
 	)

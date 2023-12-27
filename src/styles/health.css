@@ -708,10 +708,18 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.bannerWrap .img2 {
+  -o-object-fit: none;
+     object-fit: none;
+}
 
+.bannerTitle {
+  width: 50%;
+}
 .bannerTitle ul {
   display: flex;
   gap: 5px;
+  line-height: 20px;
 }
 .bannerTitle li {
   border-radius: 50px;
@@ -813,10 +821,14 @@ body {
   font-size: 14px;
   color: #495057;
 }
+.LevelCont .levelContWrap .youtubeProfile {
+  line-height: 24px;
+}
 .LevelCont .levelContWrap .youtubeProfile img {
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  padding-right: 5px;
 }
 .LevelCont .MoreBtn {
   width: 100%;
@@ -879,6 +891,7 @@ body {
 }
 .healthSlides .swiper .swiper-wrapper .swiper-slide:hover {
   transform: translateY(-30px);
+  transition: transform 0.8s;
   box-shadow: 0px 8px 35px 0px rgba(0, 0, 0, 0.16);
 }
 .healthSlides .recomSlide .recomImg {
@@ -952,27 +965,34 @@ body {
 
 /* ---- grid ---- */
 .grid {
-  background: #DDD;
+  margin-top: 72px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
 }
-
-/* clear fix */
-.grid:after {
-  content: "";
-  display: block;
-  clear: both;
+.grid .grid-item {
+  width: 32%;
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 }
-
-/* ---- .grid-item ---- */
-.grid-sizer,
-.grid-item {
-  width: 33.333%;
+.grid .grid-item img {
+  width: 100%;
+  height: 100%;
 }
-
-.grid-item {
-  float: left;
+.grid .grid-item img:hover {
+  filter: brightness(70%);
+  transition: filter 0.7s;
 }
-
-.grid-item img {
-  display: block;
-  max-width: 100%;
+.grid .grid-text {
+  position: absolute;
+  bottom: 0;
+}
+.grid .grid-text img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }/*# sourceMappingURL=health.css.map */

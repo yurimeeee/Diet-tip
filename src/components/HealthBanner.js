@@ -53,7 +53,7 @@ function HealthBanner() {
 						onClick={()=>{window.open(url + playObj.id.videoId)}}>유튜브 보러가기</button>
 					</div>
 					<div className="bannerImg">
-						<img id="test" src={playObj.snippet.thumbnails.high.url} alt="" />
+						<img className="img1" src={playObj.snippet.thumbnails.high.url} alt="" />
 					</div>
 				</>
 				)})}

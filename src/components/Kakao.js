@@ -121,7 +121,7 @@ function Kakao() {
   return (
     <>
       <form>
-        <input type="text" placeholder="헬스장" name="search" value={value} onChange={handleChange}/>
+        <input type="text" placeholder="검색어를 입력하세요" name="search" value={value} onChange={handleChange}/>
         <button onClick={handleClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

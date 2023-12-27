@@ -3,16 +3,18 @@ import App from "../App";
 import HealthBanner from "../components/HealthBanner";
 import HealthLevel from "../components/HealthLevel";
 import "../styles/health.css";
+import Kakao from "../components/Kakao";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Pagination } from "swiper/modules";
-import Kakao from "../components/Kakao";
 import youtubeData from "../data/youtubeData.json";
+import FormatLongNumber from "../components/numberFormat"
+
 
 function Health() {
   const url = "https://www.youtube.com/";
-
   return (
     <>
       <div className="container">
@@ -40,8 +42,9 @@ function Health() {
                 }}
                 modules={[Pagination]}
                 className="mySwiper"
-                >
+              >
                 {youtubeData.map((data) => {
+                  const numbers = data.statistics.subscriberCount;
                   return (
                     <SwiperSlide>
                       <div className="recomSlide jcc aic">
@@ -52,8 +55,8 @@ function Health() {
                           <h2>{data.snippet.localized.title}</h2>
                           <h3>{data.snippet.customUrl}</h3>
                           <div className="channelInfo df jcc">
-                            <p>구독자{data.statistics.subscriberCount}명</p>
-                            <p>·</p>
+                            <p>구독자 <span>{FormatLongNumber(numbers)}</span></p>
+                            <p> · </p>
                             <p>영상{data.statistics.videoCount}개</p>
                           </div>
                         </div>
@@ -65,8 +68,8 @@ function Health() {
                         </div>
                       </div>
                     </SwiperSlide>
-                  );
-                })}
+                      );
+                    })}
               </Swiper>
             </div>
         </div>
@@ -77,7 +80,6 @@ function Health() {
         </p>
         <Kakao/>
       </div>
-      <div></div>
     </>
   );
 }
