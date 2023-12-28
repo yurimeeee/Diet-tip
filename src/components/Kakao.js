@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 
 const { kakao } = window;
-var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+var infowindow = new window.kakao.maps.InfoWindow({zIndex:1});
 
 function Kakao() {
 
