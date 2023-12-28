@@ -760,8 +760,7 @@ h6 {
 .profile-card .profile-img {
   width: 300px;
   height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin-bottom: 20px;
 }
 .profile-card .about-user {
@@ -804,6 +803,8 @@ h6 {
 .today h5 {
   text-align: center;
   margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .today-cards {
@@ -847,8 +848,7 @@ h6 {
   justify-content: space-between;
 }
 .today-card-big .weather .weather-icon {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 60px;
 }
 
@@ -860,8 +860,7 @@ h6 {
 .today-card .sticker {
   width: 50px;
   height: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .goal-card {
@@ -926,8 +925,7 @@ h6 {
 .Alert .alert-board .post-img {
   width: 32px;
   height: 32px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .Alert .alert-board > p {
   margin-bottom: 24px;
@@ -966,4 +964,6 @@ h6 {
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
-}/*# sourceMappingURL=mypage.css.map */
+}
+
+/*# sourceMappingURL=mypage.css.map */
