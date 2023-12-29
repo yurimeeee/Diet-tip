@@ -787,6 +787,10 @@ body {
 .level .levelIcon button {
   margin-top: 17px;
 }
+.level .levelIcon button.active {
+  background-color: #f46b2a;
+  color: #fff;
+}
 
 .sectionTitle {
   color: #32a061;

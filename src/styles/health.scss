@@ -107,6 +107,10 @@
 		}
 		button{
 			margin-top: 17px;
+			&.active{
+				background-color: $point-2;
+				color:#fff;
+			}
 		}
 	}
 }

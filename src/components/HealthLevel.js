@@ -5,6 +5,7 @@ import Sprout from "../asset/health/iconSprout.png";
 import Tree from "../asset/health/iconTree.png";
 import youtubeData2 from "../data/youtubeData2.json"
 import FormatLongNumber from "../components/numberFormat"
+import moment from "moment";
 
 const level = [
   {
@@ -38,9 +39,7 @@ console.log(list)
 
 function HealthLevel() {
 
-  const [selectedItem, setSelectedItem] = useState(
-    level[0]
-    );
+  const [selectedItem, setSelectedItem] = useState(level[0]);
   const url = "https://www.youtube.com/watch?v=";
 
   return(
@@ -51,9 +50,14 @@ function HealthLevel() {
             <img src={item.img}/>
             <h2 className="day">{item.title}</h2>
             <p>{item.subtitle}</p>
-            <button type="button" className="w-red-btn" onClick={()=>{
-              setSelectedItem(item);
-            }}>시작하기</button>
+            <button 
+              type="button"
+              className={"w-red-btn " + (item.id == selectedItem.id ? " active" : "")}
+              onClick={()=>{
+                setSelectedItem(item);
+              }}>
+              시작하기
+            </button>
           </div>         
         ))}
       </div>
@@ -72,7 +76,7 @@ function HealthLevel() {
                 </h3>
                 <p>조회수 <span>{FormatLongNumber(numbers)}</span> 회
                   <span> · </span>
-                  {item.snippet.publishTime}
+                  {moment(item.snippet.publishTime).fromNow()}
                 </p>
                 <div className="youtubeProfile df">
                   <img src={item.statistics.thumbnails.default.url}/>

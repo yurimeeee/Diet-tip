@@ -8,7 +8,7 @@ import Kakao from "../components/Kakao";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Autoplay,Pagination } from "swiper/modules";
 import youtubeData from "../data/youtubeData.json";
 import FormatLongNumber from "../components/numberFormat"
 
@@ -39,8 +39,13 @@ function Health() {
                 spaceBetween={25}
                 pagination={{
                   clickable: true,
+                  dynamicBullets: true
                 }}
-                modules={[Pagination]}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                modules={[Autoplay,Pagination]}
                 className="mySwiper"
               >
                 {youtubeData.map((data) => {
