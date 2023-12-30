@@ -803,6 +803,8 @@ h6 {
 .today h5 {
   text-align: center;
   margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .today-cards {

@@ -785,8 +785,7 @@ body {
 .Main .modal .modal-container .level-test-img {
   width: 120px;
   height: 120px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .Main .modal .modal-container .result-img {
   margin-bottom: 30px;
@@ -833,6 +832,8 @@ body {
 }
 .Main .hot-board h5 {
   margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .Main .hot-board .hot-board-buttons {
   display: flex;
@@ -864,8 +865,7 @@ body {
   display: inline-block;
   width: 220px;
   height: 220px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 10px;
   z-index: 1;
 }
@@ -883,8 +883,7 @@ body {
   z-index: 1;
 }
 .Main .hot-board .hot-board-main .img-container .like-container img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 52px;
   height: 44px;
   cursor: pointer;
@@ -904,8 +903,7 @@ body {
 .Main .hot-board .hot-board-main .text-card .text-card-img {
   width: 100px;
   height: 100px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 10px;
 }
 .Main .hot-board .hot-board-main .text-card .text-card-text {
@@ -938,14 +936,12 @@ body {
 .Main .hot-board .hot-board-main .text-card .text-card-text .profile-icon {
   width: 28px;
   height: 28px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .Main .hot-board .hot-board-main .text-card .text-card-text .like-icon {
   width: 24px;
   height: 20px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .Main .recommand-exercise {
   display: flex;
@@ -970,8 +966,7 @@ body {
 .Main .recommand-exercise .exercise-card .exercise-icon {
   width: 97.2px;
   height: 100px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .Main .recommand-exercise .exercise-card .video-container {
   background-color: #9da1a6;
@@ -981,4 +976,6 @@ body {
 }
 .Main .recommand-exercise .exercise-card.video {
   justify-content: space-between;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
