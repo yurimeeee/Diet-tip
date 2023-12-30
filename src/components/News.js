@@ -4,9 +4,15 @@ import axios from 'axios';
 const News = () => {
   //카테고리
   const [ category, setCategory ] = useState('all');
+  //이전 카테고리 정보를 저장하는 state
+  const [ prevCategory, setPrevCategory ] = useState('all');
+
   const onSelect = useCallback(category => {
-    setCategory(category);
-  }, []);
+    if (category !== prevCategory) {
+      setCategory(category);
+      setPrevCategory(category);
+    }
+  }, [prevCategory]);
 
   const categories = [
     {
@@ -36,12 +42,13 @@ const News = () => {
         const response = await axios.get(
           `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=577ab2fa6f994abba6cd12f0b2a44fef`,
         );
-        const newsFiltered = response.data.articles.filter(
-          article => article.urlToImage && article.description
-        );
+        const newsFiltered = response.data.articles.filter((article) => (
+          article.urlToImage.startsWith('http') &&
+          article.description.includes('占') === false
+        ));
         setArticles(newsFiltered.slice(0, 4));
-      } catch (e){
-        console.log(e);
+      } catch (error) {
+        console.log(error);
       }
       console.log(articles);
       setLoading(false);

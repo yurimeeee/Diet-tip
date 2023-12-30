@@ -153,8 +153,8 @@ const QnA = () => {
   return(
     <main className="Community">
       <div className="bg-point-1 pd">
-        <div className="container df jcsb">
-          <div className="QnaBanner">
+        <div className="Qna-banner container">
+          <div className="Qna-banner-content">
             <div className="df jcsb">
               <div>
                 <h2 className="tt4 bold white">Q&A</h2>
@@ -166,8 +166,7 @@ const QnA = () => {
                     <button
                       key={category}
                       className={`qna-category ${
-                        selectedCate === category ? "active" : ""
-                      }`}
+                        selectedCate === category ? "active" : ""}`}
                       onClick={() => handleCateClick(category)}
                     >
                       {`# ${category}`}
@@ -205,9 +204,11 @@ const QnA = () => {
         />
       ) : (
         <div className="container">
+          {/* <button className="w-green-btn mg-t3">주간 인기글</button> */}
           <button className="w-green-btn mg-t3">
             <FontAwesomeIcon icon={faPencil} /> 글 쓰기
           </button>
+
           <table className="mg-t1 pna-list">
             <thead className="hidden">
               <tr>
@@ -223,7 +224,7 @@ const QnA = () => {
         
             <tbody>
               {currentPageData.map(( item ) => (
-                <tr key={item.id} onClick={() => handlePostClick(item.id)}>
+                <tr key={item.id} className="container" onClick={() => handlePostClick(item.id)}>
                   <td className="qna-td-1"><img src={icon_q} alt="" /></td>
                   <td className="qna-td-2 green-4">{item.category}</td>
                   <td className="qna-td-3 link" style={{ cursor: 'pointer' }}>
