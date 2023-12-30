@@ -39,12 +39,14 @@ function Health() {
                 spaceBetween={25}
                 pagination={{
                   clickable: true,
-                  dynamicBullets: true
+                  // dynamicBullets: true
                 }}
                 autoplay={{
                   delay: 2500,
                   disableOnInteraction: false,
                 }}
+                loop = {true}
+              
                 modules={[Autoplay,Pagination]}
                 className="mySwiper"
               >

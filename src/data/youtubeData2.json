@@ -6,7 +6,7 @@
     "regionCode": "KR",
     "pageInfo": {
       "totalResults": 1000000,
-      "resultsPerPage": 35
+      "resultsPerPage": 24
     },
     "items": [
       {
@@ -1332,7 +1332,24 @@
           "viewCount": "311608",
           "likeCount": "4878",
           "favoriteCount": "0",
-          "commentCount": "281"
+          "commentCount": "281",
+          "thumbnails": {
+            "default": {
+              "url": "https://yt3.ggpht.com/XabJn8xvKm_X64FjFW4npffMs5oy-u8fLZeM4QET1bYRW591AQixzonI1L6hm85lqu8zlCvmTA=s88-c-k-c0x00ffffff-no-rj",
+              "width": 88,
+              "height": 88
+            },
+            "medium": {
+              "url": "https://yt3.ggpht.com/XabJn8xvKm_X64FjFW4npffMs5oy-u8fLZeM4QET1bYRW591AQixzonI1L6hm85lqu8zlCvmTA=s240-c-k-c0x00ffffff-no-rj",
+              "width": 240,
+              "height": 240
+            },
+            "high": {
+              "url": "https://yt3.ggpht.com/XabJn8xvKm_X64FjFW4npffMs5oy-u8fLZeM4QET1bYRW591AQixzonI1L6hm85lqu8zlCvmTA=s800-c-k-c0x00ffffff-no-rj",
+              "width": 800,
+              "height": 800
+            }
+          }
         },
         "snippet": {
           "publishedAt": "2020-12-20T03:49:47Z",
@@ -1372,7 +1389,7 @@
     "regionCode": "KR",
     "pageInfo": {
       "totalResults": 1000000,
-      "resultsPerPage": 35
+      "resultsPerPage": 21
     },
     "items": [
       {
@@ -2583,7 +2600,7 @@
     "regionCode": "KR",
     "pageInfo": {
       "totalResults": 240262,
-      "resultsPerPage": 35
+      "resultsPerPage": 21
     },
     "items": [
       {

@@ -35,12 +35,22 @@ const list = []
 for(var i=0;i<youtubeData2.tree.items.length;i++){
   list.push(youtubeData2.tree.items[i].snippet.channelId)
 }
-console.log(list)
 
 function HealthLevel() {
 
   const [selectedItem, setSelectedItem] = useState(level[0]);
   const url = "https://www.youtube.com/watch?v=";
+
+  console.log(selectedItem)
+  
+  const [clickMore, setClickMore] = useState(9);
+  function onClick(){
+    // var objLen = selectedItem.list.length;
+    // if(objLen > clickMore) {
+    //   setClickMore(clickMore+(9 < (objLen - clickMore) ? 9 : (objLen - clickMore)));
+    // }
+    setClickMore(clickMore+9);
+  }
 
   return(
     <>
@@ -55,6 +65,7 @@ function HealthLevel() {
               className={"w-red-btn " + (item.id == selectedItem.id ? " active" : "")}
               onClick={()=>{
                 setSelectedItem(item);
+                setClickMore(9);
               }}>
               시작하기
             </button>
@@ -63,7 +74,9 @@ function HealthLevel() {
       </div>
       <div className="LevelCont">
         <div className="levelContWrap df jcsb">
-          {selectedItem.list.slice(0,9).map((item) => {
+
+          {selectedItem.list.slice(0,clickMore).map((item) => {
+            console.log(item)
             const numbers = item.statistics.viewCount;
             return (
               <div className="levelWrap">
@@ -86,7 +99,9 @@ function HealthLevel() {
             )
           })}
           <div className="MoreBtn">
-            <button>더보기</button>  
+            <button 
+            type="button"
+            onClick={onClick}>더보기</button>  
           </div>
         </div>
 
@@ -96,4 +111,3 @@ function HealthLevel() {
 }
 
 export default HealthLevel
-
