@@ -74,7 +74,7 @@
       padding: 15px 0;
     }
     tr{
-      background: #fff;
+      background: $white;
       border-bottom: 1px solid #dcdbdb;
       display: flex;
       align-items: center;
@@ -216,16 +216,25 @@ button{
 }
 .free-td-3{
   flex: 9;
-  @include text-opt($line: 1);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
 }
 
 /* Q&A */
-.QnaBanner{
+.Qna-banner{
+  position: relative;
+  width: 100%;
+}
+.Qna-banner-content{
   width: 55%;
 }
 .top-posts{
+  position: absolute;
+  width: 37%;
+  top: 0;
+  right: 0;
   padding: 24px;
-  width: 40%;
   .posts-box{
     margin-top: 16px;
     flex-direction:column;
@@ -290,7 +299,7 @@ button{
 .qna-td-3{
   flex: 10;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; 
   white-space: nowrap;
 }
 
