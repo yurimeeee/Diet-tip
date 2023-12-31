@@ -894,20 +894,26 @@ button {
 .free-td-3 {
   flex: 9;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
 }
 
 /* Q&A */
-.QnaBanner {
+.Qna-banner {
+  position: relative;
+  width: 100%;
+}
+
+.Qna-banner-content {
   width: 55%;
 }
 
 .top-posts {
+  position: absolute;
+  width: 37%;
+  top: 0;
+  right: 0;
   padding: 24px;
-  width: 40%;
 }
 .top-posts .posts-box {
   margin-top: 16px;

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/health.css";
 import test from "../asset/health/testImg.png"
+import Healthmodal from "../components/HealthModal"
 
 function HealthImg(){
+
+  const [modal,setModal] = useState(false);
+
   return(
     <div className="grid">
-      <div className="grid-item">
+      <div className="grid-item" 
+        onClick={()=>{setModal(true)}}>
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
         <div className="grid-text df jcsb">
           <div className="text df">
@@ -22,6 +27,8 @@ function HealthImg(){
           </div>
         </div>
       </div>
+      {modal === true ? <Healthmodal parentSetModal={setModal}/>:null}
+      
       <div className="grid-item">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
         <div className="grid-text df jcsb">
