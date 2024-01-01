@@ -276,13 +276,11 @@ const Calories = () => {
         </div>
         <div>
           <Swiper
-            // slidesPerView={3}
             slidesPerView={window.innerWidth < 480 ? 2 : 3}
-            // spaceBetween={20}
             spaceBetween={window.innerWidth < 480 ? 10 : 20}
-            pagination={{
-              clickable: true,
-            }}
+            // pagination={{
+            //   clickable: true,
+            // }}
             modules={[Pagination]}
             className="mySwiper"
           >
