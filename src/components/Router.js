@@ -12,53 +12,6 @@ import FreeBoard from "../pages/FreeBoard";
 import QnA from "../pages/QnA";
 import Alert from "../pages/Alert";
 
-// const AppRouter = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Main />,
-//   },
-//   {
-//     path: "/login",
-//     element: <Login />,
-//   },
-//   {
-//     path: "/signin",
-//     element: <Signin />,
-//   },
-//   {
-//     path: "/mypage",
-//     element: <Mypage />,
-//   },
-//   {
-//     path: "/alert",
-//     element: <Alert />,
-//   },
-//   {
-//     path: "/meal",
-//     element: <DailyMeal />,
-//   },
-//   {
-//     path: "/calories",
-//     element: <Calories />,
-//   },
-//   {
-//     path: "/health",
-//     element: <Health />,
-//   },
-//   {
-//     path: "/healthshot",
-//     element: <Healthshot />,
-//   },
-//   {
-//     path: "/freeboard",
-//     element: <FreeBoard />,
-//   },
-//   {
-//     path: "/qnaboard",
-//     element: <QnA />,
-//   },
-// ]);
-
 const AppRouter = () => {
   return (
     <>
