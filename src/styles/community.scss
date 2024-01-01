@@ -86,6 +86,7 @@
       }
     }
   }
+  .w-red-btn,
   .w-green-btn{
     padding: 9px 15px;
   }
@@ -277,6 +278,14 @@ button{
   opacity: 1;
   margin-right: 10px;
 }
+.board-btns{
+  display: flex;
+  justify-content: space-between;
+  .posts-btn{
+    display: none;
+  }
+}
+
 .pna-list .qna-td-1 img{
   width: 30px;
 }
@@ -364,6 +373,37 @@ button{
     gap: 24px;
     img{
       height: 40px;
+    }
+  }
+}
+
+@media (max-width: 1320px) {
+  .container{
+    padding: 0px 20px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .news-frame{
+    .news-box{
+      width: 100%;
+      img{
+        width: 30%;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .top-posts{
+    display: none;
+    &.modal-open{
+      display: block;
+    }
+  }
+  .board-btns{
+    .posts-btn{
+      display: block;
     }
   }
 }

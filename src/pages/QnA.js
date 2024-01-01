@@ -150,6 +150,15 @@ const QnA = () => {
 
   console.log(allData);
 
+  //주간인기글 mobile size modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return(
     <main className="Community">
       <div className="bg-point-1 pd">
@@ -179,7 +188,7 @@ const QnA = () => {
             <Search onSearch={onSearch} />
           </div>
 
-          <div className="top-posts bg-green-2 lg-radius sm-shadow">
+          <div className={`top-posts bg-green-2 lg-radius sm-shadow ${isModalOpen ? 'modal-open' : ''}`}>
             <h3 className="tt5 bold">주간 인기글</h3>
             <div className="posts-box df">
               {topPostsData.map((post, index) => (
@@ -192,7 +201,7 @@ const QnA = () => {
                 </p>
               ))}
             </div>
-          </div>
+            </div>
         </div>
       </div>
 
@@ -204,10 +213,12 @@ const QnA = () => {
         />
       ) : (
         <div className="container">
-          {/* <button className="w-green-btn mg-t3">주간 인기글</button> */}
-          <button className="w-green-btn mg-t3">
-            <FontAwesomeIcon icon={faPencil} /> 글 쓰기
-          </button>
+          <div className="board-btns">
+            <button onClick={openModal} className="posts-btn w-red-btn mg-t3">주간 인기글</button>
+            <button className="w-green-btn mg-t3">
+              <FontAwesomeIcon icon={faPencil} /> 글 쓰기
+            </button>
+          </div>
 
           <table className="mg-t1 pna-list">
             <thead className="hidden">
