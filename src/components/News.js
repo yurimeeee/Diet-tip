@@ -42,11 +42,15 @@ const News = () => {
         const response = await axios.get(
           `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=577ab2fa6f994abba6cd12f0b2a44fef`,
         );
-        const newsFiltered = response.data.articles.filter((article) => (
-          article.urlToImage.startsWith('http') &&
-          article.description.includes('占') === false
-        ));
+	      const newsFiltered = response.data.articles.filter(
+          article => article.urlToImage && article.description
+        );
+        // const newsFiltered = response.data.articles.filter((article) => (
+        //   article.urlToImage.startsWith('http') &&
+        //   article.description.includes('占') === false
+        // ));
         setArticles(newsFiltered.slice(0, 4));
+
       } catch (error) {
         console.log(error);
       }
