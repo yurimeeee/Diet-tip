@@ -33,7 +33,7 @@ function HealthBanner() {
   console.log(playlist);
 
 	return(
-		<div className="bannerWrap">
+		<div className="bannerWrap web-shadow">
 			{playlist.map(playObj => {
 				return (
 				<>
@@ -48,13 +48,12 @@ function HealthBanner() {
 						</div>
 						<div className="bannerSubTitle">
 							<h3>{playObj.snippet.title}</h3>
-							<p>{playObj.snippet.description}</p>
 						</div>
 						<button type="button" className="youtubeBtn w-green-btn"
 						onClick={()=>{window.open(url + playObj.id.videoId)}}>유튜브 보러가기</button>
 					</div>
 					<div className="bannerImg">
-						<img id="test" src={playObj.snippet.thumbnails.high.url} alt="" />
+						<img className="img1" src={playObj.snippet.thumbnails.high.url} alt="" />
 					</div>
 				</>
 				)})}

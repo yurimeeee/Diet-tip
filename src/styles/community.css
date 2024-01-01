@@ -715,7 +715,10 @@ body {
   color: #000;
   display: block;
 }
-.Community a:hover {
+.Community .link {
+  text-align: left;
+}
+.Community .link:hover {
   font-weight: bold;
 }
 .Community input {
@@ -736,12 +739,6 @@ body {
 .Community table {
   width: 100%;
   text-align: center;
-}
-.Community table .link {
-  text-align: left;
-}
-.Community table .link:hover {
-  font-weight: bold;
 }
 .Community table th, .Community table td {
   padding: 15px 0;
@@ -891,16 +888,32 @@ button {
 
 .free-td-4 {
   flex: 2.5;
+  text-align: left;
 }
 
 .free-td-3 {
   flex: 9;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* Q&A */
+.Qna-banner {
+  position: relative;
+  width: 100%;
+}
+
+.Qna-banner-content {
+  width: 55%;
+}
+
 .top-posts {
-  padding: 24px;
+  position: absolute;
   width: 37%;
+  top: 0;
+  right: 0;
+  padding: 24px;
 }
 .top-posts .posts-box {
   margin-top: 16px;
@@ -949,11 +962,14 @@ button {
 
 .qna-td-4 {
   flex: 3;
+  text-align: left;
 }
 
 .qna-td-3 {
   flex: 10;
-  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Q&A View */

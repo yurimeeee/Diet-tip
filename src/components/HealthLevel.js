@@ -1,60 +1,113 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/health.css";
 import seed from "../asset/health/iconSeed.png";
 import Sprout from "../asset/health/iconSprout.png";
 import Tree from "../asset/health/iconTree.png";
-import LevelCont from "./LevelCont";
+import youtubeData2 from "../data/youtubeData2.json"
+import FormatLongNumber from "../components/numberFormat"
+import moment from "moment";
 
 const level = [
   {
     img: seed,
     title: "씨앗운동",
     subtitle:"운동을 시작하기 어려운 초보자를 위한 추천 운동",
-    list: <LevelCont search="초보운동"/>,
+    list: youtubeData2.seed.items,
     id: 0
   },
   {
     img: Sprout,
     title: "새싹운동",
     subtitle: "운동이 재밌어지고 있는 운린이들을 위한 추천 운동",
-    list: <LevelCont search="헬린이"/>,
+    list: youtubeData2.sprout.items,
     id: 1
   },
   {
     img: Tree,
     title: "나무운동",
     subtitle: "매일 매일 운동하는 프로 운동러들을 위한 추천 운동",
-    list: <LevelCont search="홈트"/>,
+    list: youtubeData2.tree.items,
     id: 2
   }
 ]
 
+const list = []
+for(var i=0;i<youtubeData2.tree.items.length;i++){
+  list.push(youtubeData2.tree.items[i].snippet.channelId)
+}
+
 function HealthLevel() {
-  const [selectedItem, setSelectedItem] = useState(
-    level[0]
-  );
+
+  const [selectedItem, setSelectedItem] = useState(level[0]);
+  const url = "https://www.youtube.com/watch?v=";
+
+  console.log(selectedItem)
+  
+  const [clickMore, setClickMore] = useState(9);
+  function onClick(){
+    // var objLen = selectedItem.list.length;
+    // if(objLen > clickMore) {
+    //   setClickMore(clickMore+(9 < (objLen - clickMore) ? 9 : (objLen - clickMore)));
+    // }
+    setClickMore(clickMore+9);
+  }
 
   return(
-    <div>
+    <>
       <div className="level df jcc aic">
         {level.map(item => (
-          <div className="jcc aic" key={item.id}>  
+          <div className="levelIcon jcc aic" key={item.id}>  
             <img src={item.img}/>
             <h2 className="day">{item.title}</h2>
             <p>{item.subtitle}</p>
-            <button type="button" className="w-red-btn" onClick={()=>{
-              setSelectedItem(item);
-            }}>시작하기</button>
-          </div>
+            <button 
+              type="button"
+              className={"w-red-btn " + (item.id == selectedItem.id ? " active" : "")}
+              onClick={()=>{
+                setSelectedItem(item);
+                setClickMore(9);
+              }}>
+              시작하기
+            </button>
+          </div>         
         ))}
       </div>
-      <div>
-        {selectedItem.title}
-        {selectedItem.list}
+      <div className="LevelCont">
+        <div className="levelContWrap df jcsb">
+
+          {selectedItem.list.slice(0,clickMore).map((item) => {
+            console.log(item)
+            const numbers = item.statistics.viewCount;
+            return (
+              <div className="levelWrap">
+                <div className="levelImg">
+                  <img src={item.snippet.thumbnails.high.url} alt=""/>
+                </div>
+                <h3 
+                onClick={()=>{window.open(url + item.id.videoId)}}>
+                  {item.snippet.title}
+                </h3>
+                <p>조회수 <span>{FormatLongNumber(numbers)}</span> 회
+                  <span> · </span>
+                  {moment(item.snippet.publishTime).fromNow()}
+                </p>
+                <div className="youtubeProfile df">
+                  <img src={item.statistics.thumbnails.default.url}/>
+                  <p>{item.snippet.channelTitle}</p>
+                </div>
+              </div>                       
+            )
+          })}
+          <div className="MoreBtn">
+            <button 
+            type="button"
+            onClick={onClick}>더보기</button>  
+          </div>
+        </div>
+
       </div>
-    </div>
+    </>
   )
 }
 
 export default HealthLevel
-
