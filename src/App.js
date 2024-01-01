@@ -9,9 +9,9 @@ import { app } from "../src/firebase";
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <AppRouter />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
