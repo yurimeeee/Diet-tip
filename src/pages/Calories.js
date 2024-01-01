@@ -11,6 +11,7 @@ import image3 from "../asset/meal/season_3.png";
 import calories_DB from "../data/calories_DB.json";
 import Chart from "../components/Chart";
 import PaginationComp from "../components/Pagination";
+import Loading from "../components/Loading";
 
 const seasonList = [
   {
