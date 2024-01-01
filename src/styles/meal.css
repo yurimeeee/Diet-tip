@@ -999,8 +999,7 @@ nav.pagination {
 .meal-post-wrap .meal-card .img-container .meal-img {
   width: 100%;
   height: 312px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   vertical-align: bottom;
 }
 .meal-post-wrap .meal-card .img-container .like-container {
@@ -1016,8 +1015,7 @@ nav.pagination {
   z-index: 1;
 }
 .meal-post-wrap .meal-card .img-container .like-container img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 52px;
   height: 44px;
   cursor: pointer;
@@ -1035,8 +1033,7 @@ nav.pagination {
 .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
   width: 100%;
   height: 250px !important;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   vertical-align: bottom;
 }
 
@@ -1052,8 +1049,7 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 250px !important;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     vertical-align: bottom;
   }
 }
@@ -1069,8 +1065,7 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     vertical-align: bottom;
   }
   .best-meal > div:last-child {
@@ -1087,8 +1082,7 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     vertical-align: bottom;
   }
 }
@@ -1120,8 +1114,7 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     vertical-align: bottom;
   }
   .meal-post-wrap .meal-card .meal-info img {
@@ -1162,8 +1155,7 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     vertical-align: bottom;
   }
   /* weekly */
@@ -1435,8 +1427,7 @@ hr {
 .meal-view > div .meal-img {
   width: 440px;
   height: 440px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   position: relative;
 }
 .meal-view > div .meal-img::after {
@@ -1633,6 +1624,7 @@ hr {
     padding: 0 15px;
   }
   .chart-wrap {
+    width: 100vw;
     position: relative;
     display: flex;
     justify-content: center;
@@ -1643,6 +1635,7 @@ hr {
   .chart-wrap .chart {
     width: 95%;
     padding: 40px 0;
+    margin: 0 auto;
   }
   .calories-table {
     font-size: 14px;
@@ -1664,7 +1657,7 @@ hr {
   }
   .head-banner p {
     font-size: 13px;
-    margin: 16px 0 6px;
+    margin: 16px 0 0;
   }
   .head-banner h2 {
     font-size: 24px;
@@ -1673,13 +1666,12 @@ hr {
   .head-banner h3 {
     font-size: 16px;
     font-weight: 500;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
-  .banner-img {
+  .head-banner .banner-img {
     width: 156px;
     height: 121px;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
   .search-bar form {
     width: 648px;
@@ -1708,6 +1700,17 @@ hr {
     font-size: 12px;
     margin-bottom: 16px;
   }
+  .recom-list .swiper {
+    width: calc(100% - 20px);
+    height: 110px;
+    margin-top: -20px;
+  }
+  .recom-list .swiper .swiper-wrapper .recom-wrap {
+    height: 100%;
+  }
+  .recom-list .swiper .swiper-wrapper img {
+    height: 100%;
+  }
   .meal-view {
     flex-direction: column;
     width: 100vw;
@@ -1724,4 +1727,6 @@ hr {
     position: relative;
     bottom: 0px;
   }
-}/*# sourceMappingURL=meal.css.map */
+}
+
+/*# sourceMappingURL=meal.css.map */
