@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from 'axios';
 
+console.log(process.env.REACT_APP_NEWS_KEY);
+
 const News = () => {
   //카테고리
   const [ category, setCategory ] = useState('all');
@@ -40,15 +42,15 @@ const News = () => {
       try {
         const query = category === 'all' ? '' : `&category=${category}`;
         const response = await axios.get(
-          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=577ab2fa6f994abba6cd12f0b2a44fef`,
+          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${process.env.REACT_APP_NEWS_KEY}`,
         );
-	      const newsFiltered = response.data.articles.filter(
-          article => article.urlToImage && article.description
-        );
-        // const newsFiltered = response.data.articles.filter((article) => (
-        //   article.urlToImage.startsWith('http') &&
-        //   article.description.includes('占') === false
-        // ));
+	      // const newsFiltered = response.data.articles.filter(
+        //   article => article.urlToImage && article.description
+        // );
+        const newsFiltered = response.data.articles.filter((article) => (
+          article.urlToImage.startsWith('http') &&
+          article.description.includes('占') === false
+        ));
         setArticles(newsFiltered.slice(0, 4));
 
       } catch (error) {
