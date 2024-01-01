@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "./static/css/main.0340cac7.css",
+    "main.js": "./static/js/main.68bfefec.js",
+    "static/media/testImg.png": "./static/media/testImg.beb17bce0d8f021685b7.png",
+    "static/media/banner.png": "./static/media/banner.8bda290128e6af221372.png",
+    "static/media/season_3.png": "./static/media/season_3.01a8301a6ef6eabd8cd7.png",
+    "static/media/avatar-es.png.png": "./static/media/avatar-es.png.200a6230c95c25444896.png",
+    "static/media/season_2.png": "./static/media/season_2.de9dec15cfc1edfed59e.png",
+    "static/media/avatar-yr.png": "./static/media/avatar-yr.f5bfdfda3ce377c94754.png",
+    "static/media/result-level2.png": "./static/media/result-level2.9f002c0ed74cbad375a9.png",
+    "static/media/meal.png": "./static/media/meal.247649e25df7a0adcf53.png",
+    "static/media/result-level1.png": "./static/media/result-level1.e1b370806d85b9286a17.png",
+    "static/media/result-level3.png": "./static/media/result-level3.31f7ddadd8c557cf7267.png",
+    "static/media/profile-img.png": "./static/media/profile-img.fcfa774b72ce24236130.png",
+    "static/media/season_1.png": "./static/media/season_1.b515063bfcff7c0ff8b2.png",
+    "static/media/bannerImg.png": "./static/media/bannerImg.e383b5c8129a947a2d2d.png",
+    "static/media/iconSprout.png": "./static/media/iconSprout.9973fae387dd090c3f5d.png",
+    "static/media/banner_qna.png": "./static/media/banner_qna.32eb479531c50167c6a6.png",
+    "static/media/banner-img2.png": "./static/media/banner-img2.711f85f3e970b64cb695.png",
+    "static/media/iconSeed.png": "./static/media/iconSeed.461d7904408f5dfdc04e.png",
+    "static/media/banner_freeboard.png": "./static/media/banner_freeboard.1dcb9f9542c29303f2bb.png",
+    "static/media/iconTree.png": "./static/media/iconTree.62b7106bced195e6df4c.png",
+    "index.html": "./index.html",
+    "main.0340cac7.css.map": "./static/css/main.0340cac7.css.map",
+    "main.68bfefec.js.map": "./static/js/main.68bfefec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0340cac7.css",
+    "static/js/main.68bfefec.js"
+  ]
+}
