@@ -1089,6 +1089,7 @@ hr {
   }
   // calories
   .chart-wrap {
+    width: 100vw;
     position: relative;
     display: flex;
     justify-content: center;
@@ -1100,6 +1101,8 @@ hr {
     .chart {
       width: 95%;
       padding: 40px 0;
+      // position: fixed;
+      margin: 0 auto;
     }
   }
 
@@ -1125,7 +1128,7 @@ hr {
 
     p {
       font-size: 13px;
-      margin: 16px 0 6px;
+      margin: 16px 0 0;
     }
 
     h2 {
@@ -1136,14 +1139,13 @@ hr {
     h3 {
       font-size: 16px;
       font-weight: 500;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
-  }
-
-  .banner-img {
-    width: 156px;
-    height: 121px;
-    object-fit: cover;
+    .banner-img {
+      width: 156px;
+      height: 121px;
+      object-fit: cover;
+    }
   }
 
   .search-bar form {
@@ -1174,6 +1176,21 @@ hr {
     p {
       font-size: 12px;
       margin-bottom: 16px;
+    }
+
+    .swiper {
+      width: calc(100% - 20px);
+      height: 110px;
+      margin-top: -20px;
+
+      .swiper-wrapper {
+        .recom-wrap {
+          height: 100%;
+        }
+        img {
+          height: 100%;
+        }
+      }
     }
   }
 
