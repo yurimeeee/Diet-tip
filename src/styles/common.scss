@@ -590,6 +590,13 @@ footer {
   }
 }
 
+//mobile header, footer
+@media (max-width: 480px) {
+  header{
+    
+  }
+}
+
 //cursur pointer
 button {
   cursor: pointer;

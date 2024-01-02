@@ -106,10 +106,17 @@ const Banner = () => {
     setResult(true);
   };
 
+  useEffect(() => {
+    if (!init && window.Kakao) {
+      window.Kakao.init(process.env.REACT_APP_KAKAO_SHARE_API_KEY);
+      setInit(true);
+    }
+  }, [init]);
+
   //카카오톡 공유하기
   const shareMessage = () => {
-    if (!init) {
-      window.Kakao.init("b20a514da7c33c650ca0a06403dad918");
+    if(!init){
+      window.Kakao.init(process.env.REACT_APP_KAKAO_SHARE_API_KEY);
       setInit(true);
     }
     window.Kakao.Share.sendDefault({
