@@ -402,6 +402,11 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+  }
+}
 header {
   padding: 48px 0;
 }
@@ -584,6 +589,11 @@ footer div a {
   color: #fff;
 }
 
+@media (max-width: 480px) {
+  footer div ul {
+    display: none;
+  }
+}
 button {
   cursor: pointer;
 }

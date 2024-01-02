@@ -398,6 +398,12 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 480px){
+  .container{
+    width: 100%;
+  }
+}
+
 //header
 @mixin icon($width, $url) {
   width: $width;
@@ -594,6 +600,11 @@ footer {
 @media (max-width: 480px) {
   header{
     
+  }
+  footer{
+    div ul{
+      display: none;
+    }
   }
 }
 
