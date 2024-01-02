@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -10,10 +10,21 @@ import { yesLogin, noLogin } from "../store/loginSlice";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const MobileHeader = () => {
   const auth = getAuth();
   const isLoginYN = useSelector((state) => state.isLogin.value);
   const dispatch = useDispatch();
+
+  const nav = useRef(null);
+
+  //사이드메뉴 열기
+  const open = () => {
+    nav.current.classList.add('open');
+  }
+  //사이드메뉴 닫기
+  const close = () => {
+    nav.current.classList.remove('open');
+  }
 
   //로그인 상태인지 파악
   useEffect(() => {
@@ -32,7 +43,6 @@ const Header = () => {
       .then(() => {
         dispatch(noLogin());
         alert("로그아웃 성공");
-        // window.location.replace("/");
         navigate("/");
       })
       .catch((error) => {
@@ -55,36 +65,25 @@ const Header = () => {
   };
 
   return (
-    <header className="container web">
+    <header className="container mobile">
       <div>
+        <button type="button" className="menu-btn" onClick={open}>menu</button>
         <h1>
           <Link to="/">
             <span>다이어팁</span>
           </Link>
         </h1>
-        <aside>
-          <button
-            type="button"
-            className="loginout w-green-btn"
-            onClick={isLoginYN ? logOut : moveLogin}
-          >
-            {isLoginYN ? "로그아웃" : "로그인"}
-          </button>
-          {isLoginYN ? (
-            <button type="button" className="mypage" onClick={moveMp}>
-              {" "}
-              mypage{" "}
-            </button>
-          ) : (
-            ``
-          )}
-        </aside>
+        <button type="button" className="mypage" onClick={moveMp}>
+          {" "}
+          mypage{" "}
+        </button>
       </div>
-      <nav className="main-menu">
+      <nav className="main-menu" ref={nav}>
+        <button type="button" className="menu-close-btn" onClick={close}>
+        </button>
         <ul>
           <li>
             <a href="javascript:void(0)" className="big-menu">
-              <span className="icon meal"></span>
               <span>식단&식품</span>
             </a>
             <ul>
@@ -98,7 +97,7 @@ const Header = () => {
           </li>
           <li>
             <a href="javascript:void(0)" className="big-menu">
-              <span className="icon health"></span>운동
+              <span>운동</span>
             </a>
             <ul>
               <li>
@@ -111,7 +110,7 @@ const Header = () => {
           </li>
           <li>
             <a href="javascript:void(0)" className="big-menu">
-              <span className="icon community"></span>커뮤니티
+              <span>커뮤니티</span>
             </a>
             <ul>
               <li>
@@ -123,9 +122,20 @@ const Header = () => {
             </ul>
           </li>
         </ul>
+        <div className="nav-bottom">
+          <span>KOR | ENG</span>
+          <button
+              type="button"
+              className="loginout w-green-btn"
+              onClick={isLoginYN ? logOut : moveLogin}
+            >
+              {isLoginYN ? "로그아웃" : "로그인"}
+          </button>
+        </div>
+
       </nav>
     </header>
   );
 };
 
-export default Header;
+export default MobileHeader;
