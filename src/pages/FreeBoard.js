@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import _debounce from "lodash/debounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -19,13 +20,13 @@ import freeBoard_data from "../data/freeBoard_data.json";
 
 const FreeBoard = () => {
   const [freeBoardList, setFreeBoardList] = useState(freeBoard_data);
-  const itemsPerPage = 20;
+  const [itemsPerPage, setItemsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(freeBoardList.length);
   const [sortedData, setSortedData] = useState([]);
+  const [renderingData, setRenderingData] = useState([]);
   const [searchedData, setSearchedData] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const levelImg = {
     1: level_1,
     2: level_2,
@@ -72,11 +73,37 @@ const FreeBoard = () => {
 
     // 데이터 정렬 후 상위 20개 데이터로 업데이트
     setSortedData(currentItems);
+
+    // setTotalItems가 완료된 후에 setRenderingData를 호출
+    setTotalItems((prevTotalItems) => {
+      setRenderingData(currentItems);
+      return prevTotalItems;
+    });
   };
 
   useEffect(() => {
     fetchData();
-  }, [currentPage, selectedCategory, freeBoardList, searchedData]);
+  }, [currentPage, selectedCategory, searchedData, itemsPerPage]);
+
+  //브라우저 너비에 따라 보여줄 데이터 갯수 변경
+  const updateItemsPerPage = _debounce(() => {
+    const newSize = window.innerWidth <= 480 ? 10 : 20;
+  
+    if (itemsPerPage !== newSize) {
+      setItemsPerPage(newSize);
+      fetchData(); // 페이지 사이즈 변경에 따라 데이터를 새로 가져옴
+    }
+  });
+  
+  useEffect(() => {
+    updateItemsPerPage(); 
+    // 창 크기 변경 시 업데이트
+    window.addEventListener("resize", updateItemsPerPage);
+    // 컴포넌트 언마운트 시 리스너 제거
+    return () => {
+      window.removeEventListener("resize", updateItemsPerPage);
+    };
+  }, [itemsPerPage]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -94,8 +121,6 @@ const FreeBoard = () => {
     setSearchedData("");
     fetchData();
   };
-
-  const renderingData = [...sortedData];
 
   console.log(freeBoardList);
   console.log("Rendering Data:", renderingData);
