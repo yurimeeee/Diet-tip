@@ -106,7 +106,7 @@ const FreeBoard = () => {
         <div className="container df jcsb">
           <div className="fb-banner-content">
             <h2 className="tt4 bold white">자유게시판</h2>
-            <p className="tt2 bold white mg-t1">
+            <p className="tt2 bold white mg-t1 sm">
               경험, 정보, 후기! 무엇이든 자유롭게 공유해보세요!
             </p>
             <Search onSearch={onSearch} />
@@ -116,14 +116,14 @@ const FreeBoard = () => {
       </section>
 
       <div className="container">
-        <div className="df mg-t3">
+        <div className="fb-btns df mg-t3">
           <CustomSelect onSelectChange={handleSelectChange} />
           <button className="w-green-btn">
             <FontAwesomeIcon icon={faPencil} /> 글 쓰기
           </button>
         </div>
 
-        <table className="mg-t1">
+        <table className="fb-list mg-t1">
           <thead className="hidden">
             <tr>
               <th>번호</th>
@@ -171,6 +171,46 @@ const FreeBoard = () => {
           </tbody>
         </table>
 
+        <div className="fb-list-mobile mg-t1">
+          {renderingData.map((item, index) => (
+            <div key={index} className="list-item">
+              <div className="list-item-st df">
+                <p>{item.id}</p>
+                <p>{item.date}</p>
+                <p className="green-4">{item.category}</p>
+              </div>
+              <p className="list-item-tt tt7">
+                <a href="#" className="link bold">{item.title}</a>
+              </p>
+              <div className="df jcsb">
+                <p>
+                  {item.level && (
+                    <>
+                      <img
+                        src={levelImg[item.level]}
+                        alt={`Level ${item.level}`}
+                        className="level-img"
+                      />
+                      {item.userId}
+                    </>
+                  )}
+                </p>
+                <div className="list-item-st df">
+                  <p>댓글 없으면 0</p>
+                  <p>
+                    <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
+                    {item.thumbUp}
+                  </p>
+                  <p>
+                    <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
+                    {item.view}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <PaginationComp
           currentPage={currentPage}
           totalPageCount={Math.ceil(totalItems / itemsPerPage)}
@@ -179,7 +219,6 @@ const FreeBoard = () => {
       </div>
 
       <div className="container">
-        <h2 className="mg-t3 tt5 bold">오늘의 뉴스</h2>
         <News />
       </div>
     </main>

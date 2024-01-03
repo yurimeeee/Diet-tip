@@ -167,7 +167,7 @@ const QnA = () => {
             <div className="df jcsb">
               <div>
                 <h2 className="tt4 bold white">Q&A</h2>
-                <p className="tt2 bold white mg-t1">
+                <p className="tt2 bold white mg-t1 sm">
                   고민하지 말고 질문해보세요!
                 </p>
                 <div className="mg-t2">
@@ -213,14 +213,14 @@ const QnA = () => {
         />
       ) : (
         <div className="container">
-          <div className="board-btns">
+          <div className="qna-btns">
             <button onClick={openModal} className="posts-btn w-red-btn mg-t3">주간 인기글</button>
             <button className="w-green-btn mg-t3">
               <FontAwesomeIcon icon={faPencil} /> 글 쓰기
             </button>
           </div>
 
-          <table className="mg-t1 pna-list">
+          <table className="qna-list mg-t1">
             <thead className="hidden">
               <tr>
                 <th>번호</th>
@@ -271,6 +271,50 @@ const QnA = () => {
               ))}
             </tbody>
           </table>
+
+          <div className="qna-list-mobile mg-t1">
+            {currentPageData.map(( item ) => (
+              <div key={item.id} className="list-item" onClick={() => handlePostClick(item.id)}>
+                <div className="list-item-st df">
+                  <p>{item.date}</p>
+                  <p className="green-4">{item.category}</p>
+                </div>
+                <div className="list-item-tt df">
+                  <img src={icon_q} alt="" />
+                  <p className="tt7 link bold" style={{ cursor: 'pointer' }}>
+                    {item.title}
+                  </p>
+                </div>
+                <div className="df jcsb">
+                  <p>
+                    {item.userLevel && (
+                      <>
+                        <img
+                          src={levelImg[item.userLevel]}
+                          alt={`Level ${item.userLevel}`}
+                          className="level-img"
+                        />
+                        {item.userId}
+                      </>
+                    )}
+                  </p>
+                  <div className="list-item-st df">
+                    <p className={`${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
+                      {getAnswerStatus(item)}
+                    </p>
+                    <p>
+                      <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
+                      {item.thumbsUp}
+                    </p>
+                    <p>
+                      <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
+                      {item.view}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         
           <PaginationComp
             currentPage={currentPage}

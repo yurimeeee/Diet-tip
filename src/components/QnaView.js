@@ -106,6 +106,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
         <div className="df q-content">
           <p className="q-tt tt5 bold">{post.title}</p>
           <div className="q-info df">
+            <span>{post.date}</span>
             <span className="point-1">{post.category}</span>
             <span>
               {post.userLevel && (
@@ -119,19 +120,18 @@ const QnaView = ({ post, onClose, setAllData }) => {
                 </>
               )}
             </span>
-            <span>{post.date}</span>
           </div>
           <p>{post.content}</p>
         </div>
       </div>
 
-      <form action="" className="mg-t1 reply-form" onSubmit={handleReplySubmit}>
+      <form action="" className="mg-t1 sm reply-form" onSubmit={handleReplySubmit}>
         <label htmlFor="reply" className="hidden">댓글 작성</label>
         {/* <textarea  type="text" id="reply" className="mb-shadow" placeholder="답변을 작성해보세요!"></textarea> */}
         <input 
           type="text" 
           id="reply" 
-          className="mb-shadow" 
+          className="mb-shadow lg-radius" 
           placeholder="답변을 작성해보세요!"
           value={replyText}
           onChange={(e) => setReplyText(e.target.value)}

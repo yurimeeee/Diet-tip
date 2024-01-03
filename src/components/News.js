@@ -85,6 +85,7 @@ const News = () => {
 
   return (
     <>
+      <h2 className="mg-t3 tt5 bold">오늘의 뉴스</h2>
       <div className="news-category mg-t1">
         <ul className="df point-1">
           {categories.map((c) => (
