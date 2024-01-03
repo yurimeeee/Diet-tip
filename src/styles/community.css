@@ -755,6 +755,7 @@ body {
 .Community table tr:first-child {
   border-top: 1px solid #dcdbdb;
 }
+.Community .w-red-btn,
 .Community .w-green-btn {
   padding: 9px 15px;
 }
@@ -941,6 +942,14 @@ button {
   margin-right: 10px;
 }
 
+.board-btns {
+  display: flex;
+  justify-content: space-between;
+}
+.board-btns .posts-btn {
+  display: none;
+}
+
 .pna-list .qna-td-1 img {
   width: 30px;
 }
@@ -1038,4 +1047,29 @@ button {
 }
 .a-frame .a-card img {
   height: 40px;
+}
+
+@media (max-width: 1320px) {
+  .container {
+    padding: 0px 20px;
+  }
+}
+@media (max-width: 1120px) {
+  .news-frame .news-box {
+    width: 100%;
+  }
+  .news-frame .news-box img {
+    width: 30%;
+  }
+}
+@media (max-width: 480px) {
+  .top-posts {
+    display: none;
+  }
+  .top-posts.modal-open {
+    display: block;
+  }
+  .board-btns .posts-btn {
+    display: block;
+  }
 }/*# sourceMappingURL=community.css.map */

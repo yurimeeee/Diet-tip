@@ -1045,21 +1045,24 @@ body {
 .modal .modalText .text {
   height: 30px;
 }
-.modal .modalText .text span {
-  line-height: 30px;
-}
-.modal .modalText .text span img {
+.modal .modalText .text img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.modal .modalText .text span:nth-child(2) {
-  padding: 0 10px;
+.modal .modalText .text p:last-child {
+  padding: 0 15px;
 }
 .modal .modalText p {
   line-height: 30px;
+  padding: 0 5px;
+  font-size: 14px;
+}
+.modal .modalText .modalDays p {
+  color: #888;
+  font-size: 11px;
 }
 .modal .modalText .modalMainText {
   height: 260px;
@@ -1075,6 +1078,26 @@ body {
 }
 .modal .modalText .m-badge {
   margin-right: 5px;
+}
+.modal .modalText .modalBtn {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 15px;
+  right: 35px;
+}
+.modal .modalText .modalBtn:before, .modal .modalText .modalBtn:after {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 1px;
+  background-color: #000;
+}
+.modal .modalText .modalBtn:before {
+  transform: rotate(45deg);
+}
+.modal .modalText .modalBtn:after {
+  transform: rotate(-45deg);
 }
 
 .map_wrap {
