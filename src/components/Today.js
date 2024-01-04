@@ -46,8 +46,6 @@ const Today = () => {
   const [tmeal, setTmeal] = useState(null);
   const [texercise, setTexercise] = useState(null);
 
-  console.log(mainYN);
-
   useEffect(()=>{
     setTmeal(
       userJson.user1[1].today[0].meal === 'bad' ?  badSticker : goodsticker
