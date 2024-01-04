@@ -1012,7 +1012,7 @@ body {
   padding-right: 5px;
 }
 
-.modal {
+.healthModal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1025,78 +1025,79 @@ body {
   box-sizing: border-box;
   z-index: 10;
 }
-.modal .modalImg {
+.healthModal .modalImg {
   width: 60%;
   height: 100%;
   margin-right: 30px;
 }
-.modal .modalImg .modalImg_1 {
+.healthModal .modalImg .modalImg_1 {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.modal .modalImg .modalImg_1 img {
+.healthModal .modalImg .modalImg_1 img {
   width: 500px;
   height: 100%;
 }
-.modal .modalText {
+.healthModal .modalText {
   width: 50%;
 }
-.modal .modalText .text {
+.healthModal .modalText .text {
   height: 30px;
 }
-.modal .modalText .text img {
+.healthModal .modalText .text img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.modal .modalText .text p:last-child {
+.healthModal .modalText .text p:last-child {
   padding: 0 15px;
 }
-.modal .modalText p {
+.healthModal .modalText p {
   line-height: 30px;
   padding: 0 5px;
   font-size: 14px;
 }
-.modal .modalText .modalDays p {
+.healthModal .modalText .modalDays p {
   color: #888;
   font-size: 11px;
 }
-.modal .modalText .modalMainText {
+.healthModal .modalText .modalMainText {
   height: 260px;
 }
-.modal .modalText .modalImg_2 {
+.healthModal .modalText .modalImg_2 {
   margin-top: 30px;
 }
-.modal .modalText .modalImg_2 img {
+.healthModal .modalText .modalImg_2 img {
   width: 32%;
   height: 110px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.modal .modalText .m-badge {
+.healthModal .modalText .m-badge {
   margin-right: 5px;
 }
-.modal .modalText .modalBtn {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  top: 15px;
-  right: 35px;
+.healthModal .modalText .modalBtn {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
-.modal .modalText .modalBtn:before, .modal .modalText .modalBtn:after {
+.healthModal .modalText .modalBtn:before, .healthModal .modalText .modalBtn:after {
   position: absolute;
+  left: 50%;
   content: "";
   height: 40px;
   width: 1px;
   background-color: #000;
 }
-.modal .modalText .modalBtn:before {
+.healthModal .modalText .modalBtn:before {
   transform: rotate(45deg);
 }
-.modal .modalText .modalBtn:after {
+.healthModal .modalText .modalBtn:after {
   transform: rotate(-45deg);
 }
 

@@ -8,7 +8,7 @@ function Healthmodal(props){
   };
 
   return(
-    <div className="modal web-shadow df">
+    <div className="healthModal web-shadow df">
       <div className="modalImg">
         <div className="modalImg_1">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
