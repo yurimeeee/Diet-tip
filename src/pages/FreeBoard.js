@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import _debounce from "lodash/debounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -19,13 +20,13 @@ import freeBoard_data from "../data/freeBoard_data.json";
 
 const FreeBoard = () => {
   const [freeBoardList, setFreeBoardList] = useState(freeBoard_data);
-  const itemsPerPage = 20;
+  const [itemsPerPage, setItemsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(freeBoardList.length);
   const [sortedData, setSortedData] = useState([]);
+  const [renderingData, setRenderingData] = useState([]);
   const [searchedData, setSearchedData] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const levelImg = {
     1: level_1,
     2: level_2,
@@ -72,11 +73,37 @@ const FreeBoard = () => {
 
     // 데이터 정렬 후 상위 20개 데이터로 업데이트
     setSortedData(currentItems);
+
+    // setTotalItems가 완료된 후에 setRenderingData를 호출
+    setTotalItems((prevTotalItems) => {
+      setRenderingData(currentItems);
+      return prevTotalItems;
+    });
   };
 
   useEffect(() => {
     fetchData();
-  }, [currentPage, selectedCategory, freeBoardList, searchedData]);
+  }, [currentPage, selectedCategory, searchedData, itemsPerPage]);
+
+  //브라우저 너비에 따라 보여줄 데이터 갯수 변경
+  const updateItemsPerPage = _debounce(() => {
+    const newSize = window.innerWidth <= 480 ? 10 : 20;
+  
+    if (itemsPerPage !== newSize) {
+      setItemsPerPage(newSize);
+      fetchData(); // 페이지 사이즈 변경에 따라 데이터를 새로 가져옴
+    }
+  });
+  
+  useEffect(() => {
+    updateItemsPerPage(); 
+    // 창 크기 변경 시 업데이트
+    window.addEventListener("resize", updateItemsPerPage);
+    // 컴포넌트 언마운트 시 리스너 제거
+    return () => {
+      window.removeEventListener("resize", updateItemsPerPage);
+    };
+  }, [itemsPerPage]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -95,8 +122,6 @@ const FreeBoard = () => {
     fetchData();
   };
 
-  const renderingData = [...sortedData];
-
   console.log(freeBoardList);
   console.log("Rendering Data:", renderingData);
 
@@ -106,7 +131,7 @@ const FreeBoard = () => {
         <div className="container df jcsb">
           <div className="fb-banner-content">
             <h2 className="tt4 bold white">자유게시판</h2>
-            <p className="tt2 bold white mg-t1">
+            <p className="tt2 bold white mg-t1 sm">
               경험, 정보, 후기! 무엇이든 자유롭게 공유해보세요!
             </p>
             <Search onSearch={onSearch} />
@@ -116,14 +141,14 @@ const FreeBoard = () => {
       </section>
 
       <div className="container">
-        <div className="df mg-t3">
+        <div className="fb-btns df mg-t3">
           <CustomSelect onSelectChange={handleSelectChange} />
           <button className="w-green-btn">
             <FontAwesomeIcon icon={faPencil} /> 글 쓰기
           </button>
         </div>
 
-        <table className="mg-t1">
+        <table className="fb-list mg-t1">
           <thead className="hidden">
             <tr>
               <th>번호</th>
@@ -171,6 +196,46 @@ const FreeBoard = () => {
           </tbody>
         </table>
 
+        <div className="fb-list-mobile mg-t1">
+          {renderingData.map((item, index) => (
+            <div key={index} className="list-item">
+              <div className="list-item-st df">
+                <p>{item.id}</p>
+                <p>{item.date}</p>
+                <p className="green-4">{item.category}</p>
+              </div>
+              <p className="list-item-tt tt7">
+                <a href="#" className="link bold">{item.title}</a>
+              </p>
+              <div className="df jcsb">
+                <p>
+                  {item.level && (
+                    <>
+                      <img
+                        src={levelImg[item.level]}
+                        alt={`Level ${item.level}`}
+                        className="level-img"
+                      />
+                      {item.userId}
+                    </>
+                  )}
+                </p>
+                <div className="list-item-st df">
+                  <p>댓글 없으면 0</p>
+                  <p>
+                    <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
+                    {item.thumbUp}
+                  </p>
+                  <p>
+                    <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
+                    {item.view}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <PaginationComp
           currentPage={currentPage}
           totalPageCount={Math.ceil(totalItems / itemsPerPage)}
@@ -179,7 +244,6 @@ const FreeBoard = () => {
       </div>
 
       <div className="container">
-        <h2 className="mg-t3 tt5 bold">오늘의 뉴스</h2>
         <News />
       </div>
     </main>

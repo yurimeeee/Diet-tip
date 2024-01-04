@@ -18,6 +18,12 @@ const CustomSelect = ({ onSelectChange }) => {
         border: 1px solid #32a061;
       }
     }
+    .react-select__value-container{
+      padding: 2px 0px 2px 15px;
+    }
+    .react-select__indicator-separator{
+      display: none;
+    }
     .react-select__single-value {
       color: #32a061; /* 텍스트 색상 지정 */
       font-size: 16px;
@@ -44,6 +50,13 @@ const CustomSelect = ({ onSelectChange }) => {
     }
     .react-select__option:active{
       background-color: #94dfb6;
+    }
+
+    //mobile size
+    @media (max-width: 480px) {
+      .react-select__single-value{
+        font-size: 13px;
+      }
     }
   `;
 
