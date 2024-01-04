@@ -16,69 +16,67 @@
 }
 
 .bannerWrap{
-	height: 432px;
-	background-color: #fff;
-	border-radius: 10px;
-	display:flex; 
-	justify-content: space-between;  
-	padding: 60px 96px;
-	box-sizing: border-box;
-	align-items: center;	
-	img{
-		width: 504px;
+  // height: 432px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 60px 96px;
+  box-sizing: border-box;
+  img{
+    width: 504px;
     height: 282px;
     border-radius: 10px;
-		object-fit:cover;
-	}
-	.img2{
-	object-fit: none;
-	}
+    object-fit:cover;
+  }
+  .img2{
+  object-fit: none;
+  }
+  .bannerTitle {
+    width: 50%;
+    ul{
+    display: flex;
+    gap:5px;
+    line-height: 20px;
+    }
+    li{
+    border-radius: 50px;
+    border: 1px solid $point-2;
+    padding: 0 10px
+    }
+    span{
+        color: $point-2;
+        font-size: $mb-tt;
+    }
+    .youtubeBtn{
+      margin-top:50px;
+      padding: 11px;
+    }
+  }
+  
+  .bannerMainTitle{
+    padding: $unit-s-4 0; 
+    h1{
+      font-size: $font-40;
+      color: $point-1;
+    }
+    p{
+      font-weight: bold;
+      display: inline;
+    }
+  }
+  
+  .bannerSubTitle{
+    width:100%;
+    box-sizing: border-box;
+    h3{
+      font-weight: 400;
+    }
+    p{
+      padding-top: $unit-s-4;
+      color: $gray-2;
+    }
+  }
 }
 
-.bannerTitle {
-	width: 50%;
-	ul{
-	display: flex;
-	gap:5px;
-	line-height: 20px;
-	}
-	li{
-	border-radius: 50px;
-	border: 1px solid $point-2;
-	padding: 0 10px
-	}
-	span{
-			color: $point-2;
-			font-size: $mb-tt;
-	}
-	.youtubeBtn{
-		margin-top:50px;
-		padding: 11px;
-	}
-}
-
-.bannerMainTitle{
-	padding: $unit-s-4 0; 
-	h1{
-		font-size: $font-40;
-		color: $point-1;
-	}
-	p{
-		font-weight: bold;
-		display: inline;
-	}
-}
-
-.bannerSubTitle{
-	width:70%;
-	h3{
-		font-weight: 400;
-	}
-	p{
-		padding-top: $unit-s-4;
-		color: $gray-2;
-	}
-}
 
 // HealthLevel
 
@@ -449,8 +447,6 @@ body { font-family: sans-serif; }
 }
 
 
-
-
 // 카카오
 .map_wrap {
 	display: flex;
@@ -613,6 +609,72 @@ body { font-family: sans-serif; }
 	cursor: default;
 	color: #777;
   }
+
+  //mobile
+  @media (min-width: 1120px) {
+    .bannerWrap{
+      display:flex; 
+      justify-content: space-between;  
+      align-items: center;	
+    }
+    .bannerSubTitle{
+      padding-right:30%;
+    }
+  }
+
+  @media (max-width: 480px) { 
+  .bannerWrap{
+    padding: (max($font-14, min(3.7vw, $font-16)));
+    text-align: center;
+    img{
+      width:100%;
+      height: 227px;
+      margin-top: 20px;
+    }
+    .img2{
+    object-fit: none;
+    }
+    .bannerTitle {
+      width: 100%;
+      ul{
+      display: flex;
+      gap:5px;
+      line-height: 20px;
+      }
+      li{
+      border-radius: 50px;
+      border: 1px solid $point-2;
+      padding: 0 10px
+      }
+      span{
+          color: $point-2;
+          font-size: 16px;
+      }
+      .youtubeBtn{
+        margin-top:20px;
+        padding: 11px;
+      }
+    }
+    
+    .bannerMainTitle{
+      padding: $unit-s-4 0; 
+      h1{
+        font-size: $font-32;
+        color: $point-1;
+      }
+      p{
+        font-weight: bold;
+        display: inline;
+      }
+    }
+    
+    .bannerSubTitle{
+      padding: 0 10px;
+    }
+  }
+}
+
+
 
 
 

@@ -693,14 +693,10 @@ body {
 }
 
 .bannerWrap {
-  height: 432px;
   background-color: #fff;
   border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
   padding: 60px 96px;
   box-sizing: border-box;
-  align-items: center;
 }
 .bannerWrap img {
   width: 504px;
@@ -713,48 +709,46 @@ body {
   -o-object-fit: none;
      object-fit: none;
 }
-
-.bannerTitle {
+.bannerWrap .bannerTitle {
   width: 50%;
 }
-.bannerTitle ul {
+.bannerWrap .bannerTitle ul {
   display: flex;
   gap: 5px;
   line-height: 20px;
 }
-.bannerTitle li {
+.bannerWrap .bannerTitle li {
   border-radius: 50px;
   border: 1px solid #f46b2a;
   padding: 0 10px;
 }
-.bannerTitle span {
+.bannerWrap .bannerTitle span {
   color: #f46b2a;
   font-size: 11px;
 }
-.bannerTitle .youtubeBtn {
+.bannerWrap .bannerTitle .youtubeBtn {
   margin-top: 50px;
   padding: 11px;
 }
-
-.bannerMainTitle {
+.bannerWrap .bannerMainTitle {
   padding: 20px 0;
 }
-.bannerMainTitle h1 {
+.bannerWrap .bannerMainTitle h1 {
   font-size: 40px;
   color: #32a061;
 }
-.bannerMainTitle p {
+.bannerWrap .bannerMainTitle p {
   font-weight: bold;
   display: inline;
 }
-
-.bannerSubTitle {
-  width: 70%;
+.bannerWrap .bannerSubTitle {
+  width: 100%;
+  box-sizing: border-box;
 }
-.bannerSubTitle h3 {
+.bannerWrap .bannerSubTitle h3 {
   font-weight: 400;
 }
-.bannerSubTitle p {
+.bannerWrap .bannerSubTitle p {
   padding-top: 20px;
   color: #9da1a6;
 }
@@ -1295,4 +1289,65 @@ body {
   font-weight: bold;
   cursor: default;
   color: #777;
+}
+
+@media (min-width: 1120px) {
+  .bannerWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bannerSubTitle {
+    padding-right: 30%;
+  }
+}
+@media (max-width: 480px) {
+  .bannerWrap {
+    padding: max(14px, min(3.7vw, 16px));
+    text-align: center;
+  }
+  .bannerWrap img {
+    width: 100%;
+    height: 227px;
+    margin-top: 20px;
+  }
+  .bannerWrap .img2 {
+    -o-object-fit: none;
+       object-fit: none;
+  }
+  .bannerWrap .bannerTitle {
+    width: 100%;
+  }
+  .bannerWrap .bannerTitle ul {
+    display: flex;
+    gap: 5px;
+    line-height: 20px;
+  }
+  .bannerWrap .bannerTitle li {
+    border-radius: 50px;
+    border: 1px solid #f46b2a;
+    padding: 0 10px;
+  }
+  .bannerWrap .bannerTitle span {
+    color: #f46b2a;
+    font-size: 16px;
+  }
+  .bannerWrap .bannerTitle .youtubeBtn {
+    margin-top: 20px;
+    padding: 11px;
+  }
+  .bannerWrap .bannerMainTitle {
+    padding: 20px 0;
+  }
+  .bannerWrap .bannerMainTitle h1 {
+    font-size: 32px;
+    color: #32a061;
+  }
+  .bannerWrap .bannerMainTitle p {
+    font-weight: bold;
+    display: inline;
+  }
+  .bannerWrap .bannerSubTitle {
+    padding: 0 10px;
+  }
 }/*# sourceMappingURL=health.css.map */
