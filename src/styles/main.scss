@@ -183,6 +183,11 @@
       &.text-ver{
         gap: 20px;
       }
+      &.text-ver.no-img{
+        .text-card-title{
+          margin-bottom: 10px;
+        }
+      }
       .img-container{
         position: relative;
         width: 220px;
