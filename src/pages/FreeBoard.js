@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import {
-  faImage,
-  faThumbsUp,
-  faEye,
-} from "@fortawesome/free-regular-svg-icons";
+import { faImage, faThumbsUp, faEye, faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import "../styles/community.scss";
 import Banner from "../asset/community/banner_freeboard.png";
 import level_1 from "../asset/level-1-badge.png";
@@ -125,6 +121,8 @@ const FreeBoard = () => {
   const handleSelectChange = (selectedOption) => {
     setSelectedCategory(selectedOption);
     setSearchedData("");
+    setCurrentPage(1);
+    setSearchNoResult(false);
     fetchData();
   };
 
@@ -233,7 +231,10 @@ const FreeBoard = () => {
                       )}
                     </p>
                     <div className="list-item-st df">
-                      <p>댓글 없으면 0</p>
+                      <p>
+                        <FontAwesomeIcon icon={faCommentDots} className="mg-r1 gray-3" />
+                        {item.reply}
+                      </p>
                       <p>
                         <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
                         {item.thumbsUp}
