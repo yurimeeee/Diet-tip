@@ -15,7 +15,7 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <form className="mg-t2 search" onSubmit={handleSearch}>
+    <form className="search mg-t2 sm" onSubmit={handleSearch}>
       <button type="submit" className="point-1">
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, getDocs, query, limit, orderBy } from "firebase/firestore"
+import _debounce from "lodash/debounce";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faImage, faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
@@ -15,53 +16,72 @@ import Search from "../components/Search";
 import QnaView from "../components/QnaView";
 
 const QnA = () => {
+  const [ allData, setAllData ] = useState([]);
+  const [ topPostsData, setTopPostsData ] = useState([]);
+  const [ filteredData, setFilteredData ] = useState([]);
+  const [itemsPerPage, setItemsPerPage] = useState(15);
   const levelImg = {
     '1': level_1, 
     '2': level_2, 
     '3': level_3,
   };
   
-  const [ allData, setAllData ] = useState([]);
-  const [ topPostsData, setTopPostsData ] = useState([]);
-  const [ filteredData, setFilteredData ] = useState([]);
-  const itemsPerPage = 15;
-  
+  const fetchData = async () => {
+    try {
+      //전체 데이터 가져오기
+      const boardQuery = query(collection(db, "community"), orderBy("date", "desc"));
+      const boardQuerySnapshot = await getDocs(boardQuery);
+      const boardData = processQuerySnapshot(boardQuerySnapshot);
+      setAllData(boardData);
+
+      // 각 게시글에 대한 댓글을 가져오기
+      const boardDataWithComments = await Promise.all(boardData.map(async (post) => {
+        const commentsQuery = query(collection(db, `community/${post.id}/comments`), orderBy("timestamp", "asc"));
+        const commentsQuerySnapshot = await getDocs(commentsQuery);
+        const commentsData = commentsQuerySnapshot.docs.map((doc) => doc.data());
+        return { ...post, commentsData };
+      }));
+
+      setAllData(boardDataWithComments);
+
+      //주간 인기글 5개 필터링
+      const topPosts = boardData
+        .filter((post) => post.thumbsUp > 0)
+        .sort((a, b) => b.thumbsUp - a.thumbsUp)
+        .slice(0, 5);
+      setTopPostsData(topPosts);
+      setFilteredData(boardData.slice(0, itemsPerPage)); //페이지에 15개의 게시글 출력
+
+      setSelectedCate('전체');
+      filterDataByCategory('전체');
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //전체 데이터 가져오기
-        const boardQuery = query(collection(db, "community"), orderBy("date", "desc"));
-        const boardQuerySnapshot = await getDocs(boardQuery);
-        const boardData = processQuerySnapshot(boardQuerySnapshot);
-        setAllData(boardData);
-
-        // 각 게시글에 대한 댓글을 가져오기
-        const boardDataWithComments = await Promise.all(boardData.map(async (post) => {
-          const commentsQuery = query(collection(db, `community/${post.id}/comments`), orderBy("timestamp", "asc"));
-          const commentsQuerySnapshot = await getDocs(commentsQuery);
-          const commentsData = commentsQuerySnapshot.docs.map((doc) => doc.data());
-          return { ...post, commentsData };
-        }));
-
-        setAllData(boardDataWithComments);
-
-        //주간 인기글 5개 필터링
-        const topPosts = boardData
-          .filter((post) => post.thumbsUp > 0)
-          .sort((a, b) => b.thumbsUp - a.thumbsUp)
-          .slice(0, 5);
-        setTopPostsData(topPosts);
-        setFilteredData(boardData.slice(0, itemsPerPage)); //페이지에 15개의 게시글 출력
-
-        setSelectedCate('전체');
-        filterDataByCategory('전체');
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
     fetchData();
   }, []);
+
+  //브라우저 너비에 따라 보여줄 데이터 갯수 변경
+  const updateItemsPerPage = _debounce(() => {
+    const newSize = window.innerWidth <= 480 ? 10 : 15;
+  
+    if (itemsPerPage !== newSize) {
+      setItemsPerPage(newSize);
+      fetchData(); // 페이지 사이즈 변경에 따라 데이터를 새로 가져옴
+    }
+  });
+  
+  useEffect(() => {
+    updateItemsPerPage(); 
+    // 창 크기 변경 시 업데이트
+    window.addEventListener("resize", updateItemsPerPage);
+    // 컴포넌트 언마운트 시 리스너 제거
+    return () => {
+      window.removeEventListener("resize", updateItemsPerPage);
+    };
+  }, [itemsPerPage]);
 
   //date 포맷 함수
   const formatDate = (date) => {
@@ -167,7 +187,7 @@ const QnA = () => {
             <div className="df jcsb">
               <div>
                 <h2 className="tt4 bold white">Q&A</h2>
-                <p className="tt2 bold white mg-t1">
+                <p className="tt2 bold white mg-t1 sm">
                   고민하지 말고 질문해보세요!
                 </p>
                 <div className="mg-t2">
@@ -213,14 +233,14 @@ const QnA = () => {
         />
       ) : (
         <div className="container">
-          <div className="board-btns">
+          <div className="qna-btns">
             <button onClick={openModal} className="posts-btn w-red-btn mg-t3">주간 인기글</button>
             <button className="w-green-btn mg-t3">
               <FontAwesomeIcon icon={faPencil} /> 글 쓰기
             </button>
           </div>
 
-          <table className="mg-t1 pna-list">
+          <table className="qna-list mg-t1">
             <thead className="hidden">
               <tr>
                 <th>번호</th>
@@ -271,6 +291,50 @@ const QnA = () => {
               ))}
             </tbody>
           </table>
+
+          <div className="qna-list-mobile mg-t1">
+            {currentPageData.map(( item ) => (
+              <div key={item.id} className="list-item" onClick={() => handlePostClick(item.id)}>
+                <div className="list-item-st df">
+                  <p>{item.date}</p>
+                  <p className="green-4">{item.category}</p>
+                </div>
+                <div className="list-item-tt df">
+                  <img src={icon_q} alt="" />
+                  <p className="tt7 link bold" style={{ cursor: 'pointer' }}>
+                    {item.title}
+                  </p>
+                </div>
+                <div className="df jcsb">
+                  <p>
+                    {item.userLevel && (
+                      <>
+                        <img
+                          src={levelImg[item.userLevel]}
+                          alt={`Level ${item.userLevel}`}
+                          className="level-img"
+                        />
+                        {item.userId}
+                      </>
+                    )}
+                  </p>
+                  <div className="list-item-st df">
+                    <p className={`${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
+                      {getAnswerStatus(item)}
+                    </p>
+                    <p>
+                      <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
+                      {item.thumbsUp}
+                    </p>
+                    <p>
+                      <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
+                      {item.view}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         
           <PaginationComp
             currentPage={currentPage}
