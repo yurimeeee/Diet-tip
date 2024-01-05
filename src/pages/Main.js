@@ -114,22 +114,22 @@ const Main = () => {
     setBoardType(e.currentTarget.getAttribute("data-type"));
     console.log(boardtype);
   };
-  const setPosts = useSelector((state) => state.posts.value);
+  // const setPosts = useSelector((state) => state.posts.value);
 
   const dispatch = useDispatch();
   const postsSelector = (state) => state.mealDB.posts;
   const posts = useSelector(postsSelector);
 
   //식단 불러오기
-  useEffect(() => {
-    // onAuthStateChanged(auth, (user) => {
-    if (posts) {
-      dispatch(setPosts());
-    } else {
-      dispatch(setPosts());
-    }
-    // });
-  }, []);
+  // useEffect(() => {
+  //   // onAuthStateChanged(auth, (user) => {
+  //   if (posts) {
+  //     dispatch(setPosts());
+  //   } else {
+  //     dispatch(setPosts());
+  //   }
+  //   // });
+  // }, []);
 
   let content;
   const renderContent = (boardtype) => {
