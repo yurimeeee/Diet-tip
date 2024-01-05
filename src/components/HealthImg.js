@@ -1,341 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/health.css";
-import test from "../asset/health/testImg.png"
-import Healthmodal from "../components/HealthModal"
+import Healthmodal from "../components/HealthModal";
+import profileImg from "../asset/user/avatar-yr.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { auth, db, storage } from "../firebase";
+import {
+  collection,
+  getDocs,
+  doc,
+  addDoc,
+  getDoc,
+  deleteDoc,
+  updateDoc,
+  docRef,
+  deleteField,
+} from "firebase/firestore";
 
 function HealthImg(){
 
   const [modal,setModal] = useState(false);
+  const [photos,setPhotos] = useState([]);
+
+  // firebase 데이터 연동
+  useEffect(() => {
+    const fetchData = async () => {
+      const health = await getDocs(
+        collection(db, `health`)
+      );
+      const data = health.docs.map((doc) => (
+        doc.data()
+      ));
+      setPhotos(data)
+    };
+    fetchData();
+  },[]);
 
   return(
     <div className="grid">
-      <div className="grid-item" 
+      {photos.map((item) => (
+        <>
+        <div className="grid-item" 
         onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
+        <img src={item.photo} />
         <div className="grid-text df jcsb">
           <div className="text df">
             <div>
-              <img src={test}/>
+              <img src={profileImg}/>
             </div>
             <div>
-              <p>닉네임</p>
+              <p>{item.username}</p>
             </div>
           </div>
           <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
+            <h2> <FontAwesomeIcon icon={regularHeart} /></h2>
+            <p>{item.like}</p>
           </div>
         </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item" 
-        onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      <div className="grid-item"
-      onClick={()=>{setModal(true)}}>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={test}/>
-            </div>
-            <div>
-              <p>닉네임</p>
-            </div>
-          </div>
-          <div className="text df">
-            <h2>♡</h2>
-            <p>123</p>
-          </div>
-        </div>
-      </div>
-      {modal === true ? <Healthmodal parentSetModal={setModal}/>:null}
+      </div>   
+      {modal === true ? <Healthmodal parentSetModal={setModal} data={item}/>:null}
+        </>
+      ))}
     </div>
   )
+  
 }
 
 export default HealthImg;

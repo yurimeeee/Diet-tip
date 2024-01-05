@@ -1,6 +1,5 @@
 @import "common";
 
-
 .recomSlide, 
 .level,
 .kakaoMap{
@@ -338,6 +337,8 @@ body { font-family: sans-serif; }
 		.text{
 			height: 50px;
 			padding:0 30px;
+			gap:10px;
+			line-height: 27px;
 		}	
 		img{
 			width:24px;
@@ -353,7 +354,7 @@ body { font-family: sans-serif; }
 .healthModalBack{
   position: fixed;
   top:0; left: 0; bottom: 0; right: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .healthModal{
@@ -692,6 +693,15 @@ body { font-family: sans-serif; }
       }
     }
   }
+
+	.healthShot{
+		.grid{
+			gap:8px;
+			.grid-item{
+				height: 135px;
+			}
+		}
+	}
 }
 
 

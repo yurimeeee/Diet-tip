@@ -12,7 +12,14 @@ function Healthslide(){
   return(
     <div className="healthSlides exercise-card video">
     <Swiper
-      slidesPerView={5}
+      breakpoints={{        
+          480:{
+        slidesPerView : 3            
+        },
+          720:{
+        slidesPerView : 5
+        },
+      }}
       spaceBetween={25}
       pagination={{
         clickable: true,
@@ -24,6 +31,7 @@ function Healthslide(){
       }}
       loop={true}
       modules={[Autoplay, Pagination]}
+      
       className="mySwiper"
     >
       {youtubeData.map((data) => {

@@ -1115,6 +1115,8 @@ body {
 .grid .grid-text .text {
   height: 50px;
   padding: 0 30px;
+  gap: 10px;
+  line-height: 27px;
 }
 .grid .grid-text img {
   width: 24px;
@@ -1131,7 +1133,7 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .healthModal {
@@ -1487,5 +1489,11 @@ body {
   }
   .level .levelIcon p {
     font-size: 11px;
+  }
+  .healthShot .grid {
+    gap: 8px;
+  }
+  .healthShot .grid .grid-item {
+    height: 135px;
   }
 }/*# sourceMappingURL=health.css.map */

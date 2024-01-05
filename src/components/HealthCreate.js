@@ -234,7 +234,7 @@ const HealthCreate = ({ onModeChange }) => {
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         <div className="modal-overlay" onClick={closeModal}>
           <div className="cancel-confirm">
-            <h2>작성을 취소하시나요?</h2>
+            <h2>작성을 취소하시겠습니까?</h2>
             <div className="modal-btn">
               <button onClick={writeModeCancel} className="w-green-btn">
                 확인
