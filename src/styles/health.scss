@@ -1,5 +1,6 @@
 @import "common";
 
+
 .recomSlide, 
 .level,
 .kakaoMap{
@@ -304,7 +305,6 @@ html { overflow-y: scroll; }
 body { font-family: sans-serif; }
 
 /* ---- grid ---- */
-
 .grid {
 	margin-top: $unit-3;
 	display: flex;
@@ -350,6 +350,11 @@ body { font-family: sans-serif; }
 }
 
 //Healthmodal
+.healthModalBack{
+  position: fixed;
+  top:0; left: 0; bottom: 0; right: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
 
 .healthModal{
   position: fixed;

@@ -8,8 +8,11 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faFaceSmile } from "@fortawesome/free-regular-svg-icons";
 import { faXmark, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
 const Modal = ({ isOpen, closeModal, children }) => {
+ 
+  
   return (
     <>
       {isOpen && (
@@ -54,12 +57,13 @@ const HealthCreate = ({ onModeChange }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const user = auth.currentUser;
+    const now = moment();
     //유저 없거나, 게시글 빈값이거나 글자수 초과시 리턴
-    if (!user || post === "" || post.length > 1000) return;
+    if (!user || post === "" || post.length > 200) return;
     try {
-      const doc = await addDoc(collection(db, "meal"), {
+      const doc = await addDoc(collection(db, "health"), {
         text: post,
-        createdAt: Date.now(),
+        createdAt: now.format("YYYY-MM-DD"),
         username: user.displayName,
         userId: user.uid,
         hashTags,
@@ -230,7 +234,7 @@ const HealthCreate = ({ onModeChange }) => {
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         <div className="modal-overlay" onClick={closeModal}>
           <div className="cancel-confirm">
-            <h2>식단 작성을 취소하시나요?</h2>
+            <h2>작성을 취소하시나요?</h2>
             <div className="modal-btn">
               <button onClick={writeModeCancel} className="w-green-btn">
                 확인

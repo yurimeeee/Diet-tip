@@ -8,7 +8,7 @@ import likeImgDark from "../asset/like-icon-dark.png";
 import replyIcon from "../asset/reply-icon.png";
 import likefillImg from "../asset/like-fill.png";
 import profile from "../asset/profile-icon.png";
-import exerciseIcon from "../asset/exercise-icon.png";
+import Exercise from "../components/Exercise";
 import { useRef } from 'react';
 
 const OnlyImg = () => {
@@ -90,7 +90,6 @@ const Main = () => {
     }
   }
 
-
   return(
     <main className="Main container">
       <Banner/>
@@ -108,26 +107,7 @@ const Main = () => {
         {boardtype === 'imgtext' && <ImgText/>}
         {boardtype === 'onlytext' && <OnlyText/>}
       </section>
-      <section className="recommand-exercise">
-        <div className="exercise-card">
-          <img src={exerciseIcon} alt="exercise icon" className="exercise-icon"></img>
-          <h5>날씨에 맞는 추천 운동</h5>
-          <p>오늘처럼 흐린 날에는 관절에 무리가 갈 수 있어요. 과하지 않은 실내 운동을 추천해요! 일교차에도 유의하세요.</p>
-          <span className="w-badge"># 홈트레이닝</span>
-        </div>
-        <div className="exercise-card video">
-          <div className="video-container"></div>
-          <button className="w-green-btn">브릿지 동작</button>
-        </div>
-        <div className="exercise-card video">
-          <div className="video-container"></div>
-          <button className="w-green-btn">브릿지 동작</button>
-        </div>
-        <div className="exercise-card video">
-          <div className="video-container"></div>
-          <button className="w-green-btn">브릿지 동작</button>
-        </div>
-      </section>
+      <Exercise/>
     </main>
   )
 };

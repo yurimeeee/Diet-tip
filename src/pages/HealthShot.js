@@ -14,7 +14,7 @@ function Healthshot() {
   };
 
   return (
-    <div className="container">
+    <div className="healthShot container">
       {/* <HealthBanner2 /> */}
       <HealthBanner2
         isWritingMode={isWritingMode}
@@ -27,9 +27,7 @@ function Healthshot() {
         />
       )}
       <HealthImg/>
-
-    </div>
-    
+    </div>    
   );
 }
 export default Healthshot;
