@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import _debounce from "lodash/debounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -197,7 +196,7 @@ const FreeBoard = () => {
                     <td className="free-td-5">{item.date}</td>
                     <td className="free-td-6">
                       <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
-                      {item.thumbUp}
+                      {item.thumbsUp}
                     </td>
                     <td className="free-td-7">
                       <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
@@ -237,7 +236,7 @@ const FreeBoard = () => {
                       <p>댓글 없으면 0</p>
                       <p>
                         <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
-                        {item.thumbUp}
+                        {item.thumbsUp}
                       </p>
                       <p>
                         <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
