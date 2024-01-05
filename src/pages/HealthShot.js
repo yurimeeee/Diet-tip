@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import App from "../App";
 import HealthBanner2 from "../components/HealthBanner2";
 import "../styles/health.css";
-import MealCreate from "../components/MealCreate";
 import HealthImg from "../components/HealthImg";
+import HealthCreate from "../components/HealthCreate";
 
 function Healthshot() {
 
@@ -21,7 +21,7 @@ function Healthshot() {
         onModeChange={handleModeChange}
       />
       {isWritingMode && (
-        <MealCreate
+        <HealthCreate
           isWritingMode={isWritingMode}
           onModeChange={handleModeChange}
         />
