@@ -73,7 +73,7 @@ const MobileHeader = () => {
             <span>다이어팁</span>
           </Link>
         </h1>
-        <button type="button" className="mypage" onClick={moveMp}>
+        <button type="button" className="mypage" onClick={isLoginYN ? moveMp : moveLogin}>
           {" "}
           mypage{" "}
         </button>
