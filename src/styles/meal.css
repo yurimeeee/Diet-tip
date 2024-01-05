@@ -6,10 +6,7 @@ a {
 }
 
 @font-face {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
-    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
@@ -406,13 +403,18 @@ body {
   margin: 0 auto;
 }
 
-header {
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+  }
+}
+header.web {
   padding: 48px 0;
 }
-header div {
+header.web div {
   position: relative;
 }
-header div h1 a {
+header.web div h1 a {
   margin: 0 auto;
   background-image: url(../asset/logo.png);
   width: 148px;
@@ -421,23 +423,23 @@ header div h1 a {
   background-size: cover;
   text-indent: -9999rem;
 }
-header div aside {
+header.web div aside {
   display: flex;
   position: absolute;
   top: 0;
   right: 0;
   transform: translateY(50%);
 }
-header div aside button {
+header.web div aside button {
   font-size: 16px;
   border: none;
   background-color: transparent;
   padding: 0;
 }
-header div aside .loginout {
+header.web div aside .loginout {
   margin-right: 20px;
 }
-header div aside .mypage {
+header.web div aside .mypage {
   background-image: url(../asset/mypage-icon.png);
   width: 30px;
   height: 30px;
@@ -445,7 +447,7 @@ header div aside .mypage {
   text-indent: -9999rem;
   margin-right: 10px;
 }
-header nav {
+header.web nav {
   margin: 63px auto 0;
   width: 648px;
   display: flex;
@@ -457,23 +459,23 @@ header nav {
   position: relative;
   z-index: 100;
 }
-header nav a {
+header.web nav a {
   color: #32a061;
 }
-header nav > ul {
+header.web nav > ul {
   display: flex;
   flex-wrap: nowrap;
   gap: 100px;
 }
-header nav > ul:hover ul {
+header.web nav > ul:hover ul {
   display: flex;
 }
-header nav > ul a.big-menu {
+header.web nav > ul a.big-menu {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-header nav > ul a.big-menu .icon.meal {
+header.web nav > ul a.big-menu .icon.meal {
   width: 15px;
   height: 20px;
   background-size: cover;
@@ -481,7 +483,7 @@ header nav > ul a.big-menu .icon.meal {
   background-image: url(../asset/meal-icon.png);
   background-repeat: no-repeat;
 }
-header nav > ul a.big-menu .icon.health {
+header.web nav > ul a.big-menu .icon.health {
   width: 20px;
   height: 20px;
   background-size: cover;
@@ -489,7 +491,7 @@ header nav > ul a.big-menu .icon.health {
   background-image: url(../asset/health-icon.png);
   background-repeat: no-repeat;
 }
-header nav > ul a.big-menu .icon.community {
+header.web nav > ul a.big-menu .icon.community {
   width: 20px;
   height: 20px;
   background-size: cover;
@@ -497,10 +499,10 @@ header nav > ul a.big-menu .icon.community {
   background-image: url(../asset/community-icon.png);
   background-repeat: no-repeat;
 }
-header nav > ul li {
+header.web nav > ul li {
   position: relative;
 }
-header nav > ul li ul {
+header.web nav > ul li ul {
   display: none;
   position: absolute;
   top: 72px;
@@ -510,7 +512,7 @@ header nav > ul li ul {
   gap: 10px;
   z-index: 10;
 }
-header nav > ul:before {
+header.web nav > ul:before {
   content: "";
   opacity: 1;
   display: block;
@@ -526,7 +528,7 @@ header nav > ul:before {
   border-radius: 36px;
   z-index: 0;
 }
-header nav > ul:after {
+header.web nav > ul:after {
   transition: opacity 0.2s ease-in;
   content: "";
   opacity: 0;
@@ -543,7 +545,7 @@ header nav > ul:after {
   border-radius: 36px;
   z-index: -1;
 }
-header nav > ul:hover:after {
+header.web nav > ul:hover:after {
   opacity: 1;
   z-index: -1;
 }
@@ -588,6 +590,123 @@ footer div a {
   color: #fff;
 }
 
+header.mobile {
+  padding: 24px 20px;
+}
+header.mobile div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header.mobile div button {
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+header.mobile div .menu-btn {
+  background-image: url(../asset/menu-btn.png);
+  width: 25px;
+  height: 19px;
+  display: block;
+  background-size: cover;
+  text-indent: -9999rem;
+}
+header.mobile div .mypage {
+  background-image: url(../asset/mypage-icon.png);
+  width: 24px;
+  height: 24px;
+  display: block;
+  background-size: cover;
+  text-indent: -9999rem;
+}
+header.mobile div h1 {
+  text-align: center;
+}
+header.mobile div h1 a {
+  margin: 0 auto;
+  background-image: url(../asset/small-logo.png);
+  width: 75px;
+  height: 22px;
+  display: block;
+  background-size: cover;
+  text-indent: -9999rem;
+}
+header.mobile nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  justify-content: space-between;
+  bottom: 0;
+  width: 287px;
+  left: -287px;
+  background-color: #fff;
+  z-index: 10000;
+  transition: left 0.4s ease-in;
+  border-radius: 0;
+  margin: 0;
+  padding: 0px;
+  border: none;
+}
+header.mobile nav.open {
+  left: 0;
+}
+header.mobile nav > ul {
+  flex-direction: column;
+  width: 100%;
+  margin-top: 60px;
+  text-indent: 20px;
+  gap: 0;
+}
+header.mobile nav > ul > li {
+  padding: 20px 0;
+}
+header.mobile nav > ul > li a {
+  margin-bottom: 20px;
+}
+header.mobile nav > ul:before {
+  display: none;
+}
+header.mobile nav > ul:after {
+  display: none;
+}
+header.mobile nav > ul > li > ul {
+  background-color: #f2f3f5;
+  position: static;
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  text-indent: 40px;
+}
+header.mobile nav .menu-close-btn {
+  background-image: url(../asset/menu-close.png);
+  width: 20.86px;
+  height: 20.86px;
+  display: block;
+  background-size: cover;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+header.mobile nav .nav-bottom {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
+  color: #32a061;
+  position: static;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  footer div ul {
+    display: none;
+  }
+}
 button {
   cursor: pointer;
 }
@@ -933,7 +1052,8 @@ body {
   height: 330px !important;
   margin-bottom: 20px;
 }
-.chart-wrap .chart .modal-close {
+
+.modal-close {
   background-color: #94dfb6;
   width: 12px;
   height: 12px;
@@ -943,7 +1063,7 @@ body {
   top: 10px;
   transition: 0.5s;
 }
-.chart-wrap .chart .modal-close:hover {
+.modal-close:hover {
   background-color: #5ac479;
 }
 
@@ -1165,7 +1285,6 @@ nav.pagination {
 .meal-post-wrap .meal-card .img-container .meal-img {
   width: 100%;
   height: 312px;
-  -o-object-fit: cover;
   object-fit: cover;
   vertical-align: bottom;
 }
@@ -1182,7 +1301,6 @@ nav.pagination {
   z-index: 1;
 }
 .meal-post-wrap .meal-card .img-container .like-container img {
-  -o-object-fit: cover;
   object-fit: cover;
   width: 52px;
   height: 44px;
@@ -1201,7 +1319,6 @@ nav.pagination {
 .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
   width: 100%;
   height: 250px !important;
-  -o-object-fit: cover;
   object-fit: cover;
   vertical-align: bottom;
 }
@@ -1218,7 +1335,6 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 250px !important;
-    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1235,7 +1351,6 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
-    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1253,7 +1368,6 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
-    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1286,7 +1400,6 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
-    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1328,7 +1441,6 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
-    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1574,8 +1686,7 @@ hr {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 1s ease-in-out, fill 1s ease-in-out,
-    opacity 1s ease-in-out;
+  transition: transform 1s ease-in-out, fill 1s ease-in-out, opacity 1s ease-in-out;
 }
 .meal-view > div .meal-img-wrap .like-icon {
   transform: translate(-50%, -50%) scale(1);
@@ -1602,7 +1713,6 @@ hr {
 .meal-view > div .meal-img {
   width: 440px;
   height: 440px;
-  -o-object-fit: cover;
   object-fit: cover;
   position: relative;
 }
@@ -1675,13 +1785,7 @@ hr {
   top: -1px;
   bottom: 0;
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    0deg,
-    rgb(255, 255, 255) 0%,
-    rgba(255, 255, 255, 0) 10%,
-    rgba(255, 255, 255, 0) 95%,
-    rgb(255, 255, 255) 100%
-  );
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 95%, rgb(255, 255, 255) 100%);
   pointer-events: none;
 }
 .meal-view .reply-wrap .reply {
@@ -1853,7 +1957,6 @@ hr {
   .head-banner .banner-img {
     width: 156px;
     height: 121px;
-    -o-object-fit: cover;
     object-fit: cover;
   }
   .search-bar form {
@@ -1900,26 +2003,57 @@ hr {
   }
   .meal-view {
     flex-direction: column;
-    width: 100vw;
+    width: 90vw;
     height: calc(100vh - 90px);
+    border-radius: 20px;
   }
   .meal-view > div {
     width: 100%;
   }
+  .meal-view > div .meal-info img {
+    margin-right: 10px;
+  }
+  .meal-view > div .meal-img-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .meal-view > div .meal-img-wrap .meal-img {
+    width: 100%;
+    height: 360px;
+    margin: 0 auto;
+  }
   .meal-view > div:first-child {
     border-right: none;
+    padding: 15px 20px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .meal-view > div:last-child {
+    display: none;
+  }
+  .meal-view .meal-img-wrap img {
+    border-radius: 20px;
   }
   .meal-view .meal-text {
     height: 60px;
     padding-bottom: 20px;
+    flex: 1;
   }
   .meal-view .hashtag {
-    position: relative;
-    bottom: 0px;
+    position: absolute;
+    bottom: 30px;
   }
   .meal-view .level-badge {
     width: 24px !important;
     height: 24px !important;
     margin: 0 10px 0 !important;
   }
+  .meal-view .modal-close {
+    width: 15px;
+    height: 15px;
+    right: 20px;
+    top: 12px;
+  }
 }
+
+/*# sourceMappingURL=meal.css.map */

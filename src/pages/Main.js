@@ -12,12 +12,50 @@ import exerciseIcon from "../asset/exercise-icon.png";
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { yesLogin, noLogin } from "../store/loginSlice";
+import { db } from "../firebase";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  limit,
+} from "firebase/firestore";
 
 const OnlyImg = () => {
+  const [posts, setPosts] = useState([]);
+  console.log("OnlyImg", posts);
+  useEffect(() => {
+    let unsubscribe = null;
+    const fetchPosts = async () => {
+      const mealQuery = query(
+        collection(db, "meal"),
+        orderBy("createdAt", "desc"),
+        limit(5)
+      );
+      unsubscribe = await onSnapshot(mealQuery, (snapshot) => {
+        const posts = snapshot.docs.map((doc) => {
+          const { photo } = doc.data();
+          return {
+            photo,
+            id: doc.id,
+          };
+        });
+        setPosts(posts); // 상태 업데이트
+        console.log(posts);
+      });
+    };
+    fetchPosts();
+  }, []);
+  console.log(posts, "post");
+
   return (
     <div className="hot-board-main img-ver" data-type="onlyimg">
       <div className="img-container">
-        <img alt="hot meal" src={mealImg} className="board-img"></img>
+        {posts.map((item) => (
+          <div key={item.id}>
+            <img alt="hot meal" src={item.photo} className="board-img"></img>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -110,26 +148,11 @@ const OnlyText = () => {
 
 const Main = () => {
   const [boardtype, setBoardType] = useState("onlyimg");
+
   const setType = (e) => {
     setBoardType(e.currentTarget.getAttribute("data-type"));
     console.log(boardtype);
   };
-  // const setPosts = useSelector((state) => state.posts.value);
-
-  const dispatch = useDispatch();
-  const postsSelector = (state) => state.mealDB.posts;
-  const posts = useSelector(postsSelector);
-
-  //식단 불러오기
-  // useEffect(() => {
-  //   // onAuthStateChanged(auth, (user) => {
-  //   if (posts) {
-  //     dispatch(setPosts());
-  //   } else {
-  //     dispatch(setPosts());
-  //   }
-  //   // });
-  // }, []);
 
   let content;
   const renderContent = (boardtype) => {

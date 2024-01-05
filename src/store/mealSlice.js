@@ -36,3 +36,4 @@ export const mealDBSlice = createSlice({
 
 export const { addDocument, addReply, setPosts } = mealDBSlice.actions;
 export default mealDBSlice.reducer;
+export const selectPosts = (state) => state.mealDB.posts;

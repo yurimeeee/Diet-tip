@@ -20,7 +20,7 @@ import TitleBanner from "../components/TitleBanner";
 import MealView from "../components/MealView";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setPosts } from "../store/mealSlice";
+import { setPosts, selectPosts } from "../store/mealSlice";
 
 // const Modal = ({ isOpen, closeModal, children }) => {
 //   return (
@@ -41,8 +41,7 @@ import { setPosts } from "../store/mealSlice";
 
 const DailyMeal = () => {
   const dispatch = useDispatch();
-  const postsSelector = (state) => state.mealDB.posts;
-  const posts = useSelector(postsSelector);
+  const posts = useSelector(selectPosts);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWritingMode, setIsWritingMode] = useState(false);
@@ -102,13 +101,13 @@ const DailyMeal = () => {
         let bestPostSort = [...posts]; // 원본 배열을 변경하지 않고 복제본 생성
         bestPostSort.sort((a, b) => b.like - a.like);
         setBestPosts(bestPostSort);
-        console.log(bestPostSort);
+        // console.log(bestPostSort);
 
         // 결과 확인
-        console.log(posts);
+        // console.log(posts);
       });
     };
-
+    dispatch(setPosts(posts));
     fetchPosts();
     return () => {
       unsubscribe && unsubscribe();
