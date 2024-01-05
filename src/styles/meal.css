@@ -6,7 +6,10 @@ a {
 }
 
 @font-face {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
   src: url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css");
 }
 /* Variables */
@@ -1162,6 +1165,7 @@ nav.pagination {
 .meal-post-wrap .meal-card .img-container .meal-img {
   width: 100%;
   height: 312px;
+  -o-object-fit: cover;
   object-fit: cover;
   vertical-align: bottom;
 }
@@ -1178,6 +1182,7 @@ nav.pagination {
   z-index: 1;
 }
 .meal-post-wrap .meal-card .img-container .like-container img {
+  -o-object-fit: cover;
   object-fit: cover;
   width: 52px;
   height: 44px;
@@ -1196,6 +1201,7 @@ nav.pagination {
 .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
   width: 100%;
   height: 250px !important;
+  -o-object-fit: cover;
   object-fit: cover;
   vertical-align: bottom;
 }
@@ -1212,6 +1218,7 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 250px !important;
+    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1228,6 +1235,7 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
+    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1245,6 +1253,7 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 230px !important;
+    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1277,6 +1286,7 @@ nav.pagination {
   .meal-post-wrap .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
+    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1318,6 +1328,7 @@ nav.pagination {
   .meal-post-wrap.today-meal .meal-card .img-container .meal-img {
     width: 100%;
     height: 134px !important;
+    -o-object-fit: cover;
     object-fit: cover;
     vertical-align: bottom;
   }
@@ -1563,7 +1574,8 @@ hr {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 1s ease-in-out, fill 1s ease-in-out, opacity 1s ease-in-out;
+  transition: transform 1s ease-in-out, fill 1s ease-in-out,
+    opacity 1s ease-in-out;
 }
 .meal-view > div .meal-img-wrap .like-icon {
   transform: translate(-50%, -50%) scale(1);
@@ -1590,6 +1602,7 @@ hr {
 .meal-view > div .meal-img {
   width: 440px;
   height: 440px;
+  -o-object-fit: cover;
   object-fit: cover;
   position: relative;
 }
@@ -1662,7 +1675,13 @@ hr {
   top: -1px;
   bottom: 0;
   background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0) 95%, rgb(255, 255, 255) 100%);
+  background: linear-gradient(
+    0deg,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 10%,
+    rgba(255, 255, 255, 0) 95%,
+    rgb(255, 255, 255) 100%
+  );
   pointer-events: none;
 }
 .meal-view .reply-wrap .reply {
@@ -1834,6 +1853,7 @@ hr {
   .head-banner .banner-img {
     width: 156px;
     height: 121px;
+    -o-object-fit: cover;
     object-fit: cover;
   }
   .search-bar form {
@@ -1903,5 +1923,3 @@ hr {
     margin: 0 10px 0 !important;
   }
 }
-
-/*# sourceMappingURL=meal.css.map */
