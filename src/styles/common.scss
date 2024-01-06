@@ -710,8 +710,17 @@ header.mobile{
   }
 }
 
+@media (min-width: 480px){
+  header.mobile{
+    display: none;
+  }
+}
+
 //mobile footer
 @media (max-width: 480px) {
+  header.web{
+    display: none;
+  }
   footer{
     div ul{
       display: none;

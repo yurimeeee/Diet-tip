@@ -186,6 +186,8 @@
       &.text-ver.no-img{
         .text-card-title{
           margin-bottom: 10px;
+          display: flex;
+          gap: 10px;
         }
       }
       .img-container{
