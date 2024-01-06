@@ -87,10 +87,10 @@ const MobileHeader = () => {
               <span>식단&식품</span>
             </a>
             <ul>
-              <li>
+              <li onClick={close}>
                 <Link to="/meal">식단 공유</Link>
               </li>
-              <li>
+              <li onClick={close}>
                 <Link to="/calories">칼로리 사전</Link>
               </li>
             </ul>
@@ -100,10 +100,10 @@ const MobileHeader = () => {
               <span>운동</span>
             </a>
             <ul>
-              <li>
+              <li onClick={close}>
                 <Link to="/health">운동 추천</Link>
               </li>
-              <li>
+              <li onClick={close}>
                 <Link to="/healthshot">운동 인증</Link>
               </li>
             </ul>
@@ -113,10 +113,10 @@ const MobileHeader = () => {
               <span>커뮤니티</span>
             </a>
             <ul>
-              <li>
+              <li onClick={close}>
                 <Link to="/freeboard">자유게시판</Link>
               </li>
-              <li>
+              <li onClick={close}>
                 <Link to="/qnaboard">Q&A</Link>
               </li>
             </ul>
