@@ -14,7 +14,7 @@ import level_3 from "../asset/level-3-badge.png";
 import PaginationComp from "../components/Pagination";
 import Search from "../components/Search";
 import QnaView from "../components/QnaView";
-// import Loading from "../components/Loading"
+import Loading from "../components/Loading"
 
 const QnA = () => {
   const [ allData, setAllData ] = useState([]);
@@ -235,7 +235,7 @@ const QnA = () => {
           <div className={`top-posts-bg ${isModalOpen ? 'modal-open' : ''}`}>
             <div className="top-posts bg-green-2 lg-radius sm-shadow">
               <h3 className="tt5 bold">주간 인기글</h3>
-              {/* {allData.length === 0 && <Loading />} */}
+              {allData.length === 0 && <Loading />}
               <div className="posts-box df">
                 {topPostsData.map((post, index) => (
                   <p key={post.id} className="df" onClick={(e) => {e.preventDefault(); handlePostClick(post.id, e);}}>
@@ -266,14 +266,13 @@ const QnA = () => {
               <FontAwesomeIcon icon={faPencil} /> 글 쓰기
             </button>
           </div>
-          {/* <Loading /> */}
 
           {searchNoResult ? (
             <p className="no-result-msg mg-t1">검색 결과가 없습니다.</p>
           ) : (
             <>
               {/* Web Size Board */}
-              {/* {allData.length === 0 && <Loading />} */}
+              {allData.length === 0 && <Loading />}
               <table className="qna-list mg-t1">
                 <thead className="hidden">
                   <tr>
@@ -373,11 +372,13 @@ const QnA = () => {
             </>
           )}
         
-          <PaginationComp
-            currentPage={currentPage}
-            totalPageCount={totalPageCount}
-            handlePageChange={handlePageChange}
-          />
+          {allData.length > 0 && (
+            <PaginationComp
+              currentPage={currentPage}
+              totalPageCount={totalPageCount}
+              handlePageChange={handlePageChange}
+            />
+          )}
         </div>
       )}
     </main>

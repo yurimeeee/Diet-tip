@@ -110,9 +110,6 @@ button{
     font-size: 20px;
   }
 } 
-.pagination{
-  text-align: center;
-}
 .fb-list-mobile,
 .qna-list-mobile{
   display: none;
@@ -384,7 +381,7 @@ button{
 /* Mobile Board */
 .list-item{
   background: $white;
-  border-bottom: 2px solid $gray-1;
+  border-bottom: 4px solid $gray-1;
   padding: 20px;
   font-size: 12px;
   gap: 10px;
@@ -485,6 +482,7 @@ button{
   .fb-list-mobile,
   .qna-list-mobile{
     display: block;
+    // margin: 20px -16px 0 -16px;
   }
 
   .fb-banner img,
