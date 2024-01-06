@@ -186,6 +186,15 @@
           margin-bottom: 10px;
           display: flex;
           gap: 10px;
+          p:nth-child(2){
+            white-space: nowrap;        /* 텍스트를 줄 바꿈하지 않음 */
+            overflow: hidden;           /* 넘치는 부분을 숨김 */
+            text-overflow: ellipsis;    /* 말줄임표로 대체 */
+            max-width: 32em;            /* 최대 길이 설정 */
+            // display: -webkit-box;
+            // -webkit-line-clamp: 2;
+            // -webkit-box-orient: vertical;
+          }
         }
       }
       .img-container {

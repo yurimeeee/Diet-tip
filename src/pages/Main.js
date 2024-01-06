@@ -13,16 +13,7 @@ import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { yesLogin, noLogin } from "../store/loginSlice";
 import { db } from "../firebase";
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-  limit,
-} from "firebase/firestore";
-
-import { db } from "../firebase";
-import { collection, getDocs, query, limit, orderBy } from "firebase/firestore"
+import { collection, getDocs, query, limit, orderBy, onSnapshot } from "firebase/firestore"
 import freeBoard_data from "../data/freeBoard_data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
@@ -188,6 +179,19 @@ const FreeBoard = ({freeBoardList}) => {
 
 //Q&A
 const QnA = ({qnaBoardList}) => {
+
+  function truncateString(str, maxLength) {
+  if (str.length > maxLength) {
+    return str.substring(0, maxLength) + '...';
+  }
+  return str;
+}
+
+  const originalString = "This is a long string that needs to be truncated.";
+  const maxLength = 10;
+
+  const truncatedString = truncateString(originalString, maxLength);
+  console.log(truncatedString);
   return(
     <div className="hot-board-main text-ver no-img" data-type="onlytext">
       {qnaBoardList.map((item, index) => (
@@ -256,13 +260,6 @@ const Main = () => {
   useEffect(() => {
     QnaFetchData();
   }, []);
-
-
-  const [boardtype,setBoardType] = useState('onlyimg');
-  );
-};
-
-const Main = () => {
   const [boardtype, setBoardType] = useState("onlyimg");
 
   const setType = (e) => {
