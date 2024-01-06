@@ -41,13 +41,6 @@
   a{
     color: #000;
     display: block;
-    // &:hover{
-    //   font-weight: bold;
-    // }
-    // &:focus{
-    // color: #32a061;
-    // font-weight: 500;
-    // }
   }
   .link{
     text-align: left;
@@ -66,6 +59,9 @@
     &:focus::placeholder{
       color:transparent;
     }
+    &::placeholder{
+      opacity: .8;
+    }
   }
   table{
     width: 100%;
@@ -76,8 +72,8 @@
     tr{
       background: $white;
       border-bottom: 1px solid #dcdbdb;
-      display: flex;
       align-items: center;
+      display: flex;
       justify-content: space-between;
       padding: 0 24px;
       gap: 24px;
@@ -117,6 +113,17 @@ button{
 .pagination{
   text-align: center;
 }
+.fb-list-mobile,
+.qna-list-mobile{
+  display: none;
+}
+.no-result-msg{
+  background: $white;
+  border-top: 1px solid #dcdbdb;
+  border-bottom: 1px solid #dcdbdb;
+  text-align: center;
+  padding: 24px;
+}
 
 /* Free Board */
 .fb-banner img{
@@ -130,12 +137,6 @@ button{
   margin-right: 16px;
   input{
     caret-color: transparent;
-  }
-  .css-1fdsijx-ValueContainer{
-    padding: 2px 0px 2px 15px;
-  }
-  .css-1u9des2-indicatorSeparator{
-    display: none;
   }
   svg{
     color: $point-1;
@@ -226,6 +227,12 @@ button{
 .Qna-banner{
   position: relative;
   width: 100%;
+  .mg-t2{
+    margin-top: $unit-2;
+    &.sm{
+      margin-top: $unit-1;
+    }
+  }
 }
 .Qna-banner-content{
   width: 55%;
@@ -278,7 +285,7 @@ button{
   opacity: 1;
   margin-right: 10px;
 }
-.board-btns{
+.qna-btns{
   display: flex;
   justify-content: space-between;
   .posts-btn{
@@ -286,7 +293,7 @@ button{
   }
 }
 
-.pna-list .qna-td-1 img{
+.qna-list .qna-td-1 img{
   width: 30px;
 }
 .qna-td-1,
@@ -320,27 +327,25 @@ button{
   img{
     height: 50px;
   }
-}
-.q-content{
-  flex-direction:column;
-}
-.q-tt{
-  margin-top: 13px;
-}
-.q-info{
-  margin: 24px 0 36px 0;
-  gap: 24px;
-  align-items: center;
-  img{
-    display:inline;
+  .q-content{
+    flex-direction:column;
+  }
+  .q-tt{
+    margin-top: 13px;
+  }
+  .q-info{
+    margin: 24px 0 36px 0;
+    gap: 24px;
+    align-items: center;
+    img{
+      display:inline;
+    }
   }
 }
-
 .reply-form{
   position: relative;
   #reply{
     padding: 24px 48px;
-    border-radius: 20px;
     width: 100%;
   }
   button{
@@ -350,7 +355,6 @@ button{
     font-size: 20px;
   }
 }
-
 .a-frame{
   flex-direction: column;
   align-items: flex-end;
@@ -377,6 +381,33 @@ button{
   }
 }
 
+/* Mobile Board */
+.list-item{
+  background: $white;
+  border-bottom: 2px solid $gray-1;
+  padding: 20px;
+  font-size: 12px;
+  gap: 10px;
+  &:active{
+    box-shadow: inset 0px 5px 30px 0px rgba(0, 0, 0, 0.05);
+  }
+
+  .list-item-st{
+    gap: 10px;
+  }
+  .list-item-tt{
+    margin: 10px 0 20px;
+    gap: 10px;
+    img{
+      height: 24px;
+    }
+  }
+  .level-img{
+    width: 14px;
+    height: 14px;
+  }
+}
+
 @media (max-width: 1320px) {
   .container{
     padding: 0px 20px;
@@ -395,15 +426,173 @@ button{
 }
 
 @media (max-width: 480px) {
+  .Community{
+    .tt2{
+      font-size: 4.5vw;
+    }
+    .tt4{
+      font-size: 4vw;
+    }
+    .tt5{
+      font-size: $font-16;
+    }
+    .pd {
+      padding: 2.5vh 0;
+    }
+    .mg-t1{
+      margin-top: 20px;
+    }
+    .mg-t1{
+      margin-top: 20px;
+      &.sm{
+        margin-top: 10px;
+      }
+    }
+    .mg-t2{
+      margin-top: 20px;
+    }
+    .mg-t3{
+      margin-top: 30px;
+    }
+    input{
+      font-size: $font-13;
+    }
+    .w-red-btn,
+    .w-green-btn{
+      font-size: $font-13 !important;
+      padding: 6px 15px;
+    }
+  }
+  .search{
+    input{
+      padding: 12px 40px;
+    }
+    button{
+      bottom: 11px;
+      font-size: $font-16;
+    }
+  }
+  .no-result-msg{
+    border: none;
+    font-size: (max($font-13, min(3.5vw, 15px)));
+    padding: 30px;
+  }
+
+  .fb-list,
+  .qna-list{
+    display: none;
+  }
+  .fb-list-mobile,
+  .qna-list-mobile{
+    display: block;
+  }
+
+  .fb-banner img,
+  .Qna-banner-content img {
+    display: none;
+  }
+  .fb-banner-content,
+  .Qna-banner-content{
+    width: 100%;
+  }
+  .fb-btns{
+    justify-content: space-between;
+  }
+
+  /* Q&A */
+  .Qna-banner{
+    .mg-t2{
+      margin-top: 20px;
+      &.sm{
+        margin-top: 10px;
+      }
+    }
+  }
+  .qna-category{
+    font-size: $font-13;
+    padding: 10px 15px;
+  }
   .top-posts{
     display: none;
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    top: 30px;
+    left: 20px;
+    padding: 20px;
     &.modal-open{
       display: block;
     }
+    h3{
+      text-align: center;
+      margin-top: 5px;
+    }
+    .posts-box{
+      p{
+        padding: 8px;
+        font-size: $font-13;
+      }
+    }
   }
-  .board-btns{
+  .qna-btns{
     .posts-btn{
       display: block;
+    }
+  }
+  /* Q&A View */
+  .q-card{
+    padding: 20px;
+    gap: 10px;
+    img{
+      height: 24px;
+    }
+    .q-tt{
+      margin: 0;
+      font-size: (max($font-14, min(3.7vw, $font-16)));
+    }
+    .q-info{
+      font-size: (max(12px, min(3vw, $font-14)));
+      margin: 16px 0 24px 0;
+      gap: 20px;
+      img{
+        width: (max($font-14, min(3.7vw, $font-16)));
+        height: (max($font-14, min(3.7vw, $font-16)));
+      }
+    }
+    .q-content:last-child{
+      font-size: (max($font-13, min(3.5vw, 15px)));
+    }
+  }
+  .reply-form{
+    #reply{
+      padding: 20px;
+      &::placeholder{
+        font-size: (max(12px, min(3vw, $font-14)));
+      }
+    }
+    button{
+      right: 20px;
+      bottom: 20px;
+      font-size: $font-16;
+    }
+  }
+  .a-frame{
+    .a-box{
+      width: 100%;
+      gap: 10px;
+    }
+    .a-tt{
+      margin: 10px 0 5px 20px;
+      img{
+        width: 18px;
+      }
+    }
+    .a-card{
+      padding: 20px;
+      gap: 10px;
+      font-size: (max($font-13, min(3.5vw, 15px)));
+      img{
+        height: 24px;
+      }
     }
   }
 }
