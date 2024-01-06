@@ -403,13 +403,18 @@ body {
   margin: 0 auto;
 }
 
-header {
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+  }
+}
+header.web {
   padding: 48px 0;
 }
-header div {
+header.web div {
   position: relative;
 }
-header div h1 a {
+header.web div h1 a {
   margin: 0 auto;
   background-image: url(../asset/logo.png);
   width: 148px;
@@ -418,23 +423,23 @@ header div h1 a {
   background-size: cover;
   text-indent: -9999rem;
 }
-header div aside {
+header.web div aside {
   display: flex;
   position: absolute;
   top: 0;
   right: 0;
   transform: translateY(50%);
 }
-header div aside button {
+header.web div aside button {
   font-size: 16px;
   border: none;
   background-color: transparent;
   padding: 0;
 }
-header div aside .loginout {
+header.web div aside .loginout {
   margin-right: 20px;
 }
-header div aside .mypage {
+header.web div aside .mypage {
   background-image: url(../asset/mypage-icon.png);
   width: 30px;
   height: 30px;
@@ -442,7 +447,7 @@ header div aside .mypage {
   text-indent: -9999rem;
   margin-right: 10px;
 }
-header nav {
+header.web nav {
   margin: 63px auto 0;
   width: 648px;
   display: flex;
@@ -454,23 +459,23 @@ header nav {
   position: relative;
   z-index: 100;
 }
-header nav a {
+header.web nav a {
   color: #32a061;
 }
-header nav > ul {
+header.web nav > ul {
   display: flex;
   flex-wrap: nowrap;
   gap: 100px;
 }
-header nav > ul:hover ul {
+header.web nav > ul:hover ul {
   display: flex;
 }
-header nav > ul a.big-menu {
+header.web nav > ul a.big-menu {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-header nav > ul a.big-menu .icon.meal {
+header.web nav > ul a.big-menu .icon.meal {
   width: 15px;
   height: 20px;
   background-size: cover;
@@ -478,7 +483,7 @@ header nav > ul a.big-menu .icon.meal {
   background-image: url(../asset/meal-icon.png);
   background-repeat: no-repeat;
 }
-header nav > ul a.big-menu .icon.health {
+header.web nav > ul a.big-menu .icon.health {
   width: 20px;
   height: 20px;
   background-size: cover;
@@ -486,7 +491,7 @@ header nav > ul a.big-menu .icon.health {
   background-image: url(../asset/health-icon.png);
   background-repeat: no-repeat;
 }
-header nav > ul a.big-menu .icon.community {
+header.web nav > ul a.big-menu .icon.community {
   width: 20px;
   height: 20px;
   background-size: cover;
@@ -494,10 +499,10 @@ header nav > ul a.big-menu .icon.community {
   background-image: url(../asset/community-icon.png);
   background-repeat: no-repeat;
 }
-header nav > ul li {
+header.web nav > ul li {
   position: relative;
 }
-header nav > ul li ul {
+header.web nav > ul li ul {
   display: none;
   position: absolute;
   top: 72px;
@@ -507,7 +512,7 @@ header nav > ul li ul {
   gap: 10px;
   z-index: 10;
 }
-header nav > ul:before {
+header.web nav > ul:before {
   content: "";
   opacity: 1;
   display: block;
@@ -523,7 +528,7 @@ header nav > ul:before {
   border-radius: 36px;
   z-index: 0;
 }
-header nav > ul:after {
+header.web nav > ul:after {
   transition: opacity 0.2s ease-in;
   content: "";
   opacity: 0;
@@ -540,7 +545,7 @@ header nav > ul:after {
   border-radius: 36px;
   z-index: -1;
 }
-header nav > ul:hover:after {
+header.web nav > ul:hover:after {
   opacity: 1;
   z-index: -1;
 }
@@ -585,6 +590,123 @@ footer div a {
   color: #fff;
 }
 
+header.mobile {
+  padding: 24px 20px;
+}
+header.mobile div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header.mobile div button {
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+header.mobile div .menu-btn {
+  background-image: url(../asset/menu-btn.png);
+  width: 25px;
+  height: 19px;
+  display: block;
+  background-size: cover;
+  text-indent: -9999rem;
+}
+header.mobile div .mypage {
+  background-image: url(../asset/mypage-icon.png);
+  width: 24px;
+  height: 24px;
+  display: block;
+  background-size: cover;
+  text-indent: -9999rem;
+}
+header.mobile div h1 {
+  text-align: center;
+}
+header.mobile div h1 a {
+  margin: 0 auto;
+  background-image: url(../asset/small-logo.png);
+  width: 75px;
+  height: 22px;
+  display: block;
+  background-size: cover;
+  text-indent: -9999rem;
+}
+header.mobile nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  justify-content: space-between;
+  bottom: 0;
+  width: 287px;
+  left: -287px;
+  background-color: #fff;
+  z-index: 10000;
+  transition: left 0.4s ease-in;
+  border-radius: 0;
+  margin: 0;
+  padding: 0px;
+  border: none;
+}
+header.mobile nav.open {
+  left: 0;
+}
+header.mobile nav > ul {
+  flex-direction: column;
+  width: 100%;
+  margin-top: 60px;
+  text-indent: 20px;
+  gap: 0;
+}
+header.mobile nav > ul > li {
+  padding: 20px 0;
+}
+header.mobile nav > ul > li a {
+  margin-bottom: 20px;
+}
+header.mobile nav > ul:before {
+  display: none;
+}
+header.mobile nav > ul:after {
+  display: none;
+}
+header.mobile nav > ul > li > ul {
+  background-color: #f2f3f5;
+  position: static;
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  text-indent: 40px;
+}
+header.mobile nav .menu-close-btn {
+  background-image: url(../asset/menu-close.png);
+  width: 20.86px;
+  height: 20.86px;
+  display: block;
+  background-size: cover;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+header.mobile nav .nav-bottom {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
+  color: #32a061;
+  position: static;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  footer div ul {
+    display: none;
+  }
+}
 button {
   cursor: pointer;
 }
@@ -693,14 +815,10 @@ body {
 }
 
 .bannerWrap {
-  height: 432px;
   background-color: #fff;
   border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
   padding: 60px 96px;
   box-sizing: border-box;
-  align-items: center;
 }
 .bannerWrap img {
   width: 504px;
@@ -713,48 +831,46 @@ body {
   -o-object-fit: none;
      object-fit: none;
 }
-
-.bannerTitle {
+.bannerWrap .bannerTitle {
   width: 50%;
 }
-.bannerTitle ul {
+.bannerWrap .bannerTitle ul {
   display: flex;
   gap: 5px;
   line-height: 20px;
 }
-.bannerTitle li {
+.bannerWrap .bannerTitle li {
   border-radius: 50px;
   border: 1px solid #f46b2a;
   padding: 0 10px;
 }
-.bannerTitle span {
+.bannerWrap .bannerTitle span {
   color: #f46b2a;
   font-size: 11px;
 }
-.bannerTitle .youtubeBtn {
+.bannerWrap .bannerTitle .youtubeBtn {
   margin-top: 50px;
   padding: 11px;
 }
-
-.bannerMainTitle {
+.bannerWrap .bannerMainTitle {
   padding: 20px 0;
 }
-.bannerMainTitle h1 {
+.bannerWrap .bannerMainTitle h1 {
   font-size: 40px;
   color: #32a061;
 }
-.bannerMainTitle p {
+.bannerWrap .bannerMainTitle p {
   font-weight: bold;
   display: inline;
 }
-
-.bannerSubTitle {
-  width: 70%;
+.bannerWrap .bannerSubTitle {
+  width: 100%;
+  box-sizing: border-box;
 }
-.bannerSubTitle h3 {
+.bannerWrap .bannerSubTitle h3 {
   font-weight: 400;
 }
-.bannerSubTitle p {
+.bannerWrap .bannerSubTitle p {
   padding-top: 20px;
   color: #9da1a6;
 }
@@ -771,9 +887,6 @@ body {
   width: 80%;
   margin: 0 auto;
   gap: 5%;
-}
-.level .levelIcon {
-  width: 20%;
 }
 .level .levelIcon img {
   width: 50%;
@@ -1002,6 +1115,8 @@ body {
 .grid .grid-text .text {
   height: 50px;
   padding: 0 30px;
+  gap: 10px;
+  line-height: 27px;
 }
 .grid .grid-text img {
   width: 24px;
@@ -1012,7 +1127,16 @@ body {
   padding-right: 5px;
 }
 
-.modal {
+.healthModalBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.healthModal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1025,78 +1149,79 @@ body {
   box-sizing: border-box;
   z-index: 10;
 }
-.modal .modalImg {
+.healthModal .modalImg {
   width: 60%;
   height: 100%;
   margin-right: 30px;
 }
-.modal .modalImg .modalImg_1 {
+.healthModal .modalImg .modalImg_1 {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.modal .modalImg .modalImg_1 img {
+.healthModal .modalImg .modalImg_1 img {
   width: 500px;
   height: 100%;
 }
-.modal .modalText {
+.healthModal .modalText {
   width: 50%;
 }
-.modal .modalText .text {
+.healthModal .modalText .text {
   height: 30px;
 }
-.modal .modalText .text img {
+.healthModal .modalText .text img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.modal .modalText .text p:last-child {
+.healthModal .modalText .text p:last-child {
   padding: 0 15px;
 }
-.modal .modalText p {
+.healthModal .modalText p {
   line-height: 30px;
   padding: 0 5px;
   font-size: 14px;
 }
-.modal .modalText .modalDays p {
+.healthModal .modalText .modalDays p {
   color: #888;
   font-size: 11px;
 }
-.modal .modalText .modalMainText {
+.healthModal .modalText .modalMainText {
   height: 260px;
 }
-.modal .modalText .modalImg_2 {
+.healthModal .modalText .modalImg_2 {
   margin-top: 30px;
 }
-.modal .modalText .modalImg_2 img {
+.healthModal .modalText .modalImg_2 img {
   width: 32%;
   height: 110px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.modal .modalText .m-badge {
+.healthModal .modalText .m-badge {
   margin-right: 5px;
 }
-.modal .modalText .modalBtn {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  top: 15px;
-  right: 35px;
+.healthModal .modalText .modalBtn {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
-.modal .modalText .modalBtn:before, .modal .modalText .modalBtn:after {
+.healthModal .modalText .modalBtn:before, .healthModal .modalText .modalBtn:after {
   position: absolute;
+  left: 50%;
   content: "";
   height: 40px;
   width: 1px;
   background-color: #000;
 }
-.modal .modalText .modalBtn:before {
+.healthModal .modalText .modalBtn:before {
   transform: rotate(45deg);
 }
-.modal .modalText .modalBtn:after {
+.healthModal .modalText .modalBtn:after {
   transform: rotate(-45deg);
 }
 
@@ -1294,4 +1419,81 @@ body {
   font-weight: bold;
   cursor: default;
   color: #777;
+}
+
+@media (min-width: 1120px) {
+  .bannerWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bannerSubTitle {
+    padding-right: 30%;
+  }
+  .level .levelIcon {
+    width: 20%;
+  }
+  .level .levelIcon img {
+    width: 50%;
+  }
+  .level .levelIcon h2 {
+    color: #f46b2a;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 17px 0;
+  }
+}
+@media (max-width: 480px) {
+  .bannerWrap {
+    padding: 40px 15px;
+    text-align: center;
+  }
+  .bannerWrap .bannerImg {
+    margin-top: 40px;
+  }
+  .bannerWrap .bannerImg img {
+    width: 100%;
+    height: 227px;
+  }
+  .bannerWrap .bannerImg .img2 {
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .bannerWrap .bannerTitle {
+    width: 100%;
+  }
+  .bannerWrap .bannerTitle ul {
+    justify-content: center;
+  }
+  .bannerWrap .bannerTitle ul span {
+    font-size: 11px;
+  }
+  .bannerWrap .bannerTitle .youtubeBtn {
+    margin-top: 40px;
+  }
+  .bannerWrap .bannerMainTitle h1 {
+    font-size: 32px;
+  }
+  .bannerWrap .bannerSubTitle {
+    padding: 0 10px;
+  }
+  .level {
+    margin: 0 auto;
+    gap: 5%;
+  }
+  .level .levelIcon img {
+    width: 60%;
+  }
+  .level .levelIcon h2 {
+    font-size: 16px;
+  }
+  .level .levelIcon p {
+    font-size: 11px;
+  }
+  .healthShot .grid {
+    gap: 8px;
+  }
+  .healthShot .grid .grid-item {
+    height: 135px;
+  }
 }/*# sourceMappingURL=health.css.map */

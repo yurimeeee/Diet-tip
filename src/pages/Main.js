@@ -17,6 +17,7 @@ import { collection, getDocs, query, limit, orderBy, onSnapshot } from "firebase
 import freeBoard_data from "../data/freeBoard_data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
+import Exercise from "../components/Exercise";
 
 const OnlyImg = () => {
   const [posts, setPosts] = useState([]);
@@ -290,7 +291,7 @@ const Main = () => {
     }
   };
 
-  return (
+  return(
     <main className="Main container">
       <Banner />
       <Today />
@@ -336,6 +337,7 @@ const Main = () => {
           <button className="w-green-btn">브릿지 동작</button>
         </div>
       </section>
+      <Exercise/>
     </main>
   );
 };

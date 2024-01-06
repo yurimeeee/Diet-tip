@@ -304,7 +304,8 @@
   .recommand-exercise {
     display: flex;
     gap: 24px;
-    .exercise-card {
+    text-align: center;
+    .exercise-card{
       width: 312px;
       height: 384px;
       padding: 40px;
@@ -312,7 +313,7 @@
       box-sizing: border-box;
       background-color: $white;
       border-radius: 20px;
-      gap: 20px;
+      gap: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -324,11 +325,10 @@
         height: 100px;
         object-fit: cover;
       }
-      .video-container {
-        background-color: $gray-2;
-        width: 240px;
-        height: 240px;
-        border-radius: 10px;
+      .video-container{
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
       }
     }
     .exercise-card.video {

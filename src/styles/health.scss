@@ -16,69 +16,66 @@
 }
 
 .bannerWrap{
-	height: 432px;
-	background-color: #fff;
-	border-radius: 10px;
-	display:flex; 
-	justify-content: space-between;  
-	padding: 60px 96px;
-	box-sizing: border-box;
-	align-items: center;	
-	img{
-		width: 504px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 60px 96px;
+  box-sizing: border-box;
+  img{
+    width: 504px;
     height: 282px;
     border-radius: 10px;
-		object-fit:cover;
-	}
-	.img2{
-	object-fit: none;
-	}
+    object-fit:cover;
+  }
+  .img2{
+  object-fit: none;
+  }
+  .bannerTitle {
+    width: 50%;
+    ul{
+    display: flex;
+    gap:5px;
+    line-height: 20px;
+    }
+    li{
+    border-radius: 50px;
+    border: 1px solid $point-2;
+    padding: 0 10px
+    }
+    span{
+        color: $point-2;
+        font-size: $mb-tt;
+    }
+    .youtubeBtn{
+      margin-top:50px;
+      padding: 11px;
+    }
+  }
+  
+  .bannerMainTitle{
+    padding: $unit-s-4 0; 
+    h1{
+      font-size: $font-40;
+      color: $point-1;
+    }
+    p{
+      font-weight: bold;
+      display: inline;
+    }
+  }
+  
+  .bannerSubTitle{
+    width:100%;
+    box-sizing: border-box;
+    h3{
+      font-weight: 400;
+    }
+    p{
+      padding-top: $unit-s-4;
+      color: $gray-2;
+    }
+  }
 }
 
-.bannerTitle {
-	width: 50%;
-	ul{
-	display: flex;
-	gap:5px;
-	line-height: 20px;
-	}
-	li{
-	border-radius: 50px;
-	border: 1px solid $point-2;
-	padding: 0 10px
-	}
-	span{
-			color: $point-2;
-			font-size: $mb-tt;
-	}
-	.youtubeBtn{
-		margin-top:50px;
-		padding: 11px;
-	}
-}
-
-.bannerMainTitle{
-	padding: $unit-s-4 0; 
-	h1{
-		font-size: $font-40;
-		color: $point-1;
-	}
-	p{
-		font-weight: bold;
-		display: inline;
-	}
-}
-
-.bannerSubTitle{
-	width:70%;
-	h3{
-		font-weight: 400;
-	}
-	p{
-		padding-top: $unit-s-4;
-		color: $gray-2;
-	}
-}
 
 // HealthLevel
 
@@ -95,7 +92,6 @@
 	margin: 0 auto;
 	gap:5%;
 	.levelIcon{
-		width:20%;
 		img{
 			width: 50%;
 		}
@@ -308,7 +304,6 @@ html { overflow-y: scroll; }
 body { font-family: sans-serif; }
 
 /* ---- grid ---- */
-
 .grid {
 	margin-top: $unit-3;
 	display: flex;
@@ -342,6 +337,8 @@ body { font-family: sans-serif; }
 		.text{
 			height: 50px;
 			padding:0 30px;
+			gap:10px;
+			line-height: 27px;
 		}	
 		img{
 			width:24px;
@@ -354,9 +351,14 @@ body { font-family: sans-serif; }
 }
 
 //Healthmodal
+.healthModalBack{
+  position: fixed;
+  top:0; left: 0; bottom: 0; right: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
 
-.modal{
-	position: fixed;
+.healthModal{
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -425,14 +427,14 @@ body { font-family: sans-serif; }
 		}
 		.modalBtn{
 			// display:inline-block;
-			width: 50px;
-			height: 50px;
-			position: relative;
-			top:15px;
-			right: 35px;
-
+			width: 40px;
+			height: 40px;
+			position: fixed;
+			top:20px;
+			right: 20px;
 				&:before, &:after{
 					position: absolute;
+					left:50%;
 					content:'';
 					height: 40px;
 					width: 1px;
@@ -447,8 +449,6 @@ body { font-family: sans-serif; }
 		}		
 	}
 }
-
-
 
 
 // 카카오
@@ -613,6 +613,98 @@ body { font-family: sans-serif; }
 	cursor: default;
 	color: #777;
   }
+
+  //mobile
+  @media (min-width: 1120px) {
+    .bannerWrap{
+      display:flex; 
+      justify-content: space-between;  
+      align-items: center;	
+    }
+    .bannerSubTitle{
+      padding-right:30%;
+    }
+    .level{
+      .levelIcon{
+        width:20%;
+        img{
+          width: 50%;
+        }
+        h2{
+          color:$point-2;
+          font-size:$font-20;
+          font-weight: bold;
+          margin: 17px 0;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) { 
+  .bannerWrap{
+    padding: 40px 15px;
+    text-align: center;
+    .bannerImg{
+      margin-top: 40px;
+      img{
+        width:100%;
+        height: 227px;
+      }
+      .img2{
+      object-fit: contain;
+      }
+    }
+    
+    .bannerTitle {
+      width: 100%;
+      ul{
+        justify-content: center;
+        span{
+            font-size: 11px;
+        }
+      }
+      .youtubeBtn{
+        margin-top:40px;
+      }
+    }
+    
+    .bannerMainTitle{
+      h1{
+        font-size: $font-32;
+      }
+    }
+    
+    .bannerSubTitle{
+      padding: 0 10px;
+    }
+  }
+  .level{
+    margin: 0 auto;
+    gap:5%;
+    .levelIcon{
+      img{
+        width: 60%;
+      }
+      h2{
+        font-size:$font-16;
+      }
+      p{
+        font-size: 11px;
+      }
+    }
+  }
+
+	.healthShot{
+		.grid{
+			gap:8px;
+			.grid-item{
+				height: 135px;
+			}
+		}
+	}
+}
+
+
 
 
 
