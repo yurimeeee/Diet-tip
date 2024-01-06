@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import { db } from "../firebase";
 import { collection, getDocs, query, limit, orderBy } from "firebase/firestore"
 import _debounce from "lodash/debounce";
@@ -14,7 +15,6 @@ import level_3 from "../asset/level-3-badge.png";
 import PaginationComp from "../components/Pagination";
 import Search from "../components/Search";
 import QnaView from "../components/QnaView";
-// import Loading from "../components/Loading"
 
 const QnA = () => {
   const [ allData, setAllData ] = useState([]);
@@ -159,9 +159,8 @@ const QnA = () => {
   };
 
   //게시물 상세보기
+  const { postId } = useParams();
   const [ selectedPost, setSelectedPost ] = useState(null);
-
-  //선택한 게시물 Id
   const handlePostClick = (postId) => {
     setSelectedPost(postId);
   };
@@ -181,27 +180,6 @@ const QnA = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const handleModalBgClick = (e) => {
-    if (isModalOpen && e.target.classList.contains('top-posts-bg')) {
-      closeModal();
-    }
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.addEventListener('click', handleModalBgClick);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.removeEventListener('click', handleModalBgClick);
-      document.body.style.overflow = 'auto';
-    }
-  
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    return () => {
-      document.removeEventListener('click', handleModalBgClick);
-      document.body.style.overflow = 'auto';
-    };
-  }, [isModalOpen]);
 
   return(
     <main className="Community">
@@ -232,27 +210,30 @@ const QnA = () => {
             <Search onSearch={onSearch} searchNoResult={searchNoResult}/>
           </div>
 
-          <div className={`top-posts-bg ${isModalOpen ? 'modal-open' : ''}`}>
-            <div className="top-posts bg-green-2 lg-radius sm-shadow">
-              <h3 className="tt5 bold">주간 인기글</h3>
-              {/* {allData.length === 0 && <Loading />} */}
-              <div className="posts-box df">
-                {topPostsData.map((post, index) => (
-                  <p key={post.id} className="df" onClick={(e) => {e.preventDefault(); handlePostClick(post.id, e);}}>
-                    <span className="posts-number bold">{index + 1}.</span>
-                    <a href="">
-                      <span className="posts-tt link mg-r1">{post.title}</span>
-                      <span><FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{post.thumbsUp}</span>
-                    </a>
-                  </p>
-                ))}
-              </div>
+          <div className={`top-posts bg-green-2 lg-radius sm-shadow ${isModalOpen ? 'modal-open' : ''}`}>
+            <h3 className="tt5 bold">주간 인기글</h3>
+            <div className="posts-box df">
+              {topPostsData.map((post, index) => (
+                <p key={post.id} className="df" onClick={(e) => {e.preventDefault(); handlePostClick(post.id, e);}}>
+                  <span className="posts-number bold">{index + 1}.</span>
+                  <a href="">
+                    <span className="posts-tt link mg-r1">{post.title}</span>
+                    <span><FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{post.thumbsUp}</span>
+                  </a>
+                </p>
+              ))}
             </div>
-          </div>
+            </div>
         </div>
       </div>
 
-      {selectedPost ? (
+      {postId ? (
+        <QnaView
+          post={allData.find((item) => item.id === postId)}
+          onClose={() => setSelectedPost(null)}
+          setAllData={setAllData}
+        />
+      ) : selectedPost ? (
         <QnaView
           post={allData.find((item) => item.id === selectedPost)}
           onClose={() => setSelectedPost(null)}
@@ -266,14 +247,12 @@ const QnA = () => {
               <FontAwesomeIcon icon={faPencil} /> 글 쓰기
             </button>
           </div>
-          {/* <Loading /> */}
 
           {searchNoResult ? (
             <p className="no-result-msg mg-t1">검색 결과가 없습니다.</p>
           ) : (
             <>
               {/* Web Size Board */}
-              {/* {allData.length === 0 && <Loading />} */}
               <table className="qna-list mg-t1">
                 <thead className="hidden">
                   <tr>

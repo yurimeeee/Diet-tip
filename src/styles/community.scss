@@ -512,16 +512,25 @@ button{
     font-size: $font-13;
     padding: 10px 15px;
   }
-  .top-posts{
+  .top-posts-bg{
     display: none;
-    box-sizing: border-box;
-    width: calc(100% - 40px);
-    top: 30px;
-    left: 20px;
-    padding: 20px;
     &.modal-open{
       display: block;
+      position: fixed;
+      background: rgba(94, 94, 94, 0.45);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 99;
     }
+  }
+  .top-posts{
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    top: 125px;
+    left: 20px;
+    padding: 20px;
     h3{
       text-align: center;
       margin-top: 5px;
