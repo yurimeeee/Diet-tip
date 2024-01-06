@@ -10,10 +10,10 @@ import { app } from "../src/firebase";
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <MobileHeader />
       <AppRouter />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

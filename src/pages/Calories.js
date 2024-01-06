@@ -268,7 +268,7 @@ const Calories = () => {
         handlePageChange={handlePageChange}
       />
 
-      <div className="recom-list bg-white web-shadow container md-radius df jcsb">
+      <div className="recom-list bg-white web-shadow recom-container md-radius df jcsb">
         <div>
           <h3 className="point-1">올 겨울 먹킷리스트</h3>
           <p className="gray-3">겨울에 꼭 먹어야 할 제철 음식 BEST 10!</p>
