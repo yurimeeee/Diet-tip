@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import '../styles/main.css';
 import Banner from "../components/Banner";
 import Today from "../components/Today";
@@ -9,7 +9,13 @@ import replyIcon from "../asset/reply-icon.png";
 import likefillImg from "../asset/like-fill.png";
 import profile from "../asset/profile-icon.png";
 import Exercise from "../components/Exercise";
+import Healthmodal from "../components/HealthModal";
 import { useRef } from 'react';
+import { db } from "../firebase";
+import {
+  collection,
+  getDocs,
+} from "firebase/firestore";
 
 const OnlyImg = () => {
   return(
@@ -39,6 +45,59 @@ const ImgText = () => {
           </div> 
         </div>
       </div>
+    </div>
+  )
+}
+
+const HealthImgText = () => {
+
+  const [photos,setPhotos] = useState([]);
+  const [modal,setModal] = useState(false);
+  const [modalItem,setModalItem] = useState();
+
+  // firebase 데이터 연동
+  useEffect(() => {
+    const fetchData = async () => {
+      const health = await getDocs(
+        collection(db, `health`)
+      );
+      const data = health.docs.map((doc) => (
+        doc.data()
+      ));
+      setPhotos(data)
+    };
+    fetchData();
+  },[]);
+
+  return(
+    <div className="hot-board-main text-ver df" data-type="HealthImgText">
+      {photos.slice(0,2).map((item)=>(
+        <>
+        <div className="text-card"
+           onClick={()=>{
+            setModal(true)
+            setModalItem(item)
+          }}>
+          <img className="text-card-img" alt="hot board img" src={item.photo}></img>
+          <div className="text-card-text">
+            <div className="text-card-title">
+              <p>{item.text}</p>
+            </div>
+            <div className="profile">
+              <p className="profile-content"><img src={profile} className="profile-icon" alt="profile icon"></img>{item.username}</p>
+              <div>
+                <p className="profile-content"><img src={likeImgDark} className="like-icon" alt="like icon"></img>{item.like}</p>
+              </div>
+            </div> 
+          </div>
+        </div>
+        {modal === true ? 
+          <Healthmodal 
+            parentSetModal={setModal}
+            data={modalItem}
+          />:null}
+        </>
+      ))}
     </div>
   )
 }
@@ -99,12 +158,13 @@ const Main = () => {
         <div className="hot-board-buttons">
           <button className="w-green-btn" type="button" data-type="onlyimg" onClick={setType}>식단공유</button>
           <button className="w-green-btn" type="button" data-type="imgtext" onClick={setType}>추천제품</button>
-          <button className="w-green-btn" type="button" data-type="imgtext" onClick={setType}>운동인증</button>
+          <button className="w-green-btn" type="button" data-type="HealthImgText" onClick={setType}>운동인증</button>
           <button className="w-green-btn" type="button" data-type="onlytext" onClick={setType}>자유게시판</button>
           <button className="w-green-btn" type="button" data-type="onlytext" onClick={setType}>Q&A</button>
         </div>
         {boardtype === 'onlyimg' && <OnlyImg/>}
         {boardtype === 'imgtext' && <ImgText/>}
+        {boardtype === 'HealthImgText' && <HealthImgText/>}
         {boardtype === 'onlytext' && <OnlyText/>}
       </section>
       <Exercise/>

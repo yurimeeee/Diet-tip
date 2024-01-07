@@ -1179,6 +1179,11 @@ body {
 .healthModal .modalText .text p:last-child {
   padding: 0 15px;
 }
+.healthModal .modalText .text svg {
+  width: 20px;
+  height: 20px;
+  color: grey;
+}
 .healthModal .modalText p {
   line-height: 30px;
   padding: 0 5px;
@@ -1189,18 +1194,25 @@ body {
   font-size: 11px;
 }
 .healthModal .modalText .modalMainText {
-  height: 260px;
+  height: 180px;
 }
-.healthModal .modalText .modalImg_2 {
-  margin-top: 30px;
+.healthModal .modalText .shotHeartIcon {
+  align-items: center;
+  gap: 5px;
+  padding: 0 5px 5px;
 }
-.healthModal .modalText .modalImg_2 img {
-  width: 32%;
-  height: 110px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.healthModal .modalText .shotHeartIcon span {
+  color: #495057;
 }
-.healthModal .modalText .m-badge {
+.healthModal .modalText .shotHeartIcon span svg {
+  width: 16px;
+  height: 16px;
+}
+.healthModal .modalText .shotTags {
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.healthModal .modalText .shotTags .m-badge {
   margin-right: 5px;
 }
 .healthModal .modalText .modalBtn {

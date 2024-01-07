@@ -399,6 +399,11 @@ body { font-family: sans-serif; }
 					padding: 0 15px;
 				}
 			}
+			svg{
+				width: 20px;
+				height: 20px;
+				color: grey;
+			}
 		}
 		p{
 			line-height: 30px;
@@ -412,18 +417,34 @@ body { font-family: sans-serif; }
 			}
 		}
 		.modalMainText{
-			height: 260px;
+			height: 180px;
 		}
-		.modalImg_2{
-			margin-top: 30px;
-			img{
-				width:32%;
-				height: 110px;
-				object-fit: cover;
+		.shotHeartIcon{
+			align-items: center;
+			gap:5px;
+			padding: 0 5px 5px;
+			span{
+				color:$gray-3;
+				svg{
+					width:16px;
+					height: 16px;
+				}
 			}
 		}
-		.m-badge{
-			margin-right: 5px;
+		// .modalImg_2{
+		// 	margin-top: 30px;
+		// 	img{
+		// 		width:32%;
+		// 		height: 110px;
+		// 		object-fit: cover;
+		// 	}
+		// }
+		.shotTags{
+			flex-wrap: wrap;
+			gap:3px;
+			.m-badge{
+				margin-right: 5px;
+			}
 		}
 		.modalBtn{
 			// display:inline-block;

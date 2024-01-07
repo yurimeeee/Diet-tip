@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import "../styles/health.css";
 import Healthmodal from "../components/HealthModal";
 import profileImg from "../asset/user/avatar-yr.png";
@@ -23,7 +23,7 @@ function HealthImg(){
   const [modal,setModal] = useState(false);
   const [modalItem,setModalItem] = useState();
   const [photos,setPhotos] = useState([]);
-  const [like,setLike] = useState(0);
+  console.log(photos)
 
   // firebase 데이터 연동
   useEffect(() => {
@@ -38,6 +38,7 @@ function HealthImg(){
     };
     fetchData();
   },[]);
+
 
 
   return(
@@ -61,14 +62,14 @@ function HealthImg(){
               </div>
             </div>
             <div className="text df">
-              <h2 onClick={() => { setLike(like + 1); }}><FontAwesomeIcon icon={regularHeart}/></h2>
-              <p>{item.like}</p>
+              <span><FontAwesomeIcon icon={regularHeart}/></span>
+              <h3>{item.like}</h3>
             </div>
           </div>
         </div>   
         {modal === true ? 
         <Healthmodal 
-          parentSetModal={setModal} 
+          parentSetModal={setModal}
           data={modalItem}
         />:null}
         </>
