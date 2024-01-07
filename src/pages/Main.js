@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/main.css";
+import '../styles/main.css';
 import Banner from "../components/Banner";
 import Today from "../components/Today";
 import mealImg from "../asset/meal/meal.png";
@@ -10,8 +10,6 @@ import likefillImg from "../asset/like-fill.png";
 import profile from "../asset/profile-icon.png";
 import Exercise from "../components/Exercise";
 import Healthmodal from "../components/HealthModal";
-import { useRef } from 'react';
-import { db } from "../firebase";
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { yesLogin, noLogin } from "../store/loginSlice";
@@ -24,6 +22,9 @@ import {
   limit,
   getDocs,
 } from "firebase/firestore";
+import freeBoard_data from "../data/freeBoard_data.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faEye } from "@fortawesome/free-regular-svg-icons";
 
 const OnlyImg = () => {
   const [posts, setPosts] = useState([]);
@@ -200,10 +201,126 @@ const OnlyText = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
+
+//자유게시판
+const FreeBoard = ({freeBoardList}) => {
+  return(
+    <div className="hot-board-main text-ver no-img" data-type="onlytext">
+      {freeBoardList.map((item, index) => (
+        <div className="text-card" key={index}>
+          <div className="text-card-text">
+            <div className="text-card-title df">
+              <p className="point-2">{item.category}</p>
+              <p>{item.title}</p>
+            </div>
+            <div className="profile">
+              <p className="profile-content">
+                <img src={profile} className="profile-icon" alt="profile icon"></img>
+                {item.userId}
+              </p>
+              <div>
+                <p className="profile-content">
+                  <FontAwesomeIcon icon={faThumbsUp} className="like-icon gray-3" />
+                  {item.thumbsUp}
+                </p>
+                <p className="profile-content">
+                  <FontAwesomeIcon icon={faEye} className="like-icon gray-3" />
+                  {item.view}
+                </p>
+              </div>
+            </div> 
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+//Q&A
+const QnA = ({qnaBoardList}) => {
+
+  function truncateString(str, maxLength) {
+  if (str.length > maxLength) {
+    return str.substring(0, maxLength) + '...';
+  }
+  return str;
+}
+
+  const originalString = "This is a long string that needs to be truncated.";
+  const maxLength = 10;
+
+  const truncatedString = truncateString(originalString, maxLength);
+  console.log(truncatedString);
+  return(
+    <div className="hot-board-main text-ver no-img" data-type="onlytext">
+      {qnaBoardList.map((item, index) => (
+        <div className="text-card" key={index}>
+          {/* <Link to={`/qnaboard`} style={{ color: 'black' }}> */}
+            <div className="text-card-text">
+              <div className="text-card-title df">
+                <p className="point-1">{item.category}</p>
+                <p>Q. {item.title}</p>
+              </div>
+              <div className="profile">
+                <p className="profile-content">
+                  <img src={profile} className="profile-icon" alt="profile icon"></img>
+                  {item.userId}
+                </p>
+                <div>
+                  <p className="profile-content">
+                    <FontAwesomeIcon icon={faThumbsUp} className="like-icon gray-3" />
+                    {item.thumbsUp}
+                  </p>
+                  <p className="profile-content">
+                    <FontAwesomeIcon icon={faEye} className="like-icon gray-3" />
+                    {item.view}
+                  </p>
+                </div>
+              </div> 
+            </div>
+          {/* </Link> */}
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const Main = () => {
+
+  //자유게시판
+  const [ freeBoardList, setFreeBoardList ] = useState([]);
+  const FbFetchData = () => {
+    const fbData = freeBoard_data.slice(0, 10);
+    setFreeBoardList(fbData);
+  };
+  useEffect(() => {
+    FbFetchData();
+  }, []);
+
+  //Q&A
+  const [ qnaBoardList, setQnaBoardList ] = useState([]);
+  const QnaFetchData = async () => {
+    try {
+      const qnaQuery = query(collection(db, "community"), orderBy("date", "desc"), limit(10));
+      const qnaQuerySnapshot = await getDocs(qnaQuery);
+      const qnaData = qnaQuerySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        title: doc.data().title,
+        category: doc.data().category,
+        userId: doc.data().userId,
+        thumbsUp: doc.data().thumbsUp,
+        view: doc.data().view,
+      }));
+      setQnaBoardList(qnaData);
+    } catch (error) {
+      console.error("Error fetching Q&A data:", error);
+    }
+  };
+  useEffect(() => {
+    QnaFetchData();
+  }, []);
   const [boardtype, setBoardType] = useState("onlyimg");
 
   const setType = (e) => {
@@ -223,12 +340,18 @@ const Main = () => {
       case "onlytext":
         content = <OnlyText />;
         break;
+      case 'FreeBoard':
+        content = <FreeBoard />;
+        break;
+      case 'QnA':
+        content = <QnA />;
+        break;
       default:
         content = <OnlyImg />;
     }
   };
 
-  return (
+  return(
     <main className="Main container">
       <Banner />
       <Today />
@@ -245,6 +368,8 @@ const Main = () => {
         {boardtype === 'imgtext' && <ImgText/>}
         {boardtype === 'HealthImgText' && <HealthImgText/>}
         {boardtype === 'onlytext' && <OnlyText/>}
+        {boardtype === 'FreeBoard' && <FreeBoard freeBoardList={freeBoardList} />}
+        {boardtype === 'QnA' && <QnA qnaBoardList={qnaBoardList} />}
       </section>
       <Exercise/>
     </main>

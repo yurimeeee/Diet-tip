@@ -19,7 +19,7 @@ const QnA = () => {
   const [ allData, setAllData ] = useState([]);
   const [ topPostsData, setTopPostsData ] = useState([]);
   const [ filteredData, setFilteredData ] = useState([]);
-  const [itemsPerPage, setItemsPerPage] = useState(15);
+  const [ itemsPerPage, setItemsPerPage ] = useState(15);
   const levelImg = {
     '1': level_1, 
     '2': level_2, 
@@ -142,6 +142,7 @@ const QnA = () => {
   }, [selectedCateData, allData, currentPage, itemsPerPage]);
   
   // 검색
+  const [ searchNoResult, setSearchNoResult ] = useState(false);
   const onSearch = (searchValue) => {
     const filteredData = allData.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -151,6 +152,9 @@ const QnA = () => {
     // 검색된 결과를 상태에 업데이트
     setSelectedCateData(filteredData);
     setCurrentPage(1);
+    // 검색 결과가 없을 때 상태 업데이트
+    setSearchNoResult(filteredData.length === 0);
+    console.log(filteredData.length);
   };
 
   //게시물 상세보기
@@ -159,19 +163,17 @@ const QnA = () => {
   //선택한 게시물 Id
   const handlePostClick = (postId) => {
     setSelectedPost(postId);
-    console.log(postId);
   };
 
   //미답변 또는 답변완료 여부를 판단하여 반환하는 함수
   const getAnswerStatus = (post) => {
     return post.commentsData && post.commentsData.length > 0 ? "답변완료" : "미답변";
-    // return Array.isArray(post.comments) && post.comments.length > 0 ? "답변완료" : "미답변";
   };
 
   console.log(allData);
 
   //주간인기글 mobile size modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -205,7 +207,7 @@ const QnA = () => {
               </div>
               <img src={Banner} alt="" />
             </div>
-            <Search onSearch={onSearch} />
+            <Search onSearch={onSearch} searchNoResult={searchNoResult}/>
           </div>
 
           <div className={`top-posts bg-green-2 lg-radius sm-shadow ${isModalOpen ? 'modal-open' : ''}`}>
@@ -240,101 +242,109 @@ const QnA = () => {
             </button>
           </div>
 
-          <table className="qna-list mg-t1">
-            <thead className="hidden">
-              <tr>
-                <th>번호</th>
-                <th>카테고리</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>추천</th>
-                <th>조회</th>
-              </tr>
-            </thead>
-        
-            <tbody>
-              {currentPageData.map(( item ) => (
-                <tr key={item.id} className="container" onClick={() => handlePostClick(item.id)}>
-                  <td className="qna-td-1"><img src={icon_q} alt="" /></td>
-                  <td className="qna-td-2 green-4">{item.category}</td>
-                  <td className="qna-td-3 link" style={{ cursor: 'pointer' }}>
-                    {item.title}
-                  </td>
-                  <td className="qna-td-4">
-                    {item.userLevel && (
-                      <>
-                        <img 
-                          src={levelImg[item.userLevel]} 
-                          alt={`Level ${item.userLevel}`} 
-                          className="level-img"
-                        />
-                        {item.userId}
-                      </>
-                    )}
-                  </td>
-                  <td className="qna-td-5">
-                    {item.date}
-                  </td>
-                  <td className={`qna-td-6 ${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
-                    {getAnswerStatus(item)}
-                  </td>
-                  <td className="qna-td-7">
-                    <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
-                    {item.thumbsUp}
-                  </td>
-                  <td className="qna-td-8">
-                    <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
-                    {item.view}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          <div className="qna-list-mobile mg-t1">
-            {currentPageData.map(( item ) => (
-              <div key={item.id} className="list-item" onClick={() => handlePostClick(item.id)}>
-                <div className="list-item-st df">
-                  <p>{item.date}</p>
-                  <p className="green-4">{item.category}</p>
-                </div>
-                <div className="list-item-tt df">
-                  <img src={icon_q} alt="" />
-                  <p className="tt7 link bold" style={{ cursor: 'pointer' }}>
-                    {item.title}
-                  </p>
-                </div>
-                <div className="df jcsb">
-                  <p>
-                    {item.userLevel && (
-                      <>
-                        <img
-                          src={levelImg[item.userLevel]}
-                          alt={`Level ${item.userLevel}`}
-                          className="level-img"
-                        />
-                        {item.userId}
-                      </>
-                    )}
-                  </p>
-                  <div className="list-item-st df">
-                    <p className={`${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
-                      {getAnswerStatus(item)}
-                    </p>
-                    <p>
-                      <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
-                      {item.thumbsUp}
-                    </p>
-                    <p>
-                      <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
-                      {item.view}
-                    </p>
+          {searchNoResult ? (
+            <p className="no-result-msg mg-t1">검색 결과가 없습니다.</p>
+          ) : (
+            <>
+              {/* Web Size Board */}
+              <table className="qna-list mg-t1">
+                <thead className="hidden">
+                  <tr>
+                    <th>번호</th>
+                    <th>카테고리</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>추천</th>
+                    <th>조회</th>
+                  </tr>
+                </thead>
+            
+                <tbody>
+                  {currentPageData.map(( item ) => (
+                    <tr key={item.id} className="container" onClick={() => handlePostClick(item.id)}>
+                      <td className="qna-td-1"><img src={icon_q} alt="" /></td>
+                      <td className="qna-td-2 green-4">{item.category}</td>
+                      <td className="qna-td-3 link" style={{ cursor: 'pointer' }}>
+                        {item.title}
+                      </td>
+                      <td className="qna-td-4">
+                        {item.userLevel && (
+                          <>
+                            <img 
+                              src={levelImg[item.userLevel]} 
+                              alt={`Level ${item.userLevel}`} 
+                              className="level-img"
+                            />
+                            {item.userId}
+                          </>
+                        )}
+                      </td>
+                      <td className="qna-td-5">
+                        {item.date}
+                      </td>
+                      <td className={`qna-td-6 ${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
+                        {getAnswerStatus(item)}
+                      </td>
+                      <td className="qna-td-7">
+                        <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
+                        {item.thumbsUp}
+                      </td>
+                      <td className="qna-td-8">
+                        <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
+                        {item.view}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+    
+              {/* Mobile Size Board */}
+              <div className="qna-list-mobile mg-t1">
+                {currentPageData.map(( item ) => (
+                  <div key={item.id} className="list-item" onClick={() => handlePostClick(item.id)}>
+                    <div className="list-item-st df">
+                      <p>{item.date}</p>
+                      <p className="green-4">{item.category}</p>
+                    </div>
+                    <div className="list-item-tt df">
+                      <img src={icon_q} alt="" />
+                      <p className="tt7 link bold" style={{ cursor: 'pointer' }}>
+                        {item.title}
+                      </p>
+                    </div>
+                    <div className="df jcsb">
+                      <p>
+                        {item.userLevel && (
+                          <>
+                            <img
+                              src={levelImg[item.userLevel]}
+                              alt={`Level ${item.userLevel}`}
+                              className="level-img"
+                            />
+                            {item.userId}
+                          </>
+                        )}
+                      </p>
+                      <div className="list-item-st df">
+                        <p className={`${getAnswerStatus(item) === "답변완료" ? "green-4" : "point-2"}`}>
+                          {getAnswerStatus(item)}
+                        </p>
+                        <p>
+                          <FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />
+                          {item.thumbsUp}
+                        </p>
+                        <p>
+                          <FontAwesomeIcon icon={faEye} className="mg-r1 gray-3" />
+                          {item.view}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         
           <PaginationComp
             currentPage={currentPage}
