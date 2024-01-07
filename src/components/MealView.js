@@ -321,9 +321,9 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     <div className="meal-view-bg">
       <div className="meal-view">
         <div className="meal-view-col">
+          <div className="modal-close" onClick={closeModal}></div>
           <div className="meal-img-wrap">
             <img
-              // src={clickedData.photo}
               src={mealImg}
               alt="식단이미지"
               className={isLiked ? "liked meal-img" : "meal-img"}

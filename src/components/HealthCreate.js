@@ -8,15 +8,42 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faFaceSmile } from "@fortawesome/free-regular-svg-icons";
 import { faXmark, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
-const MealCreate = ({ onModeChange }) => {
+const Modal = ({ isOpen, closeModal, children }) => {
+ 
+  
+  return (
+    <>
+      {isOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+            {/* <button onClick={closeModal} className="close-button">
+              닫기
+            </button> */}
+            {children}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+const HealthCreate = ({ onModeChange }) => {
   const [inputHashTag, setInputHashTag] = useState("");
   const [hashTags, setHashTags] = useState([]);
   const [textarea, setTextarea] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   //글 작성
   const [post, setPost] = useState("");
   const [file, setFile] = useState("");
+
+  //글 입력시
+  // const postChange = (e) => {
+  //   setPost(e.target.value);
+  //   console.log(post);
+  // };
 
   //이미지 업로드
   const onFileChange = (e) => {
@@ -30,12 +57,13 @@ const MealCreate = ({ onModeChange }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const user = auth.currentUser;
+    const now = moment();
     //유저 없거나, 게시글 빈값이거나 글자수 초과시 리턴
-    if (!user || post === "" || post.length > 1000) return;
+    if (!user || post === "" || post.length > 200) return;
     try {
-      const doc = await addDoc(collection(db, "meal"), {
+      const doc = await addDoc(collection(db, "health"), {
         text: post,
-        createdAt: Date.now(),
+        createdAt: now.format("YYYY-MM-DD"),
         username: user.displayName,
         userId: user.uid,
         hashTags,
@@ -43,7 +71,7 @@ const MealCreate = ({ onModeChange }) => {
       });
       if (file) {
         // 파일 위치에 대한 참조
-        const locationRef = ref(storage, `meal/${user.uid}/${doc.id}`);
+        const locationRef = ref(storage, `health/${user.uid}/${doc.id}`);
         const result = await uploadBytes(locationRef, file);
         const url = await getDownloadURL(result.ref);
         await updateDoc(doc, {
@@ -59,7 +87,16 @@ const MealCreate = ({ onModeChange }) => {
     } catch (e) {
       console.log(e);
     } finally {
+      // setLoading(false);
     }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   //해시태그 start.
@@ -107,9 +144,14 @@ const MealCreate = ({ onModeChange }) => {
 
   //식단 작성 취소
   const writeModeCancel = () => {
-    alert("식단 작성이 취소됩니다.");
     onModeChange(false);
   };
+
+  if (isModalOpen) {
+    document.body.style.overflow = "hidden"; // 스크롤 막기
+  } else {
+    document.body.style.overflow = "visible"; // 스크롤 허용
+  }
 
   return (
     <>
@@ -121,9 +163,10 @@ const MealCreate = ({ onModeChange }) => {
         <form onSubmit={onSubmit}>
           <textarea
             name="mealText"
-            placeholder={`${auth.currentUser.displayName}님의 오늘의 다이어팁 식단을 소개해주세요!`}
+            placeholder={`${auth.currentUser.displayName}님의 오늘의 운동을 인증해주세요!`}
             rows={5}
             value={textarea}
+            // onChange={(e) => setTextarea(e.target.value)}
             onChange={(e) => {
               setTextarea(e.target.value);
               setPost(e.target.value);
@@ -133,6 +176,7 @@ const MealCreate = ({ onModeChange }) => {
             <input
               value={inputHashTag}
               onChange={handleInputChange}
+              // onKeyUp={addHashTag}
               onKeyDown={keyDownHandler}
               placeholder="#해시태그를 등록해보세요. (최대 5개)"
               className="tag-input"
@@ -180,14 +224,29 @@ const MealCreate = ({ onModeChange }) => {
 
             <div className="form-btns">
               <button className="w-green-btn">게시</button>
-              <button className="w-gray-btn" onClick={writeModeCancel}>
+              <button className="w-gray-btn" onClick={openModal}>
                 취소
               </button>
             </div>
           </div>
         </form>
       </div>
+      <Modal isOpen={isModalOpen} closeModal={closeModal}>
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="cancel-confirm">
+            <h2>작성을 취소하시겠습니까?</h2>
+            <div className="modal-btn">
+              <button onClick={writeModeCancel} className="w-green-btn">
+                확인
+              </button>
+              <button onClick={closeModal} className="w-gray-btn">
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
-export default MealCreate;
+export default HealthCreate;

@@ -701,7 +701,15 @@ header.mobile nav .nav-bottom {
   box-sizing: border-box;
 }
 
+@media (min-width: 480px) {
+  header.mobile {
+    display: none;
+  }
+}
 @media (max-width: 480px) {
+  header.web {
+    display: none;
+  }
   footer div ul {
     display: none;
   }

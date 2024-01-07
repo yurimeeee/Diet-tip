@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import App from "../App";
 import HealthBanner2 from "../components/HealthBanner2";
 import "../styles/health.css";
-import MealCreate from "../components/MealCreate";
 import HealthImg from "../components/HealthImg";
+import HealthCreate from "../components/HealthCreate";
 
 function Healthshot() {
 
@@ -14,22 +14,20 @@ function Healthshot() {
   };
 
   return (
-    <div className="container">
+    <div className="healthShot container">
       {/* <HealthBanner2 /> */}
       <HealthBanner2
         isWritingMode={isWritingMode}
         onModeChange={handleModeChange}
       />
       {isWritingMode && (
-        <MealCreate
+        <HealthCreate
           isWritingMode={isWritingMode}
           onModeChange={handleModeChange}
         />
       )}
       <HealthImg/>
-
-    </div>
-    
+    </div>    
   );
 }
 export default Healthshot;

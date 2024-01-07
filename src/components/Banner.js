@@ -8,7 +8,7 @@ import B0 from "../asset/main-banner/banner-img0.png";
 import B1 from "../asset/main-banner/banner-img1.png";
 import B2 from "../asset/main-banner/banner-img2.png";
 import bannerText from "../data/banner_data";
-// import Kakao from "https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js";
+import Kakao from "https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js";
 
 const Banner = () => {
   const [modalSwitch, setModalSwitch] = useState(false);
@@ -110,15 +110,13 @@ const Banner = () => {
     if (!init && window.Kakao) {
       window.Kakao.init(process.env.REACT_APP_KAKAO_SHARE_API_KEY);
       setInit(true);
+      console.log(init);
     }
-  }, [init]);
+  });
 
   //카카오톡 공유하기
   const shareMessage = () => {
-    if(!init){
-      window.Kakao.init(process.env.REACT_APP_KAKAO_SHARE_API_KEY);
-      setInit(true);
-    }
+      console.log(init);
     window.Kakao.Share.sendDefault({
       objectType: "feed",
       content: {
