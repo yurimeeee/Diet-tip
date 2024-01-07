@@ -48,7 +48,8 @@
       font-weight: bold;
     }
   }
-  input{
+  input,
+  textarea{
     border: none;
     font-family: 'Pretendard-Regular';
     box-sizing: border-box;
@@ -342,13 +343,16 @@ button{
 .reply-form{
   position: relative;
   #reply{
-    padding: 24px 48px;
+    padding: 24px 72px 24px 48px;
     width: 100%;
+    resize: none; 
   }
   button{
     position: absolute;
-    right: 48px;
-    bottom: 22px;
+    margin-bottom: 4px;
+    padding: 24px 48px 22px 0;
+    right: 0;
+    bottom: 0;
     font-size: 20px;
   }
 }
@@ -571,14 +575,12 @@ button{
   }
   .reply-form{
     #reply{
-      padding: 20px;
-      &::placeholder{
-        font-size: (max(12px, min(3vw, $font-14)));
-      }
+      padding: 20px 40px 20px 20px;
+      font-size: (max(12px, min(3vw, $font-14)));
+      height: 58px !important;
     }
     button{
-      right: 20px;
-      bottom: 20px;
+      padding: 21px 20px 19px 0;
       font-size: $font-16;
     }
   }

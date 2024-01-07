@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { addDoc, collection, query, orderBy, where, getDocs } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faReply } from "@fortawesome/free-solid-svg-icons";
+import TextareaAutosize from 'react-textarea-autosize';
 import icon_q from "../asset/community/icon_q.png"
 import icon_a from "../asset/community/icon_a.png"
 import level_1 from "../asset/level-1-badge.png";
 import level_2 from "../asset/level-2-badge.png";
 import level_3 from "../asset/level-3-badge.png";
 
-const auth = getAuth();
 
 const QnaView = ({ post, onClose, setAllData }) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const navigate = useNavigate();
   const levelImg = {
     '1': level_1, 
     '2': level_2, 
@@ -28,18 +32,17 @@ const QnaView = ({ post, onClose, setAllData }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log('Logged in user:', user);
-        // 여기에서 user 객체를 이용하여 로그인한 사용자의 정보를 활용할 수 있습니다.
       } else {
         console.log('No user logged in');
       }
     });
 
-    if (post) {
+    if (post && !comments.length) {
       loadComments();
     }
 
     return () => unsubscribe(); // 컴포넌트 언마운트 시에 이벤트 리스너 해제
-  }, [auth, post]);
+  }, [auth, post, comments]);
 
   const loadComments = async () => {
     //post의 id를 기반으로 댓글을 불러옴
@@ -55,28 +58,35 @@ const QnaView = ({ post, onClose, setAllData }) => {
     console.log(commentsData);
 
     // 댓글이 추가되었을 때 게시글 목록 업데이트
-    setAllData((prevAllData) =>
-      prevAllData.map((prevPost) => {
-        if (prevPost.id === post.id) {
-          // 현재 게시글에 해당하는 경우 댓글 수를 업데이트
-          return {
-            ...prevPost,
-            commentsData: commentsData,
-          };
-        }
-        return prevPost;
-      })
-    );
+    if (commentsData.length > 0) {
+      setAllData((prevAllData) =>
+        prevAllData.map((prevPost) => {
+          if (prevPost.id === post.id) {
+            // 현재 게시글에 해당하는 경우 댓글 수를 업데이트
+            return {
+              ...prevPost,
+              commentsData: commentsData,
+            };
+          }
+          return prevPost;
+        })
+      );
+    };
   };
 
   const handleReplySubmit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      alert("로그인 후 이용해주세요.");
+      navigate("/login");
+      return;
+    }
 
     // 현재 post에 댓글을 추가
     const commentData = {
       postId: post.id,
       text: replyText,
-      userId: auth.currentUser ? auth.currentUser.displayName : 'USER_ID', // 사용자 ID를 가져오거나 기본 값 사용
+      userId: user.displayName,
       timestamp: new Date()
     };
 
@@ -127,16 +137,16 @@ const QnaView = ({ post, onClose, setAllData }) => {
 
       <form action="" className="mg-t1 sm reply-form" onSubmit={handleReplySubmit}>
         <label htmlFor="reply" className="hidden">댓글 작성</label>
-        {/* <textarea  type="text" id="reply" className="mb-shadow" placeholder="답변을 작성해보세요!"></textarea> */}
-        <input 
-          type="text" 
+        <TextareaAutosize
+          cacheMeasurements
           id="reply" 
           className="mb-shadow lg-radius" 
           placeholder="답변을 작성해보세요!"
           value={replyText}
           onChange={(e) => setReplyText(e.target.value)}
+          rows={1}
         />
-        <button type="submit"><FontAwesomeIcon icon={faReply} className="mg-r1 point-1" /></button>
+        <button type="submit"><FontAwesomeIcon icon={faReply} className="point-1" /></button>
       </form>
 
       <div className="df a-frame">
@@ -149,7 +159,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
             <div key={index} className="a-card lg-radius df sm-shadow">
               <img src={icon_a} alt="" />
               <div>
-                <p>{comment.text}</p>
+                <p style={{ whiteSpace: 'pre-line' }}>{comment.text}</p>
                 <p className="mg-t1">{comment.userId}</p>
               </div>
             </div>

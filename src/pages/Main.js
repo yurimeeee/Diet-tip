@@ -200,7 +200,7 @@ const QnA = ({qnaBoardList}) => {
           {/* <Link to={`/qnaboard/${item.id}`} style={{ color: 'black' }}> */}
             <div className="text-card-text">
               <div className="text-card-title df">
-                <p className="point-1">{item.category}</p>
+                <p className="point-2">{item.category}</p>
                 <p>Q. {item.title}</p>
               </div>
               <div className="profile">
