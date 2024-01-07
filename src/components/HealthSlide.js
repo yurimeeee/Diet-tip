@@ -14,7 +14,7 @@ function Healthslide(){
     <Swiper
       breakpoints={{        
           480:{
-        slidesPerView : 3            
+        slidesPerView : 2            
         },
           720:{
         slidesPerView : 5

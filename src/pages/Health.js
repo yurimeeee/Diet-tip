@@ -4,7 +4,7 @@ import HealthBanner from "../components/HealthBanner";
 import HealthLevel from "../components/HealthLevel";
 import Healthslide from "../components/HealthSlide";
 import "../styles/health.css";
-// import Kakao from "../components/Kakao";
+import Kakao from "../components/Kakao";
 
 
 function Health() {
@@ -36,7 +36,7 @@ function Health() {
         <p className="subTitle">
           내 주변 가까운 운동시설을 확인해보고 오늘부터 운동을 시작해보세요!
         </p>
-        {/* <Kakao /> */}
+        <Kakao />
       </div>
     </>
   );

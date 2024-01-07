@@ -44,12 +44,18 @@ function HealthLevel() {
   console.log(selectedItem)
   
   const [clickMore, setClickMore] = useState(9);
+  
   function onClick(){
-    // var objLen = selectedItem.list.length;
-    // if(objLen > clickMore) {
-    //   setClickMore(clickMore+(9 < (objLen - clickMore) ? 9 : (objLen - clickMore)));
-    // }
-    setClickMore(clickMore+9);
+    if(selectedItem.list.length < clickMore + 9){
+      setClickMore(clickMore + 9);
+      document.querySelector('.MoreBtn button').style.display = "none";
+    }else{
+      setClickMore(clickMore + 9);
+    }
+  }
+
+  function clickView(){
+    document.querySelector('.MoreBtn button').style.display = "";
   }
 
   return(
@@ -66,6 +72,7 @@ function HealthLevel() {
               onClick={()=>{
                 setSelectedItem(item);
                 setClickMore(9);
+                clickView()
               }}>
               시작하기
             </button>
@@ -98,10 +105,10 @@ function HealthLevel() {
               </div>                       
             )
           })}
-          <div className="MoreBtn">
-            <button 
-            type="button"
-            onClick={onClick}>더보기</button>  
+          <div className="MoreBtn">       
+              <button 
+              type="button"
+              onClick={onClick}>더보기</button>
           </div>
         </div>
 

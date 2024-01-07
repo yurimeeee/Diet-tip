@@ -701,7 +701,15 @@ header.mobile nav .nav-bottom {
   box-sizing: border-box;
 }
 
+@media (min-width: 480px) {
+  header.mobile {
+    display: none;
+  }
+}
 @media (max-width: 480px) {
+  header.web {
+    display: none;
+  }
   footer div ul {
     display: none;
   }
@@ -797,6 +805,132 @@ body {
   margin-bottom: 0px;
 }
 
+/* loading */
+.loading {
+  margin: 24px auto 0 auto;
+  width: 50px;
+  /* v3 */
+  /* round variation */
+  /* double variation */
+}
+.loading .ouro {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 1em;
+  border-radius: 50%;
+  background: none repeat scroll 0 0 #dddddd;
+  overflow: hidden;
+}
+.loading .ouro:after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  display: block;
+  height: 36px;
+  width: 36px;
+  background: none repeat scroll 0 0 #f2f3f5;
+  border-radius: 50%;
+}
+.loading .ouro > span {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+}
+.loading .left {
+  left: 0;
+}
+.loading .right {
+  left: 50%;
+}
+.loading .anim {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: none repeat scroll 0 0 #32a061;
+  opacity: 0.8;
+  animation: ui-spinner-rotate-left 3s infinite;
+  transform-origin: 0 50% 0;
+}
+.loading .left .anim {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.loading .right .anim {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  left: -100%;
+  transform-origin: 100% 50% 0;
+}
+.loading .ouro3 .anim {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
+.loading .ouro3 .right .anim {
+  -webkit-animation-name: ui-spinner-rotate-right;
+  -webkit-animation-delay: 0;
+  -webkit-animation-delay: 1s;
+  animation-name: ui-spinner-rotate-right;
+  animation-delay: 0;
+  animation-delay: 1s;
+}
+.loading .round .ouro:after {
+  display: none;
+}
+.loading .double .ouro:after {
+  height: 13px;
+  width: 13px;
+  left: 7px;
+  top: 7px;
+  border: 10px solid #ddd;
+  background: transparent;
+  box-shadow: none;
+}
+@keyframes ui-spinner-rotate-right {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ui-spinner-rotate-left {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .Community .hidden {
   display: none;
 }
@@ -874,8 +1008,8 @@ body {
 .Community table tr {
   background: #fff;
   border-bottom: 1px solid #dcdbdb;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
   padding: 0 24px;
   gap: 24px;
@@ -913,13 +1047,17 @@ button {
   font-size: 20px;
 }
 
-.pagination {
-  text-align: center;
-}
-
 .fb-list-mobile,
 .qna-list-mobile {
   display: none;
+}
+
+.no-result-msg {
+  background: #fff;
+  border-top: 1px solid #dcdbdb;
+  border-bottom: 1px solid #dcdbdb;
+  text-align: center;
+  padding: 24px;
 }
 
 /* Free Board */
@@ -1181,7 +1319,7 @@ button {
 /* Mobile Board */
 .list-item {
   background: #fff;
-  border-bottom: 2px solid #f2f3f5;
+  border-bottom: 4px solid #f2f3f5;
   padding: 20px;
   font-size: 12px;
   gap: 10px;
@@ -1218,9 +1356,6 @@ button {
   }
 }
 @media (max-width: 480px) {
-  header nav {
-    width: 100%;
-  }
   .Community .tt2 {
     font-size: 4.5vw;
   }
@@ -1263,6 +1398,11 @@ button {
     bottom: 11px;
     font-size: 16px;
   }
+  .no-result-msg {
+    border: none;
+    font-size: max(13px, min(3.5vw, 15px));
+    padding: 30px;
+  }
   .fb-list,
   .qna-list {
     display: none;
@@ -1293,16 +1433,25 @@ button {
     font-size: 13px;
     padding: 10px 15px;
   }
-  .top-posts {
+  .top-posts-bg {
     display: none;
+  }
+  .top-posts-bg.modal-open {
+    display: block;
+    position: fixed;
+    background: rgba(94, 94, 94, 0.45);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+  }
+  .top-posts {
     box-sizing: border-box;
     width: calc(100% - 40px);
-    top: 30px;
+    top: 125px;
     left: 20px;
     padding: 20px;
-  }
-  .top-posts.modal-open {
-    display: block;
   }
   .top-posts h3 {
     text-align: center;

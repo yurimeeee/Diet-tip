@@ -355,6 +355,7 @@ body { font-family: sans-serif; }
   position: fixed;
   top:0; left: 0; bottom: 0; right: 0;
   background: rgba(0, 0, 0, 0.1);
+	z-index: 100;
 }
 
 .healthModal{
@@ -362,114 +363,90 @@ body { font-family: sans-serif; }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-	width: 1000px;
-	height: 620px;
+	width: 600px;
+	height: 675px;
 	background-color: #fff;
 	border-radius: 10px;
-	padding: 70px;
+	padding: 50px;
 	box-sizing: border-box;
-	z-index: 10;
-	.modalImg{
-		width:60%;
-		height: 100%;
-		margin-right: 30px;
-		.modalImg_1{
-			height: 100%;
-			object-fit: cover;
-			img{
-				width:500px;
-				height:100%;
-			}
-		}
-	}
+	z-index: 101;
 	.modalText{
-		width:50%;
-		// align-items: center;
+		height: 30px;
+		align-items: center;
+		justify-content: space-between;
 		.text{
-			height: 30px;
-			// align-items: center;
 			img{
 				width:30px;
-				height:30px;
+				height: 100%;
 				border-radius: 50%;
 				object-fit: cover;
 			}
-			p{
-				&:last-child{
-					padding: 0 15px;
-				}
-			}
-			svg{
-				width: 20px;
-				height: 20px;
-				color: grey;
-			}
 		}
 		p{
-			line-height: 30px;
-			padding: 0 5px;
-			font-size: $web-sm-tt;
+		line-height: 30px;
+		padding: 0 5px;
+		font-size: $web-sm-tt;
 		}
-		.modalDays{
-			p{
-				color:#888;
-				font-size: $mb-tt;
-			}
-		}
-		.modalMainText{
-			height: 180px;
-		}
-		.shotHeartIcon{
-			align-items: center;
-			gap:5px;
-			padding: 0 5px 5px;
-			span{
-				color:$gray-3;
-				svg{
-					width:16px;
-					height: 16px;
-				}
-			}
-		}
-		// .modalImg_2{
-		// 	margin-top: 30px;
-		// 	img{
-		// 		width:32%;
-		// 		height: 110px;
-		// 		object-fit: cover;
-		// 	}
-		// }
-		.shotTags{
-			flex-wrap: wrap;
-			gap:3px;
-			.m-badge{
-				margin-right: 5px;
-			}
-		}
-		.modalBtn{
-			// display:inline-block;
-			width: 40px;
-			height: 40px;
-			position: fixed;
-			top:20px;
-			right: 20px;
-				&:before, &:after{
-					position: absolute;
-					left:50%;
-					content:'';
-					height: 40px;
-					width: 1px;
-					background-color: #000;
-				}
-				&:before {
-					transform: rotate(45deg);
-				}
-				&:after {
-					transform: rotate(-45deg);
-				}
-		}		
 	}
-}
+	.modalImg{
+		width:100%;
+		margin-right: 30px;
+		object-fit: cover;
+			img{
+				width:100%;
+				height:333px;
+			}
+		}
+	.modalMainText{
+		height:100px;
+	}
+	.shotHeartIcon{
+		align-items: center;
+		gap:5px;
+		padding: 5px 0 15px;
+		span{
+			color:$gray-3;
+			svg{
+				width:16px;
+				height: 16px;
+			}
+		}
+	}
+	.shotTags{
+		flex-wrap: wrap;
+		gap:3px;
+		.m-badge{
+			margin-right: 5px;
+		}
+	}
+	.modalBtn{
+		// display:inline-block;
+		width: 12px;
+		height: 12px;
+		position: fixed;
+		border-radius: 50%;
+		background-color: #94dfb6;
+		top:20px;
+		right: 20px;
+			// &:before, &:after{
+			// 	position: absolute;
+			// 	left:50%;
+			// 	content:'';
+			// 	height: 10px;
+			// 	width: 1px;
+			// 	background-color: #000;
+			// }
+			// &:before {
+			// 	transform: rotate(45deg);
+			// }
+			// &:after {
+			// 	transform: rotate(-45deg);
+			// }
+	}		
+
+	}
+
+
 
 
 // 카카오

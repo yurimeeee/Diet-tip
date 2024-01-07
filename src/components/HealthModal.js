@@ -14,50 +14,42 @@ function Healthmodal(props){
   };
 
   return(
-    <div className="healthModalBack">
-      <div className="healthModal web-shadow df">
-        <div className="modalImg">
-          <div className="modalImg_1">
-            <img src={props.data.photo} />
-          </div>
+    <>
+    <div className="healthModal">
+      <div className="modalText df jcsb">
+        <div className="text df">
+          <span>
+            <img src={test}/>
+          </span>
+          <p>{props.data.username}</p>
+          <span className="w-green-btn">팔로우</span>
         </div>
-        <div className="modalText">
-          <div className="df jcsb">
-            <div className="text df">
-              <span>
-                <img src={test}/>
-              </span>
-              <p>{props.data.username}</p>
-              <p className="w-green-btn">팔로우</p>
-            </div>
-            <div className="modalDays">
-              <p>{props.data.createdAt}</p>
-            </div>
-          </div>
-          <hr/>
-          <div className="shotHeartIcon df">
-              <span>
-                <FontAwesomeIcon icon={regularHeart}/>
-              </span>
-              <h3>{props.data.like}</h3>
-            </div>
-          <div className="modalMainText">
-            <p>{props.data.text}</p>
-          </div>
-          <ul className="shotTags df">
-            {props.data.hashTags.map((item)=>(
-             <li className="m-badge"><span>#{item}</span></li>
-            ))}
-          </ul>
-          {/* <div className="modalImg_2 df jcsb ">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
-          </div> */}
-          <div className="modalBtn" onClick={modalClose}></div>
+        <div className="modalDays">
+          <p>{props.data.createdAt}</p>
         </div>
       </div>
+      <hr/>
+      <div className="modalImg">
+        <img src={props.data.photo} />
+      </div>
+      <div className="shotHeartIcon df">
+        <span>
+          <FontAwesomeIcon icon={regularHeart}/>
+        </span>
+        <h3>{props.data.like}</h3>
+      </div>
+      <div className="modalMainText">
+        <p>{props.data.text}</p>
+      </div>
+      <ul className="shotTags df">
+        {props.data.hashTags.map((item)=>(
+          <li className="m-badge"><span>#{item}</span></li>
+        ))}
+      </ul>
+      <div className="modalBtn" onClick={modalClose}></div>
     </div>
+    <div className="healthModalBack" onClick={modalClose}></div>
+    </>
   )
 }
 

@@ -5,17 +5,10 @@ import profileImg from "../asset/user/avatar-yr.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { auth, db, storage } from "../firebase";
+import { db } from "../firebase";
 import {
   collection,
   getDocs,
-  doc,
-  addDoc,
-  getDoc,
-  deleteDoc,
-  updateDoc,
-  docRef,
-  deleteField,
 } from "firebase/firestore";
 
 function HealthImg(){
@@ -38,8 +31,6 @@ function HealthImg(){
     };
     fetchData();
   },[]);
-
-
 
   return(
     <div className="grid">
