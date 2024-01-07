@@ -257,7 +257,7 @@ const QnA = ({qnaBoardList}) => {
     <div className="hot-board-main text-ver no-img" data-type="onlytext">
       {qnaBoardList.map((item, index) => (
         <div className="text-card" key={index}>
-          {/* <Link to={`/qnaboard`} style={{ color: 'black' }}> */}
+          {/* <Link to={`/qnaboard/${item.id}`} style={{ color: 'black' }}> */}
             <div className="text-card-text">
               <div className="text-card-title df">
                 <p className="point-1">{item.category}</p>
