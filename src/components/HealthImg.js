@@ -21,7 +21,9 @@ import {
 function HealthImg(){
 
   const [modal,setModal] = useState(false);
+  const [modalItem,setModalItem] = useState();
   const [photos,setPhotos] = useState([]);
+  const [like,setLike] = useState(0);
 
   // firebase 데이터 연동
   useEffect(() => {
@@ -37,29 +39,38 @@ function HealthImg(){
     fetchData();
   },[]);
 
+
   return(
     <div className="grid">
-      {photos.map((item) => (
+      {photos.map((item, index) => (
         <>
         <div className="grid-item" 
-        onClick={()=>{setModal(true)}}>
-        <img src={item.photo} />
-        <div className="grid-text df jcsb">
-          <div className="text df">
-            <div>
-              <img src={profileImg}/>
+          onClick={()=>{
+            setModal(true)
+            setModalItem(item)
+          }}
+          key={index}>
+          <img src={item.photo} />
+          <div className="grid-text df jcsb">
+            <div className="text df">
+              <div>
+                <img src={profileImg}/>
+              </div>
+              <div>
+                <p>{item.username}</p>
+              </div>
             </div>
-            <div>
-              <p>{item.username}</p>
+            <div className="text df">
+              <h2 onClick={() => { setLike(like + 1); }}><FontAwesomeIcon icon={regularHeart}/></h2>
+              <p>{item.like}</p>
             </div>
           </div>
-          <div className="text df">
-            <h2> <FontAwesomeIcon icon={regularHeart} /></h2>
-            <p>{item.like}</p>
-          </div>
-        </div>
-      </div>   
-      {modal === true ? <Healthmodal parentSetModal={setModal} data={item}/>:null}
+        </div>   
+        {modal === true ? 
+        <Healthmodal 
+          parentSetModal={setModal} 
+          data={modalItem}
+        />:null}
         </>
       ))}
     </div>
