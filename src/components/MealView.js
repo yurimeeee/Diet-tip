@@ -48,12 +48,26 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
   const [hashTags, setHashTags] = useState(clickedData.hashTags);
   const [file, setFile] = useState("");
   const [mealImg, setMealImg] = useState(clickedData.photo);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
   const user = auth.currentUser;
   const anonymous = auth.currentUser === null;
   const navigate = useNavigate();
   const docRef = doc(db, "meal", clickedData.id);
   const storage = getStorage();
+
+  //모바일 여부
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 480);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   /* 더블 클릭 -> 식단 좋아요 */
   const handleDoubleClick = async () => {
@@ -307,9 +321,9 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
     <div className="meal-view-bg">
       <div className="meal-view">
         <div className="meal-view-col">
+          <div className="modal-close" onClick={closeModal}></div>
           <div className="meal-img-wrap">
             <img
-              // src={clickedData.photo}
               src={mealImg}
               alt="식단이미지"
               className={isLiked ? "liked meal-img" : "meal-img"}
@@ -336,6 +350,12 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
             <div className="df aic">
               <img src={profileImg} alt="유저 프로필" />
               <p className="meal-user">{clickedData.username}</p>
+              {isMobile && (
+                <div className="df aic">
+                  <img src={levelImg} alt="유저 레벨" className="level-badge" />
+                  <button className="w-green-btn">팔로우</button>
+                </div>
+              )}
             </div>
             <div className="like-reply-wrap">
               <div>
@@ -434,43 +454,45 @@ const MealView = ({ clickedData, setIsViewOpen, onReplyCount }) => {
           )}
         </div>
         <div className="meal-view-col reply-wrap">
-          <div className="meal-info">
-            <div>
-              <img src={profileImg} alt="유저 프로필" />
-              <p className="meal-user">{clickedData.username}</p>
-              <img src={levelImg} alt="유저 레벨" className="level-badge" />
-              {(!user || user.uid) !== clickedData.userId && (
-                <button className="w-green-btn">팔로우</button>
-              )}
+          {!isMobile && (
+            <div className="meal-info">
+              <div>
+                <img src={profileImg} alt="유저 프로필" />
+                <p className="meal-user">{clickedData.username}</p>
+                <img src={levelImg} alt="유저 레벨" className="level-badge" />
+                {(!user || user.uid) !== clickedData.userId && (
+                  <button className="w-green-btn">팔로우</button>
+                )}
+              </div>
+              <div onClick={toggleSet}>
+                {toggleMore && user.uid === clickedData.userId ? (
+                  <div className="btn-wraps">
+                    <button className="m-green-btn" onClick={editModeHandler}>
+                      수정
+                    </button>
+                    <button className="m-red-btn" onClick={onDelete}>
+                      삭제
+                    </button>
+                  </div>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    fill="none"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M5.625 17.8125C4.87908 17.8125 4.16371 17.5162 3.63626 16.9887C3.10882 16.4613 2.8125 15.7459 2.8125 15C2.8125 14.2541 3.10882 13.5387 3.63626 13.0113C4.16371 12.4838 4.87908 12.1875 5.625 12.1875C6.37092 12.1875 7.08629 12.4838 7.61374 13.0113C8.14118 13.5387 8.4375 14.2541 8.4375 15C8.4375 15.7459 8.14118 16.4613 7.61374 16.9887C7.08629 17.5162 6.37092 17.8125 5.625 17.8125ZM15 17.8125C14.2541 17.8125 13.5387 17.5162 13.0113 16.9887C12.4838 16.4613 12.1875 15.7459 12.1875 15C12.1875 14.2541 12.4838 13.5387 13.0113 13.0113C13.5387 12.4838 14.2541 12.1875 15 12.1875C15.7459 12.1875 16.4613 12.4838 16.9887 13.0113C17.5162 13.5387 17.8125 14.2541 17.8125 15C17.8125 15.7459 17.5162 16.4613 16.9887 16.9887C16.4613 17.5162 15.7459 17.8125 15 17.8125ZM24.375 17.8125C23.6291 17.8125 22.9137 17.5162 22.3863 16.9887C21.8588 16.4613 21.5625 15.7459 21.5625 15C21.5625 14.2541 21.8588 13.5387 22.3863 13.0113C22.9137 12.4838 23.6291 12.1875 24.375 12.1875C25.1209 12.1875 25.8363 12.4838 26.3637 13.0113C26.8912 13.5387 27.1875 14.2541 27.1875 15C27.1875 15.7459 26.8912 16.4613 26.3637 16.9887C25.8363 17.5162 25.1209 17.8125 24.375 17.8125Z"
+                      fill="#495057"
+                    />
+                  </svg>
+                )}
+              </div>
             </div>
-            <div onClick={toggleSet}>
-              {toggleMore && user.uid === clickedData.userId ? (
-                <div className="btn-wraps">
-                  <button className="m-green-btn" onClick={editModeHandler}>
-                    수정
-                  </button>
-                  <button className="m-red-btn" onClick={onDelete}>
-                    삭제
-                  </button>
-                </div>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  fill="none"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M5.625 17.8125C4.87908 17.8125 4.16371 17.5162 3.63626 16.9887C3.10882 16.4613 2.8125 15.7459 2.8125 15C2.8125 14.2541 3.10882 13.5387 3.63626 13.0113C4.16371 12.4838 4.87908 12.1875 5.625 12.1875C6.37092 12.1875 7.08629 12.4838 7.61374 13.0113C8.14118 13.5387 8.4375 14.2541 8.4375 15C8.4375 15.7459 8.14118 16.4613 7.61374 16.9887C7.08629 17.5162 6.37092 17.8125 5.625 17.8125ZM15 17.8125C14.2541 17.8125 13.5387 17.5162 13.0113 16.9887C12.4838 16.4613 12.1875 15.7459 12.1875 15C12.1875 14.2541 12.4838 13.5387 13.0113 13.0113C13.5387 12.4838 14.2541 12.1875 15 12.1875C15.7459 12.1875 16.4613 12.4838 16.9887 13.0113C17.5162 13.5387 17.8125 14.2541 17.8125 15C17.8125 15.7459 17.5162 16.4613 16.9887 16.9887C16.4613 17.5162 15.7459 17.8125 15 17.8125ZM24.375 17.8125C23.6291 17.8125 22.9137 17.5162 22.3863 16.9887C21.8588 16.4613 21.5625 15.7459 21.5625 15C21.5625 14.2541 21.8588 13.5387 22.3863 13.0113C22.9137 12.4838 23.6291 12.1875 24.375 12.1875C25.1209 12.1875 25.8363 12.4838 26.3637 13.0113C26.8912 13.5387 27.1875 14.2541 27.1875 15C27.1875 15.7459 26.8912 16.4613 26.3637 16.9887C25.8363 17.5162 25.1209 17.8125 24.375 17.8125Z"
-                    fill="#495057"
-                  />
-                </svg>
-              )}
-            </div>
-          </div>
+          )}
           <div className="reply-box">
             <div>
               <ul>

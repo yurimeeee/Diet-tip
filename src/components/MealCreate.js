@@ -9,38 +9,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faFaceSmile } from "@fortawesome/free-regular-svg-icons";
 import { faXmark, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Modal = ({ isOpen, closeModal, children }) => {
-  return (
-    <>
-      {isOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            {/* <button onClick={closeModal} className="close-button">
-              닫기
-            </button> */}
-            {children}
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
-
 const MealCreate = ({ onModeChange }) => {
   const [inputHashTag, setInputHashTag] = useState("");
   const [hashTags, setHashTags] = useState([]);
   const [textarea, setTextarea] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   //글 작성
   const [post, setPost] = useState("");
   const [file, setFile] = useState("");
-
-  //글 입력시
-  // const postChange = (e) => {
-  //   setPost(e.target.value);
-  //   console.log(post);
-  // };
 
   //이미지 업로드
   const onFileChange = (e) => {
@@ -83,16 +59,7 @@ const MealCreate = ({ onModeChange }) => {
     } catch (e) {
       console.log(e);
     } finally {
-      // setLoading(false);
     }
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   //해시태그 start.
@@ -140,14 +107,9 @@ const MealCreate = ({ onModeChange }) => {
 
   //식단 작성 취소
   const writeModeCancel = () => {
+    alert("식단 작성이 취소됩니다.");
     onModeChange(false);
   };
-
-  if (isModalOpen) {
-    document.body.style.overflow = "hidden"; // 스크롤 막기
-  } else {
-    document.body.style.overflow = "visible"; // 스크롤 허용
-  }
 
   return (
     <>
@@ -162,7 +124,6 @@ const MealCreate = ({ onModeChange }) => {
             placeholder={`${auth.currentUser.displayName}님의 오늘의 다이어팁 식단을 소개해주세요!`}
             rows={5}
             value={textarea}
-            // onChange={(e) => setTextarea(e.target.value)}
             onChange={(e) => {
               setTextarea(e.target.value);
               setPost(e.target.value);
@@ -172,7 +133,6 @@ const MealCreate = ({ onModeChange }) => {
             <input
               value={inputHashTag}
               onChange={handleInputChange}
-              // onKeyUp={addHashTag}
               onKeyDown={keyDownHandler}
               placeholder="#해시태그를 등록해보세요. (최대 5개)"
               className="tag-input"
@@ -220,28 +180,13 @@ const MealCreate = ({ onModeChange }) => {
 
             <div className="form-btns">
               <button className="w-green-btn">게시</button>
-              <button className="w-gray-btn" onClick={openModal}>
+              <button className="w-gray-btn" onClick={writeModeCancel}>
                 취소
               </button>
             </div>
           </div>
         </form>
       </div>
-      <Modal isOpen={isModalOpen} closeModal={closeModal}>
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="cancel-confirm">
-            <h2>식단 작성을 취소하시나요?</h2>
-            <div className="modal-btn">
-              <button onClick={writeModeCancel} className="w-green-btn">
-                확인
-              </button>
-              <button onClick={closeModal} className="w-gray-btn">
-                취소
-              </button>
-            </div>
-          </div>
-        </div>
-      </Modal>
     </>
   );
 };

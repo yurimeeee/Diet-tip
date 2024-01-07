@@ -11,6 +11,7 @@ import image3 from "../asset/meal/season_3.png";
 import calories_DB from "../data/calories_DB.json";
 import Chart from "../components/Chart";
 import PaginationComp from "../components/Pagination";
+import Loading from "../components/Loading";
 
 const seasonList = [
   {
@@ -267,7 +268,7 @@ const Calories = () => {
         handlePageChange={handlePageChange}
       />
 
-      <div className="recom-list bg-white web-shadow container md-radius df jcsb">
+      <div className="recom-list bg-white web-shadow recom-container md-radius df jcsb">
         <div>
           <h3 className="point-1">올 겨울 먹킷리스트</h3>
           <p className="gray-3">겨울에 꼭 먹어야 할 제철 음식 BEST 10!</p>
@@ -275,13 +276,11 @@ const Calories = () => {
         </div>
         <div>
           <Swiper
-            // slidesPerView={3}
             slidesPerView={window.innerWidth < 480 ? 2 : 3}
-            // spaceBetween={20}
             spaceBetween={window.innerWidth < 480 ? 10 : 20}
-            pagination={{
-              clickable: true,
-            }}
+            // pagination={{
+            //   clickable: true,
+            // }}
             modules={[Pagination]}
             className="mySwiper"
           >
