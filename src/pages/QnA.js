@@ -33,7 +33,7 @@ const QnA = () => {
       const boardQuery = query(collection(db, "community"), orderBy("date", "desc"));
       const boardQuerySnapshot = await getDocs(boardQuery);
       const boardData = processQuerySnapshot(boardQuerySnapshot);
-      setAllData(boardData);
+      // setAllData(boardData);
 
       // 각 게시글에 대한 댓글을 가져오기
       const boardDataWithComments = await Promise.all(boardData.map(async (post) => {

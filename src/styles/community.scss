@@ -590,6 +590,10 @@ button{
     }
   }
   .reply-form{
+    > p{
+      margin: 6px 20px 0 0;
+      font-size: max(13px, min(3.5vw, 15px));
+    }
     #reply{
       padding: 20px 40px 20px 20px;
       font-size: (max(12px, min(3vw, $font-14)));
