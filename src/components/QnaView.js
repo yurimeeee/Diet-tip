@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { addDoc, collection, query, orderBy, where, getDocs } from 'firebase/firestore';
+import { addDoc, collection, query, orderBy, getDocs } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faReply } from "@fortawesome/free-solid-svg-icons";
 import TextareaAutosize from 'react-textarea-autosize';
@@ -24,6 +24,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
   };
 
   const [ replyText, setReplyText ] = useState('');
+  const [ replyCount, setReplyCount ] = useState(0);
   const [ comments, setComments ] = useState([]);
   const replyPath = `community/${post.id}/comments`;
 
@@ -76,11 +77,13 @@ const QnaView = ({ post, onClose, setAllData }) => {
 
   const handleReplySubmit = async (e) => {
     e.preventDefault();
+
     if (!user) {
       alert("로그인 후 이용해주세요.");
       navigate("/login");
       return;
     }
+    if (replyText === "") return;
 
     // 현재 post에 댓글을 추가
     const commentData = {
@@ -96,6 +99,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
 
       loadComments(); //댓글 추가 후 다시 댓글 불러오기
       setReplyText(''); //댓글 입력란 초기화
+      setReplyCount(0);
     } catch (e) {
       console.error('Error adding comment: ', e);
     }
@@ -135,18 +139,28 @@ const QnaView = ({ post, onClose, setAllData }) => {
         </div>
       </div>
 
-      <form action="" className="mg-t1 sm reply-form" onSubmit={handleReplySubmit}>
-        <label htmlFor="reply" className="hidden">댓글 작성</label>
-        <TextareaAutosize
-          cacheMeasurements
-          id="reply" 
-          className="mb-shadow lg-radius" 
-          placeholder="답변을 작성해보세요!"
-          value={replyText}
-          onChange={(e) => setReplyText(e.target.value)}
-          rows={1}
-        />
-        <button type="submit"><FontAwesomeIcon icon={faReply} className="point-1" /></button>
+      <form action="" className="reply-form mg-t1 sm" onSubmit={handleReplySubmit}>
+        <div>
+          <label htmlFor="reply" className="hidden">댓글 작성</label>
+          <TextareaAutosize
+            id="reply" 
+            className="mb-shadow lg-radius"
+            placeholder="답변을 작성해보세요!"
+            value={replyText}
+            onChange={(e) => {
+              setReplyText(e.target.value); 
+              setReplyCount(e.target.value.length); 
+            }}
+            rows={1}
+            maxLength="1000"
+            cacheMeasurements
+          />
+          <button type="submit"><FontAwesomeIcon icon={faReply} className="point-1" /></button>
+        </div>
+        <p>
+          <span>{replyCount}</span>
+          <span>/1000 자</span>
+        </p>
       </form>
 
       <div className="df a-frame">
@@ -158,9 +172,12 @@ const QnaView = ({ post, onClose, setAllData }) => {
           {comments.map((comment, index) => (
             <div key={index} className="a-card lg-radius df sm-shadow">
               <img src={icon_a} alt="" />
-              <div>
+              <div style={{ width:'100%' }}>
                 <p style={{ whiteSpace: 'pre-line' }}>{comment.text}</p>
-                <p className="mg-t1">{comment.userId}</p>
+                <div className="df jcsb aic mg-t1">
+                  <p>{comment.userId}</p>
+                  <button type="button" className="m-red-btn">삭제</button>
+                </div>
               </div>
             </div>
           ))}
