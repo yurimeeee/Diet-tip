@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { addDoc, collection, query, orderBy, getDocs } from 'firebase/firestore';
+import { doc, addDoc, collection, query, orderBy, getDocs, deleteDoc } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faReply } from "@fortawesome/free-solid-svg-icons";
 import TextareaAutosize from 'react-textarea-autosize';
@@ -53,7 +53,10 @@ const QnaView = ({ post, onClose, setAllData }) => {
     );
     
     const commentsSnapshot = await getDocs(commentsQuery);
-    const commentsData = commentsSnapshot.docs.map((doc) => doc.data());
+    const commentsData = commentsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
     setComments(commentsData);
 
     console.log(commentsData);
@@ -100,8 +103,26 @@ const QnaView = ({ post, onClose, setAllData }) => {
       loadComments(); //댓글 추가 후 다시 댓글 불러오기
       setReplyText(''); //댓글 입력란 초기화
       setReplyCount(0);
-    } catch (e) {
-      console.error('Error adding comment: ', e);
+    } catch (error) {
+      console.error('Error adding comment: ', error);
+    }
+  };
+
+  console.log(replyPath);
+
+  const replyDelete = (commentId) => {
+    const shouldDelete = window.confirm("댓글을 삭제하시겠습니까?");
+  
+    if (shouldDelete) {
+      const replyDocRef = doc(db, replyPath, commentId);
+
+      deleteDoc(replyDocRef)
+        .then(() => {
+          loadComments(); // 댓글 삭제 후 다시 댓글 불러오기
+        })
+        .catch((error) => {
+          console.error('댓글 삭제 Error', error);
+        });
     }
   };
 
@@ -170,13 +191,19 @@ const QnaView = ({ post, onClose, setAllData }) => {
             <p className="tt5 bold">{comments.length} 개</p>
           </div>
           {comments.map((comment, index) => (
-            <div key={index} className="a-card lg-radius df sm-shadow">
+            <div key={index} data-idx={comment.id} className="a-card lg-radius df sm-shadow">
               <img src={icon_a} alt="" />
               <div style={{ width:'100%' }}>
                 <p style={{ whiteSpace: 'pre-line' }}>{comment.text}</p>
                 <div className="df jcsb aic mg-t1">
                   <p>{comment.userId}</p>
-                  <button type="button" className="m-red-btn">삭제</button>
+                  <button 
+                    type="button" 
+                    className="m-red-btn"
+                    onClick={() => {
+                      replyDelete(comment.id);
+                    }}
+                  >삭제</button>
                 </div>
               </div>
             </div>
