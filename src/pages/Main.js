@@ -361,8 +361,8 @@ const Main = () => {
           <button className="w-green-btn" type="button" data-type="onlyimg" onClick={setType}>식단공유</button>
           <button className="w-green-btn" type="button" data-type="imgtext" onClick={setType}>추천제품</button>
           <button className="w-green-btn" type="button" data-type="HealthImgText" onClick={setType}>운동인증</button>
-          <button className="w-green-btn" type="button" data-type="onlytext" onClick={setType}>자유게시판</button>
-          <button className="w-green-btn" type="button" data-type="onlytext" onClick={setType}>Q&A</button>
+          <button className="w-green-btn" type="button" data-type="FreeBoard" onClick={setType}>자유게시판</button>
+          <button className="w-green-btn" type="button" data-type="QnA" onClick={setType}>Q&A</button>
         </div>
         {boardtype === 'onlyimg' && <OnlyImg/>}
         {boardtype === 'imgtext' && <ImgText/>}
