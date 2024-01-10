@@ -1,4 +1,3 @@
-import "./styles/App.css";
 import "./styles/common.css";
 
 import Header from "./components/Header";

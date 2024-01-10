@@ -27,7 +27,7 @@ const Mypage = () => {
   const [usetImg, setUsetImg] = useState(null);
 
   const moveAlert = () => {
-    window.location.replace("/alert");
+    window.location.replace("#/alert");
   };
 
   useEffect(() => {
