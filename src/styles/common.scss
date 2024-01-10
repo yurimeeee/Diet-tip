@@ -344,7 +344,7 @@ body {
 }
 
 //Pagination
-@mixin pagination($size: 16px) {
+@mixin pagination($size: 16px, $padding: 5px 20px ) {
   .pagination {
     color: $gray-2;
     display: inline-flex;
@@ -371,7 +371,7 @@ body {
     }
     .first-page,
     .last-page {
-      padding: 5px 20px;
+      padding: $padding;
     }
 
     .first-page {
@@ -710,7 +710,7 @@ header.mobile{
   }
 }
 
-@media (min-width: 480px){
+@media (min-width: 481px){
   header.mobile{
     display: none;
   }
@@ -725,6 +725,9 @@ header.mobile{
     div ul{
       display: none;
     }
+  }
+  .pagination {
+    @include pagination( $size: (max(12px, min(3vw, $font-14))), $padding: 5px 14px );
   }
 }
 

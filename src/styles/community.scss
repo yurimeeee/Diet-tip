@@ -387,7 +387,11 @@ button{
     img{
       height: 40px;
     }
+    img.level-img{
+      height: 20px;
+    }
   }
+
 }
 
 /* Mobile Board */
@@ -434,7 +438,7 @@ button{
   }
 }
 
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   .Community{
     .m-red-btn{
       font-size: $font-14;
@@ -621,6 +625,10 @@ button{
       font-size: (max($font-13, min(3.5vw, 15px)));
       img{
         height: 24px;
+      }
+      img.level-img{
+        width: $font-16;
+        height: $font-16;
       }
     }
   }

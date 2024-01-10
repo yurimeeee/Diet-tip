@@ -232,7 +232,7 @@ const Main = () => {
   //자유게시판
   const [ freeBoardList, setFreeBoardList ] = useState([]);
   const FbFetchData = () => {
-    const fbData = freeBoard_data.slice(0, 10);
+    const fbData = freeBoard_data.slice(0, 6);
     setFreeBoardList(fbData);
   };
   useEffect(() => {
@@ -243,7 +243,7 @@ const Main = () => {
   const [ qnaBoardList, setQnaBoardList ] = useState([]);
   const QnaFetchData = async () => {
     try {
-      const qnaQuery = query(collection(db, "community"), orderBy("date", "desc"), limit(10));
+      const qnaQuery = query(collection(db, "community"), orderBy("date", "desc"), limit(6));
       const qnaQuerySnapshot = await getDocs(qnaQuery);
       const qnaData = qnaQuerySnapshot.docs.map((doc) => ({
         id: doc.id,

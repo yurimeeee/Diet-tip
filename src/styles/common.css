@@ -701,7 +701,7 @@ header.mobile nav .nav-bottom {
   box-sizing: border-box;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   header.mobile {
     display: none;
   }
@@ -712,6 +712,38 @@ header.mobile nav .nav-bottom {
   }
   footer div ul {
     display: none;
+  }
+  .pagination .pagination {
+    color: #9da1a6;
+    display: inline-flex;
+    padding: 0;
+  }
+  .pagination .pagination .page-item {
+    font-size: max(12px, min(3vw, 14px));
+    border: 1px solid #9da1a6;
+    color: #9da1a6;
+    padding: 5px 10px;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .pagination .pagination .page-item:hover {
+    background-color: #9da1a6;
+    color: #fff;
+  }
+  .pagination .pagination .page-item.active {
+    background-color: #495057;
+    color: #fff;
+  }
+  .pagination .pagination .first-page,
+  .pagination .pagination .last-page {
+    padding: 5px 14px;
+  }
+  .pagination .pagination .first-page {
+    border-radius: 5px 0px 0px 5px;
+  }
+  .pagination .pagination .last-page {
+    border-radius: 0px 5px 5px 0px;
   }
 }
 button {

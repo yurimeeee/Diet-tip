@@ -196,7 +196,25 @@ const QnaView = ({ post, onClose, setAllData }) => {
               <div style={{ width:'100%' }}>
                 <p style={{ whiteSpace: 'pre-line' }}>{comment.text}</p>
                 <div className="df jcsb aic mg-t1">
-                  <p>{comment.userId}</p>
+                  {comment.userLevel ? (
+                    <div>
+                      <img 
+                        src={levelImg[comment.userLevel]}
+                        alt={`Level ${comment.userLevel}`}
+                        className="level-img"
+                      />
+                      {comment.userId}
+                    </div>
+                  ) : (
+                    <div>
+                      <img 
+                        src={levelImg['1']}
+                        alt={`Level 1`}
+                        className="level-img"
+                      />
+                      {comment.userId}
+                    </div>
+                  )}
                   <button 
                     type="button" 
                     className="m-red-btn"
