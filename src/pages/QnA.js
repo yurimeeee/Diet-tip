@@ -33,7 +33,6 @@ const QnA = () => {
       const boardQuery = query(collection(db, "community"), orderBy("date", "desc"));
       const boardQuerySnapshot = await getDocs(boardQuery);
       const boardData = processQuerySnapshot(boardQuerySnapshot);
-      // setAllData(boardData);
 
       // 각 게시글에 대한 댓글을 가져오기
       const boardDataWithComments = await Promise.all(boardData.map(async (post) => {
@@ -181,25 +180,23 @@ const QnA = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const handleModalBgClick = (e) => {
-    if (isModalOpen && e.target.classList.contains('top-posts-bg')) {
-      closeModal();
-    }
-  };
-
+  
   useEffect(() => {
+    const handleModalBgClick = (e) => {
+      if (isModalOpen && e.target.classList.contains('top-posts-bg')) {
+        closeModal();
+      }
+    };
+
     if (isModalOpen) {
       document.addEventListener('click', handleModalBgClick);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.removeEventListener('click', handleModalBgClick);
-      document.body.style.overflow = 'auto';
+      document.body.style.position = 'fixed';
     }
   
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       document.removeEventListener('click', handleModalBgClick);
-      document.body.style.overflow = 'auto';
+      document.body.style.position = 'static';
     };
   }, [isModalOpen]);
 

@@ -27,23 +27,23 @@ const QnaView = ({ post, onClose, setAllData }) => {
   const [ replyCount, setReplyCount ] = useState(0);
   const [ comments, setComments ] = useState([]);
   const replyPath = `community/${post.id}/comments`;
-
+  
   useEffect(() => {
     // Firebase Authentication 상태 변경을 감지하여 로그인한 사용자 정보 업데이트
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('Logged in user:', user);
+        console.log('로그인 사용자:', user);
       } else {
-        console.log('No user logged in');
+        console.log('로그인 정보 없음');
       }
     });
+    // console.log(user);
 
     if (post && !comments.length) {
       loadComments();
     }
-
-    return () => unsubscribe(); // 컴포넌트 언마운트 시에 이벤트 리스너 해제
-  }, [auth, post, comments]);
+    return unsubscribe(); // 컴포넌트 언마운트 시에 이벤트 리스너 해제
+  }, [auth, post, comments.length]);
 
   const loadComments = async () => {
     //post의 id를 기반으로 댓글을 불러옴
@@ -165,7 +165,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
           <label htmlFor="reply" className="hidden">댓글 작성</label>
           <TextareaAutosize
             id="reply" 
-            className="mb-shadow lg-radius"
+            className="lg-radius"
             placeholder="답변을 작성해보세요!"
             value={replyText}
             onChange={(e) => {
@@ -217,7 +217,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
                   )}
                   <button 
                     type="button" 
-                    className="m-red-btn"
+                    className={`m-red-btn ${user.displayName !== comment.userId ? "hidden" : "" }`}
                     onClick={() => {
                       replyDelete(comment.id);
                     }}
