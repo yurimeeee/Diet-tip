@@ -702,7 +702,15 @@ header.mobile nav .nav-bottom {
   box-sizing: border-box;
 }
 
+@media (min-width: 480px) {
+  header.mobile {
+    display: none;
+  }
+}
 @media (max-width: 480px) {
+  header.web {
+    display: none;
+  }
   footer div ul {
     display: none;
   }
@@ -796,6 +804,132 @@ body {
   position: absolute;
   bottom: 0;
   margin-bottom: 0px;
+}
+
+/* loading */
+.loading {
+  margin: 24px auto 0 auto;
+  width: 50px;
+  /* v3 */
+  /* round variation */
+  /* double variation */
+}
+.loading .ouro {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 1em;
+  border-radius: 50%;
+  background: none repeat scroll 0 0 #dddddd;
+  overflow: hidden;
+}
+.loading .ouro:after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  display: block;
+  height: 36px;
+  width: 36px;
+  background: none repeat scroll 0 0 #f2f3f5;
+  border-radius: 50%;
+}
+.loading .ouro > span {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+}
+.loading .left {
+  left: 0;
+}
+.loading .right {
+  left: 50%;
+}
+.loading .anim {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: none repeat scroll 0 0 #32a061;
+  opacity: 0.8;
+  animation: ui-spinner-rotate-left 3s infinite;
+  transform-origin: 0 50% 0;
+}
+.loading .left .anim {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.loading .right .anim {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  left: -100%;
+  transform-origin: 100% 50% 0;
+}
+.loading .ouro3 .anim {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
+.loading .ouro3 .right .anim {
+  -webkit-animation-name: ui-spinner-rotate-right;
+  -webkit-animation-delay: 0;
+  -webkit-animation-delay: 1s;
+  animation-name: ui-spinner-rotate-right;
+  animation-delay: 0;
+  animation-delay: 1s;
+}
+.loading .round .ouro:after {
+  display: none;
+}
+.loading .double .ouro:after {
+  height: 13px;
+  width: 13px;
+  left: 7px;
+  top: 7px;
+  border: 10px solid #ddd;
+  background: transparent;
+  box-shadow: none;
+}
+@keyframes ui-spinner-rotate-right {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ui-spinner-rotate-left {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .recomSlide,
@@ -1134,6 +1268,7 @@ body {
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
 .healthModal {
@@ -1141,88 +1276,71 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1000px;
-  height: 620px;
+  width: 600px;
+  height: 675px;
   background-color: #fff;
   border-radius: 10px;
-  padding: 70px;
+  padding: 50px;
   box-sizing: border-box;
-  z-index: 10;
-}
-.healthModal .modalImg {
-  width: 60%;
-  height: 100%;
-  margin-right: 30px;
-}
-.healthModal .modalImg .modalImg_1 {
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.healthModal .modalImg .modalImg_1 img {
-  width: 500px;
-  height: 100%;
+  z-index: 101;
 }
 .healthModal .modalText {
-  width: 50%;
-}
-.healthModal .modalText .text {
   height: 30px;
+  align-items: center;
+  justify-content: space-between;
 }
 .healthModal .modalText .text img {
   width: 30px;
-  height: 30px;
+  height: 100%;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
-}
-.healthModal .modalText .text p:last-child {
-  padding: 0 15px;
 }
 .healthModal .modalText p {
   line-height: 30px;
   padding: 0 5px;
   font-size: 14px;
 }
-.healthModal .modalText .modalDays p {
-  color: #888;
-  font-size: 11px;
-}
-.healthModal .modalText .modalMainText {
-  height: 260px;
-}
-.healthModal .modalText .modalImg_2 {
-  margin-top: 30px;
-}
-.healthModal .modalText .modalImg_2 img {
-  width: 32%;
-  height: 110px;
+.healthModal .modalImg {
+  width: 100%;
+  margin-right: 30px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.healthModal .modalText .m-badge {
+.healthModal .modalImg img {
+  width: 100%;
+  height: 333px;
+}
+.healthModal .modalMainText {
+  height: 100px;
+}
+.healthModal .shotHeartIcon {
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0 15px;
+}
+.healthModal .shotHeartIcon span {
+  color: #495057;
+}
+.healthModal .shotHeartIcon span svg {
+  width: 16px;
+  height: 16px;
+}
+.healthModal .shotTags {
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.healthModal .shotTags .m-badge {
   margin-right: 5px;
 }
-.healthModal .modalText .modalBtn {
-  width: 40px;
-  height: 40px;
+.healthModal .modalBtn {
+  width: 12px;
+  height: 12px;
   position: fixed;
+  border-radius: 50%;
+  background-color: #94dfb6;
   top: 20px;
   right: 20px;
-}
-.healthModal .modalText .modalBtn:before, .healthModal .modalText .modalBtn:after {
-  position: absolute;
-  left: 50%;
-  content: "";
-  height: 40px;
-  width: 1px;
-  background-color: #000;
-}
-.healthModal .modalText .modalBtn:before {
-  transform: rotate(45deg);
-}
-.healthModal .modalText .modalBtn:after {
-  transform: rotate(-45deg);
 }
 
 .map_wrap {
@@ -1488,12 +1606,35 @@ body {
     font-size: 16px;
   }
   .level .levelIcon p {
-    font-size: 11px;
+    font-size: 10px;
   }
   .healthShot .grid {
     gap: 8px;
   }
   .healthShot .grid .grid-item {
     height: 135px;
+  }
+  .healthShot .healthModal {
+    width: 90%;
+    height: 565px;
+  }
+  .healthShot .healthModal .modalImg img {
+    height: 240px;
+  }
+  .healthShot .healthModal .modalMainText {
+    height: 80px;
+  }
+  .healthSlides .swiper {
+    height: 340px;
+  }
+  .healthSlides .swiper .swiper-wrapper {
+    margin-top: 0;
+    height: 290px;
+  }
+  .healthSlides .swiper .swiper-wrapper .swiper-slide {
+    padding: 0 15px;
+  }
+  .kakaoMap form {
+    width: 70%;
   }
 }/*# sourceMappingURL=health.css.map */
