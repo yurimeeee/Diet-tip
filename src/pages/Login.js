@@ -27,7 +27,7 @@ const Login = () => {
       dispatch(yesLogin());
       const user = userCredential.user;
       alert(`${user.email} 님 어서오세요`);
-      window.location.replace('/');
+      window.location.replace('/Diet-tip/');
     })
     .catch((error) => {
       dispatch(noLogin());

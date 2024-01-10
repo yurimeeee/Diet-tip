@@ -35,7 +35,7 @@ const OnlyImg = () => {
       const mealQuery = query(
         collection(db, "meal"),
         orderBy("createdAt", "desc"),
-        limit(5)
+        limit(6)
       );
       unsubscribe = await onSnapshot(mealQuery, (snapshot) => {
         const posts = snapshot.docs.map((doc) => {
@@ -131,7 +131,7 @@ const HealthImgText = () => {
 
   return(
     <div className="hot-board-main text-ver df" data-type="HealthImgText">
-      {photos.slice(0,2).map((item)=>(
+      {photos.slice(0,6).map((item)=>(
         <>
         <div className="text-card"
            onClick={()=>{

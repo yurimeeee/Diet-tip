@@ -16,7 +16,7 @@ const GoogleLogin = () => {
     .then((result) => {
       dispatch(yesLogin());
       alert('로그인 성공');
-      window.location.replace('/');
+      window.location.replace('/Diet-tip/');
     }).catch((error) => {
       dispatch(noLogin());
       // Handle Errors here.
