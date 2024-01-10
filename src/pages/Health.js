@@ -5,6 +5,7 @@ import HealthLevel from "../components/HealthLevel";
 import Healthslide from "../components/HealthSlide";
 import "../styles/health.css";
 import Kakao from "../components/Kakao";
+import Loading from "../components/Loading";
 
 
 function Health() {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 function HealthBanner() {
 	const [playlist, setPlaylist] = useState([]);
@@ -34,6 +35,7 @@ function HealthBanner() {
 
 	return(
 		<div className="bannerWrap web-shadow">
+      {playlist.length === 0 && <Loading />}
 			{playlist.map(playObj => {
 				return (
 				<>

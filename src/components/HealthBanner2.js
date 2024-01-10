@@ -2,10 +2,13 @@ import React,{useState} from "react";
 import { Route, useLocation } from "react-router-dom";
 import bannerImg from "../asset/health/bannerImg.png"
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 function HealthBanner2({ onModeChange }) {
 	
 	const [isWritingMode, setIsWritingMode] = useState(false);
+	const navigate = useNavigate();
+	
 	const writingMode = () => {
 		//로그인 유무 확인
 		if (auth.currentUser) {
@@ -14,6 +17,7 @@ function HealthBanner2({ onModeChange }) {
 			onModeChange(true);
 		} else {
 			alert("로그인이 필요합니다!");
+			navigate("/login");
 		}
 	};
 
