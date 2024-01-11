@@ -429,12 +429,6 @@ header.web div aside {
   right: 0;
   transform: translateY(50%);
 }
-header.web div aside button {
-  font-size: 16px;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-}
 header.web div aside .loginout {
   margin-right: 20px;
 }
@@ -701,7 +695,7 @@ header.mobile nav .nav-bottom {
   box-sizing: border-box;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   header.mobile {
     display: none;
   }
@@ -712,6 +706,38 @@ header.mobile nav .nav-bottom {
   }
   footer div ul {
     display: none;
+  }
+  .pagination .pagination {
+    color: #9da1a6;
+    display: inline-flex;
+    padding: 0;
+  }
+  .pagination .pagination .page-item {
+    font-size: max(12px, min(3vw, 14px));
+    border: 1px solid #9da1a6;
+    color: #9da1a6;
+    padding: 5px 10px;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .pagination .pagination .page-item:hover {
+    background-color: #9da1a6;
+    color: #fff;
+  }
+  .pagination .pagination .page-item.active {
+    background-color: #495057;
+    color: #fff;
+  }
+  .pagination .pagination .first-page,
+  .pagination .pagination .last-page {
+    padding: 5px 14px;
+  }
+  .pagination .pagination .first-page {
+    border-radius: 5px 0px 0px 5px;
+  }
+  .pagination .pagination .last-page {
+    border-radius: 0px 5px 5px 0px;
   }
 }
 button {
@@ -818,7 +844,6 @@ body {
   display: inline-block;
   height: 50px;
   width: 50px;
-  margin: 1em;
   border-radius: 50%;
   background: none repeat scroll 0 0 #dddddd;
   overflow: hidden;
@@ -855,7 +880,9 @@ body {
   border-radius: 999px;
   background: none repeat scroll 0 0 #32a061;
   opacity: 0.8;
+  -webkit-animation: ui-spinner-rotate-left 3s infinite;
   animation: ui-spinner-rotate-left 3s infinite;
+  -webkit-transform-origin: 0 50% 0;
   transform-origin: 0 50% 0;
 }
 .loading .left .anim {
@@ -866,6 +893,7 @@ body {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
   left: -100%;
+  -webkit-transform-origin: 100% 50% 0;
   transform-origin: 100% 50% 0;
 }
 .loading .ouro3 .anim {
@@ -930,6 +958,40 @@ body {
     transform: rotate(360deg);
   }
 }
+@-webkit-keyframes ui-spinner-rotate-right {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes ui-spinner-rotate-left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
 
 a.login-btn {
   color: #32a061;
@@ -965,10 +1027,6 @@ a.login-btn:hover {
   border-radius: 24px;
   margin-bottom: 10px;
 }
-.Signin form input::-moz-placeholder, .Login form input::-moz-placeholder {
-  color: #32a061;
-  opacity: 0.5;
-}
 .Signin form input::placeholder, .Login form input::placeholder {
   color: #32a061;
   opacity: 0.5;
@@ -1003,4 +1061,6 @@ a.login-btn:hover {
 }
 .Login .google {
   margin-top: 40px;
-}/*# sourceMappingURL=signin.css.map */
+}
+
+/*# sourceMappingURL=signin.css.map */
