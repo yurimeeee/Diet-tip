@@ -170,7 +170,7 @@ const QnA = () => {
     return post.commentsData && post.commentsData.length > 0 ? "답변완료" : "미답변";
   };
 
-  console.log(allData);
+  // console.log(allData);
 
   //주간인기글 mobile size modal
   const [ isModalOpen, setIsModalOpen ] = useState(false);

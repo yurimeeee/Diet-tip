@@ -12,7 +12,6 @@ import level_1 from "../asset/level-1-badge.png";
 import level_2 from "../asset/level-2-badge.png";
 import level_3 from "../asset/level-3-badge.png";
 
-
 const QnaView = ({ post, onClose, setAllData }) => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -37,13 +36,14 @@ const QnaView = ({ post, onClose, setAllData }) => {
         console.log('로그인 정보 없음');
       }
     });
-    // console.log(user);
 
-    if (post && !comments.length) {
-      loadComments();
-    }
-    return unsubscribe(); // 컴포넌트 언마운트 시에 이벤트 리스너 해제
-  }, [auth, post, comments.length]);
+    // console.log(post.id);
+
+    //댓글 불러오기
+    loadComments();
+
+    return () => unsubscribe(); // 컴포넌트 언마운트 시에 이벤트 리스너 해제
+  }, [auth, post.id, comments.length]);
 
   const loadComments = async () => {
     //post의 id를 기반으로 댓글을 불러옴
@@ -58,8 +58,6 @@ const QnaView = ({ post, onClose, setAllData }) => {
       ...doc.data()
     }));
     setComments(commentsData);
-
-    console.log(commentsData);
 
     // 댓글이 추가되었을 때 게시글 목록 업데이트
     if (commentsData.length > 0) {
@@ -104,7 +102,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
       setReplyText(''); //댓글 입력란 초기화
       setReplyCount(0);
     } catch (error) {
-      console.error('Error adding comment: ', error);
+      console.error('댓글 작성 오류: ', error);
     }
   };
 
@@ -130,7 +128,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
     return null; //post가 없으면 QnaView를 보여주지 않음
   }
 
-  console.log(post);
+  // console.log(post);
 
   return(
     <div className="container">
@@ -176,10 +174,10 @@ const QnaView = ({ post, onClose, setAllData }) => {
             maxLength="1000"
             cacheMeasurements
           />
-          <textarea
+          <input
             id="reply" 
-            className="lg-radius"
-            placeholder="답변을 작성해보세요!"
+            className="mb-shadow lg-radius"
+            placeholder="input shadow test"
             value={replyText}
             onChange={(e) => {
               setReplyText(e.target.value); 
