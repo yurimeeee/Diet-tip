@@ -429,11 +429,6 @@ header.web div aside {
   right: 0;
   transform: translateY(50%);
 }
-header.web div aside button {
-  font-size: 16px;
-  border: none;
-  background-color: transparent;
-}
 header.web div aside .loginout {
   margin-right: 20px;
 }
