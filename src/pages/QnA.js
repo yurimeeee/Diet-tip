@@ -237,7 +237,7 @@ const QnA = () => {
                 {topPostsData.map((post, index) => (
                   <p key={post.id} className="df" onClick={(e) => {e.preventDefault(); handlePostClick(post.id, e);}}>
                     <span className="posts-number bold">{index + 1}.</span>
-                    <a href="">
+                    <a href="#">
                       <span className="posts-tt link mg-r1">{post.title}</span>
                       <span><FontAwesomeIcon icon={faThumbsUp} className="mg-r1 gray-3" />{post.thumbsUp}</span>
                     </a>

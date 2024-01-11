@@ -176,6 +176,19 @@ const QnaView = ({ post, onClose, setAllData }) => {
             maxLength="1000"
             cacheMeasurements
           />
+          <textarea
+            id="reply" 
+            className="lg-radius"
+            placeholder="답변을 작성해보세요!"
+            value={replyText}
+            onChange={(e) => {
+              setReplyText(e.target.value); 
+              setReplyCount(e.target.value.length); 
+            }}
+            rows={1}
+            maxLength="1000"
+            cacheMeasurements
+          />
           <button type="submit"><FontAwesomeIcon icon={faReply} className="point-1" /></button>
         </div>
         <p>
@@ -217,7 +230,7 @@ const QnaView = ({ post, onClose, setAllData }) => {
                   )}
                   <button 
                     type="button" 
-                    className={`m-red-btn ${user.displayName !== comment.userId ? "hidden" : "" }`}
+                    className={`m-red-btn ${(!user || user.displayName !== comment.userId) ? "hidden" : "" }`}
                     onClick={() => {
                       replyDelete(comment.id);
                     }}
