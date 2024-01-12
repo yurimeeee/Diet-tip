@@ -447,12 +447,6 @@ header.web {
       right: 0;
       transform: translateY(50%);
 
-      button {
-        font-size: $web-tt;
-        border: none;
-        background-color: transparent;
-        padding: 0;
-      }
       .loginout {
         margin-right: 20px;
       }
@@ -674,12 +668,21 @@ header.mobile{
       width: 100%;
       margin-top: 60px;
       text-indent: 20px;
+      
       gap: 0;
       >li{
         padding: 20px 0;
         a{
-          margin-bottom: 20px;
+          color: $point-1;
         }
+        >a{
+          // padding-bottom: 20px;
+          display: block;
+        }
+      }
+      >li+li{
+        padding-top:0;
+        padding-bottom: 20px;
       }
       
       &:before {
@@ -698,6 +701,7 @@ header.mobile{
         gap: 10px;
         align-items: start;
         text-indent: 40px;
+        flex-direction: column;
       }
     }
     .menu-close-btn{
