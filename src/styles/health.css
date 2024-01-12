@@ -216,6 +216,12 @@ body {
   border-radius: 20px;
 }
 
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
 .w-green-btn {
   background: none;
   font-size: 16px;
@@ -330,6 +336,37 @@ body {
 }
 .m-badge:hover {
   opacity: 0.5;
+}
+
+input,
+textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  border: none;
+  font-family: "Pretendard-Regular";
+  box-sizing: border-box;
+  font-size: 16px;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
+  color: transparent;
+}
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: transparent;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 0.8;
+}
+input::placeholder,
+textarea::placeholder {
+  opacity: 0.8;
 }
 
 .pagination .pagination {
@@ -670,7 +707,14 @@ header.mobile nav > ul > li {
   padding: 20px 0;
 }
 header.mobile nav > ul > li a {
-  margin-bottom: 20px;
+  color: #32a061;
+}
+header.mobile nav > ul > li > a {
+  display: block;
+}
+header.mobile nav > ul > li + li {
+  padding-top: 0;
+  padding-bottom: 20px;
 }
 header.mobile nav > ul:before {
   display: none;
@@ -687,6 +731,7 @@ header.mobile nav > ul > li > ul {
   gap: 10px;
   align-items: start;
   text-indent: 40px;
+  flex-direction: column;
 }
 header.mobile nav .menu-close-btn {
   background-image: url(../asset/menu-close.png);
@@ -702,6 +747,7 @@ header.mobile nav .nav-bottom {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
   color: #32a061;
   position: static;
@@ -896,9 +942,7 @@ body {
   border-radius: 999px;
   background: none repeat scroll 0 0 #32a061;
   opacity: 0.8;
-  -webkit-animation: ui-spinner-rotate-left 3s infinite;
   animation: ui-spinner-rotate-left 3s infinite;
-  -webkit-transform-origin: 0 50% 0;
   transform-origin: 0 50% 0;
 }
 .loading .left .anim {
@@ -909,7 +953,6 @@ body {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
   left: -100%;
-  -webkit-transform-origin: 100% 50% 0;
   transform-origin: 100% 50% 0;
 }
 .loading .ouro3 .anim {
@@ -974,40 +1017,6 @@ body {
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes ui-spinner-rotate-right {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  25% {
-    -webkit-transform: rotate(180deg);
-  }
-  50% {
-    -webkit-transform: rotate(180deg);
-  }
-  75% {
-    -webkit-transform: rotate(360deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes ui-spinner-rotate-left {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  25% {
-    -webkit-transform: rotate(0deg);
-  }
-  50% {
-    -webkit-transform: rotate(180deg);
-  }
-  75% {
-    -webkit-transform: rotate(180deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
 
 .recomSlide,
 .level,
@@ -1042,10 +1051,12 @@ body {
   width: 504px;
   height: 282px;
   border-radius: 10px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .bannerWrap .img2 {
-  object-fit: none;
+  -o-object-fit: none;
+     object-fit: none;
 }
 .bannerWrap .bannerTitle {
   width: 50%;
@@ -1136,7 +1147,8 @@ body {
 }
 .LevelCont .levelContWrap .levelWrap .levelImg img {
   border-radius: 10px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 237px;
 }
@@ -1334,7 +1346,8 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   padding-right: 5px;
 }
 
@@ -1370,7 +1383,8 @@ body {
   width: 30px;
   height: 100%;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .healthModal .modalText p {
   line-height: 30px;
@@ -1380,7 +1394,8 @@ body {
 .healthModal .modalImg {
   width: 100%;
   margin-right: 30px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .healthModal .modalImg img {
   width: 100%;
@@ -1650,7 +1665,8 @@ body {
     height: 100%;
   }
   .bannerWrap .bannerImg .img2 {
-    object-fit: contain;
+    -o-object-fit: contain;
+       object-fit: contain;
   }
   .bannerWrap .bannerTitle {
     width: 50%;
@@ -1732,6 +1748,4 @@ body {
   .kakaoMap #map.web-shadow {
     height: 295px;
   }
-}
-
-/*# sourceMappingURL=health.css.map */
+}/*# sourceMappingURL=health.css.map */

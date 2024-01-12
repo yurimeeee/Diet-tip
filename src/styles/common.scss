@@ -281,6 +281,12 @@ body {
 }
 
 //Buttons
+button{
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
 @mixin btn($btn-c: $point-1, $btn-t: 16px) {
   background: none;
   font-size: $btn-t;
@@ -341,6 +347,29 @@ body {
 
 .m-badge {
   @include badge(11px);
+}
+
+//Input, Textarea
+input,
+textarea{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  border: none;
+  font-family: 'Pretendard-Regular';
+  box-sizing: border-box;
+  font-size: $web-tt;
+  &:focus{
+    outline: none;
+  }
+  &:focus::placeholder{
+    color:transparent;
+  }
+  &::placeholder{
+    opacity: .8;
+  }
 }
 
 //Pagination
@@ -718,6 +747,7 @@ header.mobile{
       display: flex;
       width: 100%;
       justify-content: space-between;
+      align-items: center;
       padding: 20px;
       color: $point-1;
       position: static;
