@@ -351,7 +351,7 @@
         gap: 15px;
         p:first-child,
         button{
-          font-size: 12px;
+          font-size: 12px !important;
         }
         .ptag{
           font-size: 16px;
@@ -400,7 +400,7 @@
           flex-wrap: wrap;
           gap:10px;
           > div{
-            width:133px;
+            width:30%;
             height:133px;
             .board-img{
               width:100%;
@@ -409,22 +409,24 @@
           }
         }
         .text-card{
-          width:48.5%;
-          height: 110px;
-          padding:10px;
-          display: block;
+          width:100%;
+          height: 90px;
+          padding:10px 20px;
           img{
             width:100%;
             height: 50%;
           }
           .text-card-text{
             height: 50%;
+            justify-content: center;
+            gap:8px;
             .text-card-title{
-              flex-direction: column;
-              font-size: 12px;
+              font-size: 14px;
+              p:last-child{
+                width:87%;
+              }
             }
             .profile{
-              flex-direction: column-reverse;
               align-items: start;
               .profile-content{
                 font-size: 12px;
@@ -444,9 +446,9 @@
     }
     .exercise{
       .exercise-title{
-        display: block;
         font-size: 20px;
         margin-bottom: 40px;
+        display: block;
       }
       .recommand-exercise{
         gap:10px;
@@ -472,9 +474,15 @@
         }
       }
     }  
-  }
-  footer{
-    margin-top: 70px;
+    .healthModal{
+			width:90%;
+			height: 565px;
+			.modalImg img{
+				height:240px;
+			}
+			.modalMainText{
+				height:80px;
+			}
+		}
   }
 }
-

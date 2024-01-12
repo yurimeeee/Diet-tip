@@ -146,10 +146,6 @@ function Kakao() {
       <div
         id="map"
         className="web-shadow"
-        style={{
-          width: "100%",
-          height: "600px",
-        }}
       ></div>
     </>
   );

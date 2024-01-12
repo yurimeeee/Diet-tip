@@ -536,7 +536,7 @@ button{
     &.modal-open{
       display: block;
       position: fixed;
-      background: rgba(94, 94, 94, 0.45);
+      background: rgba(94, 94, 94, .5);
       top: 0;
       left: 0;
       right: 0;

@@ -430,12 +430,6 @@ header.web div aside {
   right: 0;
   transform: translateY(50%);
 }
-header.web div aside button {
-  font-size: 16px;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-}
 header.web div aside .loginout {
   margin-right: 20px;
 }
@@ -593,18 +587,18 @@ footer div a {
 header.mobile {
   padding: 24px 20px;
 }
-header.mobile div {
+header.mobile .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-header.mobile div button {
+header.mobile .header button {
   font-size: 16px;
   border: none;
   background-color: transparent;
   padding: 0;
 }
-header.mobile div .menu-btn {
+header.mobile .header .menu-btn {
   background-image: url(../asset/menu-btn.png);
   width: 25px;
   height: 19px;
@@ -612,7 +606,7 @@ header.mobile div .menu-btn {
   background-size: cover;
   text-indent: -9999rem;
 }
-header.mobile div .mypage {
+header.mobile .header .mypage {
   background-image: url(../asset/mypage-icon.png);
   width: 24px;
   height: 24px;
@@ -620,10 +614,10 @@ header.mobile div .mypage {
   background-size: cover;
   text-indent: -9999rem;
 }
-header.mobile div h1 {
+header.mobile .header h1 {
   text-align: center;
 }
-header.mobile div h1 a {
+header.mobile .header h1 a {
   margin: 0 auto;
   background-image: url(../asset/small-logo.png);
   width: 75px;
@@ -631,6 +625,18 @@ header.mobile div h1 a {
   display: block;
   background-size: cover;
   text-indent: -9999rem;
+}
+header.mobile .main-menu-bg.active {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(94, 94, 94, 0.5);
+  transition: 0.4s ease-in;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }
 header.mobile nav {
   display: flex;
@@ -890,7 +896,9 @@ body {
   border-radius: 999px;
   background: none repeat scroll 0 0 #32a061;
   opacity: 0.8;
+  -webkit-animation: ui-spinner-rotate-left 3s infinite;
   animation: ui-spinner-rotate-left 3s infinite;
+  -webkit-transform-origin: 0 50% 0;
   transform-origin: 0 50% 0;
 }
 .loading .left .anim {
@@ -901,6 +909,7 @@ body {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
   left: -100%;
+  -webkit-transform-origin: 100% 50% 0;
   transform-origin: 100% 50% 0;
 }
 .loading .ouro3 .anim {
@@ -965,12 +974,52 @@ body {
     transform: rotate(360deg);
   }
 }
+@-webkit-keyframes ui-spinner-rotate-right {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes ui-spinner-rotate-left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
 
 .recomSlide,
 .level,
 .kakaoMap {
   text-align: center;
   width: 100%;
+}
+.recomSlide #map.web-shadow,
+.level #map.web-shadow,
+.kakaoMap #map.web-shadow {
+  width: 100%;
+  height: 600px;
 }
 
 .sectionTitle {
@@ -987,17 +1036,16 @@ body {
   border-radius: 10px;
   padding: 60px 96px;
   box-sizing: border-box;
+  display: flex;
 }
 .bannerWrap img {
   width: 504px;
   height: 282px;
   border-radius: 10px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .bannerWrap .img2 {
-  -o-object-fit: none;
-     object-fit: none;
+  object-fit: none;
 }
 .bannerWrap .bannerTitle {
   width: 50%;
@@ -1011,14 +1059,11 @@ body {
   border-radius: 50px;
   border: 1px solid #f46b2a;
   padding: 0 10px;
-}
-.bannerWrap .bannerTitle span {
   color: #f46b2a;
   font-size: 11px;
 }
 .bannerWrap .bannerTitle .youtubeBtn {
   margin-top: 50px;
-  padding: 11px;
 }
 .bannerWrap .bannerMainTitle {
   padding: 20px 0;
@@ -1091,8 +1136,7 @@ body {
 }
 .LevelCont .levelContWrap .levelWrap .levelImg img {
   border-radius: 10px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 100%;
   height: 237px;
 }
@@ -1290,8 +1334,7 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   padding-right: 5px;
 }
 
@@ -1301,7 +1344,7 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 100;
 }
 
@@ -1327,8 +1370,7 @@ body {
   width: 30px;
   height: 100%;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .healthModal .modalText p {
   line-height: 30px;
@@ -1338,8 +1380,7 @@ body {
 .healthModal .modalImg {
   width: 100%;
   margin-right: 30px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .healthModal .modalImg img {
   width: 100%;
@@ -1575,7 +1616,6 @@ body {
 
 @media (min-width: 1120px) {
   .bannerWrap {
-    display: flex;
     justify-content: space-between;
     align-items: center;
   }
@@ -1597,50 +1637,67 @@ body {
 }
 @media (max-width: 480px) {
   .bannerWrap {
-    padding: 40px 15px;
-    text-align: center;
+    padding: 20px;
+    height: 185px;
+    align-items: center;
   }
   .bannerWrap .bannerImg {
-    margin-top: 40px;
+    width: 50%;
+    height: 77%;
   }
   .bannerWrap .bannerImg img {
     width: 100%;
-    height: 227px;
+    height: 100%;
   }
   .bannerWrap .bannerImg .img2 {
-    -o-object-fit: contain;
-       object-fit: contain;
+    object-fit: contain;
   }
   .bannerWrap .bannerTitle {
-    width: 100%;
+    width: 50%;
   }
-  .bannerWrap .bannerTitle ul {
-    justify-content: center;
-  }
-  .bannerWrap .bannerTitle ul span {
-    font-size: 11px;
+  .bannerWrap .bannerTitle ul li {
+    font-size: 8px;
+    padding: 0 5px;
+    line-height: 14px;
   }
   .bannerWrap .bannerTitle .youtubeBtn {
-    margin-top: 40px;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  .bannerWrap .bannerMainTitle {
+    padding: 10px 0;
   }
   .bannerWrap .bannerMainTitle h1 {
-    font-size: 32px;
+    font-size: 20px;
   }
   .bannerWrap .bannerSubTitle {
-    padding: 0 10px;
+    font-size: 10px;
+    padding-right: 10px;
   }
-  .level {
-    margin: 0 auto;
+  .sectionTitle {
+    font-size: 20px;
+    margin-top: 60px;
+  }
+  .subTitle {
+    margin: 30px 0 60px;
+  }
+  .healthLevel .levels {
+    margin: 60px auto;
+  }
+  .healthLevel .levels .level {
     gap: 5%;
   }
-  .level .levelIcon img {
+  .healthLevel .levels .level .levelIcon img {
     width: 60%;
   }
-  .level .levelIcon h2 {
+  .healthLevel .levels .level .levelIcon h2 {
     font-size: 16px;
   }
-  .level .levelIcon p {
+  .healthLevel .levels .level .levelIcon p {
     font-size: 10px;
+  }
+  .healthLevel .levels .LevelCont {
+    margin: 60px 0;
   }
   .healthShot .grid {
     gap: 8px;
@@ -1669,6 +1726,12 @@ body {
     padding: 0 15px;
   }
   .kakaoMap form {
-    width: 70%;
+    width: 74%;
+    margin-bottom: 30px;
   }
-}/*# sourceMappingURL=health.css.map */
+  .kakaoMap #map.web-shadow {
+    height: 295px;
+  }
+}
+
+/*# sourceMappingURL=health.css.map */
