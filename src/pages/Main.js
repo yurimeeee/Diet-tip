@@ -130,34 +130,23 @@ const HealthImgText = () => {
   },[]);
 
   return(
-    <div className="hot-board-main text-ver df" data-type="HealthImgText">
-      {photos.slice(0,6).map((item)=>(
-        <>
-        <div className="text-card"
-           onClick={()=>{
+    <div className="hot-board-main img-ver" data-type="HealthImgText">
+      <div className="img-container">
+        {photos.slice(0,6).map((item) => (
+          <div key={item.id}            
+          onClick={()=>{
             setModal(true)
             setModalItem(item)
           }}>
-          <img className="text-card-img" alt="hot board img" src={item.photo}></img>
-          <div className="text-card-text">
-            <div className="text-card-title">
-              <p>{item.text}</p>
-            </div>
-            <div className="profile">
-              <p className="profile-content"><img src={profile} className="profile-icon" alt="profile icon"></img>{item.username}</p>
-              <div>
-                <p className="profile-content"><img src={likeImgDark} className="like-icon" alt="like icon"></img>{item.like}</p>
-              </div>
-            </div> 
+            <img alt="hot meal" src={item.photo} className="board-img"></img>
           </div>
-        </div>
-        {modal === true ? 
-          <Healthmodal 
-            parentSetModal={setModal}
-            data={modalItem}
-          />:null}
-        </>
-      ))}
+        ))}
+      </div>
+      {modal === true ? 
+      <Healthmodal 
+        parentSetModal={setModal}
+        data={modalItem}
+      />:null}
     </div>
   )
 }
@@ -359,7 +348,7 @@ const Main = () => {
         <h5>HOT한 다이어팁! 인기 게시물</h5>
         <div className="hot-board-buttons">
           <button className="w-green-btn" type="button" data-type="onlyimg" onClick={setType}>식단공유</button>
-          <button className="w-green-btn" type="button" data-type="imgtext" onClick={setType}>추천제품</button>
+          {/* <button className="w-green-btn" type="button" data-type="imgtext" onClick={setType}>추천제품</button> */}
           <button className="w-green-btn" type="button" data-type="HealthImgText" onClick={setType}>운동인증</button>
           <button className="w-green-btn" type="button" data-type="FreeBoard" onClick={setType}>자유게시판</button>
           <button className="w-green-btn" type="button" data-type="QnA" onClick={setType}>Q&A</button>

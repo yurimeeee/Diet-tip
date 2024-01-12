@@ -701,7 +701,7 @@ header.mobile nav .nav-bottom {
   box-sizing: border-box;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   header.mobile {
     display: none;
   }
@@ -712,6 +712,38 @@ header.mobile nav .nav-bottom {
   }
   footer div ul {
     display: none;
+  }
+  .pagination .pagination {
+    color: #9da1a6;
+    display: inline-flex;
+    padding: 0;
+  }
+  .pagination .pagination .page-item {
+    font-size: max(12px, min(3vw, 14px));
+    border: 1px solid #9da1a6;
+    color: #9da1a6;
+    padding: 5px 10px;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .pagination .pagination .page-item:hover {
+    background-color: #9da1a6;
+    color: #fff;
+  }
+  .pagination .pagination .page-item.active {
+    background-color: #495057;
+    color: #fff;
+  }
+  .pagination .pagination .first-page,
+  .pagination .pagination .last-page {
+    padding: 5px 14px;
+  }
+  .pagination .pagination .first-page {
+    border-radius: 5px 0px 0px 5px;
+  }
+  .pagination .pagination .last-page {
+    border-radius: 0px 5px 5px 0px;
   }
 }
 button {
@@ -818,7 +850,6 @@ body {
   display: inline-block;
   height: 50px;
   width: 50px;
-  margin: 1em;
   border-radius: 50%;
   background: none repeat scroll 0 0 #dddddd;
   overflow: hidden;
@@ -977,25 +1008,29 @@ body {
 .Community .link:hover {
   font-weight: bold;
 }
-.Community input {
+.Community input,
+.Community textarea {
   border: none;
   font-family: "Pretendard-Regular";
   box-sizing: border-box;
   font-size: 16px;
 }
-.Community input:focus {
+.Community input:focus,
+.Community textarea:focus {
   outline: none;
 }
-.Community input:focus::-moz-placeholder {
+.Community input:focus::-moz-placeholder, .Community textarea:focus::-moz-placeholder {
   color: transparent;
 }
-.Community input:focus::placeholder {
+.Community input:focus::placeholder,
+.Community textarea:focus::placeholder {
   color: transparent;
 }
-.Community input::-moz-placeholder {
+.Community input::-moz-placeholder, .Community textarea::-moz-placeholder {
   opacity: 0.8;
 }
-.Community input::placeholder {
+.Community input::placeholder,
+.Community textarea::placeholder {
   opacity: 0.8;
 }
 .Community table {
@@ -1276,17 +1311,26 @@ button {
   display: inline;
 }
 
-.reply-form {
+.reply-form :first-child {
   position: relative;
 }
+.reply-form > p {
+  color: #495057;
+  margin: 10px 48px 0 0;
+  display: flex;
+  justify-content: end;
+}
 .reply-form #reply {
-  padding: 24px 48px;
+  padding: 24px 72px 24px 48px;
   width: 100%;
+  resize: none;
 }
 .reply-form button {
   position: absolute;
-  right: 48px;
-  bottom: 22px;
+  margin-bottom: 4px;
+  padding: 24px 48px 22px 0;
+  right: 0;
+  bottom: 0;
   font-size: 20px;
 }
 
@@ -1314,6 +1358,9 @@ button {
 }
 .a-frame .a-card img {
   height: 40px;
+}
+.a-frame .a-card img.level-img {
+  height: 20px;
 }
 
 /* Mobile Board */
@@ -1353,6 +1400,11 @@ button {
   }
   .news-frame .news-box img {
     width: 30%;
+  }
+}
+@media (min-width: 481px) {
+  .Community .m-red-btn {
+    font-size: 14px;
   }
 }
 @media (max-width: 480px) {
@@ -1488,18 +1540,17 @@ button {
   .q-card .q-content:last-child {
     font-size: max(13px, min(3.5vw, 15px));
   }
+  .reply-form > p {
+    margin: 6px 20px 0 0;
+    font-size: max(13px, min(3.5vw, 15px));
+  }
   .reply-form #reply {
-    padding: 20px;
-  }
-  .reply-form #reply::-moz-placeholder {
+    padding: 20px 40px 20px 20px;
     font-size: max(12px, min(3vw, 14px));
-  }
-  .reply-form #reply::placeholder {
-    font-size: max(12px, min(3vw, 14px));
+    height: 58px !important;
   }
   .reply-form button {
-    right: 20px;
-    bottom: 20px;
+    padding: 21px 20px 19px 0;
     font-size: 16px;
   }
   .a-frame .a-box {
@@ -1519,5 +1570,9 @@ button {
   }
   .a-frame .a-card img {
     height: 24px;
+  }
+  .a-frame .a-card img.level-img {
+    width: 16px;
+    height: 16px;
   }
 }/*# sourceMappingURL=community.css.map */

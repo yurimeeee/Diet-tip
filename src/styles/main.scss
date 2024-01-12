@@ -202,10 +202,10 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        gap:20px;
 
         > div {
-          width: 220px;
-          height: 220px;
+          width: 180px;
         }
 
         &:hover {
@@ -214,9 +214,10 @@
           }
         }
         .board-img {
+          cursor: pointer;
           display: inline-block;
-          width: 220px;
-          height: 220px;
+          width: 100%;
+          height: 180px;
           object-fit: cover;
           border-radius: 10px;
           z-index: 1;
@@ -243,6 +244,7 @@
         }
       }
       .text-card {
+        cursor: pointer;
         background-color: $white;
         width: 600px;
         padding: 20px;
@@ -300,38 +302,179 @@
       }
     }
   }
-
-  .recommand-exercise {
-    display: flex;
-    gap: 24px;
-    .exercise-card{
-      width: 312px;
-      height: 384px;
-      padding: 40px;
-      flex-direction: column;
-      box-sizing: border-box;
-      background-color: $white;
-      border-radius: 20px;
-      gap: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      h5 {
-        margin: 0;
-      }
-      .exercise-icon {
-        width: 97.2px;
-        height: 100px;
-        object-fit: cover;
-      }
-      .video-container{
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-      }
+  .exercise{
+    .exercise-title{
+      display: none;
     }
-    .exercise-card.video {
-      justify-content: space-between;
+    .recommand-exercise {
+      display: flex;
+      gap: 24px;
+      .exercise-card{
+        width: 312px;
+        height: 384px;
+        padding: 40px;
+        flex-direction: column;
+        box-sizing: border-box;
+        background-color: $white;
+        border-radius: 20px;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h5 {
+          margin: 0;
+        }
+        .exercise-icon {
+          width: 97.2px;
+          height: 100px;
+          object-fit: cover;
+        }
+        .video-container{
+          width: 180px;
+          height: 180px;
+          border-radius: 50%;
+        }
+      }
+      .exercise-card.video {
+        justify-content: space-between;
+      }
     }
   }
 }
+@media (max-width: 480px) {
+  .Main{
+    .banner{
+      padding: 40px;
+      .banner-text{
+        width: 41%;
+        justify-content: center;
+        gap: 15px;
+        p:first-child,
+        button{
+          font-size: 12px;
+        }
+        .ptag{
+          font-size: 16px;
+        }
+      }
+      .banner-img{
+        width:50%;
+        img{
+          width:100%;
+        }
+      }
+      .banner-cotntrols{
+        button{
+          width: 8px;
+          height: 8px;
+        }
+      }
+  
+    }
+    .Today{
+      .today_content{
+        display: block;
+        text-align: center;
+        .today-cards{
+          margin-top: 30px;
+          justify-content: center;
+          gap:10px;
+          > div{
+            padding: 20px 10px;
+            height: 130px;
+          }
+        }
+      }
+    }  
+    .hot-board{
+      .hot-board-buttons{
+        justify-content: center;
+      }
+      .hot-board-main,
+      .hot-board-main.text-ver{
+        padding:10px;
+        justify-content: space-between;
+        gap:10px;
+        .img-container{
+          width:100%;
+          flex-wrap: wrap;
+          gap:10px;
+          > div{
+            width:133px;
+            height:133px;
+            .board-img{
+              width:100%;
+              height:100%;
+            }
+          }
+        }
+        .text-card{
+          width:48.5%;
+          height: 110px;
+          padding:10px;
+          display: block;
+          img{
+            width:100%;
+            height: 50%;
+          }
+          .text-card-text{
+            height: 50%;
+            .text-card-title{
+              flex-direction: column;
+              font-size: 12px;
+            }
+            .profile{
+              flex-direction: column-reverse;
+              align-items: start;
+              .profile-content{
+                font-size: 12px;
+                img{
+                  width:20px;
+                  height: 20px;
+                }
+                svg{
+                  width:15px;
+                }
+              }
+            }
+  
+          }
+        }
+      }
+    }
+    .exercise{
+      .exercise-title{
+        display: block;
+        font-size: 20px;
+        margin-bottom: 40px;
+      }
+      .recommand-exercise{
+        gap:10px;
+        .exercise-card:first-child{
+          display: none;
+        }
+        .exercise-card.video{
+          justify-content: center;
+          width:33%;
+          height: 217px;
+          padding: 30px 10px;
+          .video-container{
+            width:80%;
+            height: 96px;
+          }
+          h5{
+            font-size: 12px;
+          }
+          .channelInfo{
+            font-size: 10px;
+          }
+  
+        }
+      }
+    }  
+  }
+  footer{
+    margin-top: 70px;
+  }
+}
+

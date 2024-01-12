@@ -702,7 +702,7 @@ header.mobile nav .nav-bottom {
   box-sizing: border-box;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   header.mobile {
     display: none;
   }
@@ -711,8 +711,43 @@ header.mobile nav .nav-bottom {
   header.web {
     display: none;
   }
+  footer {
+    margin-top: 70px;
+  }
   footer div ul {
     display: none;
+  }
+  .pagination .pagination {
+    color: #9da1a6;
+    display: inline-flex;
+    padding: 0;
+  }
+  .pagination .pagination .page-item {
+    font-size: max(12px, min(3vw, 14px));
+    border: 1px solid #9da1a6;
+    color: #9da1a6;
+    padding: 5px 10px;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .pagination .pagination .page-item:hover {
+    background-color: #9da1a6;
+    color: #fff;
+  }
+  .pagination .pagination .page-item.active {
+    background-color: #495057;
+    color: #fff;
+  }
+  .pagination .pagination .first-page,
+  .pagination .pagination .last-page {
+    padding: 5px 14px;
+  }
+  .pagination .pagination .first-page {
+    border-radius: 5px 0px 0px 5px;
+  }
+  .pagination .pagination .last-page {
+    border-radius: 0px 5px 5px 0px;
   }
 }
 button {
@@ -819,7 +854,6 @@ body {
   display: inline-block;
   height: 50px;
   width: 50px;
-  margin: 1em;
   border-radius: 50%;
   background: none repeat scroll 0 0 #dddddd;
   overflow: hidden;
@@ -1126,18 +1160,19 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  gap: 20px;
 }
 .Main .hot-board .hot-board-main .img-container > div {
-  width: 220px;
-  height: 220px;
+  width: 180px;
 }
 .Main .hot-board .hot-board-main .img-container:hover .like-container {
   bottom: 0;
 }
 .Main .hot-board .hot-board-main .img-container .board-img {
+  cursor: pointer;
   display: inline-block;
-  width: 220px;
-  height: 220px;
+  width: 100%;
+  height: 180px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
@@ -1165,6 +1200,7 @@ body {
   z-index: 10;
 }
 .Main .hot-board .hot-board-main .text-card {
+  cursor: pointer;
   background-color: #fff;
   width: 600px;
   padding: 20px;
@@ -1221,11 +1257,14 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.Main .recommand-exercise {
+.Main .exercise .exercise-title {
+  display: none;
+}
+.Main .exercise .recommand-exercise {
   display: flex;
   gap: 24px;
 }
-.Main .recommand-exercise .exercise-card {
+.Main .exercise .recommand-exercise .exercise-card {
   width: 312px;
   height: 384px;
   padding: 40px;
@@ -1238,20 +1277,155 @@ body {
   align-items: center;
   justify-content: center;
 }
-.Main .recommand-exercise .exercise-card h5 {
+.Main .exercise .recommand-exercise .exercise-card h5 {
   margin: 0;
 }
-.Main .recommand-exercise .exercise-card .exercise-icon {
+.Main .exercise .recommand-exercise .exercise-card .exercise-icon {
   width: 97.2px;
   height: 100px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.Main .recommand-exercise .exercise-card .video-container {
+.Main .exercise .recommand-exercise .exercise-card .video-container {
   width: 180px;
   height: 180px;
   border-radius: 50%;
 }
-.Main .recommand-exercise .exercise-card.video {
+.Main .exercise .recommand-exercise .exercise-card.video {
   justify-content: space-between;
+}
+
+@media (max-width: 480px) {
+  .Main .banner {
+    padding: 40px;
+  }
+  .Main .banner .banner-text {
+    width: 41%;
+    justify-content: center;
+    gap: 15px;
+  }
+  .Main .banner .banner-text p:first-child,
+  .Main .banner .banner-text button {
+    font-size: 12px;
+  }
+  .Main .banner .banner-text .ptag {
+    font-size: 16px;
+  }
+  .Main .banner .banner-img {
+    width: 50%;
+  }
+  .Main .banner .banner-img img {
+    width: 100%;
+  }
+  .Main .banner .banner-cotntrols button {
+    width: 8px;
+    height: 8px;
+  }
+  .Main .Today .today_content {
+    display: block;
+    text-align: center;
+  }
+  .Main .Today .today_content .today-cards {
+    margin-top: 30px;
+    justify-content: center;
+    gap: 10px;
+  }
+  .Main .Today .today_content .today-cards > div {
+    padding: 20px 10px;
+    height: 130px;
+  }
+  .Main .hot-board .hot-board-buttons {
+    justify-content: center;
+  }
+  .Main .hot-board .hot-board-main,
+  .Main .hot-board .hot-board-main.text-ver {
+    padding: 10px;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .Main .hot-board .hot-board-main .img-container,
+  .Main .hot-board .hot-board-main.text-ver .img-container {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .Main .hot-board .hot-board-main .img-container > div,
+  .Main .hot-board .hot-board-main.text-ver .img-container > div {
+    width: 133px;
+    height: 133px;
+  }
+  .Main .hot-board .hot-board-main .img-container > div .board-img,
+  .Main .hot-board .hot-board-main.text-ver .img-container > div .board-img {
+    width: 100%;
+    height: 100%;
+  }
+  .Main .hot-board .hot-board-main .text-card,
+  .Main .hot-board .hot-board-main.text-ver .text-card {
+    width: 48.5%;
+    height: 110px;
+    padding: 10px;
+    display: block;
+  }
+  .Main .hot-board .hot-board-main .text-card img,
+  .Main .hot-board .hot-board-main.text-ver .text-card img {
+    width: 100%;
+    height: 50%;
+  }
+  .Main .hot-board .hot-board-main .text-card .text-card-text,
+  .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text {
+    height: 50%;
+  }
+  .Main .hot-board .hot-board-main .text-card .text-card-text .text-card-title,
+  .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .text-card-title {
+    flex-direction: column;
+    font-size: 12px;
+  }
+  .Main .hot-board .hot-board-main .text-card .text-card-text .profile,
+  .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .profile {
+    flex-direction: column-reverse;
+    align-items: start;
+  }
+  .Main .hot-board .hot-board-main .text-card .text-card-text .profile .profile-content,
+  .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .profile .profile-content {
+    font-size: 12px;
+  }
+  .Main .hot-board .hot-board-main .text-card .text-card-text .profile .profile-content img,
+  .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .profile .profile-content img {
+    width: 20px;
+    height: 20px;
+  }
+  .Main .hot-board .hot-board-main .text-card .text-card-text .profile .profile-content svg,
+  .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .profile .profile-content svg {
+    width: 15px;
+  }
+  .Main .exercise .exercise-title {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  .Main .exercise .recommand-exercise {
+    gap: 10px;
+  }
+  .Main .exercise .recommand-exercise .exercise-card:first-child {
+    display: none;
+  }
+  .Main .exercise .recommand-exercise .exercise-card.video {
+    justify-content: center;
+    width: 33%;
+    height: 217px;
+    padding: 30px 10px;
+  }
+  .Main .exercise .recommand-exercise .exercise-card.video .video-container {
+    width: 80%;
+    height: 96px;
+  }
+  .Main .exercise .recommand-exercise .exercise-card.video h5 {
+    font-size: 12px;
+  }
+  .Main .exercise .recommand-exercise .exercise-card.video .channelInfo {
+    font-size: 10px;
+  }
+  footer {
+    margin-top: 70px;
+  }
 }/*# sourceMappingURL=main.css.map */
