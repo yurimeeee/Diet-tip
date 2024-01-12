@@ -174,19 +174,6 @@ const QnaView = ({ post, onClose, setAllData }) => {
             maxLength="1000"
             cacheMeasurements
           />
-          <input
-            id="reply" 
-            className="mb-shadow lg-radius"
-            placeholder="input shadow test"
-            value={replyText}
-            onChange={(e) => {
-              setReplyText(e.target.value); 
-              setReplyCount(e.target.value.length); 
-            }}
-            rows={1}
-            maxLength="1000"
-            cacheMeasurements
-          />
           <button type="submit"><FontAwesomeIcon icon={faReply} className="point-1" /></button>
         </div>
         <p>
