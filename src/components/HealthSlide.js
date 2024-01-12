@@ -14,13 +14,13 @@ function Healthslide(){
     <Swiper
       breakpoints={{        
           480:{
-        slidesPerView : 3            
+        slidesPerView : 3          
         },
           720:{
         slidesPerView : 5
         },
       }}
-      spaceBetween={25}
+      spaceBetween={20}
       pagination={{
         clickable: true,
         // dynamicBullets: true

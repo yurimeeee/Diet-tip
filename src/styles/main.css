@@ -1306,7 +1306,7 @@ body {
   }
   .Main .banner .banner-text p:first-child,
   .Main .banner .banner-text button {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .Main .banner .banner-text .ptag {
     font-size: 16px;
@@ -1351,7 +1351,7 @@ body {
   }
   .Main .hot-board .hot-board-main .img-container > div,
   .Main .hot-board .hot-board-main.text-ver .img-container > div {
-    width: 133px;
+    width: 30%;
     height: 133px;
   }
   .Main .hot-board .hot-board-main .img-container > div .board-img,

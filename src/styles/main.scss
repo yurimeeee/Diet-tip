@@ -351,7 +351,7 @@
         gap: 15px;
         p:first-child,
         button{
-          font-size: 12px;
+          font-size: 12px !important;
         }
         .ptag{
           font-size: 16px;
@@ -400,7 +400,7 @@
           flex-wrap: wrap;
           gap:10px;
           > div{
-            width:133px;
+            width:30%;
             height:133px;
             .board-img{
               width:100%;

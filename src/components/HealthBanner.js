@@ -41,9 +41,8 @@ function HealthBanner() {
 				<>
 					<div className="bannerTitle">
 						<ul>
-								<li><span>#오늘의요가</span></li>
-								<li><span>#하루스트레칭</span></li>
-								<li><span>#몸을깨우는스트레칭</span></li>
+							<li>#오늘의요가</li>
+							<li>#하루스트레칭</li>
 						</ul>
 						<div className="bannerMainTitle">
 							<h1>오늘의 <p>잠깐</p> 스트레칭</h1>
