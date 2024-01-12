@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -16,15 +16,19 @@ const MobileHeader = () => {
   const dispatch = useDispatch();
 
   const nav = useRef(null);
+  const [ isMenuOpen, setIsMenuOpen ] = useState(false);
 
-  //사이드메뉴 열기
+  // 사이드메뉴 열기
   const open = () => {
     nav.current.classList.add('open');
-  }
-  //사이드메뉴 닫기
+    setIsMenuOpen(true);
+  };
+
+  // 사이드메뉴 닫기
   const close = () => {
     nav.current.classList.remove('open');
-  }
+    setIsMenuOpen(false);
+  };
 
   //로그인 상태인지 파악
   useEffect(() => {
@@ -66,7 +70,7 @@ const MobileHeader = () => {
 
   return (
     <header className="container mobile">
-      <div>
+      <div className="header">
         <button type="button" className="menu-btn" onClick={open}>menu</button>
         <h1>
           <Link to="/">
@@ -78,62 +82,64 @@ const MobileHeader = () => {
           mypage{" "}
         </button>
       </div>
-      <nav className="main-menu" ref={nav}>
-        <button type="button" className="menu-close-btn" onClick={close}>
-        </button>
-        <ul>
-          <li>
-            <a href="javascript:void(0)" className="big-menu">
-              <span>식단&식품</span>
-            </a>
-            <ul>
-              <li onClick={close}>
-                <Link to="/meal">식단 공유</Link>
-              </li>
-              <li onClick={close}>
-                <Link to="/calories">칼로리 사전</Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:void(0)" className="big-menu">
-              <span>운동</span>
-            </a>
-            <ul>
-              <li onClick={close}>
-                <Link to="/health">운동 추천</Link>
-              </li>
-              <li onClick={close}>
-                <Link to="/healthshot">운동 인증</Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:void(0)" className="big-menu">
-              <span>커뮤니티</span>
-            </a>
-            <ul>
-              <li onClick={close}>
-                <Link to="/freeboard">자유게시판</Link>
-              </li>
-              <li onClick={close}>
-                <Link to="/qnaboard">Q&A</Link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <div className="nav-bottom">
-          <span>KOR | ENG</span>
-          <button
-              type="button"
-              className="loginout w-green-btn"
-              onClick={isLoginYN ? logOut : moveLogin}
-            >
-              {isLoginYN ? "로그아웃" : "로그인"}
+      <div className={`main-menu-bg ${isMenuOpen ? "active" : ""}`}>
+        <nav className="main-menu" ref={nav}>
+          <button type="button" className="menu-close-btn" onClick={close}>
           </button>
-        </div>
-
-      </nav>
+          <ul>
+            <li>
+              <a href="javascript:void(0)" className="big-menu">
+                <span>식단&식품</span>
+              </a>
+              <ul>
+                <li onClick={close}>
+                  <Link to="/meal">식단 공유</Link>
+                </li>
+                <li onClick={close}>
+                  <Link to="/calories">칼로리 사전</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0)" className="big-menu">
+                <span>운동</span>
+              </a>
+              <ul>
+                <li onClick={close}>
+                  <Link to="/health">운동 추천</Link>
+                </li>
+                <li onClick={close}>
+                  <Link to="/healthshot">운동 인증</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0)" className="big-menu">
+                <span>커뮤니티</span>
+              </a>
+              <ul>
+                <li onClick={close}>
+                  <Link to="/freeboard">자유게시판</Link>
+                </li>
+                <li onClick={close}>
+                  <Link to="/qnaboard">Q&A</Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div className="nav-bottom">
+            <span>KOR | ENG</span>
+            <button
+                type="button"
+                className="loginout w-green-btn"
+                onClick={isLoginYN ? logOut : moveLogin}
+              >
+                {isLoginYN ? "로그아웃" : "로그인"}
+            </button>
+          </div>
+  
+        </nav>
+      </div>
     </header>
   );
 };

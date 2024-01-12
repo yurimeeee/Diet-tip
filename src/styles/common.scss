@@ -598,7 +598,7 @@ footer {
 
 header.mobile{
   padding: 24px 20px;
-  div{
+  .header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -636,6 +636,18 @@ header.mobile{
         text-indent: -9999rem;
       }
     }
+  }
+  .main-menu-bg.active{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(94, 94, 94, .5);
+    transition: 0.4s ease-in;
+    width:100%;
+    height: 100%;
+    z-index: 100;
   }
   nav{
     display: flex;

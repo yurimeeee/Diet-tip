@@ -592,18 +592,18 @@ footer div a {
 header.mobile {
   padding: 24px 20px;
 }
-header.mobile div {
+header.mobile .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-header.mobile div button {
+header.mobile .header button {
   font-size: 16px;
   border: none;
   background-color: transparent;
   padding: 0;
 }
-header.mobile div .menu-btn {
+header.mobile .header .menu-btn {
   background-image: url(../asset/menu-btn.png);
   width: 25px;
   height: 19px;
@@ -611,7 +611,7 @@ header.mobile div .menu-btn {
   background-size: cover;
   text-indent: -9999rem;
 }
-header.mobile div .mypage {
+header.mobile .header .mypage {
   background-image: url(../asset/mypage-icon.png);
   width: 24px;
   height: 24px;
@@ -619,10 +619,10 @@ header.mobile div .mypage {
   background-size: cover;
   text-indent: -9999rem;
 }
-header.mobile div h1 {
+header.mobile .header h1 {
   text-align: center;
 }
-header.mobile div h1 a {
+header.mobile .header h1 a {
   margin: 0 auto;
   background-image: url(../asset/small-logo.png);
   width: 75px;
@@ -630,6 +630,18 @@ header.mobile div h1 a {
   display: block;
   background-size: cover;
   text-indent: -9999rem;
+}
+header.mobile .main-menu-bg.active {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(94, 94, 94, 0.5);
+  transition: 0.4s ease-in;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }
 header.mobile nav {
   display: flex;
@@ -889,7 +901,9 @@ body {
   border-radius: 999px;
   background: none repeat scroll 0 0 #32a061;
   opacity: 0.8;
+  -webkit-animation: ui-spinner-rotate-left 3s infinite;
   animation: ui-spinner-rotate-left 3s infinite;
+  -webkit-transform-origin: 0 50% 0;
   transform-origin: 0 50% 0;
 }
 .loading .left .anim {
@@ -900,6 +914,7 @@ body {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
   left: -100%;
+  -webkit-transform-origin: 100% 50% 0;
   transform-origin: 100% 50% 0;
 }
 .loading .ouro3 .anim {
@@ -962,6 +977,40 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes ui-spinner-rotate-right {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes ui-spinner-rotate-left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
   }
 }
 
@@ -1050,8 +1099,7 @@ h6 {
 .profile-card .profile-img {
   width: 300px;
   height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin-bottom: 20px;
 }
 .profile-card .about-user {
@@ -1139,8 +1187,7 @@ h6 {
   justify-content: space-between;
 }
 .today-card-big .weather .weather-icon {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 60px;
 }
 
@@ -1152,8 +1199,7 @@ h6 {
 .today-card .sticker {
   width: 50px;
   height: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .goal-card {
@@ -1218,8 +1264,7 @@ h6 {
 .Alert .alert-board .post-img {
   width: 32px;
   height: 32px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .Alert .alert-board > p {
   margin-bottom: 24px;
@@ -1258,4 +1303,6 @@ h6 {
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
-}/*# sourceMappingURL=mypage.css.map */
+}
+
+/*# sourceMappingURL=mypage.css.map */
