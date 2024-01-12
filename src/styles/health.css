@@ -711,6 +711,9 @@ header.mobile nav .nav-bottom {
   header.web {
     display: none;
   }
+  footer {
+    margin-top: 70px;
+  }
   footer div ul {
     display: none;
   }
