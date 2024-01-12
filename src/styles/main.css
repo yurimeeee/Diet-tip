@@ -1361,10 +1361,9 @@ body {
   }
   .Main .hot-board .hot-board-main .text-card,
   .Main .hot-board .hot-board-main.text-ver .text-card {
-    width: 48.5%;
-    height: 110px;
-    padding: 10px;
-    display: block;
+    width: 100%;
+    height: 90px;
+    padding: 10px 20px;
   }
   .Main .hot-board .hot-board-main .text-card img,
   .Main .hot-board .hot-board-main.text-ver .text-card img {
@@ -1374,15 +1373,19 @@ body {
   .Main .hot-board .hot-board-main .text-card .text-card-text,
   .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text {
     height: 50%;
+    justify-content: center;
+    gap: 8px;
   }
   .Main .hot-board .hot-board-main .text-card .text-card-text .text-card-title,
   .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .text-card-title {
-    flex-direction: column;
-    font-size: 12px;
+    font-size: 14px;
+  }
+  .Main .hot-board .hot-board-main .text-card .text-card-text .text-card-title p:last-child,
+  .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .text-card-title p:last-child {
+    width: 90%;
   }
   .Main .hot-board .hot-board-main .text-card .text-card-text .profile,
   .Main .hot-board .hot-board-main.text-ver .text-card .text-card-text .profile {
-    flex-direction: column-reverse;
     align-items: start;
   }
   .Main .hot-board .hot-board-main .text-card .text-card-text .profile .profile-content,
@@ -1399,9 +1402,9 @@ body {
     width: 15px;
   }
   .Main .exercise .exercise-title {
-    display: block;
     font-size: 20px;
     margin-bottom: 40px;
+    display: block;
   }
   .Main .exercise .recommand-exercise {
     gap: 10px;
@@ -1425,7 +1428,14 @@ body {
   .Main .exercise .recommand-exercise .exercise-card.video .channelInfo {
     font-size: 10px;
   }
-  footer {
-    margin-top: 70px;
+  .Main .healthModal {
+    width: 90%;
+    height: 565px;
+  }
+  .Main .healthModal .modalImg img {
+    height: 240px;
+  }
+  .Main .healthModal .modalMainText {
+    height: 80px;
   }
 }/*# sourceMappingURL=main.css.map */
