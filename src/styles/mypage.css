@@ -1317,8 +1317,9 @@ h6 {
 }
 
 @media (max-width: 480px) {
-  .profile .mb-5 {
+  .profile.mb-5 {
     margin-bottom: 48px;
+    margin-top: 20px;
   }
   .area-middle {
     margin-top: 10px;
