@@ -375,6 +375,9 @@
     height: 14px;
   }
 }
+.scroll-lock{
+  overflow: hidden;
+}
 
 @media (max-width: 1320px) {
   .container{

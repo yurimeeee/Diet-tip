@@ -707,13 +707,14 @@ header.mobile nav > ul > li {
 }
 header.mobile nav > ul > li a {
   color: #32a061;
+  padding-bottom: 16px;
 }
 header.mobile nav > ul > li > a {
   display: block;
 }
 header.mobile nav > ul > li + li {
   padding-top: 0;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
 }
 header.mobile nav > ul:before {
   display: none;

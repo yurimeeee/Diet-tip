@@ -174,6 +174,7 @@ const QnA = () => {
 
   //주간인기글 mobile size modal
   const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const html = document.querySelector('html');
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -190,13 +191,13 @@ const QnA = () => {
 
     if (isModalOpen) {
       document.addEventListener('click', handleModalBgClick);
-      document.body.style.position = 'fixed';
+      html?.classList.add('scroll-lock');
     }
   
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       document.removeEventListener('click', handleModalBgClick);
-      document.body.style.position = 'static';
+      html?.classList.remove('scroll-lock');
     };
   }, [isModalOpen]);
 

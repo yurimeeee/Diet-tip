@@ -703,6 +703,7 @@ header.mobile{
         padding: 20px 0;
         a{
           color: $point-1;
+          padding-bottom: 16px;
         }
         >a{
           // padding-bottom: 20px;
@@ -711,7 +712,7 @@ header.mobile{
       }
       >li+li{
         padding-top:0;
-        padding-bottom: 20px;
+        padding-bottom: 16px;
       }
       
       &:before {

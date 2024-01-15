@@ -58,7 +58,7 @@ const CustomSelect = ({ onSelectChange }) => {
         font-size: 13px;
       }
     }
-  `;
+    `;
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -74,6 +74,7 @@ const CustomSelect = ({ onSelectChange }) => {
     setSelectedOption(selectedOption);
     onSelectChange(selectedOption);
   };
+
   console.log(selectedOption);
 
   return(
@@ -82,6 +83,7 @@ const CustomSelect = ({ onSelectChange }) => {
         value={selectedOption || options[0]} //선택된 옵션이 없을 경우 배열의 첫번째를 기본값으로
         onChange={handleChange}
         options={options}
+        isSearchable={false}
       />
     </div>
   );
