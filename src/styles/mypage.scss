@@ -312,6 +312,16 @@ h6 {
       margin-top: $unit-1;
     }
   }
+  .w-badge{
+    opacity: 0.4;
+  }
+  .w-badge:hover{
+    opacity: 0.4;
+  }
+  .w-badge.green,
+  .w-badge.red{
+    opacity: 1;
+  }
 }
 
 @media (max-width: 480px) {
@@ -379,7 +389,9 @@ h6 {
           margin-bottom: 20px;
         }
         .goal-card{
-          width: calc(100% - 40px);
+          box-sizing: border-box;
+          justify-content: center;
+          width: 100%;
           padding: 20px;
         }
       }
@@ -420,7 +432,34 @@ h6 {
     .alert-board {
       width: 100%;
       padding: 20px;
+
+      .alert.report{
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .progress{
+        p{
+          gap: 5px;
+          :last-child{
+            font-size: max(14px, min(3.35vw, 16px));
+          }
+        }
+      }
     }
   }
+}
 
+@media (max-width: 430px) {
+  .Alert {
+    .alert-board{
+      .progress p{
+        flex-direction: column-reverse;
+        gap: 10px;
+        :last-child{
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }

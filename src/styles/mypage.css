@@ -1315,6 +1315,16 @@ h6 {
   justify-content: space-between;
   margin-top: 24px;
 }
+.Alert .w-badge {
+  opacity: 0.4;
+}
+.Alert .w-badge:hover {
+  opacity: 0.4;
+}
+.Alert .w-badge.green,
+.Alert .w-badge.red {
+  opacity: 1;
+}
 
 @media (max-width: 480px) {
   .profile.mb-5 {
@@ -1369,7 +1379,9 @@ h6 {
     margin-bottom: 20px;
   }
   .area-middle-middle .area-right .goal .goal-card {
-    width: calc(100% - 40px);
+    box-sizing: border-box;
+    justify-content: center;
+    width: 100%;
     padding: 20px;
   }
   .area-middle-middle .area-right .recommand .recommand-btns {
@@ -1396,5 +1408,24 @@ h6 {
   .Alert .alert-board {
     width: 100%;
     padding: 20px;
+  }
+  .Alert .alert-board .alert.report {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .Alert .alert-board .progress p {
+    gap: 5px;
+  }
+  .Alert .alert-board .progress p :last-child {
+    font-size: max(14px, min(3.35vw, 16px));
+  }
+}
+@media (max-width: 430px) {
+  .Alert .alert-board .progress p {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .Alert .alert-board .progress p :last-child {
+    font-size: 16px;
   }
 }/*# sourceMappingURL=mypage.css.map */

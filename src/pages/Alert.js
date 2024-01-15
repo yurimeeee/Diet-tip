@@ -62,7 +62,7 @@ const Alert = () => {
       <section>
         <h5>신고 처리</h5>
         <div className="alert-board">
-          <p>신고하신 1건이 처리중입니다.</p>
+          <p>신고하신 &lsquo;3건&rsquo;이 처리중입니다.</p>
           <div className="alert report">
             <p>다이어트 쉐이크 중에 제일 성분 좋은</p>
             <div className="badges">
@@ -77,7 +77,7 @@ const Alert = () => {
             </p>
             <p>
               <span className="w-badge green">O</span>
-              <span>처리완료(삭제 또는 경고조치)</span>
+              <span>처리완료(삭제 또는 경고)</span>
             </p>
             <p>
               <span className="w-badge red">X</span>
