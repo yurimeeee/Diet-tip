@@ -252,6 +252,9 @@ h6 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: start;
+  h5{
+    margin-bottom: 20px;
+  }
   section + section {
     margin-top: 0;
   }
@@ -309,4 +312,114 @@ h6 {
       margin-top: $unit-1;
     }
   }
+}
+
+@media (max-width: 480px) {
+  //My Page
+  .profile .mb-5{
+    margin-bottom: 48px;
+  }
+
+  .area-middle{
+    margin-top: 10px;
+    gap: 20px;
+  }
+
+  .area-middle-top{
+    .buttons .button{
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .area-middle-middle{
+    flex-direction: column;
+    gap: 48px;
+
+    .profile-card{
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+
+      .profile-img{
+        width: 45%;
+        height: 50%;
+        margin-bottom: 0;
+      }
+      .about-user{
+        .user-info img{
+          width: 25px;
+          height: 25px;
+        }
+        ul{
+          font-size: max(12px, min(3.2vw, 15px));
+        }
+      }
+    }
+    .area-right{
+      gap: 48px;
+      .Today{
+        h5{
+          margin-bottom: 20px;
+          font-size: $font-16;
+        }
+        .today_content{
+          width: 100%;
+        }
+        %today-card {
+          padding: 20px;
+          height: 130px;
+        }
+      }
+
+      .goal{
+        h5{
+          margin-bottom: 20px;
+        }
+        .goal-card{
+          width: calc(100% - 40px);
+          padding: 20px;
+        }
+      }
+      
+      .recommand{
+        .recommand-btns{
+          gap: 10px;
+        }
+        .recommand-btns .w-green-btn{
+          font-size: (max(12px, min(3vw, $font-14))) !important;
+        }
+      }
+    }
+  }
+
+  .chart-container {
+    button {
+      position: relative;
+      display: flex;
+      justify-content: end;
+      margin: 10px 0 0 auto;
+
+      right: 0;
+      transform: none;
+    }
+  }
+
+  //Alert Page
+  .Alert {
+    section{
+      width: 100%;
+
+      h5{
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+    }
+    .alert-board {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+
 }

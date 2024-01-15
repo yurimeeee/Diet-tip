@@ -1255,6 +1255,9 @@ h6 {
   align-items: start;
   gap: 20px;
 }
+.Alert h5 {
+  margin-bottom: 20px;
+}
 .Alert section + section {
   margin-top: 0;
 }
@@ -1311,4 +1314,86 @@ h6 {
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
+}
+
+@media (max-width: 480px) {
+  .profile .mb-5 {
+    margin-bottom: 48px;
+  }
+  .area-middle {
+    margin-top: 10px;
+    gap: 20px;
+  }
+  .area-middle-top .buttons .button {
+    width: 40px;
+    height: 40px;
+  }
+  .area-middle-middle {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .area-middle-middle .profile-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  .area-middle-middle .profile-card .profile-img {
+    width: 45%;
+    height: 50%;
+    margin-bottom: 0;
+  }
+  .area-middle-middle .profile-card .about-user .user-info img {
+    width: 25px;
+    height: 25px;
+  }
+  .area-middle-middle .profile-card .about-user ul {
+    font-size: max(12px, min(3.2vw, 15px));
+  }
+  .area-middle-middle .area-right {
+    gap: 48px;
+  }
+  .area-middle-middle .area-right .Today h5 {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  .area-middle-middle .area-right .Today .today_content {
+    width: 100%;
+  }
+  .area-middle-middle .area-right .Today .today-card-big, .area-middle-middle .area-right .Today .today-card {
+    padding: 20px;
+    height: 130px;
+  }
+  .area-middle-middle .area-right .goal h5 {
+    margin-bottom: 20px;
+  }
+  .area-middle-middle .area-right .goal .goal-card {
+    width: calc(100% - 40px);
+    padding: 20px;
+  }
+  .area-middle-middle .area-right .recommand .recommand-btns {
+    gap: 10px;
+  }
+  .area-middle-middle .area-right .recommand .recommand-btns .w-green-btn {
+    font-size: max(12px, min(3vw, 14px)) !important;
+  }
+  .chart-container button {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    margin: 10px 0 0 auto;
+    right: 0;
+    transform: none;
+  }
+  .Alert section {
+    width: 100%;
+  }
+  .Alert section h5 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .Alert .alert-board {
+    width: 100%;
+    padding: 20px;
+  }
 }/*# sourceMappingURL=mypage.css.map */
