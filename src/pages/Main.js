@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../styles/main.css';
+import Popup from "../components/Popup";
 import Banner from "../components/Banner";
 import Today from "../components/Today";
 import mealImg from "../asset/meal/meal.png";
@@ -342,6 +343,7 @@ const Main = () => {
 
   return(
     <main className="Main container">
+      <Popup />
       <Banner />
       <Today />
       <section className="hot-board">
