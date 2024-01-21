@@ -286,7 +286,7 @@ const QnA = () => {
             
                 <tbody>
                   {currentPageData.map(( item ) => (
-                    <tr key={item.id} className="container" onClick={() => handlePostClick(item.id)}>
+                    <tr key={item.id} onClick={() => handlePostClick(item.id)}>
                       <td className="qna-td-1"><img src={icon_q} alt="" /></td>
                       <td className="qna-td-2 green-4">{item.category}</td>
                       <td className="qna-td-3 link" style={{ cursor: 'pointer' }}>

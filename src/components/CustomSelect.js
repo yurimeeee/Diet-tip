@@ -12,8 +12,6 @@ const CustomSelect = ({ onSelectChange }) => {
       border-radius: 66px;
       border: 1px solid #32a061;
       box-shadow: none;
-      // width: 136px;
-      // text-align: center;
       &:hover{
         border: 1px solid #32a061;
       }
@@ -54,8 +52,17 @@ const CustomSelect = ({ onSelectChange }) => {
 
     //mobile size
     @media (max-width: 480px) {
+      .react-select__control{
+        min-height: 32px;
+      }
+      .react-select__indicator{
+        padding: 5px 8px;
+      }
       .react-select__single-value{
-        font-size: 13px;
+        font-size: 14px;
+      }
+      .react-select__option{
+        font-size: 14px;
       }
     }
     `;

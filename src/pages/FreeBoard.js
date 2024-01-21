@@ -132,7 +132,7 @@ const FreeBoard = () => {
   return (
     <main className="Community">
       <section className="fb-banner bg-point-1 pd">
-        <div className="container df jcsb">
+        <div className="container df jcsb aic">
           <div className="fb-banner-content">
             <h2 className="tt4 bold white">자유게시판</h2>
             <p className="tt2 bold white mg-t1 sm">
