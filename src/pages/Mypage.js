@@ -241,11 +241,8 @@ const Mypage = () => {
           </div>
         </div>
       </section>
-      {/* <section className='user-meal'>
-        <h5>나의 식단 기록</h5>
-      </section> */}
       <section className="user-exercise center">
-        <h5>나의 운동 기록</h5>
+        <h5>나의 체중 기록</h5>
         <div className="chart-container">
           <Line data={data} options={options} width="400" height="100" />
           <button type="button" className="w-green-btn">
@@ -254,7 +251,7 @@ const Mypage = () => {
         </div>
       </section>
       <section className="user-exercise">
-        <h5>나의 체중 기록</h5>
+        <h5>나의 운동 기록</h5>
         <div className="chart-container">
           <Line data={data2} options={options} width="400" height="100" />
           <button type="button" className="w-green-btn">
