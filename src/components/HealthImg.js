@@ -35,7 +35,6 @@ function HealthImg(){
   return(
     <div className="grid">
       {photos.map((item, index) => (
-        <>
         <div className="grid-item" 
           onClick={()=>{
             setModal(true)
@@ -58,16 +57,14 @@ function HealthImg(){
             </div>
           </div>
         </div>   
-        {modal === true ? 
+      ))}
+      {modal === true ? 
         <Healthmodal 
           parentSetModal={setModal}
           data={modalItem}
         />:null}
-        </>
-      ))}
     </div>
   )
-  
-}
+};
 
 export default HealthImg;

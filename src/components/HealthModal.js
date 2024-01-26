@@ -15,7 +15,7 @@ function Healthmodal(props){
 
   return(
     <>
-    <div className="healthModal">
+    <div className="healthModal" >
       <div className="modalText df jcsb">
         <div className="text df">
           <span>
