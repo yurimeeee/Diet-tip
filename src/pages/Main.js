@@ -362,6 +362,7 @@ const Main = () => {
         {boardtype === 'FreeBoard' && <FreeBoard freeBoardList={freeBoardList} />}
         {boardtype === 'QnA' && <QnA qnaBoardList={qnaBoardList} />}
       </section>
+      {/* 이미지 오류시 제이슨파일 링크 확인 */}
       <Exercise/>
     </main>
   );
