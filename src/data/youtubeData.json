@@ -101,17 +101,17 @@
         "publishedAt": "2016-05-23T02:52:29Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/Health.jpg",
+            "url": "./youtubeimg/Health.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/Health.jpg",
+            "url": "./youtubeimg/Health.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/Health.jpg",
+            "url": "./youtubeimg/Health.jpg",
             "width": 800,
             "height": 800
           }
@@ -146,17 +146,17 @@
         "publishedAt": "2021-11-17T04:24:01.396695Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/workout.jpg",
+            "url": "./youtubeimg/workout.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/workout.jpg",
+            "url": "./youtubeimg/workout.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/workout.jpg",
+            "url": "./youtubeimg/workout.jpg",
             "width": 800,
             "height": 800
           }
@@ -191,17 +191,17 @@
         "publishedAt": "2021-02-03T05:48:32.925052Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/binggraefit.jpg",
+            "url": "./youtubeimg/binggraefit.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/binggraefit.jpg",
+            "url": "./youtubeimg/binggraefit.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/binggraefit.jpg",
+            "url": "./youtubeimg/binggraefit.jpg",
             "width": 800,
             "height": 800
           }
@@ -237,17 +237,17 @@
         "publishedAt": "2020-07-21T03:47:16.132334Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/ordinary.jpg",
+            "url": "./youtubeimg/ordinary.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/ordinary.jpg",
+            "url": "./youtubeimg/ordinary.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/ordinary.jpg",
+            "url": "./youtubeimg/ordinary.jpg",
             "width": 800,
             "height": 800
           }
@@ -282,17 +282,17 @@
         "publishedAt": "2018-03-04T15:40:52Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/hip.jpg",
+            "url": "./youtubeimg/hip.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/hip.jpg",
+            "url": "./youtubeimg/hip.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/hip.jpg",
+            "url": "./youtubeimg/hip.jpg",
             "width": 800,
             "height": 800
           }
@@ -327,17 +327,17 @@
         "publishedAt": "2019-05-05T22:15:47Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/view.jpg",
+            "url": "./youtubeimg/view.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/view.jpg",
+            "url": "./youtubeimg/view.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/view.jpg",
+            "url": "./youtubeimg/view.jpg",
             "width": 800,
             "height": 800
           }
@@ -373,17 +373,17 @@
         "publishedAt": "2018-10-25T12:00:08Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/fitvely.jpg",
+            "url": "./youtubeimg/fitvely.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/fitvely.jpg",
+            "url": "./youtubeimg/fitvely.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/fitvely.jpg",
+            "url": "./youtubeimg/fitvely.jpg",
             "width": 800,
             "height": 800
           }
@@ -419,17 +419,17 @@
         "publishedAt": "2014-10-11T17:48:11Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/mizi.jpg",
+            "url": "./youtubeimg/mizi.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/mizi.jpg",
+            "url": "./youtubeimg/mizi.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/mizi.jpg",
+            "url": "./youtubeimg/mizi.jpg",
             "width": 800,
             "height": 800
           }
@@ -453,7 +453,4 @@
         "videoCount": "206"
       }
     }
-      
-    
-
   ]
