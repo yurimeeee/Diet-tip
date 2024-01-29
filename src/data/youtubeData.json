@@ -10,17 +10,17 @@
         "publishedAt": "2015-02-26T03:30:24Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/ThankyouBUBU.jpg",
+            "url": "./youtubeimg/ThankyouBUBU.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/ThankyouBUBU.jpg",
+            "url": "./youtubeimg/ThankyouBUBU.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/ThankyouBUBU.jpg",
+            "url": "./youtubeimg/ThankyouBUBU.jpg",
             "width": 800,
             "height": 800
           }
@@ -55,17 +55,17 @@
         "publishedAt": "2020-08-26T17:01:44.591523Z",
         "thumbnails": {
           "default": {
-            "url": "../youtubeimg/Bigsis.jpg",
+            "url": "./youtubeimg/Bigsis.jpg",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "../youtubeimg/Bigsis.jpg",
+            "url": "./youtubeimg/Bigsis.jpg",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "../youtubeimg/Bigsis.jpg",
+            "url": "./youtubeimg/Bigsis.jpg",
             "width": 800,
             "height": 800
           }
